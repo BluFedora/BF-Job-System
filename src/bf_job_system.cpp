@@ -90,6 +90,9 @@ namespace bf
     using TaskHandleType                       = TaskHandle;
     static constexpr TaskHandle NullTaskHandle = std::numeric_limits<TaskHandle>::max();
 
+    using ContinuationsCountType       = std::int8_t;
+    using ContinuationsCountAtomicType = std::atomic<ContinuationsCountType>;
+
     // Struct Definitions
 
     struct TaskPtr
@@ -116,16 +119,23 @@ namespace bf
 
     struct BaseTask
     {
-      TaskFn      fn;
-      AtomicInt32 num_unfinished_tasks;
-      AtomicInt32 num_continuations;
-      TaskPtr     parent;
-      WorkerID    owning_worker;
-      QueueType   q_type;
-      TaskPtr     continuations[k_MaxTaskContinuations];
+      using ContinuationsArray = std::array<TaskPtr, k_MaxTaskContinuations>;
+
+      TaskFn                       fn;                    //!< The function that will be run.
+      AtomicInt32                  num_unfinished_tasks;  //!< The number of children tasks.
+      WorkerID                     owning_worker;         //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
+      TaskPtr                      parent;                //!< The parent task, can be null.
+      ContinuationsArray           continuations;         //!< The list of tasks to be added on completion.
+      ContinuationsCountAtomicType num_continuations;     //!< The number of taks to add to the queue on completion.
+      QueueType                    q_type;                //!< The queue type this task has been submitted to.
+      std::atomic<std::uint32_t>   flags;                 //!< RESERVED, Check to see if this needs to
 
       BaseTask(WorkerID worker, TaskFn fn, TaskPtr parent);
     };
+
+    static_assert(
+     k_MaxTaskContinuations <= std::numeric_limits<ContinuationsCountType>::max(),
+     "Either upgrade `ContinuationsCountType` to a larger type or lower `k_MaxTaskContinuations`.");
 
     static_assert(sizeof(BaseTask) <= k_ExpectedTaskSize, "The task struct is expected to be this less than this size.");
 
@@ -424,60 +434,61 @@ namespace bf
 
     void taskAddContinuation(Task* self, const Task* continuation) noexcept
     {
+      assert(continuation->q_type == k_InvalidQueueType && "A continuation must not have already been submitted to a queue.");
       assert(self->num_continuations < k_MaxTaskContinuations && "Too many continuations for a single task.");
 
       const std::int32_t count = ++self->num_continuations;
 
-      self->continuations[count - 1] = continuation->toTaskPtr();
+      self->continuations[std::size_t(count) - 1] = continuation->toTaskPtr();
+    }
+
+    template<typename QueueType>
+    static void taskSubmitQPushHelper(Task* const self, const WorkerID worker_id, QueueType& queue)
+    {
+      ThreadWorker* const worker = s_JobCtx.workers + worker_id;
+
+      // Loop until we have successfully pushed to the queue.
+      while (!queue.push(self))
+      {
+        // If we could not push to the queues then just do some work.
+        s_JobCtx.wakeUpAllWorkers();
+        worker->run(worker_id);
+      }
     }
 
     void taskSubmit(Task* self, QueueType queue) noexcept
     {
       const WorkerID worker_id = currentWorker();
 
+      assert(self->q_type == k_InvalidQueueType && "A task cannot be submitted to a queue multiple times.");
       assert(worker_id < numWorkers() && "This thread was not created by the job system.");
 
-      ThreadWorker* const worker     = s_JobCtx.workers + worker_id;
-      bool                has_pushed = false;
+      ThreadWorker* const worker = s_JobCtx.workers + worker_id;
 
       self->q_type = queue;
 
-      while (true)
+      switch (queue)
       {
-        // TODO(SR): Check this!
-        //   Hope the compiler optimizes this so that there is a not a branch every time through the loop.
-        switch (queue)
+        case QueueType::MAIN:
         {
-          case QueueType::MAIN:
-          {
-            has_pushed = s_JobCtx.main_queue.push(self);
-            break;
-          }
-          case QueueType::HIGH:
-          {
-            has_pushed = worker->hi_queue.push(self);
-            break;
-          }
-          case QueueType::NORMAL:
-          {
-            has_pushed = worker->nr_queue.push(self);
-            break;
-          }
-          case QueueType::BACKGROUND:
-          {
-            has_pushed = worker->bg_queue.push(self);
-            break;
-          }
-        }
-
-        if (has_pushed)
-        {
+          taskSubmitQPushHelper(self, worker_id, s_JobCtx.main_queue);
           break;
         }
-
-        // If we could not push to the queues then just do some work.
-        s_JobCtx.wakeUpAllWorkers();
-        worker->run(worker_id);
+        case QueueType::HIGH:
+        {
+          taskSubmitQPushHelper(self, worker_id, worker->hi_queue);
+          break;
+        }
+        case QueueType::NORMAL:
+        {
+          taskSubmitQPushHelper(self, worker_id, worker->nr_queue);
+          break;
+        }
+        case QueueType::BACKGROUND:
+        {
+          taskSubmitQPushHelper(self, worker_id, worker->bg_queue);
+          break;
+        }
       }
 
       s_JobCtx.wakeUpOneWorker();
@@ -522,11 +533,12 @@ namespace bf
     BaseTask::BaseTask(WorkerID worker, TaskFn fn, TaskPtr parent) :
       fn{fn},
       num_unfinished_tasks{1},
-      num_continuations{0u},
-      parent{parent},
       owning_worker{worker},
+      parent{parent},
+      continuations{},
+      num_continuations{0u},
       q_type{k_InvalidQueueType}, /* Set to a valid value in 'bf::job::submitTask' */
-      continuations{}
+      flags{0x0}
     {
       if (!isTaskPtrNull(parent))
       {
@@ -554,9 +566,9 @@ namespace bf
 
     void Task::onFinish()
     {
-      // IMPORTANT(SR): 
-      //   make sure to store the result in a local variable and use that for 
-      //   comparing against zero later. otherwise, the code contains a data race 
+      // IMPORTANT(SR):
+      //   make sure to store the result in a local variable and use that for
+      //   comparing against zero later. otherwise, the code contains a data race
       //   because other child tasks could change m_UnFinishedJobs in the meantime.
       const std::int32_t num_jobs_left = --num_unfinished_tasks;
 
