@@ -24,9 +24,9 @@
 
 #include "bf_job_config.hpp" /* size_t, Config Constants */
 
-#include <cstdint> /* uint16_t      */
-#include <new>     /* placement new */
-#include <utility> /* forward       */
+#include <cstdint> /* uint8_t, uint16_t */
+#include <new>     /* placement new     */
+#include <utility> /* forward           */
 
 namespace bf
 {
@@ -36,7 +36,7 @@ namespace bf
 
     struct Task;
 
-    enum class QueueType : std::uint16_t;
+    enum class QueueType : std::uint8_t;
 
     // Private
 
@@ -57,7 +57,7 @@ namespace bf
      * @brief 
      *   The priority that you want a task to run at.
      */
-    enum class QueueType : std::uint16_t
+    enum class QueueType : std::uint8_t
     {
       MAIN       = 0,  //!< Use this value when you need a certain task to be run specifically by the main thread.
       HIGH       = 1,  //!< Normally you will want tasks to go into this queue.
@@ -202,8 +202,7 @@ namespace bf
 
     /*!
      * @brief
-     *   A 'continuation' is a task that will be added to a queue after the 'self'
-     *   Task has finished running.
+     *   A 'continuation' is a task that will be added to a queue after the 'self' Task has finished running.
      * 
      *   Continuations will be added to the same queue as the queue from the task that submits it.
      * 
@@ -212,6 +211,7 @@ namespace bf
      * 
      * @param continuation
      *   The Task to run after 'self' has finished.
+     *   This task must not have already been submitted to a queue.
      */
     void taskAddContinuation(Task* self, const Task* continuation) noexcept;
 
@@ -220,6 +220,7 @@ namespace bf
      *   Submits the task to the specified queue.
      * 
      *   The Task is not required to have been created on the same thread that submits.
+     * 
      *   You may now wait on this task using 'waitOnTask'.
      * 
      * @param self
@@ -315,7 +316,7 @@ namespace bf
      * 
      *   You may only call this function with a task created on the current 'Worker'.
      * 
-     *   It is a logic bug to call this function on a task that has not been taskSubmit'd.
+     *   It is a logic error to call this function on a task that has not been taskSubmit'd.
      * 
      * @param task
      *   The task to wait to finish executing.
