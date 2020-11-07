@@ -1,6 +1,6 @@
 /******************************************************************************/
 /*!
- * @file   bf_job_system.cpp
+ * @file   bf_job_api.cpp
  * @author Shareef Abdoul-Raheem (http://blufedora.github.io/)
  * @brief
  *    API for a multithreading job system.
@@ -10,6 +10,8 @@
  *      [https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/]
  *      [https://github.com/cdwfs/cds_job/blob/master/cds_job.h]
  *      [https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h]
+ *      [https://fabiensanglard.net/doom3_bfg/threading.php]
+ *      [https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine]
  *
  * @version 0.0.1
  * @date    2020-09-03
@@ -125,7 +127,7 @@ namespace bf
       BaseTask(WorkerID worker, TaskFn fn, TaskPtr parent);
     };
 
-    static_assert(sizeof(BaseTask) <= k_ExpectedTaskSize, "The task struct is expected to be this less thasn this size.");
+    static_assert(sizeof(BaseTask) <= k_ExpectedTaskSize, "The task struct is expected to be this less than this size.");
 
     static constexpr std::size_t k_TaskPaddingDataSize = k_ExpectedTaskSize - sizeof(BaseTask);
 
@@ -368,7 +370,7 @@ namespace bf
       const auto num_workers = s_JobCtx.num_workers;
 
       {
-        //std::unique_lock<std::mutex> lock(s_JobCtx.worker_sleep_mutex);
+        // std::unique_lock<std::mutex> lock(s_JobCtx.worker_sleep_mutex);
 
         for (std::size_t i = 1; i < num_workers; ++i)
         {
@@ -488,7 +490,7 @@ namespace bf
       const WorkerID worker_id = currentWorker();
 
       assert(worker_id < numWorkers() && "This thread was not created by the job system.");
-      assert(task->owning_worker == worker_id && "You may only call this function with atask created on the current 'Worker'.");
+      assert(task->owning_worker == worker_id && "You may only call this function with a task created on the current 'Worker'.");
 
       ThreadWorker* worker = s_JobCtx.workers + worker_id;
 
@@ -552,8 +554,10 @@ namespace bf
 
     void Task::onFinish()
     {
-      // IMPORTANT: make sure to store the result in a local variable and use that for comparing against zero later.
-      // otherwise, the code contains a data race because other child tasks could change m_UnFinishedJobs in the meantime.
+      // IMPORTANT(SR): 
+      //   make sure to store the result in a local variable and use that for 
+      //   comparing against zero later. otherwise, the code contains a data race 
+      //   because other child tasks could change m_UnFinishedJobs in the meantime.
       const std::int32_t num_jobs_left = --num_unfinished_tasks;
 
       if (num_jobs_left == 0)
@@ -586,6 +590,7 @@ namespace bf
       }
       else
       {
+        // TODO(SR): Make this only for debug builds.
         std::memset(allocated_tasks.data(), 0xFF, sizeof(allocated_tasks));
 
         new (worker()) std::thread([]() {

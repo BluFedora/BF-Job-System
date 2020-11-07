@@ -10,6 +10,8 @@
  *      [https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/]
  *      [https://github.com/cdwfs/cds_job/blob/master/cds_job.h]
  *      [https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h]
+ *      [https://fabiensanglard.net/doom3_bfg/threading.php]
+ *      [https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine]
  *
  * @version 0.0.1
  * @date    2020-09-03
@@ -76,13 +78,13 @@ namespace bf
 
     // Main System API
     //
-    // API functions can only be called by the thread that called 'bf::job::initialize' or from a within a Task function.
+    // API functions can only be called by the thread that called 'bfJob::initialize' or from a within a Task function.
     //
 
     /*!
      * @brief
      *   Sets up the Job system and creates all the worker threads.
-     *   The thread that calls 'bf::job::initialize' is considered (and should be) the main thread.
+     *   The thread that calls 'bfJob::initialize' is considered (and should be) the main thread.
      * 
      * @param params
      *   The customization parameters to initialize the system with.
@@ -147,7 +149,7 @@ namespace bf
     /*!
      * @brief 
      *   This will deallocate any memory used by the system
-     *   and shutdown any threads created by 'bf::job::initialize'.
+     *   and shutdown any threads created by 'bfJob::initialize'.
      * 
      *   This function may only be called by the main thread.
      */
