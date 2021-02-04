@@ -9,11 +9,11 @@ var bf__job__api_8hpp =
     ] ],
     [ "WorkerID", "bf__job__api_8hpp.html#a578698ca919202a8ec0473dd4f6c5b81", null ],
     [ "TaskFn", "bf__job__api_8hpp.html#ae80841b2f4f6b256e5c7c3b2e4c2c541", null ],
-    [ "QueueType", "bf__job__api_8hpp.html#a875be9fb42e0c4b56567a56f2265253a", [
-      [ "MAIN", "bf__job__api_8hpp.html#a875be9fb42e0c4b56567a56f2265253aa186495f7da296bf880df3a22a492b378", null ],
-      [ "HIGH", "bf__job__api_8hpp.html#a875be9fb42e0c4b56567a56f2265253aab89de3b4b81c4facfac906edf29aec8c", null ],
-      [ "NORMAL", "bf__job__api_8hpp.html#a875be9fb42e0c4b56567a56f2265253aa1e23852820b9154316c7c06e2b7ba051", null ],
-      [ "BACKGROUND", "bf__job__api_8hpp.html#a875be9fb42e0c4b56567a56f2265253aa87ed58ce5596142e11cb65deb049bb4b", null ]
+    [ "QueueType", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9", [
+      [ "MAIN", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378", null ],
+      [ "HIGH", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9ab89de3b4b81c4facfac906edf29aec8c", null ],
+      [ "NORMAL", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9a1e23852820b9154316c7c06e2b7ba051", null ],
+      [ "BACKGROUND", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9a87ed58ce5596142e11cb65deb049bb4b", null ]
     ] ],
     [ "checkTaskDataSize", "bf__job__api_8hpp.html#a3976d7c24992b120b851a1b65396d742", null ],
     [ "taskQType", "bf__job__api_8hpp.html#a4d4666e8dba3d32e395eb701d243c0cb", null ],

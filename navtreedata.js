@@ -31,7 +31,8 @@ var NAVTREE =
         [ "Task", "index.html#autotoc_md3", null ],
         [ "Queues", "index.html#autotoc_md4", null ]
       ] ],
-      [ "Dependencies", "index.html#autotoc_md5", null ]
+      [ "<a href=\"https://blufedora.github.io/BF-Job-System\">API Docs (Doxygen)</a>", "index.html#autotoc_md5", null ],
+      [ "Dependencies", "index.html#autotoc_md6", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

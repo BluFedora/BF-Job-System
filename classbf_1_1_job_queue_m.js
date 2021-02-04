@@ -1,6 +1,6 @@
 var classbf_1_1_job_queue_m =
 [
-    [ "JobQueueM", "classbf_1_1_job_queue_m.html#a424c6393dcb121aba026dad43c40b5cb", null ],
+    [ "JobQueueM", "classbf_1_1_job_queue_m.html#a4f7b99756c219cb27eb1c6c37b888378", null ],
     [ "size", "classbf_1_1_job_queue_m.html#a03f4d5cebdc3d8fb08ebc51cbc574eba", null ],
     [ "push", "classbf_1_1_job_queue_m.html#a07dc90f00a9ab7e129de874bf4be417a", null ],
     [ "pop", "classbf_1_1_job_queue_m.html#affcf301a5b9222b66c78aa5f50eaf58a", null ],

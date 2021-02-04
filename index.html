@@ -169,25 +169,31 @@ Queues</h2>
 <li><code>BACKGROUND</code> This queue has a guarantee that the task will never be run on the main thread.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md5"></a>
+&lt;a href="https://blufedora.github.io/BF-Job-System"&gt;API Docs (Doxygen)&lt;/a&gt;</h1>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Dependencies</h1>
 <ul>
-<li><a href="https://github.com/BluFedora/BF-Memory">BF Memory</a></li>
+<li><a href="https://github.com/BluFedora/BF-Memory">BF Memory</a><ul>
+<li><code>git clone <a href="https://github.com/BluFedora/BF-Memory.git">https://github.com/BluFedora/BF-Memory.git</a></code></li>
+<li>Add the memory library's <code>CMakeLists.txt</code> file to the build.</li>
+</ul>
+</li>
 <li>C++11 or higher </li>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespacebf_1_1job_html_a30227e75e456f34efddb8305f6e862f6"><div class="ttname"><a href="namespacebf_1_1job.html#a30227e75e456f34efddb8305f6e862f6">bf::job::initialize</a></div><div class="ttdeci">bool initialize(const JobSystemCreateOptions &amp;params={0u}) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'bf::job::initialize...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00228">bf_job_system.cpp:228</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a330db870e4c3992110f153086aefffd1"><div class="ttname"><a href="namespacebf_1_1job.html#a330db870e4c3992110f153086aefffd1">bf::job::taskSubmit</a></div><div class="ttdeci">void taskSubmit(Task *self, QueueType queue=QueueType::HIGH) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00432">bf_job_system.cpp:432</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a30227e75e456f34efddb8305f6e862f6"><div class="ttname"><a href="namespacebf_1_1job.html#a30227e75e456f34efddb8305f6e862f6">bf::job::initialize</a></div><div class="ttdeci">bool initialize(const JobSystemCreateOptions &amp;params={0u}) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'bfJob::initialize' ...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00243">bf_job_system.cpp:243</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a330db870e4c3992110f153086aefffd1"><div class="ttname"><a href="namespacebf_1_1job.html#a330db870e4c3992110f153086aefffd1">bf::job::taskSubmit</a></div><div class="ttdeci">void taskSubmit(Task *self, QueueType queue=QueueType::HIGH) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00466">bf_job_system.cpp:466</a></div></div>
 <div class="ttc" id="aclassbf_1_1job_1_1_count_splitter_html"><div class="ttname"><a href="classbf_1_1job_1_1_count_splitter.html">bf::job::CountSplitter</a></div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00139">bf_job_ext.hpp:140</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_acfe70d5d0de909f4140811df015dac76"><div class="ttname"><a href="namespacebf_1_1job.html#acfe70d5d0de909f4140811df015dac76">bf::job::waitOnTask</a></div><div class="ttdeci">void waitOnTask(const Task *task) noexcept</div><div class="ttdoc">Waits until the specifed task is done executing. This function will block but do work while being blo...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00484">bf_job_system.cpp:484</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a0f005788a248d99a196608b5727b8bcd"><div class="ttname"><a href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">bf::job::shutdown</a></div><div class="ttdeci">void shutdown() noexcept</div><div class="ttdoc">This will deallocate any memory used by the system and shutdown any threads created by 'bf::job::init...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00366">bf_job_system.cpp:366</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_acfe70d5d0de909f4140811df015dac76"><div class="ttname"><a href="namespacebf_1_1job.html#acfe70d5d0de909f4140811df015dac76">bf::job::waitOnTask</a></div><div class="ttdeci">void waitOnTask(const Task *task) noexcept</div><div class="ttdoc">Waits until the specified task is done executing. This function will block but do work while being bl...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00505">bf_job_system.cpp:505</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a0f005788a248d99a196608b5727b8bcd"><div class="ttname"><a href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">bf::job::shutdown</a></div><div class="ttdeci">void shutdown() noexcept</div><div class="ttdoc">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initia...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00389">bf_job_system.cpp:389</a></div></div>
 <div class="ttc" id="a_job_system_ext_8hpp_html"><div class="ttname"><a href="_job_system_ext_8hpp.html">JobSystemExt.hpp</a></div><div class="ttdoc">The extended API header for the Job system.</div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a7a7aaa5fb06bc8504f37da5b4945b406"><div class="ttname"><a href="namespacebf_1_1job.html#a7a7aaa5fb06bc8504f37da5b4945b406">bf::job::parallel_for</a></div><div class="ttdeci">Task * parallel_for(T *data, const std::size_t count, S splitter, F &amp;&amp;fn, Task *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00175">bf_job_ext.hpp:175</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Nov 1 2020 02:39:00 for BluFedora Job System by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Wed Feb 3 2021 18:49:21 for BluFedora Job System by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>

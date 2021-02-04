@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['background_2',['BACKGROUND',['../namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253aa87ed58ce5596142e11cb65deb049bb4b',1,'bf::job']]],
+  ['background_2',['BACKGROUND',['../namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a87ed58ce5596142e11cb65deb049bb4b',1,'bf::job']]],
   ['basetask_3',['BaseTask',['../structbf_1_1job_1_1_base_task.html',1,'bf::job::BaseTask'],['../structbf_1_1job_1_1_base_task.html#af59f4ab99004ec60b27b4f5c43403e4e',1,'bf::job::BaseTask::BaseTask()'],['../structbf_1_1job_1_1_task.html#af59f4ab99004ec60b27b4f5c43403e4e',1,'bf::job::Task::BaseTask()']]],
   ['bf_4',['bf',['../namespacebf.html',1,'']]],
   ['bf_5fcompiler_5frw_5fbarrier_5',['BF_COMPILER_RW_BARRIER',['../bf__job__queue_8hpp.html#a03444fa6785ce2bb6f10aa203094133f',1,'bf_job_queue.hpp']]],

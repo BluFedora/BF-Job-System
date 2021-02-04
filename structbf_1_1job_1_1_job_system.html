@@ -94,8 +94,8 @@ $(document).ready(function(){initNavTree('structbf_1_1job_1_1_job_system.html','
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aeb51ff10a44f458e3bd8d4396fca89a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#aeb51ff10a44f458e3bd8d4396fca89a9">sleep</a> (<a class="el" href="structbf_1_1job_1_1_thread_worker.html">ThreadWorker</a> *worker)</td></tr>
-<tr class="separator:aeb51ff10a44f458e3bd8d4396fca89a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f9e4fab0cbd7dc30dc013ad60f09620"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#a9f9e4fab0cbd7dc30dc013ad60f09620">sleep</a> (const <a class="el" href="structbf_1_1job_1_1_thread_worker.html">ThreadWorker</a> *worker)</td></tr>
+<tr class="separator:a9f9e4fab0cbd7dc30dc013ad60f09620"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acabf3f5d1615b9593dac000ea13820d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#acabf3f5d1615b9593dac000ea13820d1">wakeUpOneWorker</a> ()</td></tr>
 <tr class="separator:acabf3f5d1615b9593dac000ea13820d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d1f7d6bf0dee0274012098b7dea50b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#a9d1f7d6bf0dee0274012098b7dea50b4">wakeUpAllWorkers</a> ()</td></tr>
@@ -103,7 +103,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:afe1af0b5e85216057b7a883b953f5803"><td class="memItemLeft" align="right" valign="top">std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#afe1af0b5e85216057b7a883b953f5803">rand_engine</a> = {}</td></tr>
+<tr class="memitem:afe1af0b5e85216057b7a883b953f5803"><td class="memItemLeft" align="right" valign="top">std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#afe1af0b5e85216057b7a883b953f5803">rand_engine</a> = std::default_random_engine{static_cast&lt;unsigned int&gt;(rand())}</td></tr>
 <tr class="separator:afe1af0b5e85216057b7a883b953f5803"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a085c6e9a27242de75062eb8880a0eb99"><td class="memItemLeft" align="right" valign="top">std::uniform_int_distribution&lt; <a class="el" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#a085c6e9a27242de75062eb8880a0eb99">rand_range</a> = {}</td></tr>
 <tr class="separator:a085c6e9a27242de75062eb8880a0eb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,13 +119,15 @@ Public Attributes</h2></td></tr>
 <tr class="separator:af05eceb84fe22cd6878497b803fb9a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3fa2ae6eec44df84d00f2c344a11afc"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">worker_sleep_mutex</a> = {}</td></tr>
 <tr class="separator:ab3fa2ae6eec44df84d00f2c344a11afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00747841f4f1a48ef13307da1a425501"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; std::uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_job_system.html#a00747841f4f1a48ef13307da1a425501">num_queued_jobs</a> = {}</td></tr>
+<tr class="separator:a00747841f4f1a48ef13307da1a425501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00099">99</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00104">104</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aeb51ff10a44f458e3bd8d4396fca89a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb51ff10a44f458e3bd8d4396fca89a9">&#9670;&nbsp;</a></span>sleep()</h2>
+<a id="a9f9e4fab0cbd7dc30dc013ad60f09620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f9e4fab0cbd7dc30dc013ad60f09620">&#9670;&nbsp;</a></span>sleep()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -133,29 +135,35 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void bf::job::JobSystem::sleep </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structbf_1_1job_1_1_thread_worker.html">ThreadWorker</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structbf_1_1job_1_1_thread_worker.html">ThreadWorker</a> *&#160;</td>
           <td class="paramname"><em>worker</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00505">505</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    {</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;      <span class="keywordflow">if</span> (worker-&gt;is_running)</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;      {</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        std::unique_lock&lt;std::mutex&gt; lock(<a class="code" href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">worker_sleep_mutex</a>);</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160; </div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;        <span class="comment">// NOTE(SR):</span></div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;        <span class="comment">//   This does not handle spurious wakeups but I do not consider this a problem just yet.</span></div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;        <a class="code" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.wait(lock <span class="comment">/*, [worker]() {</span></div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="comment">        return !worker-&gt;is_running;  // Returns false if the waiting should be continued.</span></div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="comment">        }*/</span></div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;        );</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;      }</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00526">526</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    {</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;      <span class="keywordflow">if</span> (worker-&gt;is_running &amp;&amp; <a class="code" href="structbf_1_1job_1_1_job_system.html#a00747841f4f1a48ef13307da1a425501">num_queued_jobs</a> == 0u)</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;      {</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;        std::unique_lock&lt;std::mutex&gt; lock(<a class="code" href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">worker_sleep_mutex</a>);</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160; </div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        <a class="code" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.wait(lock, [worker, <span class="keyword">this</span>]() {</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160; </div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;          <span class="comment">// NOTE(SR):</span></div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;          <span class="comment">//   (because the stl want &#39;false&#39; to mean continue waiting the logic is a bit confusing :/)</span></div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;          <span class="comment">//</span></div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;          <span class="comment">//   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).</span></div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;          <span class="comment">//</span></div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;          <span class="comment">//        Wait If: Worker is    running AND num_queued_jobs == 0u.</span></div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;          <span class="comment">// Do Not Wait If: Worker is not running OR num_queued_jobs != 0u.</span></div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;          <span class="comment">//</span></div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;          <span class="keywordflow">return</span> !worker-&gt;is_running || <a class="code" href="structbf_1_1job_1_1_job_system.html#a00747841f4f1a48ef13307da1a425501">num_queued_jobs</a> != 0u;  </div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;        });</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;      }</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00169">bf::job::ThreadWorker::is_running</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00107">worker_sleep_cv</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00108">worker_sleep_mutex</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00182">bf::job::ThreadWorker::is_running</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00114">num_queued_jobs</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00112">worker_sleep_cv</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00113">worker_sleep_mutex</a>.</p>
 
 </div>
 </div>
@@ -182,10 +190,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00111">111</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;{ <a class="code" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.notify_one(); }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00117">117</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{ <a class="code" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.notify_one(); }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00107">worker_sleep_cv</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00112">worker_sleep_cv</a>.</p>
 
 </div>
 </div>
@@ -212,10 +220,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00112">112</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{ <a class="code" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.notify_all(); }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00118">118</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{ <a class="code" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.notify_all(); }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00107">worker_sleep_cv</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00112">worker_sleep_cv</a>.</p>
 
 </div>
 </div>
@@ -227,12 +235,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::default_random_engine bf::job::JobSystem::rand_engine = {}</td>
+          <td class="memname">std::default_random_engine bf::job::JobSystem::rand_engine = std::default_random_engine{static_cast&lt;unsigned int&gt;(rand())}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00101">101</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00106">106</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -248,7 +256,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00102">102</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00107">107</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -264,7 +272,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00103">103</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00108">108</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -280,7 +288,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00104">104</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00109">109</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -296,7 +304,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00105">105</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00110">110</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,7 +320,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00106">106</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00111">111</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,9 +336,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00107">107</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00112">112</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00505">sleep()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00112">wakeUpAllWorkers()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00111">wakeUpOneWorker()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00526">sleep()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00118">wakeUpAllWorkers()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00117">wakeUpOneWorker()</a>.</p>
 
 </div>
 </div>
@@ -346,9 +354,27 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00108">108</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00113">113</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00505">sleep()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00526">sleep()</a>.</p>
+
+</div>
+</div>
+<a id="a00747841f4f1a48ef13307da1a425501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00747841f4f1a48ef13307da1a425501">&#9670;&nbsp;</a></span>num_queued_jobs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;std::uint64_t&gt; bf::job::JobSystem::num_queued_jobs = {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00114">114</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00526">sleep()</a>.</p>
 
 </div>
 </div>
@@ -357,13 +383,14 @@ Public Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructbf_1_1job_1_1_job_system_html_af05eceb84fe22cd6878497b803fb9a1b"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">bf::job::JobSystem::worker_sleep_cv</a></div><div class="ttdeci">std::condition_variable worker_sleep_cv</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00107">bf_job_system.cpp:107</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_job_system_html_ab3fa2ae6eec44df84d00f2c344a11afc"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">bf::job::JobSystem::worker_sleep_mutex</a></div><div class="ttdeci">std::mutex worker_sleep_mutex</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00108">bf_job_system.cpp:108</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_job_system_html_a00747841f4f1a48ef13307da1a425501"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#a00747841f4f1a48ef13307da1a425501">bf::job::JobSystem::num_queued_jobs</a></div><div class="ttdeci">std::atomic&lt; std::uint64_t &gt; num_queued_jobs</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00114">bf_job_system.cpp:114</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_job_system_html_af05eceb84fe22cd6878497b803fb9a1b"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">bf::job::JobSystem::worker_sleep_cv</a></div><div class="ttdeci">std::condition_variable worker_sleep_cv</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00112">bf_job_system.cpp:112</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_job_system_html_ab3fa2ae6eec44df84d00f2c344a11afc"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">bf::job::JobSystem::worker_sleep_mutex</a></div><div class="ttdeci">std::mutex worker_sleep_mutex</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00113">bf_job_system.cpp:113</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li><li class="navelem"><a class="el" href="structbf_1_1job_1_1_job_system.html">JobSystem</a></li>
-    <li class="footer">Generated on Sun Nov 1 2020 02:38:59 for BluFedora Job System by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Wed Feb 3 2021 18:49:21 for BluFedora Job System by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>

@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('structbf_1_1job_1_1_base_task.html',''
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structbf_1_1job_1_1_base_task-members.html">List of all members</a>  </div>
@@ -101,6 +102,11 @@ Inheritance diagram for bf::job::BaseTask:</div>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aad4d6e8f410347af33808a57fe8b5850"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#aad4d6e8f410347af33808a57fe8b5850">ContinuationsArray</a> = std::array&lt; <a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a>, <a class="el" href="namespacebf_1_1job.html#a77c417eec7ae8e5353f20d41142b46c5">k_MaxTaskContinuations</a> &gt;</td></tr>
+<tr class="separator:aad4d6e8f410347af33808a57fe8b5850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af59f4ab99004ec60b27b4f5c43403e4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#af59f4ab99004ec60b27b4f5c43403e4e">BaseTask</a> (<a class="el" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> worker, <a class="el" href="namespacebf_1_1job.html#ae80841b2f4f6b256e5c7c3b2e4c2c541">TaskFn</a> <a class="el" href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">fn</a>, <a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a> <a class="el" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>)</td></tr>
@@ -109,24 +115,51 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3eb898a642eac597b1664d5443a18a23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#ae80841b2f4f6b256e5c7c3b2e4c2c541">TaskFn</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">fn</a></td></tr>
+<tr class="memdesc:a3eb898a642eac597b1664d5443a18a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function that will be run.  <a href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">More...</a><br /></td></tr>
 <tr class="separator:a3eb898a642eac597b1664d5443a18a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abba151066ba068bad6a34aca672fa016"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf.html#ad0272fd58541f83addc1dd6b2d4f4fef">AtomicInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#abba151066ba068bad6a34aca672fa016">num_unfinished_tasks</a></td></tr>
+<tr class="memdesc:abba151066ba068bad6a34aca672fa016"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of children tasks.  <a href="structbf_1_1job_1_1_base_task.html#abba151066ba068bad6a34aca672fa016">More...</a><br /></td></tr>
 <tr class="separator:abba151066ba068bad6a34aca672fa016"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77af00cbd344ff73ca0489517bc15225"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf.html#ad0272fd58541f83addc1dd6b2d4f4fef">AtomicInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#a77af00cbd344ff73ca0489517bc15225">num_continuations</a></td></tr>
-<tr class="separator:a77af00cbd344ff73ca0489517bc15225"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abac8a7941d061296e6ae79abe76278d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a></td></tr>
-<tr class="separator:abac8a7941d061296e6ae79abe76278d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaad916b544ac9415a9d9ae6040355b47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#aaad916b544ac9415a9d9ae6040355b47">owning_worker</a></td></tr>
+<tr class="memdesc:aaad916b544ac9415a9d9ae6040355b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">The worker this task has been created on, needed for <code><a class="el" href="structbf_1_1job_1_1_task.html#a6c65908daa0c714af7c63460321ca3a7">Task::toTaskPtr</a></code> and various assertions.  <a href="structbf_1_1job_1_1_base_task.html#aaad916b544ac9415a9d9ae6040355b47">More...</a><br /></td></tr>
 <tr class="separator:aaad916b544ac9415a9d9ae6040355b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae382a973e9f6122e9b259b215bcbe2ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a">QueueType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#ae382a973e9f6122e9b259b215bcbe2ed">q_type</a></td></tr>
+<tr class="memitem:abac8a7941d061296e6ae79abe76278d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a></td></tr>
+<tr class="memdesc:abac8a7941d061296e6ae79abe76278d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parent task, can be null.  <a href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">More...</a><br /></td></tr>
+<tr class="separator:abac8a7941d061296e6ae79abe76278d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e9410373b981a11fe321b5b80a3058b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbf_1_1job_1_1_base_task.html#aad4d6e8f410347af33808a57fe8b5850">ContinuationsArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#a4e9410373b981a11fe321b5b80a3058b">continuations</a></td></tr>
+<tr class="memdesc:a4e9410373b981a11fe321b5b80a3058b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of tasks to be added on completion.  <a href="structbf_1_1job_1_1_base_task.html#a4e9410373b981a11fe321b5b80a3058b">More...</a><br /></td></tr>
+<tr class="separator:a4e9410373b981a11fe321b5b80a3058b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ea23ceb396eb56a66f7f41b587fce12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#ab0ee8a4168830feceb625197bda59c92">ContinuationsCountAtomicType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#a4ea23ceb396eb56a66f7f41b587fce12">num_continuations</a></td></tr>
+<tr class="memdesc:a4ea23ceb396eb56a66f7f41b587fce12"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks to add to the queue on completion.  <a href="structbf_1_1job_1_1_base_task.html#a4ea23ceb396eb56a66f7f41b587fce12">More...</a><br /></td></tr>
+<tr class="separator:a4ea23ceb396eb56a66f7f41b587fce12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae382a973e9f6122e9b259b215bcbe2ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9">QueueType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#ae382a973e9f6122e9b259b215bcbe2ed">q_type</a></td></tr>
+<tr class="memdesc:ae382a973e9f6122e9b259b215bcbe2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">The queue type this task has been submitted to.  <a href="structbf_1_1job_1_1_base_task.html#ae382a973e9f6122e9b259b215bcbe2ed">More...</a><br /></td></tr>
 <tr class="separator:ae382a973e9f6122e9b259b215bcbe2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa693495b9fbecf1e3888dbe0028b66b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#aa693495b9fbecf1e3888dbe0028b66b3">continuations</a> [<a class="el" href="namespacebf_1_1job.html#a77c417eec7ae8e5353f20d41142b46c5">k_MaxTaskContinuations</a>]</td></tr>
-<tr class="separator:aa693495b9fbecf1e3888dbe0028b66b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36a94072eec9370e59605f349e4a9c2"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_base_task.html#ae36a94072eec9370e59605f349e4a9c2">flags</a></td></tr>
+<tr class="memdesc:ae36a94072eec9370e59605f349e4a9c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">RESERVED, Check to see if this needs to.  <a href="structbf_1_1job_1_1_base_task.html#ae36a94072eec9370e59605f349e4a9c2">More...</a><br /></td></tr>
+<tr class="separator:ae36a94072eec9370e59605f349e4a9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00115">115</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00121">121</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aad4d6e8f410347af33808a57fe8b5850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad4d6e8f410347af33808a57fe8b5850">&#9670;&nbsp;</a></span>ContinuationsArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structbf_1_1job_1_1_base_task.html#aad4d6e8f410347af33808a57fe8b5850">bf::job::BaseTask::ContinuationsArray</a> =  std::array&lt;<a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a>, <a class="el" href="namespacebf_1_1job.html#a77c417eec7ae8e5353f20d41142b46c5">k_MaxTaskContinuations</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00123">123</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af59f4ab99004ec60b27b4f5c43403e4e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af59f4ab99004ec60b27b4f5c43403e4e">&#9670;&nbsp;</a></span>BaseTask()</h2>
 
@@ -159,34 +192,35 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00520">520</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;                                                                 :</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">fn</a>{<a class="code" href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">fn</a>},</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#abba151066ba068bad6a34aca672fa016">num_unfinished_tasks</a>{1},</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#a77af00cbd344ff73ca0489517bc15225">num_continuations</a>{0u},</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>{<a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>},</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#aaad916b544ac9415a9d9ae6040355b47">owning_worker</a>{worker},</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#ae382a973e9f6122e9b259b215bcbe2ed">q_type</a>{<a class="code" href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">k_InvalidQueueType</a>}, <span class="comment">/* Set to a valid value in &#39;bf::job::submitTask&#39; */</span></div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#aa693495b9fbecf1e3888dbe0028b66b3">continuations</a>{}</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;    {</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;      <span class="keywordflow">if</span> (!<a class="code" href="namespacebf_1_1job.html#a5adf86fcc37443a4f88acd3fd02dac61">isTaskPtrNull</a>(<a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>))</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;      {</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        Task* <span class="keyword">const</span> parent_ptr = <a class="code" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(<a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>);</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160; </div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;        ++parent_ptr-&gt;num_unfinished_tasks;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160; </div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;        <span class="comment">/*</span></div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="comment">      std::atomic_fetch_add_explicit(</span></div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;<span class="comment">        &amp;parent_ptr-&gt;num_unfinished_tasks,</span></div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;<span class="comment">        1,</span></div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="comment">        // NOTE(Shareef): There are no surrounding memory operations around &#39;m_UnFinishedJobs&#39;</span></div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="comment">        std::memory_order_relaxed</span></div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="comment">      );</span></div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;<span class="comment">      */</span></div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;      }</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00547">547</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;                                                                 :</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">fn</a>{<a class="code" href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">fn</a>},</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#abba151066ba068bad6a34aca672fa016">num_unfinished_tasks</a>{1},</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#aaad916b544ac9415a9d9ae6040355b47">owning_worker</a>{worker},</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>{<a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>},</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#a4e9410373b981a11fe321b5b80a3058b">continuations</a>{},</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#a4ea23ceb396eb56a66f7f41b587fce12">num_continuations</a>{0u},</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#ae382a973e9f6122e9b259b215bcbe2ed">q_type</a>{<a class="code" href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">k_InvalidQueueType</a>}, <span class="comment">/* Set to a valid value in &#39;bf::job::submitTask&#39; */</span></div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;      <a class="code" href="structbf_1_1job_1_1_base_task.html#ae36a94072eec9370e59605f349e4a9c2">flags</a>{0x0}</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;    {</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;      <span class="keywordflow">if</span> (!<a class="code" href="namespacebf_1_1job.html#a5adf86fcc37443a4f88acd3fd02dac61">isTaskPtrNull</a>(<a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>))</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;      {</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;        Task* <span class="keyword">const</span> parent_ptr = <a class="code" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(<a class="code" href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">parent</a>);</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160; </div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;        ++parent_ptr-&gt;num_unfinished_tasks;</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160; </div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="comment">      std::atomic_fetch_add_explicit(</span></div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="comment">        &amp;parent_ptr-&gt;num_unfinished_tasks,</span></div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;<span class="comment">        1,</span></div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;<span class="comment">        // NOTE(Shareef): There are no surrounding memory operations around &#39;m_UnFinishedJobs&#39;</span></div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;<span class="comment">        std::memory_order_relaxed</span></div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;<span class="comment">      );</span></div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;<span class="comment">      */</span></div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;      }</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00117">fn</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00125">fn</a>.</p>
 
 </div>
 </div>
@@ -203,9 +237,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00117">117</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p>The function that will be run. </p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00520">BaseTask()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00144">bf::job::Task::run()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00125">125</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00547">BaseTask()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00157">bf::job::Task::run()</a>.</p>
 
 </div>
 </div>
@@ -221,45 +257,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00118">118</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p>The number of children tasks. </p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00553">bf::job::Task::onFinish()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00126">126</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-</div>
-</div>
-<a id="a77af00cbd344ff73ca0489517bc15225"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77af00cbd344ff73ca0489517bc15225">&#9670;&nbsp;</a></span>num_continuations</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespacebf.html#ad0272fd58541f83addc1dd6b2d4f4fef">AtomicInt32</a> bf::job::BaseTask::num_continuations</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00119">119</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00553">bf::job::Task::onFinish()</a>.</p>
-
-</div>
-</div>
-<a id="abac8a7941d061296e6ae79abe76278d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abac8a7941d061296e6ae79abe76278d7">&#9670;&nbsp;</a></span>parent</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a> bf::job::BaseTask::parent</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00120">120</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00553">bf::job::Task::onFinish()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00581">bf::job::Task::onFinish()</a>.</p>
 
 </div>
 </div>
@@ -275,9 +277,71 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00121">121</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p>The worker this task has been created on, needed for <code><a class="el" href="structbf_1_1job_1_1_task.html#a6c65908daa0c714af7c63460321ca3a7">Task::toTaskPtr</a></code> and various assertions. </p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00743">bf::job::taskPtrToPointer()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00546">bf::job::Task::toTaskPtr()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00127">127</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00785">bf::job::taskPtrToPointer()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00574">bf::job::Task::toTaskPtr()</a>.</p>
+
+</div>
+</div>
+<a id="abac8a7941d061296e6ae79abe76278d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abac8a7941d061296e6ae79abe76278d7">&#9670;&nbsp;</a></span>parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a> bf::job::BaseTask::parent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The parent task, can be null. </p>
+
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00128">128</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00581">bf::job::Task::onFinish()</a>.</p>
+
+</div>
+</div>
+<a id="a4e9410373b981a11fe321b5b80a3058b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e9410373b981a11fe321b5b80a3058b">&#9670;&nbsp;</a></span>continuations</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbf_1_1job_1_1_base_task.html#aad4d6e8f410347af33808a57fe8b5850">ContinuationsArray</a> bf::job::BaseTask::continuations</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The list of tasks to be added on completion. </p>
+
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00129">129</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00581">bf::job::Task::onFinish()</a>.</p>
+
+</div>
+</div>
+<a id="a4ea23ceb396eb56a66f7f41b587fce12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ea23ceb396eb56a66f7f41b587fce12">&#9670;&nbsp;</a></span>num_continuations</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacebf_1_1job.html#ab0ee8a4168830feceb625197bda59c92">ContinuationsCountAtomicType</a> bf::job::BaseTask::num_continuations</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The number of tasks to add to the queue on completion. </p>
+
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00130">130</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00581">bf::job::Task::onFinish()</a>.</p>
 
 </div>
 </div>
@@ -288,32 +352,34 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a">QueueType</a> bf::job::BaseTask::q_type</td>
+          <td class="memname"><a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9">QueueType</a> bf::job::BaseTask::q_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00122">122</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p>The queue type this task has been submitted to. </p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00553">bf::job::Task::onFinish()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00131">131</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00581">bf::job::Task::onFinish()</a>.</p>
 
 </div>
 </div>
-<a id="aa693495b9fbecf1e3888dbe0028b66b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa693495b9fbecf1e3888dbe0028b66b3">&#9670;&nbsp;</a></span>continuations</h2>
+<a id="ae36a94072eec9370e59605f349e4a9c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae36a94072eec9370e59605f349e4a9c2">&#9670;&nbsp;</a></span>flags</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_ptr">TaskPtr</a> bf::job::BaseTask::continuations[<a class="el" href="namespacebf_1_1job.html#a77c417eec7ae8e5353f20d41142b46c5">k_MaxTaskContinuations</a>]</td>
+          <td class="memname">std::atomic&lt;std::uint32_t&gt; bf::job::BaseTask::flags</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00123">123</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p>RESERVED, Check to see if this needs to. </p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00553">bf::job::Task::onFinish()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00132">132</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -322,21 +388,22 @@ Public Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_a77af00cbd344ff73ca0489517bc15225"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#a77af00cbd344ff73ca0489517bc15225">bf::job::BaseTask::num_continuations</a></div><div class="ttdeci">AtomicInt32 num_continuations</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00119">bf_job_system.cpp:119</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_a3eb898a642eac597b1664d5443a18a23"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">bf::job::BaseTask::fn</a></div><div class="ttdeci">TaskFn fn</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00117">bf_job_system.cpp:117</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_ac4743caff1b0745ed1704bae6e7d51d0"><div class="ttname"><a href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">bf::job::k_InvalidQueueType</a></div><div class="ttdeci">static constexpr QueueType k_InvalidQueueType</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00078">bf_job_system.cpp:78</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a3d19ffe37dfe4b108e49920545957912"><div class="ttname"><a href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">bf::job::taskPtrToPointer</a></div><div class="ttdeci">static Task * taskPtrToPointer(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00743">bf_job_system.cpp:743</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_abba151066ba068bad6a34aca672fa016"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#abba151066ba068bad6a34aca672fa016">bf::job::BaseTask::num_unfinished_tasks</a></div><div class="ttdeci">AtomicInt32 num_unfinished_tasks</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00118">bf_job_system.cpp:118</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a5adf86fcc37443a4f88acd3fd02dac61"><div class="ttname"><a href="namespacebf_1_1job.html#a5adf86fcc37443a4f88acd3fd02dac61">bf::job::isTaskPtrNull</a></div><div class="ttdeci">static bool isTaskPtrNull(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00753">bf_job_system.cpp:753</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_aa693495b9fbecf1e3888dbe0028b66b3"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#aa693495b9fbecf1e3888dbe0028b66b3">bf::job::BaseTask::continuations</a></div><div class="ttdeci">TaskPtr continuations[k_MaxTaskContinuations]</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00123">bf_job_system.cpp:123</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_aaad916b544ac9415a9d9ae6040355b47"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#aaad916b544ac9415a9d9ae6040355b47">bf::job::BaseTask::owning_worker</a></div><div class="ttdeci">WorkerID owning_worker</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00121">bf_job_system.cpp:121</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_ae382a973e9f6122e9b259b215bcbe2ed"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#ae382a973e9f6122e9b259b215bcbe2ed">bf::job::BaseTask::q_type</a></div><div class="ttdeci">QueueType q_type</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00122">bf_job_system.cpp:122</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_abac8a7941d061296e6ae79abe76278d7"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">bf::job::BaseTask::parent</a></div><div class="ttdeci">TaskPtr parent</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00120">bf_job_system.cpp:120</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_a3eb898a642eac597b1664d5443a18a23"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#a3eb898a642eac597b1664d5443a18a23">bf::job::BaseTask::fn</a></div><div class="ttdeci">TaskFn fn</div><div class="ttdoc">The function that will be run.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00125">bf_job_system.cpp:125</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_ac4743caff1b0745ed1704bae6e7d51d0"><div class="ttname"><a href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">bf::job::k_InvalidQueueType</a></div><div class="ttdeci">static constexpr QueueType k_InvalidQueueType</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00080">bf_job_system.cpp:80</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a3d19ffe37dfe4b108e49920545957912"><div class="ttname"><a href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">bf::job::taskPtrToPointer</a></div><div class="ttdeci">static Task * taskPtrToPointer(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00785">bf_job_system.cpp:785</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_ae36a94072eec9370e59605f349e4a9c2"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#ae36a94072eec9370e59605f349e4a9c2">bf::job::BaseTask::flags</a></div><div class="ttdeci">std::atomic&lt; std::uint32_t &gt; flags</div><div class="ttdoc">RESERVED, Check to see if this needs to.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00132">bf_job_system.cpp:132</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_abba151066ba068bad6a34aca672fa016"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#abba151066ba068bad6a34aca672fa016">bf::job::BaseTask::num_unfinished_tasks</a></div><div class="ttdeci">AtomicInt32 num_unfinished_tasks</div><div class="ttdoc">The number of children tasks.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00126">bf_job_system.cpp:126</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_a4e9410373b981a11fe321b5b80a3058b"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#a4e9410373b981a11fe321b5b80a3058b">bf::job::BaseTask::continuations</a></div><div class="ttdeci">ContinuationsArray continuations</div><div class="ttdoc">The list of tasks to be added on completion.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00129">bf_job_system.cpp:129</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_a4ea23ceb396eb56a66f7f41b587fce12"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#a4ea23ceb396eb56a66f7f41b587fce12">bf::job::BaseTask::num_continuations</a></div><div class="ttdeci">ContinuationsCountAtomicType num_continuations</div><div class="ttdoc">The number of tasks to add to the queue on completion.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00130">bf_job_system.cpp:130</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a5adf86fcc37443a4f88acd3fd02dac61"><div class="ttname"><a href="namespacebf_1_1job.html#a5adf86fcc37443a4f88acd3fd02dac61">bf::job::isTaskPtrNull</a></div><div class="ttdeci">static bool isTaskPtrNull(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00795">bf_job_system.cpp:795</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_aaad916b544ac9415a9d9ae6040355b47"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#aaad916b544ac9415a9d9ae6040355b47">bf::job::BaseTask::owning_worker</a></div><div class="ttdeci">WorkerID owning_worker</div><div class="ttdoc">The worker this task has been created on, needed for Task::toTaskPtr and various assertions.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00127">bf_job_system.cpp:127</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_ae382a973e9f6122e9b259b215bcbe2ed"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#ae382a973e9f6122e9b259b215bcbe2ed">bf::job::BaseTask::q_type</a></div><div class="ttdeci">QueueType q_type</div><div class="ttdoc">The queue type this task has been submitted to.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00131">bf_job_system.cpp:131</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_base_task_html_abac8a7941d061296e6ae79abe76278d7"><div class="ttname"><a href="structbf_1_1job_1_1_base_task.html#abac8a7941d061296e6ae79abe76278d7">bf::job::BaseTask::parent</a></div><div class="ttdeci">TaskPtr parent</div><div class="ttdoc">The parent task, can be null.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00128">bf_job_system.cpp:128</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li><li class="navelem"><a class="el" href="structbf_1_1job_1_1_base_task.html">BaseTask</a></li>
-    <li class="footer">Generated on Sun Nov 1 2020 02:38:59 for BluFedora Job System by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Wed Feb 3 2021 18:49:21 for BluFedora Job System by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>

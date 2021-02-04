@@ -9,8 +9,11 @@ var searchData=
   ['compressedpair_3c_20t0_2c_20t1_2c_20false_2c_20true_20_3e_22',['CompressedPair&lt; T0, T1, false, true &gt;',['../structbf_1_1job_1_1detail_1_1_compressed_pair_3_01_t0_00_01_t1_00_01false_00_01true_01_4.html',1,'bf::job::detail']]],
   ['compressedpair_3c_20t0_2c_20t1_2c_20true_2c_20false_20_3e_23',['CompressedPair&lt; T0, T1, true, false &gt;',['../structbf_1_1job_1_1detail_1_1_compressed_pair_3_01_t0_00_01_t1_00_01true_00_01false_01_4.html',1,'bf::job::detail']]],
   ['compressedpair_3c_20t0_2c_20t1_2c_20true_2c_20true_20_3e_24',['CompressedPair&lt; T0, T1, true, true &gt;',['../structbf_1_1job_1_1detail_1_1_compressed_pair_3_01_t0_00_01_t1_00_01true_00_01true_01_4.html',1,'bf::job::detail']]],
-  ['continuations_25',['continuations',['../structbf_1_1job_1_1_base_task.html#aa693495b9fbecf1e3888dbe0028b66b3',1,'bf::job::BaseTask']]],
-  ['count_26',['count',['../classbf_1_1job_1_1detail_1_1_parallel_for_data.html#a22f539040880a94ea92b30883b7e490c',1,'bf::job::detail::ParallelForData']]],
-  ['countsplitter_27',['CountSplitter',['../classbf_1_1job_1_1_count_splitter.html',1,'bf::job']]],
-  ['currentworker_28',['currentWorker',['../namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031',1,'bf::job']]]
+  ['continuations_25',['continuations',['../structbf_1_1job_1_1_base_task.html#a4e9410373b981a11fe321b5b80a3058b',1,'bf::job::BaseTask']]],
+  ['continuationsarray_26',['ContinuationsArray',['../structbf_1_1job_1_1_base_task.html#aad4d6e8f410347af33808a57fe8b5850',1,'bf::job::BaseTask']]],
+  ['continuationscountatomictype_27',['ContinuationsCountAtomicType',['../namespacebf_1_1job.html#ab0ee8a4168830feceb625197bda59c92',1,'bf::job']]],
+  ['continuationscounttype_28',['ContinuationsCountType',['../namespacebf_1_1job.html#a55c7c6ed481ec4359643ca574e6d51e0',1,'bf::job']]],
+  ['count_29',['count',['../classbf_1_1job_1_1detail_1_1_parallel_for_data.html#a22f539040880a94ea92b30883b7e490c',1,'bf::job::detail::ParallelForData']]],
+  ['countsplitter_30',['CountSplitter',['../classbf_1_1job_1_1_count_splitter.html',1,'bf::job']]],
+  ['currentworker_31',['currentWorker',['../namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031',1,'bf::job']]]
 ];
