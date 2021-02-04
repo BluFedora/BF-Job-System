@@ -8,7 +8,7 @@
  * @version 0.0.1
  * @date    2020-09-03
  * 
- * @copyright Copyright (c) 2020
+ * @copyright Copyright (c) 2020-2021
  */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@
 /*
   MIT License
 
-  Copyright (c) 2020 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2021 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

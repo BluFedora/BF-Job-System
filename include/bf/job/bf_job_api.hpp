@@ -1,9 +1,9 @@
 /******************************************************************************/
 /*!
  * @file   bf_job_api.hpp
- * @author Shareef Abdoul-Raheem (http://blufedora.github.io/)
+ * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
  * @brief
- *    API for a multithreading job system.
+ *    API for a multi-threading job system.
  * 
  *    References:
  *      [https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/]
@@ -16,7 +16,7 @@
  * @version 0.0.1
  * @date    2020-09-03
  *
- * @copyright Copyright (c) 2020 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2021 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef BF_JOB_API_HPP
@@ -48,7 +48,7 @@ namespace bf
 
     // Type Aliases
 
-    using WorkerID = std::uint16_t;    //!< The id type of each workter thread.
+    using WorkerID = std::uint16_t;    //!< The id type of each worker thread.
     using TaskFn   = void (*)(Task*);  //!< The signature of the type of function for a single Task.
 
     // Enums
@@ -65,7 +65,7 @@ namespace bf
       BACKGROUND = 3,  //!< Lowest priority, good for asset loading. Tasks in this queue will never run on the main thread.
     };
 
-    // Struct Defintions
+    // Struct Definitions
 
     /*!
      * @brief 
@@ -160,7 +160,7 @@ namespace bf
     /*!
      * @brief 
      *   Pair of a pointer and the size of the buffer you can write to.
-     *   Essentially a buffer for userdata, maybe large enough to store content inline.
+     *   Essentially a buffer for user-data, maybe large enough to store content inline.
      * 
      *   If you store non trivial data remember to manually call it's destructor at the bottom of the task function.
      * 
@@ -181,7 +181,7 @@ namespace bf
      *   The function you want run by the scheduler.
      * 
      * @param parent
-     *   An optional parent Task used in conjuction with 'waitOnTask' to force dependencies.
+     *   An optional parent Task used in conjunction with 'waitOnTask' to force dependencies.
      * 
      * @return Task* 
      *   The newly created task.
@@ -190,13 +190,13 @@ namespace bf
 
     /*!
      * @brief
-     *   Returns you the userdata buffer you way write to get data into your TaskFn.
+     *   Returns you the user-data buffer you way write to get data into your TaskFn.
      * 
      * @param task
-     *   The task whose userdata you want to grab.
+     *   The task whose user-data you want to grab.
      * 
      * @return TaskData
-     *   The userdata buffer you may read and write.
+     *   The user-data buffer you may read and write.
      */
     TaskData taskGetData(Task* task) noexcept;
 
@@ -224,7 +224,7 @@ namespace bf
      *   You may now wait on this task using 'waitOnTask'.
      * 
      * @param self
-     *   The task to sumbit.
+     *   The task to submit.
      * 
      * @param queue
      *   The queue you want the task to run on.
@@ -233,64 +233,64 @@ namespace bf
 
     /*!
      * @brief
-     *   Grabs the userdata pointer as the T you specified.
-     *   No safety is guranteed, this is just a dumb cast.
+     *   Grabs the user-data pointer as the T you specified.
+     *   No safety is guaranteed, this is just a dumb cast.
      * 
      * @tparam T
-     *   The type you want to receive the userdata buffer as.
+     *   The type you want to receive the user-data buffer as.
      * 
      * @param task
-     *   The task whose data you are retreiving.
+     *   The task whose data you are retrieving.
      * 
      * @return T&
-     *   The userdata buffer casted as a T.
+     *   The user-data buffer casted as a T.
      */
     template<typename T>
     T& taskDataAs(Task* task) noexcept;
 
     /*!
      * @brief
-     *   Calls the constructor of T on the userdata buffer.
+     *   Calls the constructor of T on the user-data buffer.
      * 
      * @tparam T
-     *   The type of T you want constructed inplace into the userdata buffer.
+     *   The type of T you want constructed in-place into the user-data buffer.
      * 
      * @tparam Args
      *   The Argument types passed into the T constructor.
      * 
      * @param task
-     *   The task whose userdata buffer is affected.
+     *   The task whose user-data buffer is affected.
      * 
      * @param args
-     *   The arguments passed into the constructor of the userdata buffer casted as a T.
+     *   The arguments passed into the constructor of the user-data buffer casted as a T.
      */
     template<typename T, typename... Args>
     void taskEmplaceData(Task* task, Args&&... args);
 
     /*!
      * @brief
-     *   Copies 'data' into the userdata buffer by calling the T copy constructor.
+     *   Copies 'data' into the user-data buffer by calling the T copy constructor.
      * 
      * @tparam T
-     *   The data type that will be emplaced into the userdata buffer.
+     *   The data type that will be emplaced into the user-data buffer.
      * 
      * @param task
-     *   The task whose userdata buffer is affected.
+     *   The task whose user-data buffer is affected.
      * 
      * @param data
-     *   The data copied into the userdata buffer.
+     *   The data copied into the user-data buffer.
      */
     template<typename T>
     void taskSetData(Task* task, const T& data);
 
     /*!
      * @brief
-     *    Creates a new task by using the userdata buffer to store the closure.
+     *    Creates a new task by using the user-data buffer to store the closure.
      *      
      *    When a task is created the `function` is copied into the userdata buffer
      *    so the first sizeof(Closure) bytes are storing the callable.
      * 
-     *    If you want to store more userdata either be very careful to not 
+     *    If you want to store more user-data either be very careful to not 
      *    overwrite this function object or just store all needed data in
      *    the function object itself (the latter is much nicer to do and safer).
      * 
@@ -301,7 +301,7 @@ namespace bf
      *   The non pointer callable you want to store.
      * 
      * @param parent
-     *   An optional parent Task used in conjuction with 'waitOnTask' to force dependencies.
+     *   An optional parent Task used in conjunction with 'waitOnTask' to force dependencies.
      * 
      * @return Task*
      *   The newly created task.
@@ -311,7 +311,7 @@ namespace bf
 
     /*!
      * @brief
-     *   Waits until the specifed `task` is done executing.
+     *   Waits until the specified `task` is done executing.
      *   This function will block but do work while being blocked so there is no wasted time.
      * 
      *   You may only call this function with a task created on the current 'Worker'.
@@ -371,7 +371,7 @@ namespace bfJob = bf::job;
 /*
   MIT License
 
-  Copyright (c) 2020 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2021 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

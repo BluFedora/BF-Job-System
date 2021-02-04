@@ -20,8 +20,6 @@ add_library(
     "${PROJECT_SOURCE_DIR}/src/bf_job_queue.hpp"
 )
 
-set_property(TARGET "${PROJECT_NAME}_static" PROPERTY CXX_STANDARD 11)
-
 target_include_directories(
   "${PROJECT_NAME}_static"
   PUBLIC

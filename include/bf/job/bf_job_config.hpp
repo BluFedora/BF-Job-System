@@ -9,7 +9,7 @@
  * @version 0.0.1
  * @date    2020-09-03
  *
- * @copyright Copyright (c) 2020 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2021 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef BF_JOB_CONFIG_HPP

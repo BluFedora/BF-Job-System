@@ -7,7 +7,7 @@
     Push and Pop MST be called by the producer / owning thread.
     Steal MUST be called by anyone BUT the producer / owning thread.
 
-    Copyright (C) 2020 Shareef Abdoul-Raheem
+    Copyright (C) 2020-2021 Shareef Abdoul-Raheem
 */
 /******************************************************************************/
 #ifndef BF_JOB_QUEUE_HPP
@@ -56,7 +56,7 @@ namespace bf
     int        m_Top;
 
    public:
-    JobQueueM(void) :
+    JobQueueM() :
       m_CriticalLock(),
       m_Queue(),
       m_Bottom(0),
@@ -318,7 +318,7 @@ namespace bf
 /*
   MIT License
 
-  Copyright (c) 2020 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2021 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
