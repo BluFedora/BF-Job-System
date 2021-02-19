@@ -86,8 +86,9 @@ namespace bf
 
     // Type Aliases
 
-    using TaskHandle                           = std::uint16_t;
-    using TaskHandleType                       = TaskHandle;
+    using TaskHandle     = std::uint16_t;
+    using TaskHandleType = TaskHandle;
+
     static constexpr TaskHandle NullTaskHandle = std::numeric_limits<TaskHandle>::max();
 
     using ContinuationsCountType       = std::int8_t;
@@ -168,19 +169,18 @@ namespace bf
 
     struct ThreadWorker
     {
-      using ThreadMemory = std::aligned_storage_t<sizeof(std::thread), alignof(std::thread)>;
+      using ThreadStorage = std::aligned_storage_t<sizeof(std::thread), alignof(std::thread)>;
 
       // TODO(SR): The Queues memory footprint can be reduced by replacing the `Task*` => `TaskHandle` but complicates the code.
 
-      JobQueueA<k_HiPriorityQueueSize, Task*>         hi_queue             = {};
-      JobQueueA<k_NormalPriorityQueueSize, Task*>     nr_queue             = {};
-      JobQueueA<k_BackgroundPriorityQueueSize, Task*> bg_queue             = {};
-      PoolAllocator<Task, k_MaxTasksPerWorker>        task_memory          = {};
-      std::array<TaskHandle, k_MaxTasksPerWorker>     allocated_tasks      = {};
-      ThreadMemory                                    worker_              = {};
-      TaskHandleType                                  num_allocated_tasks  = 0u;
-      bool                                            is_running           = false;
-      bool                                            is_fully_initialized = false;  //!< We need to wait for all workers to be initialized before we start doing work.
+      JobQueueA<k_HiPriorityQueueSize, Task*>         hi_queue            = {};
+      JobQueueA<k_NormalPriorityQueueSize, Task*>     nr_queue            = {};
+      JobQueueA<k_BackgroundPriorityQueueSize, Task*> bg_queue            = {};
+      PoolAllocator<Task, k_MaxTasksPerWorker>        task_memory         = {};
+      std::array<TaskHandle, k_MaxTasksPerWorker>     allocated_tasks     = {};
+      ThreadStorage                                   worker_             = {};
+      TaskHandleType                                  num_allocated_tasks = 0u;
+      std::atomic_bool                                is_running          = ATOMIC_VAR_INIT(false);
 
       ThreadWorker() = default;
 
@@ -214,6 +214,8 @@ namespace bf
       AtomicInt32               s_NextThreadLocalIndex                     = 0;
       thread_local std::int32_t s_ThreadLocalIndex                         = 0x7FFFFFFF;
       WorkerThreadStorage       s_ThreadWorkerMemory alignas(ThreadWorker) = {};
+      std::atomic_bool          s_IsFullyInitialized                       = ATOMIC_VAR_INIT(false);  //!< We need to wait for all workers to be initialized before we start doing work.
+
     }  // namespace
 
     // Helper Declarations
@@ -257,11 +259,7 @@ namespace bf
         worker->start(i == k_MainThreadID);
       }
 
-      for (std::size_t i = 0; i < num_threads; ++i)
-      {
-        ThreadWorker* const worker   = s_JobCtx.workers + i;
-        worker->is_fully_initialized = true;
-      }
+      s_IsFullyInitialized = true;
 
 #if IS_WINDOWS
       SYSTEM_INFO sysinfo;
@@ -393,9 +391,7 @@ namespace bf
       // Makes sure the sleeping threads do not continue to sleep.
       for (std::size_t i = 1; i < num_workers; ++i)
       {
-        ThreadWorker* const worker = s_JobCtx.workers + i;
-
-        worker->is_running = false;
+        s_JobCtx.workers[i].is_running = false;
       }
 
       // Allow one last update loop to allow them to end.
@@ -416,7 +412,7 @@ namespace bf
 
       assert(worker_id < numWorkers() && "This thread was not created by the job system.");
 
-      ThreadWorker* worker = s_JobCtx.workers + worker_id;
+      ThreadWorker* const worker = s_JobCtx.workers + worker_id;
 
       // While we cannot allocate do some work.
       while (!(worker->num_allocated_tasks < k_MaxTasksPerWorker))
@@ -530,7 +526,6 @@ namespace bf
         std::unique_lock<std::mutex> lock(worker_sleep_mutex);
 
         worker_sleep_cv.wait(lock, [worker, this]() {
-
           // NOTE(SR):
           //   (because the stl want 'false' to mean continue waiting the logic is a bit confusing :/)
           //
@@ -539,7 +534,7 @@ namespace bf
           //        Wait If: Worker is    running AND num_queued_jobs == 0u.
           // Do Not Wait If: Worker is not running OR num_queued_jobs != 0u.
           //
-          return !worker->is_running || num_queued_jobs != 0u;  
+          return !worker->is_running || num_queued_jobs != 0u;
         });
       }
     }
@@ -616,8 +611,9 @@ namespace bf
       }
       else
       {
-        // TODO(SR): Make this only for debug builds.
+#if defined(DEBUG)
         std::memset(allocated_tasks.data(), 0xFF, sizeof(allocated_tasks));
+#endif
 
         new (worker()) std::thread([]() {
           startImpl();
@@ -625,17 +621,19 @@ namespace bf
           const WorkerID      thread_id = currentWorker();
           ThreadWorker* const self      = s_JobCtx.workers + thread_id;
 
+          while (!s_IsFullyInitialized)
+          {
+            /* Busy Loop Wait so there is no checking of  this condition in the loop itself */
+          }
+
           while (self->is_running)
           {
             self->garbageCollectAllocatedTasks(thread_id);
 
-            if (self->is_fully_initialized)
+            if (!self->run(thread_id))
             {
-              if (!self->run(thread_id))
-              {
-                yieldTimeSlice();
-                s_JobCtx.sleep(self);
-              }
+              yieldTimeSlice();
+              s_JobCtx.sleep(self);
             }
           }
         });
