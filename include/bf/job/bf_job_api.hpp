@@ -139,7 +139,7 @@ namespace bf
 
     /*!
      * @brief 
-     *   This should be called as frequently as you want the 
+     *   This should be called as frequently as you want the
      *   main thread's queue to be flushed.
      * 
      *   This function may only be called by the main thread.
