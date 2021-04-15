@@ -363,8 +363,6 @@ namespace bf
   }  // namespace job
 }  // namespace bf
 
-namespace bfJob = bf::job;
-
 #endif /* BF_JOB_API_HPP */
 
 /******************************************************************************/
