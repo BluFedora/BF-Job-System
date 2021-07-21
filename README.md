@@ -28,7 +28,7 @@ static void printFirst20Items()
 
 int main()
 {
-  if (!bfJob::initialize())
+  if (!bf::job::initialize())
   {
     return 1;
   }
@@ -42,10 +42,10 @@ int main()
   std::printf("Before:\n");
   printFirst20Items();
 
-  auto* t = bfJob::parallel_for(
+  auto* t = bf::job::parallel_for(
    s_ExampleData, 
    k_DataSize, 
-   bfJob::CountSplitter{6}, 
+   bf::job::CountSplitter{6}, 
    [](int* data, std::size_t data_size) {
      for (std::size_t i = 0; i < data_size; ++i)
      {
@@ -53,9 +53,9 @@ int main()
      }
    });
 
-  bfJob::taskSubmit(t);
+  bf::job::taskSubmit(t);
 
-  bfJob::waitOnTask(t);
+  bf::job::waitOnTask(t);
 
   std::printf("After:\n");
   printFirst20Items();
@@ -66,7 +66,7 @@ int main()
     assert(s_ExampleData[i] == i * 5);
   }
 
-  bfJob::shutdown();
+  bf::job::shutdown();
 
   return 0;
 }
@@ -95,7 +95,4 @@ A Queue hold a list of `Task`s waiting to be executed. There are four different 
 
 ## Dependencies
 
-- [BF Memory](https://github.com/BluFedora/BF-Memory)
-  - `git clone https://github.com/BluFedora/BF-Memory.git`
-  - Add the memory library's `CMakeLists.txt` file to the build.
 - C++11 or higher

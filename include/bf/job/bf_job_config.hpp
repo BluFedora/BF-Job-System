@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*!
  * @file   bf_job_config.hpp
- * @author Shareef Abdoul-Raheem (http://blufedora.github.io/)
+ * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
  * @brief
  *    This header contains configurable constants for this Job System library.
  *    You may edit this file to configure this library at compile time.

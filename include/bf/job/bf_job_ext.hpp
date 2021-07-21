@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*!
  * @file   bf_job_ext.hpp
- * @author Shareef Abdoul-Raheem (http://blufedora.github.io/)
+ * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
  * @brief
  *    This header contains extra functionality for managing Tasks
  *    that isn't essential to the core library.

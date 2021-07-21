@@ -21,8 +21,6 @@
 /******************************************************************************/
 #include "bf/job/bf_job_api.hpp"
 
-#include "bf/PoolAllocator.hpp" /* PoolAllocator */
-
 #include "bf_job_queue.hpp" /* JobQueueA */
 
 #include <algorithm> /* partition, for_each, distance                   */
@@ -102,17 +100,17 @@ namespace bf
       TaskHandle task_index;
     };
 
+    using rand_engine_t = std::minstd_rand;  // std::default_random_engine
+
     struct JobSystem
     {
-      std::default_random_engine              rand_engine        = std::default_random_engine{static_cast<unsigned int>(rand())};
-      std::uniform_int_distribution<WorkerID> rand_range         = {};
-      std::size_t                             num_workers        = 0u;
-      JobQueueM<k_MainQueueSize, Task*>       main_queue         = {};
-      const char*                             sys_arch_str       = "Unknown Arch";
-      ThreadWorker*                           workers            = nullptr;
-      std::condition_variable                 worker_sleep_cv    = {};
-      std::mutex                              worker_sleep_mutex = {};
-      std::atomic<std::uint64_t>              num_queued_jobs    = {};
+      std::size_t                       num_workers        = 0u;
+      JobQueueM<k_MainQueueSize, Task*> main_queue         = {};
+      const char*                       sys_arch_str       = "Unknown Arch";
+      ThreadWorker*                     workers            = nullptr;
+      std::condition_variable           worker_sleep_cv    = {};
+      std::mutex                        worker_sleep_mutex = {};
+      std::atomic<std::uint64_t>        num_queued_jobs    = {};
 
       void sleep(const ThreadWorker* worker);
       void wakeUpOneWorker() { worker_sleep_cv.notify_one(); }
@@ -167,20 +165,93 @@ namespace bf
 
     static_assert(sizeof(Task) == k_ExpectedTaskSize, "The task struct is expected to be this size.");
 
+    static_assert(std::is_trivially_destructible_v<Task>, "Task must be trivially destructible.");
+
+    template<std::size_t k_MaxTask>
+    struct TaskPool
+    {
+      static_assert(k_MaxTask > 0u, "Must store at least one task in this pool.");
+
+      union TaskMemoryBlock
+      {
+        TaskMemoryBlock*                                    next;
+        std::aligned_storage_t<sizeof(Task), alignof(Task)> storage;
+      };
+
+      TaskMemoryBlock  memory[k_MaxTask];
+      TaskMemoryBlock* current_block;
+
+      TaskPool()
+      {
+        const std::size_t num_tasks_minus_one = k_MaxTask - 1;
+
+        for (std::size_t i = 0u; i < num_tasks_minus_one; ++i)
+        {
+          memory[i].next = &memory[i + 1u];
+        }
+        memory[num_tasks_minus_one].next = nullptr;
+
+        current_block = &memory[0];
+      }
+
+      Task* allocate(WorkerID worker, TaskFn fn, TaskPtr parent)
+      {
+        TaskMemoryBlock* const result = current_block;
+
+        if (current_block)
+        {
+          current_block = current_block->next;
+
+          new (result) Task(worker, fn, parent);
+        }
+
+        return reinterpret_cast<Task*>(result);
+      }
+
+      std::size_t indexOf(const Task* task) const
+      {
+        const TaskMemoryBlock* const block = reinterpret_cast<const TaskMemoryBlock*>(task);
+
+        assert(block >= memory && block < (memory + k_MaxTask) && "Invalid task pointer passed in.");
+
+        return block - memory;
+      }
+
+      Task* fromIndex(std::size_t idx)
+      {
+        assert(idx < k_MaxTask && "Invalid index.");
+
+        return reinterpret_cast<Task*>(&memory[idx].storage);
+      }
+
+      void deallocate(Task* task)
+      {
+        task->~Task();
+
+        TaskMemoryBlock* const block = reinterpret_cast<TaskMemoryBlock*>(task);
+
+        block->next   = current_block;
+        current_block = block;
+      }
+    };
+
     struct ThreadWorker
     {
       using ThreadStorage = std::aligned_storage_t<sizeof(std::thread), alignof(std::thread)>;
 
-      // TODO(SR): The Queues memory footprint can be reduced by replacing the `Task*` => `TaskHandle` but complicates the code.
+      // TODO(SR):
+      //   The Queues memory footprint can be reduced by replacing the `Task*` => `TaskHandle` but complicates the code.
 
       JobQueueA<k_HiPriorityQueueSize, Task*>         hi_queue            = {};
       JobQueueA<k_NormalPriorityQueueSize, Task*>     nr_queue            = {};
       JobQueueA<k_BackgroundPriorityQueueSize, Task*> bg_queue            = {};
-      PoolAllocator<Task, k_MaxTasksPerWorker>        task_memory         = {};
+      TaskPool<k_MaxTasksPerWorker>                   task_memory         = {};
       std::array<TaskHandle, k_MaxTasksPerWorker>     allocated_tasks     = {};
       ThreadStorage                                   worker_             = {};
       TaskHandleType                                  num_allocated_tasks = 0u;
       std::atomic_bool                                is_running          = ATOMIC_VAR_INIT(false);
+      rand_engine_t                                   rand_engine         = {};
+      std::uniform_int_distribution<WorkerID>         rand_range          = {};
 
       ThreadWorker() = default;
 
@@ -200,6 +271,11 @@ namespace bf
       bool        run(WorkerID thread_id);
       static void yieldTimeSlice();
       void        stop();
+
+      WorkerID randomWorker() noexcept
+      {
+        return WorkerID(rand_range(rand_engine));
+      }
     };
 
     static_assert(k_MaxTasksPerWorker < NullTaskHandle, "Either request less Tasks or change 'TaskHandle' to a larger type.");
@@ -220,11 +296,10 @@ namespace bf
 
     // Helper Declarations
 
-    static Task*    taskPtrToPointer(TaskPtr ptr) noexcept;
-    static bool     isTaskPtrNull(TaskPtr ptr) noexcept;
-    static WorkerID randomWorker() noexcept;
-    static void     initThreadWorkerID() noexcept;
-    static bool     taskIsDone(const Task* task) noexcept;
+    static Task* taskPtrToPointer(TaskPtr ptr) noexcept;
+    static bool  isTaskPtrNull(TaskPtr ptr) noexcept;
+    static void  initThreadWorkerID() noexcept;
+    static bool  taskIsDone(const Task* task) noexcept;
 
     void detail::checkTaskDataSize(std::size_t data_size) noexcept
     {
@@ -246,15 +321,19 @@ namespace bf
     {
       const WorkerID num_threads = clampThreadCount(WorkerID(params.num_threads ? params.num_threads : numSystemThreads()), WorkerID(1), WorkerID(k_MaxThreadsSupported));
 
-      s_JobCtx.rand_range  = std::uniform_int_distribution<WorkerID>{0u, WorkerID(num_threads - 1)};
       s_JobCtx.num_workers = num_threads;
       s_JobCtx.workers     = reinterpret_cast<ThreadWorker*>(s_ThreadWorkerMemory.data());
 
       std::atomic_init(&s_JobCtx.num_queued_jobs, 0u);
 
+      const unsigned int random_seed = static_cast<unsigned int>(rand());
+
       for (std::size_t i = 0; i < num_threads; ++i)
       {
         ThreadWorker* const worker = new (s_JobCtx.workers + i) ThreadWorker();
+
+        worker->rand_engine = rand_engine_t{random_seed * static_cast<unsigned int>(i)};
+        worker->rand_range  = std::uniform_int_distribution<WorkerID>{0u, WorkerID(num_threads - 1)};
 
         worker->start(i == k_MainThreadID);
       }
@@ -421,7 +500,7 @@ namespace bf
         worker->run(worker_id);
       }
 
-      Task* const      task     = worker->task_memory.allocateT<Task>(worker_id, function, parent ? parent->toTaskPtr() : TaskPtr{NullTaskHandle, NullTaskHandle});
+      Task* const      task     = worker->task_memory.allocate(worker_id, function, parent ? parent->toTaskPtr() : TaskPtr{NullTaskHandle, NullTaskHandle});
       const TaskHandle task_hdl = TaskHandle(worker->task_memory.indexOf(task));
 
       assert(worker->num_allocated_tasks < k_MaxTasksPerWorker);
@@ -614,7 +693,6 @@ namespace bf
 #if defined(DEBUG)
         std::memset(allocated_tasks.data(), 0xFF, sizeof(allocated_tasks));
 #endif
-
         new (worker()) std::thread([]() {
           startImpl();
 
@@ -623,7 +701,7 @@ namespace bf
 
           while (!s_IsFullyInitialized)
           {
-            /* Busy Loop Wait so there is no checking of  this condition in the loop itself */
+            /* Busy Loop Wait so there is no checking of this condition in the loop itself */
           }
 
           while (self->is_running)
@@ -709,7 +787,7 @@ namespace bf
          [&task_memory = task_memory, thread_id](TaskHandle task_hdl) {
            Task* const task = taskPtrToPointer({thread_id, task_hdl});
 
-           task_memory.deallocateT(task);
+           task_memory.deallocate(task);
          });
 
         num_allocated_tasks = TaskHandle(std::distance(allocated_tasks_bgn, done_end));
@@ -793,11 +871,6 @@ namespace bf
     bool isTaskPtrNull(TaskPtr ptr) noexcept
     {
       return ptr.task_index == NullTaskHandle;
-    }
-
-    static WorkerID randomWorker() noexcept
-    {
-      return WorkerID(s_JobCtx.rand_range(s_JobCtx.rand_engine));
     }
 
     static void initThreadWorkerID() noexcept
