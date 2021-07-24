@@ -348,13 +348,17 @@ namespace bf
     }
 
     template<typename Closure>
+    void taskMakeHelper(Task* task)
+    {
+      Closure& function = taskDataAs<Closure>(task);
+      function(task);
+      function.~Closure();
+    }
+
+    template<typename Closure>
     Task* taskMake(Closure&& function, Task* parent)
     {
-      Task* const task = taskMake(+[](Task* task) {
-        Closure& function = taskDataAs<Closure>(task);
-        function(task);
-        function.~Closure();
-      }, parent);
+      Task* const task = taskMake(&taskMakeHelper<Closure>, parent);
 
       taskEmplaceData<Closure>(task, std::forward<Closure>(function));
 

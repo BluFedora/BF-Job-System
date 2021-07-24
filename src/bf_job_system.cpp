@@ -520,9 +520,9 @@ namespace bf
       assert(continuation->q_type == k_InvalidQueueType && "A continuation must not have already been submitted to a queue.");
       assert(self->num_continuations < k_MaxTaskContinuations && "Too many continuations for a single task.");
 
-      const ContinuationsCountType count = ++self->num_continuations;
+      const ContinuationsCountType idx = self->num_continuations++;
 
-      self->continuations[std::size_t(count) - 1] = continuation->toTaskPtr();
+      self->continuations[std::size_t(idx)] = continuation->toTaskPtr();
     }
 
     template<typename QueueType>

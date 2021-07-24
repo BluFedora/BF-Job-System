@@ -235,10 +235,10 @@ namespace bf
 #else
     bool push(const T& job)
     {
-      const auto bottom = m_Bottom.load(std::memory_order_relaxed);
-      const auto top    = m_Top.load(std::memory_order_acquire);
+      const std::int32_t bottom = m_Bottom.load(std::memory_order_relaxed);
+      const std::int32_t top    = m_Top.load(std::memory_order_acquire);
 
-      if ((bottom - top) > (kSize - 1))
+      if ((bottom - top) > std::int32_t(kSize - 1))
       {
         return false;
       }
