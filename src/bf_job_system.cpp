@@ -23,12 +23,13 @@
 
 #include "bf_job_queue.hpp" /* JobQueueA */
 
-#include <algorithm> /* partition, for_each, distance                   */
-#include <array>     /* array                                           */
-#include <cassert>   /* assert                                          */
-#include <limits>    /* numeric_limits                                  */
-#include <random>    /* default_random_engine, uniform_int_distribution */
-#include <thread>    /* thread                                          */
+#include "pcg_basic.h"
+
+#include <algorithm> /* partition, for_each, distance */
+#include <array>     /* array                         */
+#include <cassert>   /* assert                        */
+#include <limits>    /* numeric_limits                */
+#include <thread>    /* thread                        */
 
 #if _WIN32
 #define IS_WINDOWS 1
@@ -100,11 +101,9 @@ namespace bf
       TaskHandle task_index;
     };
 
-    using rand_engine_t = std::minstd_rand;  // std::default_random_engine
-
     struct JobSystem
     {
-      std::size_t                       num_workers        = 0u;
+      std::uint32_t                     num_workers        = 0u;
       JobQueueM<k_MainQueueSize, Task*> main_queue         = {};
       const char*                       sys_arch_str       = "Unknown Arch";
       ThreadWorker*                     workers            = nullptr;
@@ -250,8 +249,7 @@ namespace bf
       ThreadStorage                                   worker_             = {};
       TaskHandleType                                  num_allocated_tasks = 0u;
       std::atomic_bool                                is_running          = ATOMIC_VAR_INIT(false);
-      rand_engine_t                                   rand_engine         = {};
-      std::uniform_int_distribution<WorkerID>         rand_range          = {};
+      pcg_state_setseq_64                             rng_state           = {};
 
       ThreadWorker() = default;
 
@@ -272,10 +270,7 @@ namespace bf
       static void yieldTimeSlice();
       void        stop();
 
-      WorkerID randomWorker() noexcept
-      {
-        return WorkerID(rand_range(rand_engine));
-      }
+      inline WorkerID randomWorker() noexcept;
     };
 
     static_assert(k_MaxTasksPerWorker < NullTaskHandle, "Either request less Tasks or change 'TaskHandle' to a larger type.");
@@ -332,8 +327,7 @@ namespace bf
       {
         ThreadWorker* const worker = new (s_JobCtx.workers + i) ThreadWorker();
 
-        worker->rand_engine = rand_engine_t{random_seed * static_cast<unsigned int>(i)};
-        worker->rand_range  = std::uniform_int_distribution<WorkerID>{0u, WorkerID(num_threads - 1)};
+        pcg32_srandom_r(&worker->rng_state, std::uint64_t(i), std::uint64_t(i) * 2u + 1u);
 
         worker->start(i == k_MainThreadID);
       }
@@ -804,22 +798,19 @@ namespace bf
         task = s_JobCtx.main_queue.pop();
       }
 
-#define TryGetFromQ(q_name)                                                    \
-  if (!task)                                                                   \
-  {                                                                            \
-    task = q_name.pop();                                                       \
-                                                                               \
-    if (!task)                                                                 \
-    {                                                                          \
-      const auto other_worker_id = randomWorker();                             \
-                                                                               \
-      if (other_worker_id != thread_id)                                        \
-      {                                                                        \
-        ThreadWorker* const other_worker = s_JobCtx.workers + other_worker_id; \
-                                                                               \
-        task = other_worker->q_name.steal();                                   \
-      }                                                                        \
-    }                                                                          \
+      const auto other_worker_id = randomWorker();
+
+#define TryGetFromQ(q_name)                                                  \
+  if (!task)                                                                 \
+  {                                                                          \
+    task = q_name.pop();                                                     \
+                                                                             \
+    if (!task && other_worker_id != thread_id)                               \
+    {                                                                        \
+      ThreadWorker* const other_worker = s_JobCtx.workers + other_worker_id; \
+                                                                             \
+      task = other_worker->q_name.steal();                                   \
+    }                                                                        \
   }
 
       // clang-format off
@@ -856,6 +847,11 @@ namespace bf
       worker()->~thread();
     }
 
+    inline WorkerID ThreadWorker::randomWorker() noexcept
+    {
+      return WorkerID(pcg32_boundedrand_r(&rng_state, s_JobCtx.num_workers));
+    }
+
     // Helper Definitions
 
     static Task* taskPtrToPointer(TaskPtr ptr) noexcept
@@ -886,6 +882,22 @@ namespace bf
     }
   }  // namespace job
 }  // namespace bf
+
+#if defined(_MSC_VER)
+
+#pragma warning(push)
+#pragma warning(disable : 4244)
+#pragma warning(disable : 4146)
+
+#endif
+
+#include "pcg_basic.c"
+
+#if defined(_MSC_VER)
+
+#pragma warning(pop)
+
+#endif
 
 #undef IS_WINDOWS
 #undef IS_POSIX

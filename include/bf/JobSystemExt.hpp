@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*!
  * @file   JobSystemExt.hpp
- * @author Shareef Abdoul-Raheem (http://blufedora.github.io/)
+ * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
  * @brief  
  *   The extended API header for the Job system.
  * 
