@@ -96,3 +96,7 @@ A Queue hold a list of `Task`s waiting to be executed. There are four different 
 ## Dependencies
 
 - C++11 or higher
+
+## Libraries Used
+
+- [PCG Random](https://www.pcg-random.org/)
