@@ -74,7 +74,7 @@ namespace bf
     //   C++17 has: hardware_constructive_interference_size / std::hardware_destructive_interference_size
     //   In core i7 the line (block) sizes in L1, L2 and L3 are the same (64 bytes)
     static constexpr std::size_t k_ExpectedTaskSize  = 128;
-    static constexpr std::size_t k_MaxTasksPerWorker = k_HiPriorityQueueSize + k_NormalPriorityQueueSize + k_BackgroundPriorityQueueSize;
+    static constexpr std::size_t k_MaxTasksPerWorker = k_HiPriorityQueueSize + k_BackgroundPriorityQueueSize;
     static constexpr WorkerID    k_MainThreadID      = 0;
     static constexpr QueueType   k_InvalidQueueType  = QueueType(int(QueueType::BACKGROUND) + 1);
 
@@ -103,12 +103,12 @@ namespace bf
 
     struct JobSystem
     {
-      std::uint32_t                     num_workers        = 0u;
       JobQueueM<k_MainQueueSize, Task*> main_queue         = {};
+      std::uint32_t                     num_workers        = 0u;
       const char*                       sys_arch_str       = "Unknown Arch";
       ThreadWorker*                     workers            = nullptr;
-      std::condition_variable           worker_sleep_cv    = {};
       std::mutex                        worker_sleep_mutex = {};
+      std::condition_variable           worker_sleep_cv    = {};
       std::atomic<std::uint64_t>        num_queued_jobs    = {};
 
       void sleep(const ThreadWorker* worker);
@@ -242,7 +242,6 @@ namespace bf
       //   The Queues memory footprint can be reduced by replacing the `Task*` => `TaskHandle` but complicates the code.
 
       JobQueueA<k_HiPriorityQueueSize, Task*>         hi_queue            = {};
-      JobQueueA<k_NormalPriorityQueueSize, Task*>     nr_queue            = {};
       JobQueueA<k_BackgroundPriorityQueueSize, Task*> bg_queue            = {};
       TaskPool<k_MaxTasksPerWorker>                   task_memory         = {};
       std::array<TaskHandle, k_MaxTasksPerWorker>     allocated_tasks     = {};
@@ -555,11 +554,6 @@ namespace bf
           taskSubmitQPushHelper(self, worker_id, worker->hi_queue);
           break;
         }
-        case QueueType::NORMAL:
-        {
-          taskSubmitQPushHelper(self, worker_id, worker->nr_queue);
-          break;
-        }
         case QueueType::BACKGROUND:
         {
           taskSubmitQPushHelper(self, worker_id, worker->bg_queue);
@@ -598,9 +592,16 @@ namespace bf
       {
         std::unique_lock<std::mutex> lock(worker_sleep_mutex);
 
+        worker->yieldTimeSlice();
+
+        if (num_queued_jobs.load(std::memory_order_relaxed) != 0u)
+        {
+          return;
+        }
+
         worker_sleep_cv.wait(lock, [worker, this]() {
           // NOTE(SR):
-          //   (because the stl want 'false' to mean continue waiting the logic is a bit confusing :/)
+          //   Because the stl want 'false' to mean continue waiting the logic is a bit confusing :/
           //
           //   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).
           //
@@ -629,13 +630,13 @@ namespace bf
         ++parent_ptr->num_unfinished_tasks;
 
         /*
-      std::atomic_fetch_add_explicit(
-        &parent_ptr->num_unfinished_tasks,
-        1,
-        // NOTE(Shareef): There are no surrounding memory operations around 'm_UnFinishedJobs'
-        std::memory_order_relaxed
-      );
-      */
+        std::atomic_fetch_add_explicit(
+          &parent_ptr->num_unfinished_tasks,
+          1,
+          // NOTE(Shareef): There are no surrounding memory operations around 'num_unfinished_tasks'
+          std::memory_order_relaxed
+        );
+        */
       }
     }
 
@@ -704,7 +705,6 @@ namespace bf
 
             if (!self->run(thread_id))
             {
-              yieldTimeSlice();
               s_JobCtx.sleep(self);
             }
           }
@@ -815,14 +815,15 @@ namespace bf
 
       // clang-format off
       TryGetFromQ(hi_queue)
-      TryGetFromQ(nr_queue)
 
        // The main thread should not be running tasks with background priority.
       if (thread_id != k_MainThreadID)
       {
         TryGetFromQ(bg_queue)
       }
+
       // clang-format on
+
 #undef TryGetFromQ
 
       if (task)

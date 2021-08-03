@@ -60,9 +60,8 @@ namespace bf
     enum class QueueType : std::uint8_t
     {
       MAIN       = 0,  //!< Use this value when you need a certain task to be run specifically by the main thread.
-      HIGH       = 1,  //!< Normally you will want tasks to go into this queue.
-      NORMAL     = 2,  //!< Slightly lower priority than 'QueueType::HIGH'.
-      BACKGROUND = 3,  //!< Lowest priority, good for asset loading. Tasks in this queue will never run on the main thread.
+      HIGH       = 1,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
+      BACKGROUND = 2,  //!< Low priority, good for asset loading. Tasks in this queue will never run on the main thread.
     };
 
     // Struct Definitions
@@ -348,17 +347,15 @@ namespace bf
     }
 
     template<typename Closure>
-    void taskMakeHelper(Task* task)
-    {
-      Closure& function = taskDataAs<Closure>(task);
-      function(task);
-      function.~Closure();
-    }
-
-    template<typename Closure>
     Task* taskMake(Closure&& function, Task* parent)
     {
-      Task* const task = taskMake(&taskMakeHelper<Closure>, parent);
+      Task* const task = taskMake(
+       +[](Task* task) {
+         Closure& function = taskDataAs<Closure>(task);
+         function(task);
+         function.~Closure();
+       },
+       parent);
 
       taskEmplaceData<Closure>(task, std::forward<Closure>(function));
 
