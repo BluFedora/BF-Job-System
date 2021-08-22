@@ -88,7 +88,7 @@ namespace bf
 
       if (num_jobs <= 0)
       {
-        return T();
+        return nullptr;
       }
 
       --m_Bottom;
@@ -203,7 +203,7 @@ namespace bf
 
       // Queue already empty
       m_Bottom.store(top, std::memory_order_release);
-      return T();
+      return nullptr;
     }
 
     T steal()
@@ -224,13 +224,13 @@ namespace bf
         if (!m_Top.compare_exchange_strong(expected, top + 1))
         {
           // Someone already took the last item, abort
-          return T();
+          return nullptr;
         }
 
         return job;
       }
 
-      return T();
+      return nullptr;
     }
 #else
     bool push(const T& job)
@@ -292,7 +292,7 @@ namespace bf
       // Empty Queue
       if (top >= bottom)
       {
-        return T{};
+        return nullptr;
       }
 
       T job = m_Queue[top & WRAP_MASK];

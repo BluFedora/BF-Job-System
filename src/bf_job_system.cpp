@@ -99,17 +99,36 @@ namespace bf
     {
       WorkerID   worker_id;
       TaskHandle task_index;
+
+      TaskPtr() = default;
+
+      TaskPtr(WorkerID worker_id, TaskHandle task_idx) :
+        worker_id{worker_id},
+        task_index{task_idx}
+      {
+      }
+
+      TaskPtr(std::nullptr_t) :
+        worker_id{NullTaskHandle},
+        task_index{NullTaskHandle}
+      {
+      }
+
+      bool isNull() const
+      {
+        return task_index == NullTaskHandle;
+      }
     };
 
     struct JobSystem
     {
-      JobQueueM<k_MainQueueSize, Task*> main_queue         = {};
-      std::uint32_t                     num_workers        = 0u;
-      const char*                       sys_arch_str       = "Unknown Arch";
-      ThreadWorker*                     workers            = nullptr;
-      std::mutex                        worker_sleep_mutex = {};
-      std::condition_variable           worker_sleep_cv    = {};
-      std::atomic<std::uint64_t>        num_queued_jobs    = {};
+      JobQueueM<k_MainQueueSize, TaskPtr> main_queue         = {};
+      std::uint32_t                       num_workers        = 0u;
+      const char*                         sys_arch_str       = "Unknown Arch";
+      ThreadWorker*                       workers            = nullptr;
+      std::mutex                          worker_sleep_mutex = {};
+      std::condition_variable             worker_sleep_cv    = {};
+      std::atomic<std::uint64_t>          num_queued_jobs    = {};
 
       void sleep(const ThreadWorker* worker);
       void wakeUpOneWorker() { worker_sleep_cv.notify_one(); }
@@ -238,17 +257,14 @@ namespace bf
     {
       using ThreadStorage = std::aligned_storage_t<sizeof(std::thread), alignof(std::thread)>;
 
-      // TODO(SR):
-      //   The Queues memory footprint can be reduced by replacing the `Task*` => `TaskHandle` but complicates the code.
-
-      JobQueueA<k_HiPriorityQueueSize, Task*>         hi_queue            = {};
-      JobQueueA<k_BackgroundPriorityQueueSize, Task*> bg_queue            = {};
-      TaskPool<k_MaxTasksPerWorker>                   task_memory         = {};
-      std::array<TaskHandle, k_MaxTasksPerWorker>     allocated_tasks     = {};
-      ThreadStorage                                   worker_             = {};
-      TaskHandleType                                  num_allocated_tasks = 0u;
-      std::atomic_bool                                is_running          = ATOMIC_VAR_INIT(false);
-      pcg_state_setseq_64                             rng_state           = {};
+      JobQueueA<k_HiPriorityQueueSize, TaskPtr>         hi_queue            = {};
+      JobQueueA<k_BackgroundPriorityQueueSize, TaskPtr> bg_queue            = {};
+      TaskPool<k_MaxTasksPerWorker>                     task_memory         = {};
+      std::array<TaskHandle, k_MaxTasksPerWorker>       allocated_tasks     = {};
+      ThreadStorage                                     worker_             = {};
+      TaskHandleType                                    num_allocated_tasks = 0u;
+      std::atomic_bool                                  is_running          = ATOMIC_VAR_INIT(false);
+      pcg_state_setseq_64                               rng_state           = {};
 
       ThreadWorker() = default;
 
@@ -445,7 +461,7 @@ namespace bf
 
       while (true)
       {
-        Task* const task = s_JobCtx.main_queue.pop();
+        Task* const task = taskPtrToPointer(s_JobCtx.main_queue.pop());
 
         if (!task)
         {
@@ -521,10 +537,11 @@ namespace bf
     template<typename QueueType>
     static void taskSubmitQPushHelper(Task* const self, const WorkerID worker_id, QueueType& queue)
     {
-      ThreadWorker* const worker = s_JobCtx.workers + worker_id;
+      ThreadWorker* const worker   = s_JobCtx.workers + worker_id;
+      const TaskPtr       task_ptr = self->toTaskPtr();
 
       // Loop until we have successfully pushed to the queue.
-      while (!queue.push(self))
+      while (!queue.push(task_ptr))
       {
         // If we could not push to the queues then just do some work.
         worker->run(worker_id);
@@ -795,22 +812,21 @@ namespace bf
       // If is the Main Thread then prioritize grabbing from the main queue.
       if (thread_id == k_MainThreadID)
       {
-        task = s_JobCtx.main_queue.pop();
+        task = taskPtrToPointer(s_JobCtx.main_queue.pop());
       }
 
       const auto other_worker_id = randomWorker();
 
-#define TryGetFromQ(q_name)                                                  \
-  if (!task)                                                                 \
-  {                                                                          \
-    task = q_name.pop();                                                     \
-                                                                             \
-    if (!task && other_worker_id != thread_id)                               \
-    {                                                                        \
-      ThreadWorker* const other_worker = s_JobCtx.workers + other_worker_id; \
-                                                                             \
-      task = other_worker->q_name.steal();                                   \
-    }                                                                        \
+#define TryGetFromQ(q_name)                                                              \
+  if (!task)                                                                             \
+  {                                                                                      \
+    task = taskPtrToPointer(q_name.pop());                                               \
+                                                                                         \
+    if (!task && other_worker_id != thread_id)                                           \
+    {                                                                                    \
+      ThreadWorker* const other_worker = s_JobCtx.workers + other_worker_id;             \
+      task                             = taskPtrToPointer(other_worker->q_name.steal()); \
+    }                                                                                    \
   }
 
       // clang-format off
@@ -857,6 +873,11 @@ namespace bf
 
     static Task* taskPtrToPointer(TaskPtr ptr) noexcept
     {
+      if (ptr.isNull())
+      {
+        return nullptr;
+      }
+
       ThreadWorker* const worker = s_JobCtx.workers + ptr.worker_id;
       Task* const         result = static_cast<Task*>(worker->task_memory.fromIndex(ptr.task_index));
 
