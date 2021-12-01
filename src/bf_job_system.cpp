@@ -21,6 +21,8 @@
 /******************************************************************************/
 #include "bf/job/bf_job_api.hpp"
 
+#undef NDEBUG
+
 #include "bf_job_queue.hpp" /* JobQueueA */
 
 #include "pcg_basic.h"
@@ -73,7 +75,7 @@ namespace bf
     // NOTE(Shareef):
     //   C++17 has: hardware_constructive_interference_size / std::hardware_destructive_interference_size
     //   In core i7 the line (block) sizes in L1, L2 and L3 are the same (64 bytes)
-    static constexpr std::size_t k_ExpectedTaskSize  = 128;
+    static constexpr std::size_t k_ExpectedTaskSize  = 128 * 2;
     static constexpr std::size_t k_MaxTasksPerWorker = k_HiPriorityQueueSize + k_BackgroundPriorityQueueSize;
     static constexpr WorkerID    k_MainThreadID      = 0;
     static constexpr QueueType   k_InvalidQueueType  = QueueType(int(QueueType::BACKGROUND) + 1);
@@ -327,6 +329,52 @@ namespace bf
       return std::min(std::max(min, value), max);
     }
 
+    std::size_t numSystemThreads() noexcept
+    {
+#if IS_WINDOWS
+      SYSTEM_INFO sysinfo;
+      GetSystemInfo(&sysinfo);
+      return sysinfo.dwNumberOfProcessors;
+#elif IS_POSIX
+      return sysconf(_SC_NPROCESSORS_ONLN) /* * 2*/;
+#elif 0  // FreeBSD, MacOS X, NetBSD, OpenBSD
+      nt          mib[4];
+      int         numCPU;
+      std::size_t len = sizeof(numCPU);
+
+      /* set the mib for hw.ncpu */
+      mib[0] = CTL_HW;
+      mib[1] = HW_AVAILCPU;  // alternatively, try HW_NCPU;
+
+      /* get the number of CPUs from the system */
+      sysctl(mib, 2, &numCPU, &len, NULL, 0);
+
+      if (numCPU < 1)
+      {
+        mib[1] = HW_NCPU;
+        sysctl(mib, 2, &numCPU, &len, NULL, 0);
+        if (numCPU < 1)
+          numCPU = 1;
+      }
+
+      return numCPU;
+#elif 0  // HPUX
+      return mpctl(MPC_GETNUMSPUS, NULL, NULL);
+#elif 0  // IRIX
+      return sysconf(_SC_NPROC_ONLN);
+#elif 0  // Objective-C (Mac OS X >=10.5 or iOS)
+      NSUInteger a = [[NSProcessInfo processInfo] processorCount];
+      NSUInteger b = [[NSProcessInfo processInfo] activeProcessorCount];
+
+      return a;
+#elif IS_SINGLE_THREADED
+      return 1;
+#else
+      const auto n = std::thread::hardware_concurrency();
+      return (n) ? n : 8;
+#endif
+    }
+
     bool initialize(const JobSystemCreateOptions& params) noexcept
     {
       const WorkerID num_threads = clampThreadCount(WorkerID(params.num_threads ? params.num_threads : numSystemThreads()), WorkerID(1), WorkerID(k_MaxThreadsSupported));
@@ -397,52 +445,6 @@ namespace bf
       return s_JobCtx.num_workers;
     }
 
-    std::size_t numSystemThreads() noexcept
-    {
-#if IS_WINDOWS
-      SYSTEM_INFO sysinfo;
-      GetSystemInfo(&sysinfo);
-      return sysinfo.dwNumberOfProcessors;
-#elif IS_POSIX
-      return sysconf(_SC_NPROCESSORS_ONLN) /* * 2*/;
-#elif 0  // FreeBSD, MacOS X, NetBSD, OpenBSD
-      nt          mib[4];
-      int         numCPU;
-      std::size_t len = sizeof(numCPU);
-
-      /* set the mib for hw.ncpu */
-      mib[0] = CTL_HW;
-      mib[1] = HW_AVAILCPU;  // alternatively, try HW_NCPU;
-
-      /* get the number of CPUs from the system */
-      sysctl(mib, 2, &numCPU, &len, NULL, 0);
-
-      if (numCPU < 1)
-      {
-        mib[1] = HW_NCPU;
-        sysctl(mib, 2, &numCPU, &len, NULL, 0);
-        if (numCPU < 1)
-          numCPU = 1;
-      }
-
-      return numCPU;
-#elif 0  // HPUX
-      return mpctl(MPC_GETNUMSPUS, NULL, NULL);
-#elif 0  // IRIX
-      return sysconf(_SC_NPROC_ONLN);
-#elif 0  // Objective-C (Mac OS X >=10.5 or iOS)
-      NSUInteger a = [[NSProcessInfo processInfo] processorCount];
-      NSUInteger b = [[NSProcessInfo processInfo] activeProcessorCount];
-
-      return a;
-#elif IS_SINGLE_THREADED
-      return 1;
-#else
-      const auto n = std::thread::hardware_concurrency();
-      return (n) ? n : 8;
-#endif
-    }
-
     const char* processorArchitectureName() noexcept
     {
       return s_JobCtx.sys_arch_str;
@@ -485,11 +487,15 @@ namespace bf
       // Allow one last update loop to allow them to end.
       s_JobCtx.wakeUpAllWorkers();
 
-      for (std::size_t i = 1; i < num_workers; ++i)
+      for (std::size_t i = 0; i < num_workers; ++i)
       {
         ThreadWorker* const worker = s_JobCtx.workers + i;
 
-        worker->stop();
+        if (i != k_MainThreadID)
+        {
+          worker->stop();
+        }
+
         worker->~ThreadWorker();
       }
     }
@@ -566,7 +572,7 @@ namespace bf
           taskSubmitQPushHelper(self, worker_id, s_JobCtx.main_queue);
           break;
         }
-        case QueueType::HIGH:
+        case QueueType::NORMAL:
         {
           taskSubmitQPushHelper(self, worker_id, worker->hi_queue);
           break;
@@ -607,8 +613,6 @@ namespace bf
     {
       if (worker->is_running && num_queued_jobs == 0u)
       {
-        std::unique_lock<std::mutex> lock(worker_sleep_mutex);
-
         worker->yieldTimeSlice();
 
         if (num_queued_jobs.load(std::memory_order_relaxed) != 0u)
@@ -616,6 +620,7 @@ namespace bf
           return;
         }
 
+        std::unique_lock<std::mutex> lock(worker_sleep_mutex);
         worker_sleep_cv.wait(lock, [worker, this]() {
           // NOTE(SR):
           //   Because the stl want 'false' to mean continue waiting the logic is a bit confusing :/
@@ -749,25 +754,22 @@ namespace bf
       {
         // Increase thread priority
 
-        const BOOL priority_result = SetThreadPriority(handle, THREAD_PRIORITY_HIGHEST);
+        //const BOOL priority_result = SetThreadPriority(handle, THREAD_PRIORITY_HIGHEST);
 
-        assert(priority_result != 0);
+        //assert(priority_result != 0);
 
         // Name the thread
 
-        if (priority_result)
-        {
-          char      thread_name[20]   = u8"";
-          wchar_t   thread_name_w[20] = L"";
-          const int c_size            = std::snprintf(thread_name, sizeof(thread_name), "bf::JobSystem_%i", int(wid));
+        char      thread_name[20]   = u8"";
+        wchar_t   thread_name_w[20] = L"";
+        const int c_size            = std::snprintf(thread_name, sizeof(thread_name), "bf::JobSystem_%i", int(wid));
 
-          std::mbstowcs(thread_name_w, thread_name, c_size);
+        std::mbstowcs(thread_name_w, thread_name, c_size);
 
-          const HRESULT hr = SetThreadDescription(handle, thread_name_w);
+        const HRESULT hr = SetThreadDescription(handle, thread_name_w);
 
-          (void)hr;
-          assert(SUCCEEDED(hr));
-        }
+        (void)hr;
+        assert(SUCCEEDED(hr));
       }
 #endif  // _WIN32
     }
@@ -807,40 +809,22 @@ namespace bf
 
     bool ThreadWorker::run(const WorkerID thread_id)
     {
+      const bool is_main_thread = thread_id == k_MainThreadID;
+
       Task* task = nullptr;
 
-      // If is the Main Thread then prioritize grabbing from the main queue.
-      if (thread_id == k_MainThreadID)
+      if (!task && is_main_thread) { task = taskPtrToPointer(s_JobCtx.main_queue.pop()); }
+      if (!task) { task = taskPtrToPointer(hi_queue.pop()); }
+      if (!task && !is_main_thread) { task = taskPtrToPointer(bg_queue.pop()); }
+
+      if (!task)
       {
-        task = taskPtrToPointer(s_JobCtx.main_queue.pop());
+        const WorkerID      other_worker_id = randomWorker();
+        ThreadWorker* const other_worker    = s_JobCtx.workers + other_worker_id;
+        task                                = taskPtrToPointer(other_worker->hi_queue.steal());
+
+        if (!task  && !is_main_thread) { task = taskPtrToPointer(other_worker->bg_queue.steal()); }
       }
-
-      const auto other_worker_id = randomWorker();
-
-#define TryGetFromQ(q_name)                                                              \
-  if (!task)                                                                             \
-  {                                                                                      \
-    task = taskPtrToPointer(q_name.pop());                                               \
-                                                                                         \
-    if (!task && other_worker_id != thread_id)                                           \
-    {                                                                                    \
-      ThreadWorker* const other_worker = s_JobCtx.workers + other_worker_id;             \
-      task                             = taskPtrToPointer(other_worker->q_name.steal()); \
-    }                                                                                    \
-  }
-
-      // clang-format off
-      TryGetFromQ(hi_queue)
-
-       // The main thread should not be running tasks with background priority.
-      if (thread_id != k_MainThreadID)
-      {
-        TryGetFromQ(bg_queue)
-      }
-
-      // clang-format on
-
-#undef TryGetFromQ
 
       if (task)
       {

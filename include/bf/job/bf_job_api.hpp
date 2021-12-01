@@ -35,7 +35,6 @@ namespace bf
     // Fwd Declarations
 
     struct Task;
-
     enum class QueueType : std::uint8_t;
 
     // Private
@@ -60,7 +59,7 @@ namespace bf
     enum class QueueType : std::uint8_t
     {
       MAIN       = 0,  //!< Use this value when you need a certain task to be run specifically by the main thread.
-      HIGH       = 1,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
+      NORMAL     = 1,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
       BACKGROUND = 2,  //!< Low priority, good for asset loading. Tasks in this queue will never run on the main thread.
     };
 
@@ -74,6 +73,18 @@ namespace bf
     {
       std::size_t num_threads = 0u;  //!< Use 0 to indicate using the number of cores available on the system.
     };
+
+    /*!
+     * @brief
+     *   Makes some system calls to grab the number threads / processors on the device.
+     *   This function can be called by any thread concurrently.
+     *
+     *   Can be called before and after job system initialization.
+     * 
+     * @return std::size_t
+     *   The number threads / processors on the computer.
+     */
+    std::size_t numSystemThreads() noexcept;
 
     // Main System API
     //
@@ -105,16 +116,6 @@ namespace bf
      *   The number of workers created by the system.
      */
     std::size_t numWorkers() noexcept;
-
-    /*!
-     * @brief
-     *   Makes some system calls to grab the number threads / processors on the device.
-     *   This function can be called by any thread concurrently.
-     * 
-     * @return std::size_t
-     *   The number threads / processors on the computer.
-     */
-    std::size_t numSystemThreads() noexcept;
 
     /*!
      * @brief 
@@ -228,7 +229,7 @@ namespace bf
      * @param queue
      *   The queue you want the task to run on.
      */
-    void taskSubmit(Task* self, QueueType queue = QueueType::HIGH) noexcept;
+    void taskSubmit(Task* self, QueueType queue = QueueType::NORMAL) noexcept;
 
     /*!
      * @brief

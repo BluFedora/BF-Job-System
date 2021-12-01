@@ -94,23 +94,6 @@ namespace bf
       --m_Bottom;
       return m_Queue[m_Bottom & WRAP_MASK];
     }
-
-    T steal(void)
-    {
-      std::lock_guard<std::mutex> guard(m_CriticalLock);
-      (void)guard;
-
-      const auto num_jobs = size();
-
-      if (num_jobs <= 0)
-      {
-        return nullptr;
-      }
-
-      T job = m_Queue[m_Top & WRAP_MASK];
-      ++m_Top;
-      return job;
-    }
   };
 
   // NOTE(Shareef):
