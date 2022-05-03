@@ -67,7 +67,7 @@
 
 namespace
 {
-  static void jobAssertHandler(const bool condition, const char* const filename, const int line_number, const char* const msg)
+  static inline void jobAssertHandler(const bool condition, const char* const filename, const int line_number, const char* const msg)
   {
     if (!condition)
     {
@@ -77,7 +77,7 @@ namespace
   }
 }  // namespace
 
-#define JobAssert(expr, msg) jobAssertHandler((expr), __FILE__, __LINE__, msg)
+#define JobAssert(expr, msg) ::jobAssertHandler((expr), __FILE__, __LINE__, msg)
 
 namespace bf
 {
