@@ -4,7 +4,7 @@
  * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
  * @brief
  *    API for a multi-threading job system.
- * 
+ *
  *    References:
  *      [https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/]
  *      [https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/]
@@ -16,20 +16,19 @@
  * @version 0.0.1
  * @date    2020-09-03
  *
- * @copyright Copyright (c) 2020-2021 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2022 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #include "bf/job/bf_job_api.hpp"
 
-#undef NDEBUG
-
 #include "bf_job_queue.hpp" /* JobQueueA */
 
-#include "pcg_basic.h"
+#include "pcg_basic.h" /* pcg_state_setseq_64, pcg32_srandom_r, pcg32_boundedrand_r */
 
 #include <algorithm> /* partition, for_each, distance */
 #include <array>     /* array                         */
-#include <cassert>   /* assert                        */
+#include <cstdio>    /* fprintf, stderr               */
+#include <cstdlib>   /* abort                         */
 #include <limits>    /* numeric_limits                */
 #include <thread>    /* thread                        */
 
@@ -66,6 +65,20 @@
 // #include <sys/sysctl.h>
 #endif
 
+namespace
+{
+  static void jobAssertHandler(const bool condition, const char* const filename, const int line_number, const char* const msg)
+  {
+    if (!condition)
+    {
+      std::fprintf(stderr, "JobSystem [%s:%i] Assertion '%s' Failed.\n", filename, line_number, msg);
+      std::abort();
+    }
+  }
+}  // namespace
+
+#define JobAssert(expr, msg) jobAssertHandler((expr), __FILE__, __LINE__, msg)
+
 namespace bf
 {
   namespace job
@@ -91,9 +104,6 @@ namespace bf
     using TaskHandleType = TaskHandle;
 
     static constexpr TaskHandle NullTaskHandle = std::numeric_limits<TaskHandle>::max();
-
-    using ContinuationsCountType       = std::int8_t;
-    using ContinuationsCountAtomicType = std::atomic<ContinuationsCountType>;
 
     // Struct Definitions
 
@@ -121,6 +131,10 @@ namespace bf
         return task_index == NullTaskHandle;
       }
     };
+    using AtomicTaskPtr = std::atomic<TaskPtr>;
+
+    static_assert(sizeof(TaskPtr) == 4u, "Expected to be the size of two shorts.");
+    static_assert(sizeof(AtomicTaskPtr) == sizeof(TaskPtr), "Expected to be lockfree so no extra data members should have been added.");
 
     struct JobSystem
     {
@@ -139,30 +153,23 @@ namespace bf
 
     struct BaseTask
     {
-      using ContinuationsArray = std::array<TaskPtr, k_MaxTaskContinuations>;
-
-      TaskFn                       fn;                    //!< The function that will be run.
-      AtomicInt32                  num_unfinished_tasks;  //!< The number of children tasks.
-      WorkerID                     owning_worker;         //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
-      TaskPtr                      parent;                //!< The parent task, can be null.
-      ContinuationsArray           continuations;         //!< The list of tasks to be added on completion.
-      ContinuationsCountAtomicType num_continuations;     //!< The number of tasks to add to the queue on completion.
-      QueueType                    q_type;                //!< The queue type this task has been submitted to.
-      std::atomic<std::uint32_t>   flags;                 //!< RESERVED, Check to see if this needs to
+      TaskFn        fn;                    //!< The function that will be run.
+      AtomicInt32   num_unfinished_tasks;  //!< The number of children tasks.
+      WorkerID      owning_worker;         //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
+      TaskPtr       parent;                //!< The parent task, can be null.
+      AtomicTaskPtr first_continuation;    //!< Head of linked list of tasks to be added on completion.
+      TaskPtr       next_continuation;     //!< Next element in the linked list of continuations.
+      QueueType     q_type;                //!< The queue type this task has been submitted to, initalized to k_InvalidQueueType.
 
       BaseTask(WorkerID worker, TaskFn fn, TaskPtr parent);
     };
-
-    static_assert(
-     k_MaxTaskContinuations <= std::numeric_limits<ContinuationsCountType>::max(),
-     "Either upgrade `ContinuationsCountType` to a larger type or lower `k_MaxTaskContinuations`.");
 
     static_assert(sizeof(BaseTask) <= k_ExpectedTaskSize, "The task struct is expected to be this less than this size.");
 
     static constexpr std::size_t k_TaskPaddingDataSize = k_ExpectedTaskSize - sizeof(BaseTask);
 
     /*!
-     * @brief 
+     * @brief
      *   An Opaque handle to a single 'Job'.
      */
     struct Task final : public BaseTask
@@ -192,6 +199,8 @@ namespace bf
     {
       static_assert(k_MaxTask > 0u, "Must store at least one task in this pool.");
 
+      static constexpr std::size_t k_MaxTaskMinusOne = k_MaxTask - 1u;
+
       union TaskMemoryBlock
       {
         TaskMemoryBlock*                                    next;
@@ -203,13 +212,11 @@ namespace bf
 
       TaskPool()
       {
-        const std::size_t num_tasks_minus_one = k_MaxTask - 1;
-
-        for (std::size_t i = 0u; i < num_tasks_minus_one; ++i)
+        for (std::size_t i = 0u; i < k_MaxTaskMinusOne; ++i)
         {
           memory[i].next = &memory[i + 1u];
         }
-        memory[num_tasks_minus_one].next = nullptr;
+        memory[k_MaxTaskMinusOne].next = nullptr;
 
         current_block = &memory[0];
       }
@@ -228,23 +235,23 @@ namespace bf
         return reinterpret_cast<Task*>(result);
       }
 
-      std::size_t indexOf(const Task* task) const
+      std::size_t indexOf(const Task* const task) const
       {
         const TaskMemoryBlock* const block = reinterpret_cast<const TaskMemoryBlock*>(task);
 
-        assert(block >= memory && block < (memory + k_MaxTask) && "Invalid task pointer passed in.");
+        JobAssert(block >= memory && block < (memory + k_MaxTask), "Invalid task pointer passed in.");
 
         return block - memory;
       }
 
-      Task* fromIndex(std::size_t idx)
+      Task* fromIndex(const std::size_t idx)
       {
-        assert(idx < k_MaxTask && "Invalid index.");
+        JobAssert(idx < k_MaxTask, "Invalid index.");
 
         return reinterpret_cast<Task*>(&memory[idx].storage);
       }
 
-      void deallocate(Task* task)
+      void deallocate(Task* const task)
       {
         task->~Task();
 
@@ -315,11 +322,11 @@ namespace bf
 
     void detail::checkTaskDataSize(std::size_t data_size) noexcept
     {
-      assert(data_size <= k_TaskPaddingDataSize && "Attempting to store an object too large for this task.");
+      JobAssert(data_size <= k_TaskPaddingDataSize, "Attempting to store an object too large to fit within a task's storage buffer..");
       (void)data_size;
     }
 
-    QueueType detail::taskQType(const Task* task) noexcept
+    QueueType detail::taskQType(const Task* const task) noexcept
     {
       return task->q_type;
     }
@@ -500,11 +507,11 @@ namespace bf
       }
     }
 
-    Task* taskMake(TaskFn function, Task* parent) noexcept
+    Task* taskMake(TaskFn function, Task* const parent) noexcept
     {
       const WorkerID worker_id = currentWorker();
 
-      assert(worker_id < numWorkers() && "This thread was not created by the job system.");
+      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
 
       ThreadWorker* const worker = s_JobCtx.workers + worker_id;
 
@@ -518,26 +525,31 @@ namespace bf
       Task* const      task     = worker->task_memory.allocate(worker_id, function, parent ? parent->toTaskPtr() : TaskPtr{NullTaskHandle, NullTaskHandle});
       const TaskHandle task_hdl = TaskHandle(worker->task_memory.indexOf(task));
 
-      assert(worker->num_allocated_tasks < k_MaxTasksPerWorker);
+      JobAssert(worker->num_allocated_tasks < k_MaxTasksPerWorker, "Too many tasks allocated.");
 
       worker->allocated_tasks[worker->num_allocated_tasks++] = task_hdl;
 
       return task;
     }
 
-    TaskData taskGetData(Task* task) noexcept
+    TaskData taskGetData(Task* const task) noexcept
     {
       return {&task->padding, sizeof(task->padding)};
     }
 
-    void taskAddContinuation(Task* self, const Task* continuation) noexcept
+    void taskAddContinuation(Task* const self, Task* const continuation) noexcept
     {
-      assert(continuation->q_type == k_InvalidQueueType && "A continuation must not have already been submitted to a queue.");
-      assert(self->num_continuations < k_MaxTaskContinuations && "Too many continuations for a single task.");
+      JobAssert(continuation->q_type == k_InvalidQueueType, "A continuation must not have already been submitted to a queue.");
+      JobAssert(continuation->next_continuation.isNull(), "A continuation must not have already been added to another task.");
 
-      const ContinuationsCountType idx = self->num_continuations++;
+      const TaskPtr new_head = continuation->toTaskPtr();
+      TaskPtr       expected_head;
+      do
+      {
+        expected_head                   = self->first_continuation.load();
+        continuation->next_continuation = expected_head;
 
-      self->continuations[std::size_t(idx)] = continuation->toTaskPtr();
+      } while (!std::atomic_compare_exchange_weak(&self->first_continuation, &expected_head, new_head));
     }
 
     template<typename QueueType>
@@ -554,12 +566,12 @@ namespace bf
       }
     }
 
-    void taskSubmit(Task* self, QueueType queue) noexcept
+    void taskSubmit(Task* const self, QueueType queue) noexcept
     {
       const WorkerID worker_id = currentWorker();
 
-      assert(self->q_type == k_InvalidQueueType && "A task cannot be submitted to a queue multiple times.");
-      assert(worker_id < numWorkers() && "This thread was not created by the job system.");
+      JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
+      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
 
       ThreadWorker* const worker = s_JobCtx.workers + worker_id;
 
@@ -588,14 +600,14 @@ namespace bf
       s_JobCtx.wakeUpOneWorker();
     }
 
-    void waitOnTask(const Task* task) noexcept
+    void waitOnTask(const Task* const task) noexcept
     {
-      assert(task->q_type != k_InvalidQueueType && "The Task must be submitted to a queue before you wait on it.");
+      JobAssert(task->q_type != k_InvalidQueueType, "The Task must be submitted to a queue before you wait on it.");
 
       const WorkerID worker_id = currentWorker();
 
-      assert(worker_id < numWorkers() && "This thread was not created by the job system.");
-      assert(task->owning_worker == worker_id && "You may only call this function with a task created on the current 'Worker'.");
+      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
+      JobAssert(task->owning_worker == worker_id, "You may only call this function with a task created on the current 'Worker'.");
 
       ThreadWorker* worker = s_JobCtx.workers + worker_id;
 
@@ -609,7 +621,7 @@ namespace bf
 
     // Member Fn Definitions
 
-    void JobSystem::sleep(const ThreadWorker* worker)
+    void JobSystem::sleep(const ThreadWorker* const worker)
     {
       if (worker->is_running && num_queued_jobs == 0u)
       {
@@ -640,10 +652,9 @@ namespace bf
       num_unfinished_tasks{1},
       owning_worker{worker},
       parent{parent},
-      continuations{},
-      num_continuations{0u},
-      q_type{k_InvalidQueueType}, /* Set to a valid value in 'bf::job::submitTask' */
-      flags{0x0}
+      first_continuation{nullptr},
+      next_continuation{nullptr},
+      q_type{k_InvalidQueueType} /* Set to a valid value in 'bf::job::submitTask' */
     {
       if (!isTaskPtrNull(parent))
       {
@@ -688,11 +699,15 @@ namespace bf
 
         --num_unfinished_tasks;
 
-        const ContinuationsCountType num_continuations_local = num_continuations;
+        TaskPtr continuation = first_continuation.load();
 
-        for (std::int32_t i = 0; i < num_continuations_local; ++i)
+        while (!continuation.isNull())
         {
-          taskSubmit(taskPtrToPointer(continuations[i]), q_type);
+          Task* const task = taskPtrToPointer(continuation);
+
+          taskSubmit(task, q_type);
+
+          continuation = task->next_continuation;
         }
       }
     }
@@ -754,9 +769,9 @@ namespace bf
       {
         // Increase thread priority
 
-        //const BOOL priority_result = SetThreadPriority(handle, THREAD_PRIORITY_HIGHEST);
+        // const BOOL priority_result = SetThreadPriority(handle, THREAD_PRIORITY_HIGHEST);
 
-        //assert(priority_result != 0);
+        // assert(priority_result != 0);
 
         // Name the thread
 
@@ -769,7 +784,7 @@ namespace bf
         const HRESULT hr = SetThreadDescription(handle, thread_name_w);
 
         (void)hr;
-        assert(SUCCEEDED(hr));
+        JobAssert(SUCCEEDED(hr), "");
       }
 #endif  // _WIN32
     }
@@ -823,7 +838,7 @@ namespace bf
         ThreadWorker* const other_worker    = s_JobCtx.workers + other_worker_id;
         task                                = taskPtrToPointer(other_worker->hi_queue.steal());
 
-        if (!task  && !is_main_thread) { task = taskPtrToPointer(other_worker->bg_queue.steal()); }
+        if (!task && !is_main_thread) { task = taskPtrToPointer(other_worker->bg_queue.steal()); }
       }
 
       if (task)
@@ -865,7 +880,7 @@ namespace bf
       ThreadWorker* const worker = s_JobCtx.workers + ptr.worker_id;
       Task* const         result = static_cast<Task*>(worker->task_memory.fromIndex(ptr.task_index));
 
-      assert(ptr.worker_id == result->owning_worker);
+      JobAssert(ptr.worker_id == result->owning_worker, "Corrupted worker ID.");
 
       return result;
     }
@@ -879,7 +894,7 @@ namespace bf
     {
       s_ThreadLocalIndex = s_NextThreadLocalIndex++;
 
-      assert(s_ThreadLocalIndex < s_NextThreadLocalIndex && "Something went very wrong if this is not true.");
+      JobAssert(s_ThreadLocalIndex < s_NextThreadLocalIndex, "Something went very wrong if this is not true.");
     }
 
     bool taskIsDone(const Task* task) noexcept
@@ -913,7 +928,7 @@ namespace bf
 /*
   MIT License
 
-  Copyright (c) 2020-2021 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2022 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

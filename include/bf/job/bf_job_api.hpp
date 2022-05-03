@@ -16,7 +16,7 @@
  * @version 0.0.1
  * @date    2020-09-03
  *
- * @copyright Copyright (c) 2020-2021 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2022 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef BF_JOB_API_HPP
@@ -35,7 +35,7 @@ namespace bf
     // Fwd Declarations
 
     struct Task;
-    enum class QueueType : std::uint8_t;
+    enum class QueueType : std::uint32_t;
 
     // Private
 
@@ -56,7 +56,7 @@ namespace bf
      * @brief 
      *   The priority that you want a task to run at.
      */
-    enum class QueueType : std::uint8_t
+    enum class QueueType : std::uint32_t
     {
       MAIN       = 0,  //!< Use this value when you need a certain task to be run specifically by the main thread.
       NORMAL     = 1,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
@@ -186,7 +186,7 @@ namespace bf
      * @return Task* 
      *   The newly created task.
      */
-    Task* taskMake(TaskFn function, Task* parent = nullptr) noexcept;
+    Task* taskMake(TaskFn function, Task* const parent = nullptr) noexcept;
 
     /*!
      * @brief
@@ -198,7 +198,7 @@ namespace bf
      * @return TaskData
      *   The user-data buffer you may read and write.
      */
-    TaskData taskGetData(Task* task) noexcept;
+    TaskData taskGetData(Task* const task) noexcept;
 
     /*!
      * @brief
@@ -213,7 +213,7 @@ namespace bf
      *   The Task to run after 'self' has finished.
      *   This task must not have already been submitted to a queue.
      */
-    void taskAddContinuation(Task* self, const Task* continuation) noexcept;
+    void taskAddContinuation(Task* const self, Task* const continuation) noexcept;
 
     /*!
      * @brief
@@ -229,7 +229,7 @@ namespace bf
      * @param queue
      *   The queue you want the task to run on.
      */
-    void taskSubmit(Task* self, QueueType queue = QueueType::NORMAL) noexcept;
+    void taskSubmit(Task* const self, QueueType queue = QueueType::NORMAL) noexcept;
 
     /*!
      * @brief
@@ -265,7 +265,7 @@ namespace bf
      *   The arguments passed into the constructor of the user-data buffer casted as a T.
      */
     template<typename T, typename... Args>
-    void taskEmplaceData(Task* task, Args&&... args);
+    void taskEmplaceData(Task* const task, Args&&... args);
 
     /*!
      * @brief
@@ -281,7 +281,7 @@ namespace bf
      *   The data copied into the user-data buffer.
      */
     template<typename T>
-    void taskSetData(Task* task, const T& data);
+    void taskSetData(Task* const task, const T& data);
 
     /*!
      * @brief
@@ -307,7 +307,7 @@ namespace bf
      *   The newly created task.
      */
     template<typename Closure>
-    Task* taskMake(Closure&& function, Task* parent = nullptr);
+    Task* taskMake(Closure&& function, Task* const parent = nullptr);
 
     /*!
      * @brief
@@ -321,12 +321,12 @@ namespace bf
      * @param task
      *   The task to wait to finish executing.
      */
-    void waitOnTask(const Task* task) noexcept;
+    void waitOnTask(const Task* const task) noexcept;
 
     // Template Function Implementation
 
     template<typename T>
-    T& taskDataAs(Task* task) noexcept
+    T& taskDataAs(Task* const task) noexcept
     {
       detail::checkTaskDataSize(sizeof(T));
 
@@ -334,7 +334,7 @@ namespace bf
     }
 
     template<typename T, typename... Args>
-    void taskEmplaceData(Task* task, Args&&... args)
+    void taskEmplaceData(Task* const task, Args&&... args)
     {
       detail::checkTaskDataSize(sizeof(T));
 
@@ -342,13 +342,13 @@ namespace bf
     }
 
     template<typename T>
-    void taskSetData(Task* task, const T& data)
+    void taskSetData(Task* const task, const T& data)
     {
       taskEmplaceData<T>(task, data);
     }
 
     template<typename Closure>
-    Task* taskMake(Closure&& function, Task* parent)
+    Task* taskMake(Closure&& function, Task* const parent)
     {
       Task* const task = taskMake(
        +[](Task* task) {
@@ -371,7 +371,7 @@ namespace bf
 /*
   MIT License
 
-  Copyright (c) 2020-2021 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2022 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
