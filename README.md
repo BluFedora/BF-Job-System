@@ -87,7 +87,6 @@ A `Task`s can be added as a child of another task, this means that when you wait
 A Queue hold a list of `Task`s waiting to be executed. There are four different types of queues.
 
 - `MAIN` This queue has a guarantee that the task will be run on the main thread.
-- `HIGH` The queue mosts tasks will want to be pushed to.
 - `NORMAL` Slightly lower priority than 'QueueType::HIGH'.
 - `BACKGROUND` This queue has a guarantee that the task will never be run on the main thread.
 
