@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.8)
 project(BF_Job VERSION 0.0.1 DESCRIPTION "Multithreaded Job System Sub Project of the Engine.")
 
 add_library(
-  "${PROJECT_NAME}_static"
+  BF_Job
   STATIC
     "${PROJECT_SOURCE_DIR}/include/bf/job/bf_job_api.hpp"
     "${PROJECT_SOURCE_DIR}/include/bf/job/bf_job_config.hpp"
@@ -21,7 +21,7 @@ add_library(
 )
 
 target_include_directories(
-  "${PROJECT_NAME}_static"
+  BF_Job
   PUBLIC
     "${PROJECT_SOURCE_DIR}/include"
   PRIVATE
@@ -38,5 +38,5 @@ add_executable(
 target_link_libraries(
   "${PROJECT_NAME}_test_01api"
   PRIVATE
-    "${PROJECT_NAME}_static"
+    BF_Job
 )

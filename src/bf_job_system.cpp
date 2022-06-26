@@ -170,7 +170,7 @@ namespace bf
 
     /*!
      * @brief
-     *   An Opaque handle to a single 'Job'.
+     *   A single 'job' to be run by this system.
      */
     struct Task final : public BaseTask
     {
@@ -178,7 +178,7 @@ namespace bf
 
       using BaseTask::BaseTask;
 
-      Padding padding /* = {} */;
+      Padding padding /* = {} */;  //!< User storage.
 
       void run()
       {
@@ -223,16 +223,11 @@ namespace bf
 
       Task* allocate(WorkerID worker, TaskFn fn, TaskPtr parent)
       {
-        TaskMemoryBlock* const result = current_block;
+        TaskMemoryBlock* const result = std::exchange(current_block, current_block->next);
 
-        if (current_block)
-        {
-          current_block = current_block->next;
+        JobAssert(result != nullptr, "Allocation failure.");
 
-          new (result) Task(worker, fn, parent);
-        }
-
-        return reinterpret_cast<Task*>(result);
+        return new (result) Task(worker, fn, parent);
       }
 
       std::size_t indexOf(const Task* const task) const
@@ -257,8 +252,7 @@ namespace bf
 
         TaskMemoryBlock* const block = reinterpret_cast<TaskMemoryBlock*>(task);
 
-        block->next   = current_block;
-        current_block = block;
+        block->next = std::exchange(current_block, block);
       }
     };
 
@@ -635,7 +629,7 @@ namespace bf
         std::unique_lock<std::mutex> lock(worker_sleep_mutex);
         worker_sleep_cv.wait(lock, [worker, this]() {
           // NOTE(SR):
-          //   Because the stl want 'false' to mean continue waiting the logic is a bit confusing :/
+          //   Because the stl wants 'false' to mean continue waiting the logic is a bit confusing :/
           //
           //   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).
           //
@@ -853,7 +847,6 @@ namespace bf
     void ThreadWorker::yieldTimeSlice()
     {
       std::this_thread::yield();
-      // std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 
     void ThreadWorker::stop()
@@ -885,7 +878,7 @@ namespace bf
       return result;
     }
 
-    bool isTaskPtrNull(TaskPtr ptr) noexcept
+    static bool isTaskPtrNull(TaskPtr ptr) noexcept
     {
       return ptr.task_index == NullTaskHandle;
     }
@@ -897,7 +890,7 @@ namespace bf
       JobAssert(s_ThreadLocalIndex < s_NextThreadLocalIndex, "Something went very wrong if this is not true.");
     }
 
-    bool taskIsDone(const Task* task) noexcept
+    static bool taskIsDone(const Task* task) noexcept
     {
       return task->num_unfinished_tasks.load() == -1;
     }
