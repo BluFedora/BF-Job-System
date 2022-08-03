@@ -1,6 +1,6 @@
 # BluFedora Job System Library
 
-This is a C++11 library for handling of Tasks / Jobs in a multi-threaded environment.
+This is a C++17 library for handling of Tasks / Jobs in a multi-threaded environment.
 
 ## Examples
 
@@ -94,7 +94,7 @@ A Queue hold a list of `Task`s waiting to be executed. There are four different 
 
 ## Dependencies
 
-- C++11 or higher
+- C++17 or higher
 
 ## Libraries Used
 

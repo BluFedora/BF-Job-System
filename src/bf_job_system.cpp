@@ -86,7 +86,7 @@ namespace bf
     // Constants
 
     // NOTE(Shareef):
-    //   C++17 has: hardware_constructive_interference_size / std::hardware_destructive_interference_size
+    //   C++17 has: hardware_constructive_interference_size and std::hardware_destructive_interference_size
     //   In core i7 the line (block) sizes in L1, L2 and L3 are the same (64 bytes)
     static constexpr std::size_t k_ExpectedTaskSize  = 128 * 2;
     static constexpr std::size_t k_MaxTasksPerWorker = k_HiPriorityQueueSize + k_BackgroundPriorityQueueSize;
@@ -126,14 +126,14 @@ namespace bf
       {
       }
 
-      bool isNull() const
+      bool isNull() const noexcept
       {
         return task_index == NullTaskHandle;
       }
     };
     using AtomicTaskPtr = std::atomic<TaskPtr>;
 
-    static_assert(sizeof(TaskPtr) == 4u, "Expected to be the size of two shorts.");
+    static_assert(sizeof(TaskPtr) == 4u, "Expected to be the size of two uint16's.");
     static_assert(sizeof(AtomicTaskPtr) == sizeof(TaskPtr), "Expected to be lockfree so no extra data members should have been added.");
 
     struct JobSystem
@@ -276,16 +276,12 @@ namespace bf
       ThreadWorker& operator=(const ThreadWorker& rhs) = delete;
       ThreadWorker& operator=(ThreadWorker&& rhs) = delete;
 
-      std::thread* worker()
-      {
-        return reinterpret_cast<std::thread*>(&worker_);
-      }
+      std::thread* worker() { return reinterpret_cast<std::thread*>(&worker_); }
 
       void        start(bool is_main_thread);
       static void startImpl();
       void        garbageCollectAllocatedTasks(WorkerID thread_id);
       bool        run(WorkerID thread_id);
-      static void yieldTimeSlice();
       void        stop();
 
       inline WorkerID randomWorker() noexcept;
@@ -310,7 +306,6 @@ namespace bf
     // Helper Declarations
 
     static Task* taskPtrToPointer(TaskPtr ptr) noexcept;
-    static bool  isTaskPtrNull(TaskPtr ptr) noexcept;
     static void  initThreadWorkerID() noexcept;
     static bool  taskIsDone(const Task* task) noexcept;
 
@@ -376,8 +371,10 @@ namespace bf
 #endif
     }
 
-    bool initialize(const JobSystemCreateOptions& params) noexcept
+    void initialize(const JobSystemCreateOptions& params) noexcept
     {
+      JobAssert(s_NextThreadLocalIndex == 0u, "Job System must be shutdown before it can be initialized again.");
+
       const WorkerID num_threads = clampThreadCount(WorkerID(params.num_threads ? params.num_threads : numSystemThreads()), WorkerID(1), WorkerID(k_MaxThreadsSupported));
 
       s_JobCtx.num_workers = num_threads;
@@ -437,8 +434,6 @@ namespace bf
         }
       }
 #endif
-
-      return true;
     }
 
     std::size_t numWorkers() noexcept
@@ -477,10 +472,12 @@ namespace bf
 
     void shutdown() noexcept
     {
-      const auto num_workers = s_JobCtx.num_workers;
+      JobAssert(s_NextThreadLocalIndex != 0u, "Job System must be initialized before it can be shutdown.");
+
+      const std::uint32_t num_workers = s_JobCtx.num_workers;
 
       // Makes sure the sleeping threads do not continue to sleep.
-      for (std::size_t i = 1; i < num_workers; ++i)
+      for (std::uint32_t i = 1; i < num_workers; ++i)
       {
         s_JobCtx.workers[i].is_running = false;
       }
@@ -488,7 +485,7 @@ namespace bf
       // Allow one last update loop to allow them to end.
       s_JobCtx.wakeUpAllWorkers();
 
-      for (std::size_t i = 0; i < num_workers; ++i)
+      for (std::uint32_t i = 0; i < num_workers; ++i)
       {
         ThreadWorker* const worker = s_JobCtx.workers + i;
 
@@ -499,6 +496,9 @@ namespace bf
 
         worker->~ThreadWorker();
       }
+
+      s_NextThreadLocalIndex = 0u;
+      s_IsFullyInitialized   = false;
     }
 
     Task* taskMake(TaskFn function, Task* const parent) noexcept
@@ -533,6 +533,7 @@ namespace bf
 
     void taskAddContinuation(Task* const self, Task* const continuation) noexcept
     {
+      JobAssert(self->q_type == k_InvalidQueueType, "The task should not have already been submitted to a queue.");
       JobAssert(continuation->q_type == k_InvalidQueueType, "A continuation must not have already been submitted to a queue.");
       JobAssert(continuation->next_continuation.isNull(), "A continuation must not have already been added to another task.");
 
@@ -560,7 +561,7 @@ namespace bf
       }
     }
 
-    void taskSubmit(Task* const self, QueueType queue) noexcept
+    Task* taskSubmit(Task* const self, QueueType queue) noexcept
     {
       const WorkerID worker_id = currentWorker();
 
@@ -592,6 +593,8 @@ namespace bf
 
       ++s_JobCtx.num_queued_jobs;
       s_JobCtx.wakeUpOneWorker();
+
+      return self;
     }
 
     void waitOnTask(const Task* const task) noexcept
@@ -609,6 +612,7 @@ namespace bf
 
       while (!taskIsDone(task))
       {
+        worker->garbageCollectAllocatedTasks(worker_id);
         worker->run(worker_id);
       }
     }
@@ -619,7 +623,7 @@ namespace bf
     {
       if (worker->is_running && num_queued_jobs == 0u)
       {
-        worker->yieldTimeSlice();
+        std::this_thread::yield();
 
         if (num_queued_jobs.load(std::memory_order_relaxed) != 0u)
         {
@@ -650,7 +654,7 @@ namespace bf
       next_continuation{nullptr},
       q_type{k_InvalidQueueType} /* Set to a valid value in 'bf::job::submitTask' */
     {
-      if (!isTaskPtrNull(parent))
+      if (!parent.isNull())
       {
         Task* const parent_ptr = taskPtrToPointer(parent);
 
@@ -676,7 +680,7 @@ namespace bf
 
     void Task::onFinish()
     {
-      // IMPORTANT(SR):
+      // NOTE(SR):
       //   make sure to store the result in a local variable and use that for
       //   comparing against zero later. otherwise, the code contains a data race
       //   because other child tasks could change m_UnFinishedJobs in the meantime.
@@ -684,7 +688,7 @@ namespace bf
 
       if (num_jobs_left == 0)
       {
-        if (!isTaskPtrNull(parent))
+        if (!parent.isNull())
         {
           Task* const parent_task = taskPtrToPointer(parent);
 
@@ -697,11 +701,12 @@ namespace bf
 
         while (!continuation.isNull())
         {
-          Task* const task = taskPtrToPointer(continuation);
+          Task* const   task              = taskPtrToPointer(continuation);
+          const TaskPtr next_continuation = task->next_continuation;
 
           taskSubmit(task, q_type);
 
-          continuation = task->next_continuation;
+          continuation = next_continuation;
         }
       }
     }
@@ -820,11 +825,9 @@ namespace bf
     {
       const bool is_main_thread = thread_id == k_MainThreadID;
 
-      Task* task = nullptr;
+      Task* task = taskPtrToPointer(is_main_thread ? s_JobCtx.main_queue.pop() : bg_queue.pop());
 
-      if (!task && is_main_thread) { task = taskPtrToPointer(s_JobCtx.main_queue.pop()); }
       if (!task) { task = taskPtrToPointer(hi_queue.pop()); }
-      if (!task && !is_main_thread) { task = taskPtrToPointer(bg_queue.pop()); }
 
       if (!task)
       {
@@ -844,14 +847,9 @@ namespace bf
       return task != nullptr;
     }
 
-    void ThreadWorker::yieldTimeSlice()
-    {
-      std::this_thread::yield();
-    }
-
     void ThreadWorker::stop()
     {
-      // Joins throws an exception if the thread is not joinable. this should always be true.
+      // Join throws an exception if the thread is not joinable. this should always be true.
       worker()->join();
       worker()->~thread();
     }
@@ -865,22 +863,17 @@ namespace bf
 
     static Task* taskPtrToPointer(TaskPtr ptr) noexcept
     {
-      if (ptr.isNull())
+      if (!ptr.isNull())
       {
-        return nullptr;
+        ThreadWorker* const worker = s_JobCtx.workers + ptr.worker_id;
+        Task* const         result = worker->task_memory.fromIndex(ptr.task_index);
+
+        JobAssert(ptr.worker_id == result->owning_worker, "Corrupted worker ID.");
+
+        return result;
       }
 
-      ThreadWorker* const worker = s_JobCtx.workers + ptr.worker_id;
-      Task* const         result = static_cast<Task*>(worker->task_memory.fromIndex(ptr.task_index));
-
-      JobAssert(ptr.worker_id == result->owning_worker, "Corrupted worker ID.");
-
-      return result;
-    }
-
-    static bool isTaskPtrNull(TaskPtr ptr) noexcept
-    {
-      return ptr.task_index == NullTaskHandle;
+      return nullptr;
     }
 
     static void initThreadWorkerID() noexcept
@@ -897,6 +890,10 @@ namespace bf
   }  // namespace job
 }  // namespace bf
 
+#undef IS_WINDOWS
+#undef IS_POSIX
+#undef IS_SINGLE_THREADED
+
 #if defined(_MSC_VER)
 
 #pragma warning(push)
@@ -912,10 +909,6 @@ namespace bf
 #pragma warning(pop)
 
 #endif
-
-#undef IS_WINDOWS
-#undef IS_POSIX
-#undef IS_SINGLE_THREADED
 
 /******************************************************************************/
 /*
