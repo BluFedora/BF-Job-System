@@ -457,19 +457,18 @@ namespace bf
 
     void tick()
     {
-      s_JobCtx.workers[k_MainThreadID].garbageCollectAllocatedTasks();
-
       // Run any tasks from the special 'Main' queue.
-
       while (true)
       {
-        Task* const task = taskPtrToPointer(s_JobCtx.main_queue.pop());
+        const TaskPtr task_ptr = s_JobCtx.main_queue.pop();
 
-        if (!task)
+        if (task_ptr.isNull())
         {
-          break;
+          s_JobCtx.workers[k_MainThreadID].garbageCollectAllocatedTasks();
+          return;
         }
 
+        Task* const task = taskPtrToPointer(task_ptr);
         task->run();
       }
     }
