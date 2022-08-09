@@ -33,7 +33,24 @@ namespace bf
     // Fwd Declarations
 
     struct Task;
-    enum class QueueType : std::uint32_t;
+
+    // Enums
+
+    /*!
+     * @brief
+     *   The priority that you want a task to run at.
+     */
+    enum class QueueType : std::uint16_t
+    {
+      NORMAL     = 0,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
+      MAIN       = 1,  //!< Use this value when you need a certain task to be run specifically by the main thread.
+      BACKGROUND = 2,  //!< Low priority, good for asset loading. Tasks in this queue will never run on the main thread.
+    };
+
+    // Type Aliases
+
+    using WorkerID = std::uint16_t;    //!< The id type of each worker thread.
+    using TaskFn   = void (*)(Task*);  //!< The signature of the type of function for a single Task.
 
     // Private
 
@@ -42,24 +59,6 @@ namespace bf
       void      checkTaskDataSize(std::size_t data_size) noexcept;
       QueueType taskQType(const Task* task) noexcept;
     }  // namespace detail
-
-    // Type Aliases
-
-    using WorkerID = std::uint16_t;    //!< The id type of each worker thread.
-    using TaskFn   = void (*)(Task*);  //!< The signature of the type of function for a single Task.
-
-    // Enums
-
-    /*!
-     * @brief
-     *   The priority that you want a task to run at.
-     */
-    enum class QueueType : std::uint32_t
-    {
-      MAIN       = 0,  //!< Use this value when you need a certain task to be run specifically by the main thread.
-      NORMAL     = 1,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
-      BACKGROUND = 2,  //!< Low priority, good for asset loading. Tasks in this queue will never run on the main thread.
-    };
 
     // Struct Definitions
 
@@ -108,7 +107,7 @@ namespace bf
      * @return std::size_t
      *   The number of workers created by the system.
      */
-    std::size_t numWorkers() noexcept;
+    std::uint32_t numWorkers() noexcept;
 
     /*!
      * @brief
@@ -351,7 +350,7 @@ namespace bf
          Closure& function = taskDataAs<Closure>(task);
          function(task);
          function.~Closure();
-          // std::destroy_at(&function);
+         // std::destroy_at(&function);
        },
        parent);
 

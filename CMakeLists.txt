@@ -51,15 +51,15 @@ include(GoogleTest)
 # API Test Project
 
 add_executable(
-  BF_Job_test_01api
+  BFJobTesting
   "${PROJECT_SOURCE_DIR}/tests/job_sys_main.cpp"
 )
 
 target_link_libraries(
-  BF_Job_test_01api
+  BFJobTesting
   PRIVATE
     BF_Job
     GTest::gtest_main
 )
 
-gtest_discover_tests(BF_Job_test_01api)
+gtest_discover_tests(BFJobTesting)

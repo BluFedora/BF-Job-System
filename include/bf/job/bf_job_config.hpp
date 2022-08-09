@@ -17,16 +17,20 @@
 
 #include <cstddef> /* size_t */
 
+#ifndef JOB_SYS_ASSERTIONS
+#define JOB_SYS_ASSERTIONS 1  //!< Should be turned on during development as it catches API misuse, then for release switched off.
+#endif
+
 namespace bf
 {
   namespace job
   {
     // Constants / Configuration
 
-    static constexpr std::size_t k_MainQueueSize               = 128;   //!< The number of tasks that can be contained in the main queue.
-    static constexpr std::size_t k_HiPriorityQueueSize         = 2048;  //!< The number of tasks that can be contained in each worker's high priority queue.
-    static constexpr std::size_t k_BackgroundPriorityQueueSize = 512;   //!< The number of tasks that can be contained in each worker's low priority queue.
-    static constexpr std::size_t k_MaxThreadsSupported         = 32;    //!< The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.
+    static constexpr std::size_t k_MainQueueSize       = 128;   //!< The number of tasks that can be contained in the main queue.
+    static constexpr std::size_t k_NormalQueueSize     = 4096;  //!< The number of tasks that can be contained in each worker's high priority queue.
+    static constexpr std::size_t k_BackgroundQueueSize = 512;   //!< The number of tasks that can be contained in each worker's low priority queue.
+    static constexpr std::size_t k_MaxThreadsSupported = 32;    //!< The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.
 
   }  // namespace job
 }  // namespace bf

@@ -13,8 +13,8 @@
 #ifndef BF_JOB_QUEUE_HPP
 #define BF_JOB_QUEUE_HPP
 
-#include <atomic>  /* atomic_int32_t, atomic_signal_fence, atomic_thread_fence */
-#include <mutex>   /* mutex, lock_guard                                        */
+#include <atomic> /* atomic_int32_t, atomic_signal_fence, atomic_thread_fence */
+#include <mutex>  /* mutex, lock_guard                                        */
 
 // NOTE(Shareef):
 //   Prevents reordering of statements by the compiler.
@@ -64,11 +64,6 @@ namespace bf
     {
     }
 
-    int size() const
-    {
-      return int(m_Bottom - m_Top);
-    }
-
     bool push(const T& job)
     {
       std::lock_guard<std::mutex> guard(m_CriticalLock);
@@ -84,7 +79,7 @@ namespace bf
       std::lock_guard<std::mutex> guard(m_CriticalLock);
       (void)guard;
 
-      const auto num_jobs = size();
+      const auto num_jobs = m_Bottom - m_Top;
 
       if (num_jobs <= 0)
       {

@@ -1,4 +1,9 @@
-
+//
+// Shareef Abdoul-Raheem
+// job_sys_main.cpp
+//
+// Contains Unit Test for the Job System.
+//
 #include "bf/JobSystemExt.hpp"
 
 #include <gtest/gtest.h>
@@ -6,20 +11,46 @@
 #include <memory>   // unique_ptr
 #include <numeric>  // iota
 
+static constexpr int k_NumJobsForTestingOverhead = 65000;
 
+// Tests the time it takes to creating empty jobs serially.
+TEST(JobSystemTests, JobCreationOverheadSerial)
+{
+  bf::job::Task* const root = bf::job::taskMake([](bf::job::Task* root) {
+    for (int i = 0u; i < k_NumJobsForTestingOverhead; ++i)
+    {
+      bf::job::taskSubmit(bf::job::taskMake([](bf::job::Task*) { /* NO-OP */ }, root));
+    }
+  });
+
+  bf::job::waitOnTask(bf::job::taskSubmit(root));
+}
+
+// Tests the time it takes to creating empty jobs recursively split by the parallel_for.
+TEST(JobSystemTests, JobCreationOverheadParallelFor)
+{
+  bf::job::Task* const task = bf::job::parallel_for(
+   0, k_NumJobsForTestingOverhead, bf::job::CountSplitter{0}, [](bf::job::Task* parent, const bf::job::IndexRange& index_range) {
+     /* NO-OP */
+   });
+
+  bf::job::waitOnTask(bf::job::taskSubmit(task));
+}
+
+// Tests `parallel_for` making sure each index is hit once.
 TEST(JobSystemTests, BasicParallelForRange)
 {
   static constexpr int          k_DataSize   = 1000000;
-  static constexpr int          k_DataSplit  = 250;
-  const std::unique_ptr<bool[]> example_data = std::make_unique<bool[]>(k_DataSize);
+  static constexpr int          k_DataSplit  = 2500;
+  const std::unique_ptr<int[]> example_data = std::make_unique<int[]>(k_DataSize);
 
-  std::fill_n(example_data.get(), k_DataSize, false);
+  std::fill_n(example_data.get(), k_DataSize, 0);
 
   bf::job::Task* const task = bf::job::parallel_for(
    0, k_DataSize, bf::job::CountSplitter{k_DataSplit}, [&example_data](bf::job::Task* parent, const bf::job::IndexRange index_range) {
      for (const std::size_t i : index_range)
      {
-       example_data[i] = true;
+       ++example_data[i];
      }
    });
 
@@ -27,10 +58,11 @@ TEST(JobSystemTests, BasicParallelForRange)
 
   for (int i = 0; i < k_DataSize; ++i)
   {
-    EXPECT_EQ(example_data[i], true) << "Failed to write to index " << i;
+    EXPECT_EQ(example_data[i], 1) << "Failed to write to index " << i;
   }
 }
 
+// Tests array data variant of `parallel_for`.
 TEST(JobSystemTests, BasicParallelForArray)
 {
   static constexpr int k_DataSize  = 100000;
@@ -60,6 +92,7 @@ TEST(JobSystemTests, BasicParallelForArray)
   }
 }
 
+// Test `parallel_invoke` making sure both tasks are run and finish.
 TEST(JobSystemTests, BasicParallelInvoke)
 {
   static constexpr int         k_DataSize   = 1000000;
@@ -91,7 +124,7 @@ TEST(JobSystemTests, BasicParallelInvoke)
 }
 
 // TODO(SR): Test continuations.
-// TODO(SR): Test Dependecies / parent child relationships.
+// TODO(SR): Test Dependecies / parent child relationships (this is implicitly tested by the every test though...).
 
 int main(int argc, char* argv[])
 {

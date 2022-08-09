@@ -20,6 +20,8 @@ namespace bf
 {
   namespace job
   {
+    // TODO(SR): Document me!!
+
     struct index_iterator
     {
       std::size_t idx;
@@ -75,12 +77,13 @@ namespace bf
       bool operator()(const std::size_t count) const { return sizeof(T) * count > max_size; }
     };
 
+     // TODO(SR): Document me!!
     template<typename F, typename S>
     Task* parallel_for(const std::size_t start, const std::size_t count, S&& splitter, F&& fn, Task* parent = nullptr)
     {
-      Task* const task = taskMake(
+      return taskMake(
        [=, splitter = std::move(splitter), fn = std::move(fn)](Task* const task) {
-         if (splitter(count))
+         if (count > 1u && splitter(count))
          {
            const std::size_t left_count    = count / 2;
            const std::size_t right_count   = count - left_count;
@@ -102,18 +105,9 @@ namespace bf
          }
        },
        parent);
-
-      return task;
     }
 
     // TODO(SR): Document me!!
-    /*!
-     * @brief
-     * @tparam T
-     * @tparam F
-     * @tparam S
-     * @param task
-     */
     template<typename T, typename F, typename S>
     Task* parallel_for(T* const data, const std::size_t count, S&& splitter, F&& fn, Task* parent = nullptr)
     {
@@ -124,6 +118,7 @@ namespace bf
        parent);
     }
 
+     // TODO(SR): Document me!!
     template<typename... F>
     Task* parallel_invoke(Task* const parent, F&&... fns)
     {
