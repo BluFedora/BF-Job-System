@@ -1,0 +1,36 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+  
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Create Documentation Folder
+        run: |
+          mkdir -p docs/doxygen
+          
+      - name: Build Docs
+        uses: mattnotmitt/doxygen-action@v1.9.2
+        with:
+          working-directory: '.'
+          doxyfile-path: './Doxyfile'
+ 
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: docs/doxygen/html
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
