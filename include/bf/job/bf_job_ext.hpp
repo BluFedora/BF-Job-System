@@ -113,7 +113,8 @@ namespace bf
     {
       return parallel_for(
        std::size_t(0), count, std::move(splitter), [data, fn = std::move(fn)](Task* const task, const IndexRange index_range) {
-         fn(data + index_range.idx_bgn, index_range.length());
+          // TODO(SR): Pass in the task pointer.
+          fn(data + index_range.idx_bgn, index_range.length());
        },
        parent);
     }
