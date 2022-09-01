@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"structbf_1_1job_1_1_static_count_splitter.html#a01737663f134fe1bd6957ed7b7656d88":[1,0,0,0,7,0],
 "structbf_1_1job_1_1_static_data_size_splitter.html":[2,0,0,0,7],
 "structbf_1_1job_1_1_static_data_size_splitter.html":[1,0,0,0,8],
 "structbf_1_1job_1_1_static_data_size_splitter.html#aafc4034af8eeae8b358d336106a4ff34":[2,0,0,0,7,0],

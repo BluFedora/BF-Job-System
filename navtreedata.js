@@ -31,9 +31,8 @@ var NAVTREE =
         [ "Task", "index.html#autotoc_md3", null ],
         [ "Queues", "index.html#autotoc_md4", null ]
       ] ],
-      [ "<a href=\"https://blufedora.github.io/BF-Job-System\" >API Docs (Doxygen)</a>", "index.html#autotoc_md5", null ],
-      [ "Dependencies", "index.html#autotoc_md6", null ],
-      [ "Libraries Used", "index.html#autotoc_md7", null ]
+      [ "Dependencies", "index.html#autotoc_md5", null ],
+      [ "Libraries Used", "index.html#autotoc_md6", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -69,7 +68,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_job_system_8hpp.html",
-"structbf_1_1job_1_1_static_count_splitter.html#a01737663f134fe1bd6957ed7b7656d88"
+"structbf_1_1job_1_1_static_data_size_splitter.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
