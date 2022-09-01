@@ -90,8 +90,6 @@ A Queue hold a list of `Task`s waiting to be executed. There are four different 
 - `NORMAL` Slightly lower priority than 'QueueType::HIGH'.
 - `BACKGROUND` This queue has a guarantee that the task will never be run on the main thread.
 
-## [API Docs (Doxygen)](https://blufedora.github.io/BF-Job-System)
-
 ## Dependencies
 
 - C++17 or higher
