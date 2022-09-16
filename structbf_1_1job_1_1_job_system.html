@@ -160,28 +160,28 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00654">654</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>    {</div>
-<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>      std::this_thread::yield();</div>
-<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span> </div>
-<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>      <span class="keywordflow">if</span> (!worker-&gt;is_running || !worker-&gt;can_sleep)</div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>      {</div>
-<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>      }</div>
-<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
-<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>      std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">worker_sleep_mutex</a>);</div>
-<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.wait(lock, [worker, <span class="keyword">this</span>]() {</div>
-<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>        <span class="comment">// NOTE(SR):</span></div>
-<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>        <span class="comment">//   Because the stl wants &#39;false&#39; to mean continue waiting the logic is a bit confusing :/</span></div>
-<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>        <span class="comment">//</span></div>
-<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>        <span class="comment">//   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).</span></div>
-<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>        <span class="comment">//</span></div>
-<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>        <span class="comment">//        Wait If:     running AND can_sleep.</span></div>
-<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>        <span class="comment">// Do Not Wait If: not running OR !can_sleep.</span></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00657">657</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>    {</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>      std::this_thread::yield();</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span> </div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>      <span class="keywordflow">if</span> (!worker-&gt;is_running || !worker-&gt;can_sleep)</div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>      {</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>      }</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> </div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>      std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">worker_sleep_mutex</a>);</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.wait(lock, [worker, <span class="keyword">this</span>]() {</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>        <span class="comment">// NOTE(SR):</span></div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>        <span class="comment">//   Because the stl wants &#39;false&#39; to mean continue waiting the logic is a bit confusing :/</span></div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>        <span class="comment">//</span></div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>        <span class="comment">//   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).</span></div>
 <div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>        <span class="comment">//</span></div>
-<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>        <span class="keywordflow">return</span> !worker-&gt;is_running || !worker-&gt;can_sleep;</div>
-<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>      });</div>
-<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>    }</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>        <span class="comment">//        Wait If:     running AND can_sleep.</span></div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>        <span class="comment">// Do Not Wait If: not running OR !can_sleep.</span></div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>        <span class="comment">//</span></div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>        <span class="keywordflow">return</span> !worker-&gt;is_running || !worker-&gt;can_sleep;</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>      });</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>    }</div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_ab3fa2ae6eec44df84d00f2c344a11afc"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">bf::job::JobSystem::worker_sleep_mutex</a></div><div class="ttdeci">std::mutex worker_sleep_mutex</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00288">bf_job_system.cpp:288</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_af05eceb84fe22cd6878497b803fb9a1b"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">bf::job::JobSystem::worker_sleep_cv</a></div><div class="ttdeci">std::condition_variable worker_sleep_cv</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00289">bf_job_system.cpp:289</a></div></div>
 </div><!-- fragment -->
@@ -367,7 +367,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li><li class="navelem"><a class="el" href="structbf_1_1job_1_1_job_system.html">JobSystem</a></li>
-    <li class="footer">Generated on Thu Sep 1 2022 04:38:29 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Fri Sep 16 2022 13:02:31 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
