@@ -263,10 +263,10 @@ namespace bf
 
       ThreadWorker() = default;
 
-      ThreadWorker(const ThreadWorker& rhs) = delete;
-      ThreadWorker(ThreadWorker&& rhs)      = delete;
+      ThreadWorker(const ThreadWorker& rhs)            = delete;
+      ThreadWorker(ThreadWorker&& rhs)                 = delete;
       ThreadWorker& operator=(const ThreadWorker& rhs) = delete;
-      ThreadWorker& operator=(ThreadWorker&& rhs) = delete;
+      ThreadWorker& operator=(ThreadWorker&& rhs)      = delete;
 
       std::thread* worker() { return reinterpret_cast<std::thread*>(&worker_); }
 
@@ -304,8 +304,7 @@ namespace bf
       JobSystem                 s_JobCtx               = {};
       AtomicInt32               s_NextThreadLocalIndex = 0;
       thread_local std::int32_t s_ThreadLocalIndex     = 0x7FFFFFFF;
-
-      std::atomic_bool s_IsFullyInitialized = ATOMIC_VAR_INIT(false);  //!< We need to wait for all workers to be initialized before we start doing work.
+      std::atomic_bool          s_IsFullyInitialized   = ATOMIC_VAR_INIT(false);  //!< We need to wait for all workers to be initialized before we start doing work.
 
     }  // namespace
 
@@ -386,13 +385,17 @@ namespace bf
       s_JobCtx.num_workers = num_threads;
       s_JobCtx.workers     = reinterpret_cast<ThreadWorker*>(s_JobCtx.worker_storage.data());
 
-      const unsigned int random_seed = static_cast<unsigned int>(rand());
+#if JOB_SYS_DETERMINISTIC_JOB_STEAL
+      constexpr std::uint64_t random_seed = 0u;
+#else
+      const std::uint64_t random_seed = static_cast<std::uint64_t>(rand());
+#endif
 
       for (std::size_t i = 0; i < num_threads; ++i)
       {
         ThreadWorker* const worker = new (s_JobCtx.workers + i) ThreadWorker();
 
-        pcg32_srandom_r(&worker->rng_state, std::uint64_t(i), std::uint64_t(i) * 2u + 1u);
+        pcg32_srandom_r(&worker->rng_state, std::uint64_t(i) + random_seed, std::uint64_t(i) * 2u + 1u + random_seed);
 
         worker->start(i == k_MainThreadID);
       }

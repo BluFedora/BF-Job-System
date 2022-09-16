@@ -21,6 +21,10 @@
 #define JOB_SYS_ASSERTIONS 1  //!< Should be turned on during development as it catches API misuse, then for release switched off.
 #endif
 
+#ifndef JOB_SYS_DETERMINISTIC_JOB_STEAL
+#define JOB_SYS_DETERMINISTIC_JOB_STEAL 1  //!< The RNG for work queue stealing will be seeded in the same way.
+#endif
+
 namespace bf
 {
   namespace job
