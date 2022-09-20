@@ -1465,7 +1465,7 @@ template&lt;typename Closure &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00626">626</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 <div class="fragment"><div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>    {</div>
-<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>      <span class="keyword">const</span> <span class="keyword">auto</span> old_ref_count = task-&gt;<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a93fc661c961145576368376de173d6f4">ref_count</a>.fetch_add(0, std::memory_order_relaxed);</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>      <span class="keyword">const</span> <span class="keyword">auto</span> old_ref_count = task-&gt;<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a93fc661c961145576368376de173d6f4">ref_count</a>.fetch_sub(1, std::memory_order_relaxed);</div>
 <div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span> </div>
 <div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>      <a class="code hl_define" href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(old_ref_count &gt;= 0, <span class="stringliteral">&quot;taskDecRef: Called too many times.&quot;</span>);</div>
 <div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>    }</div>
@@ -2312,7 +2312,7 @@ template&lt;typename <a class="el" href="namespacebf_1_1job.html#a875be9fb42e0c4
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li>
-    <li class="footer">Generated on Tue Sep 20 2022 03:41:47 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Sep 20 2022 06:56:04 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
