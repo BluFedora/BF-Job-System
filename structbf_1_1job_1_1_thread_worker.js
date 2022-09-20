@@ -24,6 +24,5 @@ var structbf_1_1job_1_1_thread_worker =
     [ "worker_", "structbf_1_1job_1_1_thread_worker.html#ad8c169d4196c34a087a3a42a7ef73abe", null ],
     [ "num_allocated_tasks", "structbf_1_1job_1_1_thread_worker.html#ae4ae19f85c3ba0b38c1028e9d76184f0", null ],
     [ "is_running", "structbf_1_1job_1_1_thread_worker.html#aa5019cbeed15986b18211e5af8dab384", null ],
-    [ "can_sleep", "structbf_1_1job_1_1_thread_worker.html#a8837f539be31afff81ee92f4e5952d01", null ],
     [ "rng_state", "structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af", null ]
 ];

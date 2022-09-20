@@ -8,7 +8,5 @@ var searchData=
   ['jobqueuea_3c_20k_5fnormalqueuesize_2c_20taskptr_20_3e_5',['JobQueueA&lt; k_NormalQueueSize, TaskPtr &gt;',['../classbf_1_1_job_queue_a.html',1,'bf']]],
   ['jobqueuem_6',['JobQueueM',['../classbf_1_1_job_queue_m.html',1,'bf::JobQueueM&lt; kSize, T &gt;'],['../classbf_1_1_job_queue_m.html#a4f7b99756c219cb27eb1c6c37b888378',1,'bf::JobQueueM::JobQueueM()']]],
   ['jobsystem_7',['JobSystem',['../structbf_1_1job_1_1_job_system.html',1,'bf::job']]],
-  ['jobsystem_2ehpp_8',['JobSystem.hpp',['../_job_system_8hpp.html',1,'']]],
-  ['jobsystemcreateoptions_9',['JobSystemCreateOptions',['../namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options',1,'bf::job']]],
-  ['jobsystemext_2ehpp_10',['JobSystemExt.hpp',['../_job_system_ext_8hpp.html',1,'']]]
+  ['jobsystemcreateoptions_8',['JobSystemCreateOptions',['../namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options',1,'bf::job']]]
 ];

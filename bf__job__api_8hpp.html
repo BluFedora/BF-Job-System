@@ -193,6 +193,18 @@ Functions</h2></td></tr>
 <tr class="memitem:af43aa7fb7429e273b2776523f84499be"><td class="memTemplItemLeft" align="right" valign="top">Task *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#af43aa7fb7429e273b2776523f84499be">bf::job::taskMake</a> (Closure &amp;&amp;function, Task *const parent=nullptr)</td></tr>
 <tr class="memdesc:af43aa7fb7429e273b2776523f84499be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new task by using the user-data buffer to store the closure.  <a href="namespacebf_1_1job.html#af43aa7fb7429e273b2776523f84499be">More...</a><br /></td></tr>
 <tr class="separator:af43aa7fb7429e273b2776523f84499be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a16013b6b11e1be5fc9f92ddc8ebe682b">bf::job::taskIncRef</a> (Task *const task)</td></tr>
+<tr class="memdesc:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the task's ref count preventing it from being garbage collected.  <a href="namespacebf_1_1job.html#a16013b6b11e1be5fc9f92ddc8ebe682b">More...</a><br /></td></tr>
+<tr class="separator:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a319ff8e231fce83f3990cfc703675f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a319ff8e231fce83f3990cfc703675f95">bf::job::taskDecRef</a> (Task *const task)</td></tr>
+<tr class="memdesc:a319ff8e231fce83f3990cfc703675f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements the task's ref count allow it to be garbage collected.  <a href="namespacebf_1_1job.html#a319ff8e231fce83f3990cfc703675f95">More...</a><br /></td></tr>
+<tr class="separator:a319ff8e231fce83f3990cfc703675f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5175f1552d04cf66c93fbf126769ca6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ac5175f1552d04cf66c93fbf126769ca6">bf::job::taskIsDone</a> (const Task *const task) noexcept</td></tr>
+<tr class="memdesc:ac5175f1552d04cf66c93fbf126769ca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the done status of the task.  <a href="namespacebf_1_1job.html#ac5175f1552d04cf66c93fbf126769ca6">More...</a><br /></td></tr>
+<tr class="separator:ac5175f1552d04cf66c93fbf126769ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae">bf::job::workerGC</a> ()</td></tr>
+<tr class="memdesc:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Garbage collects tasks allocated on the current worker.  <a href="namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae">More...</a><br /></td></tr>
+<tr class="separator:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">bf::job::waitOnTask</a> (const Task *const task) noexcept</td></tr>
 <tr class="memdesc:a6af1eef961e26e6cbdf84dd01d86a619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified <code>task</code> is done executing. This function will block but do work while being blocked so there is no wasted time.  <a href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">More...</a><br /></td></tr>
 <tr class="separator:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -272,7 +284,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__api_8hpp.html">bf_job_api.hpp</a></li>
-    <li class="footer">Generated on Fri Sep 16 2022 13:02:31 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Sep 20 2022 03:30:56 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

@@ -31,5 +31,9 @@ var bf__job__api_8hpp =
     [ "taskEmplaceData", "bf__job__api_8hpp.html#aef7643eed8577eaad7b9dad4e887fdca", null ],
     [ "taskSetData", "bf__job__api_8hpp.html#af57f75705be9ca98403dd7181c6744b6", null ],
     [ "taskMake", "bf__job__api_8hpp.html#af43aa7fb7429e273b2776523f84499be", null ],
+    [ "taskIncRef", "bf__job__api_8hpp.html#a16013b6b11e1be5fc9f92ddc8ebe682b", null ],
+    [ "taskDecRef", "bf__job__api_8hpp.html#a319ff8e231fce83f3990cfc703675f95", null ],
+    [ "taskIsDone", "bf__job__api_8hpp.html#ac5175f1552d04cf66c93fbf126769ca6", null ],
+    [ "workerGC", "bf__job__api_8hpp.html#a384cbecfdf7aaa8629c6afb2ef0d90ae", null ],
     [ "waitOnTask", "bf__job__api_8hpp.html#a6af1eef961e26e6cbdf84dd01d86a619", null ]
 ];
