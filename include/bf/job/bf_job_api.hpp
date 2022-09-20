@@ -306,6 +306,50 @@ namespace bf
 
     /*!
      * @brief
+     *   Increments the task's ref count preventing it from being garbage collected.
+     *
+     *   This function should be called before `taskSubmit`.
+     *
+     * @param task
+     *   The task's who's ref count should be incremented.
+     */
+    void taskIncRef(Task* const task);
+
+    /*!
+     * @brief
+     *   Decrements the task's ref count allow it to be garbage collected.
+     *
+     * @param task
+     *   The task's who's ref count should be decremented.
+     */
+    void taskDecRef(Task* const task);
+
+    /*!
+     * @brief
+     *   Returns the done status of the task.
+     *
+     *   This is only safe to call after submiting the task if you have an active reference to
+     *   the task through a call to taskIncRef.
+     *
+     * @param task
+     *   The task to check whether or not it's done.
+     *
+     * @return
+     *   true  - The task is done running.
+     *   false - The task is still running.
+     *
+     * @see taskIncRef
+     */
+    bool taskIsDone(const Task* const task) noexcept;
+
+    /*!
+     * @brief
+     *   Garbage collects tasks allocated on the current worker.
+    */
+    void workerGC();
+
+    /*!
+     * @brief
      *   Waits until the specified `task` is done executing.
      *   This function will block but do work while being blocked so there is no wasted time.
      *

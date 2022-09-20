@@ -4,7 +4,7 @@
 //
 // Contains Unit Test for the Job System.
 //
-#include "bf/JobSystemExt.hpp"
+#include "bf/job/bf_job_ext.hpp"
 
 #include <gtest/gtest.h>
 
@@ -40,8 +40,8 @@ TEST(JobSystemTests, JobCreationOverheadParallelFor)
 // Tests `parallel_for` making sure each index is hit once.
 TEST(JobSystemTests, BasicParallelForRange)
 {
-  static constexpr int          k_DataSize   = 1000000;
-  static constexpr int          k_DataSplit  = 2500;
+  static constexpr int         k_DataSize   = 1000000;
+  static constexpr int         k_DataSplit  = 2500;
   const std::unique_ptr<int[]> example_data = std::make_unique<int[]>(k_DataSize);
 
   std::fill_n(example_data.get(), k_DataSize, 0);
@@ -120,6 +120,35 @@ TEST(JobSystemTests, BasicParallelInvoke)
   for (int i = 0; i < k_DataSize; ++i)
   {
     EXPECT_EQ(example_data[i], 1) << "Each index must be written to exactly once: " << i;
+  }
+}
+
+// Tests keeping task alive through reference count API
+TEST(JobSystemTests, GCReferenceCount)
+{
+  auto* const long_running_task = bf::job::taskMake([](bf::job::Task*) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(12));
+  });
+
+  taskIncRef(long_running_task);
+
+  taskSubmit(long_running_task, bf::job::QueueType::BACKGROUND);
+
+  while (!taskIsDone(long_running_task))
+  {
+    std::printf("Waiting on long Running task...\n");
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  std::this_thread::sleep_for(std::chrono::milliseconds(12));
+
+  bf::job::workerGC();
+
+  // Task should still be valid, this call should not crash.
+
+  if (taskIsDone(long_running_task))
+  {
+    taskDecRef(long_running_task);
   }
 }
 

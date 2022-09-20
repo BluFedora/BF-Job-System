@@ -145,6 +145,7 @@ namespace bf
       static constexpr std::size_t k_SizeOfMembers =
        sizeof(TaskFn) +
        sizeof(AtomicInt32) +
+       sizeof(AtomicInt32) +
        sizeof(TaskPtr) +
        sizeof(AtomicTaskPtr) +
        sizeof(TaskPtr) +
@@ -157,6 +158,7 @@ namespace bf
 
       TaskFn        fn;                    //!< The function that will be run.
       AtomicInt32   num_unfinished_tasks;  //!< The number of children tasks.
+      AtomicInt32   ref_count;             //!< Keeps the task from being garbage collected.
       TaskPtr       parent;                //!< The parent task, can be null.
       AtomicTaskPtr first_continuation;    //!< Head of linked list of tasks to be added on completion.
       TaskPtr       next_continuation;     //!< Next element in the linked list of continuations.
@@ -258,7 +260,6 @@ namespace bf
       ThreadStorage                 worker_             = {};
       TaskHandleType                num_allocated_tasks = 0u;
       std::atomic_bool              is_running          = ATOMIC_VAR_INIT(false);
-      std::atomic_bool              can_sleep           = ATOMIC_VAR_INIT(true);
       pcg_state_setseq_64           rng_state           = {};
 
       ThreadWorker() = default;
@@ -288,6 +289,7 @@ namespace bf
       std::mutex                          worker_sleep_mutex                   = {};
       std::condition_variable             worker_sleep_cv                      = {};
       WorkerThreadStorage                 worker_storage alignas(ThreadWorker) = {};
+      AtomicInt32                         num_available_jobs                   = ATOMIC_VAR_INIT(0u);
 
       void sleep(const ThreadWorker* worker);
       void wakeUpOneWorker() { worker_sleep_cv.notify_one(); }
@@ -312,7 +314,6 @@ namespace bf
 
     static Task* taskPtrToPointer(TaskPtr ptr) noexcept;
     static void  initThreadWorkerID() noexcept;
-    static bool  taskIsDone(const Task* task) noexcept;
 
     void detail::checkTaskDataSize(std::size_t data_size) noexcept
     {
@@ -520,10 +521,6 @@ namespace bf
       {
         worker->garbageCollectAllocatedTasks();
 
-        for (std::uint32_t i = 0; i < num_workers; ++i)
-        {
-          s_JobCtx.workers[i].can_sleep.store(false);
-        }
         s_JobCtx.wakeUpAllWorkers();
 
         // While we cannot allocate do some work.
@@ -531,11 +528,6 @@ namespace bf
         {
           worker->run(worker_id);
           worker->garbageCollectAllocatedTasks();
-        }
-
-        for (std::uint32_t i = 0; i < num_workers; ++i)
-        {
-          s_JobCtx.workers[i].can_sleep.store(true);
         }
       }
 
@@ -621,7 +613,37 @@ namespace bf
         }
       }
 
+      s_JobCtx.num_available_jobs.fetch_add(1);
+      s_JobCtx.wakeUpOneWorker();
       return self;
+    }
+
+    void taskIncRef(Task* const task)
+    {
+      task->ref_count.fetch_add(1, std::memory_order_relaxed);
+    }
+
+    void taskDecRef(Task* const task)
+    {
+      const auto old_ref_count = task->ref_count.fetch_add(0, std::memory_order_relaxed);
+
+      JobAssert(old_ref_count >= 0, "taskDecRef: Called too many times.");
+    }
+
+    bool taskIsDone(const Task* const task) noexcept
+    {
+      return task->num_unfinished_tasks.load() == -1;
+    }
+
+    void workerGC()
+    {
+      const WorkerID worker_id = currentWorker();
+
+      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
+
+      ThreadWorker& worker = s_JobCtx.workers[worker_id];
+
+      worker.garbageCollectAllocatedTasks();
     }
 
     void waitOnTask(const Task* const task) noexcept
@@ -633,10 +655,6 @@ namespace bf
       JobAssert(worker_id < num_workers, "This thread was not created by the job system.");
       JobAssert(task->owning_worker == worker_id, "You may only call this function with a task created on the current 'Worker'.");
 
-      for (std::uint32_t i = 0; i < num_workers; ++i)
-      {
-        s_JobCtx.workers[i].can_sleep.store(false);
-      }
       s_JobCtx.wakeUpAllWorkers();
 
       ThreadWorker& worker = s_JobCtx.workers[worker_id];
@@ -644,11 +662,6 @@ namespace bf
       while (!taskIsDone(task))
       {
         worker.run(worker_id);
-      }
-
-      for (std::uint32_t i = 0; i < num_workers; ++i)
-      {
-        s_JobCtx.workers[i].can_sleep.store(true);
       }
     }
 
@@ -658,7 +671,7 @@ namespace bf
     {
       std::this_thread::yield();
 
-      if (!worker->is_running || !worker->can_sleep)
+      if (!worker->is_running)
       {
         return;
       }
@@ -670,16 +683,17 @@ namespace bf
         //
         //   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).
         //
-        //        Wait If:     running AND can_sleep.
-        // Do Not Wait If: not running OR !can_sleep.
+        //        Wait If:     running AND num_available_jobs == 0.
+        // Do Not Wait If: not running  OR num_available_jobs != 0.
         //
-        return !worker->is_running || !worker->can_sleep;
+        return !worker->is_running || num_available_jobs.load(std::memory_order_relaxed) != 0;
       });
     }
 
     Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) :
       fn{fn},
       num_unfinished_tasks{1},
+      ref_count{0u},
       parent{parent},
       first_continuation{nullptr},
       next_continuation{nullptr},
@@ -825,11 +839,12 @@ namespace bf
         while (read_idx != num_tasks)
         {
           const TaskHandle task_hdl         = allocated_tasks_bgn[read_idx];
-          const bool       task_is_finished = finished_tasks[task_hdl];
+          Task* const      task_ptr         = task_memory.fromIndex(task_hdl);
+          const bool       task_is_finished = finished_tasks[task_hdl] && task_ptr->ref_count.load(std::memory_order_relaxed) == 0u;
 
           if (task_is_finished)
           {
-            task_memory.deallocate(task_memory.fromIndex(task_hdl));
+            task_memory.deallocate(task_ptr);
           }
           else
           {
@@ -895,6 +910,8 @@ namespace bf
         return false;
       }
 
+      s_JobCtx.num_available_jobs.fetch_sub(1);
+
       Task* const task = taskPtrToPointer(task_ptr);
       task->run();
 
@@ -935,11 +952,6 @@ namespace bf
       s_ThreadLocalIndex = s_NextThreadLocalIndex++;
 
       JobAssert(s_ThreadLocalIndex < s_NextThreadLocalIndex, "Something went very wrong if this is not true.");
-    }
-
-    static bool taskIsDone(const Task* task) noexcept
-    {
-      return task->num_unfinished_tasks.load() == -1;
     }
   }  // namespace job
 }  // namespace bf
