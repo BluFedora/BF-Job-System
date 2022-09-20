@@ -625,7 +625,7 @@ namespace bf
 
     void taskDecRef(Task* const task)
     {
-      const auto old_ref_count = task->ref_count.fetch_add(0, std::memory_order_relaxed);
+      const auto old_ref_count = task->ref_count.fetch_sub(1, std::memory_order_relaxed);
 
       JobAssert(old_ref_count >= 0, "taskDecRef: Called too many times.");
     }
