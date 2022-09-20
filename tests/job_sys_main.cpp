@@ -47,7 +47,7 @@ TEST(JobSystemTests, BasicParallelForRange)
   std::fill_n(example_data.get(), k_DataSize, 0);
 
   bf::job::Task* const task = bf::job::parallel_for(
-   0, k_DataSize, bf::job::CountSplitter{k_DataSplit}, [&example_data](bf::job::Task* parent, const bf::job::IndexRange index_range) {
+   0, k_DataSize, bf::job::CountSplitter{k_DataSplit}, [&example_data](bf::job::Task*, const bf::job::IndexRange index_range) {
      for (const std::size_t i : index_range)
      {
        ++example_data[i];
@@ -75,7 +75,7 @@ TEST(JobSystemTests, BasicParallelForArray)
   std::iota(example_data.get(), example_data.get() + k_DataSize, 0);
 
   bf::job::Task* const task = bf::job::parallel_for(
-   example_data.get(), k_DataSize, bf::job::CountSplitter{k_DataSplit}, [multiplier](int* data, std::size_t data_count) {
+   example_data.get(), k_DataSize, bf::job::CountSplitter{k_DataSplit}, [multiplier](bf::job::Task*, int* data, std::size_t data_count) {
      EXPECT_LE(data_count, k_DataSplit);
 
      for (std::size_t i = 0; i < data_count; ++i)

@@ -179,23 +179,23 @@ namespace bf
      *   \p splitter passed in. This version is a helper for array data.
      *
      *   Assumes all callables passed in are thread safe.
-     * 
+     *
      * @tparam T
      *   Type of the array to process.
-     * 
+     *
      * @tparam F
      *   Type of function object passed in.
      *   Must be callable like: fn(Task* task, IndexRange index_range)
-     * 
+     *
      * @tparam S
      *   Callable splitter, must be callable like: splitter(std::size_t count)
-     * 
+     *
      * @param data
      *   The start of the array to process.
-     * 
+     *
      * @param count
      *   The number of elements in the \p data array.
-     * 
+     *
      * @param splitter
      *   Callable splitter, must be callable like: splitter(std::size_t count)
      *
@@ -213,8 +213,7 @@ namespace bf
     {
       return parallel_for(
        std::size_t(0), count, std::move(splitter), [data, fn = std::move(fn)](Task* const task, const IndexRange index_range) {
-         // TODO(SR): Pass in the task pointer.
-         fn(data + index_range.idx_bgn, index_range.length());
+         fn(task, data + index_range.idx_bgn, index_range.length());
        },
        parent);
     }
@@ -222,17 +221,17 @@ namespace bf
     /*!
      * @brief
      *   Invokes each passed in function object in parallel.
-     * 
+     *
      * @tparam ...F
      *   The function objects types.
      *   Must be callable like: fn(Task* task)
-     * 
+     *
      * @param parent
      *   Parent task to add this task as a child of.
-     * 
+     *
      * @param ...fns
      *    Function objects must be callable like: fn(Task* task)
-     * 
+     *
      * @return
      *   The new task holding the work of the parallel invoke.
      */
