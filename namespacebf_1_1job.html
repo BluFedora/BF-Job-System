@@ -106,6 +106,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_data_size_splitter.html">DataSizeSplitter</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1index__iterator.html">index_iterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range of indices to iterator over.  <a href="structbf_1_1job_1_1index__iterator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbf_1_1job_1_1_index_range.html">IndexRange</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,12 +226,15 @@ Functions</h2></td></tr>
 <tr class="separator:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ca43dbd44d354a1e2aa1e9b16efe602"><td class="memTemplParams" colspan="2">template&lt;typename F , typename S &gt; </td></tr>
 <tr class="memitem:a4ca43dbd44d354a1e2aa1e9b16efe602"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structbf_1_1job_1_1_task.html">Task</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a4ca43dbd44d354a1e2aa1e9b16efe602">parallel_for</a> (const std::size_t start, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, <a class="el" href="structbf_1_1job_1_1_task.html">Task</a> *parent=nullptr)</td></tr>
+<tr class="memdesc:a4ca43dbd44d354a1e2aa1e9b16efe602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel for algorithm, splits the work up recursively spliting based on the <code>splitter</code> passed in.  <a href="namespacebf_1_1job.html#a4ca43dbd44d354a1e2aa1e9b16efe602">More...</a><br /></td></tr>
 <tr class="separator:a4ca43dbd44d354a1e2aa1e9b16efe602"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada994a5d80a85361eb84532b8a098b70"><td class="memTemplParams" colspan="2">template&lt;typename T , typename F , typename S &gt; </td></tr>
 <tr class="memitem:ada994a5d80a85361eb84532b8a098b70"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structbf_1_1job_1_1_task.html">Task</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">parallel_for</a> (T *const data, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, <a class="el" href="structbf_1_1job_1_1_task.html">Task</a> *parent=nullptr)</td></tr>
+<tr class="memdesc:ada994a5d80a85361eb84532b8a098b70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel for algorithm, splits the work up recursively spliting based on the <code>splitter</code> passed in.  <a href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">More...</a><br /></td></tr>
 <tr class="separator:ada994a5d80a85361eb84532b8a098b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a008a5ea3f69205f8c2dd07d4645f344e"><td class="memTemplParams" colspan="2">template&lt;typename... F&gt; </td></tr>
 <tr class="memitem:a008a5ea3f69205f8c2dd07d4645f344e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structbf_1_1job_1_1_task.html">Task</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a008a5ea3f69205f8c2dd07d4645f344e">parallel_invoke</a> (<a class="el" href="structbf_1_1job_1_1_task.html">Task</a> *const parent, F &amp;&amp;... fns)</td></tr>
+<tr class="memdesc:a008a5ea3f69205f8c2dd07d4645f344e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes each passed in function object in parallel.  <a href="namespacebf_1_1job.html#a008a5ea3f69205f8c2dd07d4645f344e">More...</a><br /></td></tr>
 <tr class="separator:a008a5ea3f69205f8c2dd07d4645f344e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d19ffe37dfe4b108e49920545957912"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structbf_1_1job_1_1_task.html">Task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a> (<a class="el" href="structbf_1_1job_1_1_task_ptr.html">TaskPtr</a> ptr) noexcept</td></tr>
 <tr class="separator:a3d19ffe37dfe4b108e49920545957912"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -967,7 +971,7 @@ The size of the buffer. </td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00258">bf::job::ThreadWorker::allocated_tasks</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00457">currentWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00259">bf::job::ThreadWorker::finished_tasks</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00811">bf::job::ThreadWorker::garbageCollectAllocatedTasks()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00085">JobAssert</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00095">k_MaxTasksPerWorker</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00261">bf::job::ThreadWorker::num_allocated_tasks</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00447">numWorkers()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00162">bf::job::Task::parent</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00862">bf::job::ThreadWorker::run()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00257">bf::job::ThreadWorker::task_memory</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__ext_8hpp_source.html#l00082">parallel_for()</a>, <a class="el" href="bf__job__ext_8hpp_source.html#l00124">parallel_invoke()</a>, and <a class="el" href="bf__job__api_8hpp_source.html#l00390">taskMake()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__ext_8hpp_source.html#l00115">parallel_for()</a>, <a class="el" href="bf__job__ext_8hpp_source.html#l00240">parallel_invoke()</a>, and <a class="el" href="bf__job__api_8hpp_source.html#l00390">taskMake()</a>.</p>
 
 </div>
 </div>
@@ -1168,7 +1172,7 @@ The size of the buffer. </td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253aa87ed58ce5596142e11cb65deb049bb4b">BACKGROUND</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00256">bf::job::ThreadWorker::bg_queue</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00457">currentWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00255">bf::job::ThreadWorker::hi_queue</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00085">JobAssert</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00097">k_InvalidQueueType</a>, <a class="el" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253aa186495f7da296bf880df3a22a492b378">MAIN</a>, <a class="el" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253aa1e23852820b9154316c7c06e2b7ba051">NORMAL</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00447">numWorkers()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00572">taskSubmitQPushHelper()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00713">bf::job::Task::onFinish()</a>, <a class="el" href="bf__job__ext_8hpp_source.html#l00082">parallel_for()</a>, and <a class="el" href="bf__job__ext_8hpp_source.html#l00124">parallel_invoke()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00713">bf::job::Task::onFinish()</a>, <a class="el" href="bf__job__ext_8hpp_source.html#l00115">parallel_for()</a>, and <a class="el" href="bf__job__ext_8hpp_source.html#l00240">parallel_invoke()</a>.</p>
 
 </div>
 </div>
@@ -1651,42 +1655,63 @@ template&lt;typename F , typename S &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__ext_8hpp_source.html#l00082">82</a> of file <a class="el" href="bf__job__ext_8hpp_source.html">bf_job_ext.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">taskMake</a>(</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>       [=, splitter = std::move(splitter), fn = std::move(fn)](<a class="code hl_struct" href="structbf_1_1job_1_1_task.html">Task</a>* <span class="keyword">const</span> task) {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>         <span class="keywordflow">if</span> (count &gt; 1u &amp;&amp; splitter(count))</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>         {</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>           <span class="keyword">const</span> std::size_t left_count    = count / 2;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>           <span class="keyword">const</span> std::size_t right_count   = count - left_count;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>           <span class="keyword">const</span> <a class="code hl_enumeration" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a">QueueType</a>   parent_q_type = <a class="code hl_function" href="namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb">detail::taskQType</a>(task);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>           <span class="keywordflow">if</span> (left_count)</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>           {</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>             <a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(<a class="code hl_function" href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">parallel_for</a>(start, left_count, splitter, fn, task), parent_q_type);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>           }</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>           <span class="keywordflow">if</span> (right_count)</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>           {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>             <a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(<a class="code hl_function" href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">parallel_for</a>(start + left_count, right_count, splitter, fn, task), parent_q_type);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>           }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>         }</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>         <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>         {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>           fn(task, IndexRange{start, start + count});</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>         }</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>       },</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>       parent);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+<p>Parallel for algorithm, splits the work up recursively spliting based on the <code>splitter</code> passed in. </p>
+<p >Assumes all callables passed in are thread safe.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">F</td><td>Type of function object passed in. Must be callable like: fn(Task* task, IndexRange index_range)</td></tr>
+    <tr><td class="paramname">S</td><td>Callable splitter, must be callable like: splitter(std::size_t count)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>Start index for the range to be parallelized.</td></tr>
+    <tr><td class="paramname">count</td><td><code>start</code> + count defines the end range.</td></tr>
+    <tr><td class="paramname">splitter</td><td>Callable splitter, must be callable like: splitter(std::size_t count)</td></tr>
+    <tr><td class="paramname">fn</td><td>Function object must be callable like: fn(Task* task, IndexRange index_range)</td></tr>
+    <tr><td class="paramname">parent</td><td>Parent task to add this task as a child of.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new task holding the work of the parallel for. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="bf__job__ext_8hpp_source.html#l00115">115</a> of file <a class="el" href="bf__job__ext_8hpp_source.html">bf_job_ext.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">taskMake</a>(</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>       [=, splitter = std::move(splitter), fn = std::move(fn)](<a class="code hl_struct" href="structbf_1_1job_1_1_task.html">Task</a>* <span class="keyword">const</span> task) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>         <span class="keywordflow">if</span> (count &gt; 1u &amp;&amp; splitter(count))</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>         {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>           <span class="keyword">const</span> std::size_t left_count    = count / 2;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>           <span class="keyword">const</span> std::size_t right_count   = count - left_count;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>           <span class="keyword">const</span> <a class="code hl_enumeration" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a">QueueType</a>   parent_q_type = <a class="code hl_function" href="namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb">detail::taskQType</a>(task);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>           <span class="keywordflow">if</span> (left_count)</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>           {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>             <a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(<a class="code hl_function" href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">parallel_for</a>(start, left_count, splitter, fn, task), parent_q_type);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>           }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>           <span class="keywordflow">if</span> (right_count)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>           {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>             <a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(<a class="code hl_function" href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">parallel_for</a>(start + left_count, right_count, splitter, fn, task), parent_q_type);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>           }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>         }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>         <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>         {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>           fn(task, IndexRange{start, start + count});</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>         }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>       },</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>       parent);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
 <div class="ttc" id="anamespacebf_1_1job_1_1detail_html_a4d4666e8dba3d32e395eb701d243c0cb"><div class="ttname"><a href="namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb">bf::job::detail::taskQType</a></div><div class="ttdeci">QueueType taskQType(const Task *task) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00324">bf_job_system.cpp:324</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a34b82edd0c4dbead425152cf008ec532"><div class="ttname"><a href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">bf::job::taskMake</a></div><div class="ttdeci">Task * taskMake(TaskFn function, Task *const parent=nullptr) noexcept</div><div class="ttdoc">Creates a new Task that should be later submitted by calling 'taskSubmit'.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00511">bf_job_system.cpp:511</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a875be9fb42e0c4b56567a56f2265253a"><div class="ttname"><a href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a">bf::job::QueueType</a></div><div class="ttdeci">QueueType</div><div class="ttdoc">The priority that you want a task to run at.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__api_8hpp_source.html#l00043">bf_job_api.hpp:44</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a9d8571034c2aff8664cbffc8de3e9d22"><div class="ttname"><a href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">bf::job::taskSubmit</a></div><div class="ttdeci">Task * taskSubmit(Task *const self, QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00586">bf_job_system.cpp:586</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_ada994a5d80a85361eb84532b8a098b70"><div class="ttname"><a href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">bf::job::parallel_for</a></div><div class="ttdeci">Task * parallel_for(T *const data, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00112">bf_job_ext.hpp:112</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_ada994a5d80a85361eb84532b8a098b70"><div class="ttname"><a href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">bf::job::parallel_for</a></div><div class="ttdeci">Task * parallel_for(T *const data, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</div><div class="ttdoc">Parallel for algorithm, splits the work up recursively spliting based on the splitter passed in.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00212">bf_job_ext.hpp:212</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__ext_8hpp_source.html#l00082">parallel_for()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00511">taskMake()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00324">bf::job::detail::taskQType()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00586">taskSubmit()</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__ext_8hpp_source.html#l00115">parallel_for()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00511">taskMake()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00324">bf::job::detail::taskQType()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00586">taskSubmit()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__ext_8hpp_source.html#l00082">parallel_for()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__ext_8hpp_source.html#l00115">parallel_for()</a>.</p>
 
 </div>
 </div>
@@ -1736,20 +1761,62 @@ template&lt;typename T , typename F , typename S &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__ext_8hpp_source.html#l00112">112</a> of file <a class="el" href="bf__job__ext_8hpp_source.html">bf_job_ext.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">parallel_for</a>(</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>       std::size_t(0), count, std::move(splitter), [data, fn = std::move(fn)](<a class="code hl_struct" href="structbf_1_1job_1_1_task.html">Task</a>* <span class="keyword">const</span> task, <span class="keyword">const</span> <a class="code hl_struct" href="structbf_1_1job_1_1_index_range.html">IndexRange</a> index_range) {</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>          <span class="comment">// TODO(SR): Pass in the task pointer.</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>          fn(data + index_range.<a class="code hl_variable" href="structbf_1_1job_1_1_index_range.html#a319172078b2589e69ddda0c2f811eb37">idx_bgn</a>, index_range.<a class="code hl_function" href="structbf_1_1job_1_1_index_range.html#a22a061c0355f3beb8f1c1860c906bbb7">length</a>());</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>       },</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>       parent);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
-<div class="ttc" id="astructbf_1_1job_1_1_index_range_html"><div class="ttname"><a href="structbf_1_1job_1_1_index_range.html">bf::job::IndexRange</a></div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00039">bf_job_ext.hpp:40</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_index_range_html_a22a061c0355f3beb8f1c1860c906bbb7"><div class="ttname"><a href="structbf_1_1job_1_1_index_range.html#a22a061c0355f3beb8f1c1860c906bbb7">bf::job::IndexRange::length</a></div><div class="ttdeci">std::size_t length() const</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00044">bf_job_ext.hpp:44</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_index_range_html_a319172078b2589e69ddda0c2f811eb37"><div class="ttname"><a href="structbf_1_1job_1_1_index_range.html#a319172078b2589e69ddda0c2f811eb37">bf::job::IndexRange::idx_bgn</a></div><div class="ttdeci">std::size_t idx_bgn</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00041">bf_job_ext.hpp:41</a></div></div>
+<p>Parallel for algorithm, splits the work up recursively spliting based on the <code>splitter</code> passed in. </p>
+<p >Assumes all callables passed in are thread safe.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">F</td><td>Type of function object passed in. Must be callable like: fn(Task* task, IndexRange index_range)</td></tr>
+    <tr><td class="paramname">S</td><td>Callable splitter, must be callable like: splitter(std::size_t count)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>Start index for the range to be parallelized.</td></tr>
+    <tr><td class="paramname">count</td><td><code>start</code> + count defines the end range.</td></tr>
+    <tr><td class="paramname">splitter</td><td>Callable splitter, must be callable like: splitter(std::size_t count)</td></tr>
+    <tr><td class="paramname">fn</td><td>Function object must be callable like: fn(Task* task, IndexRange index_range)</td></tr>
+    <tr><td class="paramname">parent</td><td>Parent task to add this task as a child of.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new task holding the work of the parallel for.</dd></dl>
+<p>Parallel for algorithm, splits the work up recursively spliting based on the <code>splitter</code> passed in. This version is a helper for array data.</p>
+<p >Assumes all callables passed in are thread safe.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the array to process.</td></tr>
+    <tr><td class="paramname">F</td><td>Type of function object passed in. Must be callable like: fn(Task* task, IndexRange index_range)</td></tr>
+    <tr><td class="paramname">S</td><td>Callable splitter, must be callable like: splitter(std::size_t count)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The start of the array to process.</td></tr>
+    <tr><td class="paramname">count</td><td>The number of elements in the <code>data</code> array.</td></tr>
+    <tr><td class="paramname">splitter</td><td>Callable splitter, must be callable like: splitter(std::size_t count)</td></tr>
+    <tr><td class="paramname">fn</td><td>Function object must be callable like: fn(Task* task, IndexRange index_range)</td></tr>
+    <tr><td class="paramname">parent</td><td>Parent task to add this task as a child of.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new task holding the work of the parallel for. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="bf__job__ext_8hpp_source.html#l00212">212</a> of file <a class="el" href="bf__job__ext_8hpp_source.html">bf_job_ext.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70">parallel_for</a>(</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>       std::size_t(0), count, std::move(splitter), [data, fn = std::move(fn)](<a class="code hl_struct" href="structbf_1_1job_1_1_task.html">Task</a>* <span class="keyword">const</span> task, <span class="keyword">const</span> <a class="code hl_struct" href="structbf_1_1job_1_1_index_range.html">IndexRange</a> index_range) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>         <span class="comment">// TODO(SR): Pass in the task pointer.</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>         fn(data + index_range.<a class="code hl_variable" href="structbf_1_1job_1_1_index_range.html#a319172078b2589e69ddda0c2f811eb37">idx_bgn</a>, index_range.<a class="code hl_function" href="structbf_1_1job_1_1_index_range.html#a22a061c0355f3beb8f1c1860c906bbb7">length</a>());</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>       },</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>       parent);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    }</div>
+<div class="ttc" id="astructbf_1_1job_1_1_index_range_html"><div class="ttname"><a href="structbf_1_1job_1_1_index_range.html">bf::job::IndexRange</a></div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00041">bf_job_ext.hpp:42</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_index_range_html_a22a061c0355f3beb8f1c1860c906bbb7"><div class="ttname"><a href="structbf_1_1job_1_1_index_range.html#a22a061c0355f3beb8f1c1860c906bbb7">bf::job::IndexRange::length</a></div><div class="ttdeci">std::size_t length() const</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00046">bf_job_ext.hpp:46</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_index_range_html_a319172078b2589e69ddda0c2f811eb37"><div class="ttname"><a href="structbf_1_1job_1_1_index_range.html#a319172078b2589e69ddda0c2f811eb37">bf::job::IndexRange::idx_bgn</a></div><div class="ttdeci">std::size_t idx_bgn</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00043">bf_job_ext.hpp:43</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__ext_8hpp_source.html#l00041">bf::job::IndexRange::idx_bgn</a>, <a class="el" href="bf__job__ext_8hpp_source.html#l00044">bf::job::IndexRange::length()</a>, and <a class="el" href="bf__job__ext_8hpp_source.html#l00082">parallel_for()</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__ext_8hpp_source.html#l00043">bf::job::IndexRange::idx_bgn</a>, <a class="el" href="bf__job__ext_8hpp_source.html#l00046">bf::job::IndexRange::length()</a>, and <a class="el" href="bf__job__ext_8hpp_source.html#l00115">parallel_for()</a>.</p>
 
 </div>
 </div>
@@ -1781,15 +1848,31 @@ template&lt;typename... F&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__ext_8hpp_source.html#l00124">124</a> of file <a class="el" href="bf__job__ext_8hpp_source.html">bf_job_ext.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    {</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">taskMake</a>(</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>       [=](<a class="code hl_struct" href="structbf_1_1job_1_1_task.html">Task</a>* <span class="keyword">const</span> parent_task) <span class="keyword">mutable</span> {</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>         <span class="keyword">const</span> <a class="code hl_enumeration" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a">QueueType</a> parent_q_type = <a class="code hl_function" href="namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb">detail::taskQType</a>(parent_task);</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>         (<a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(<a class="code hl_function" href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">taskMake</a>(std::move(fns), parent_task), parent_q_type), ...);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>       },</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>       parent);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
+<p>Invokes each passed in function object in parallel. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">...F</td><td>The function objects types. Must be callable like: fn(Task* task)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>Parent task to add this task as a child of.</td></tr>
+    <tr><td class="paramname">...fns</td><td>Function objects must be callable like: fn(Task* task)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new task holding the work of the parallel invoke. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="bf__job__ext_8hpp_source.html#l00240">240</a> of file <a class="el" href="bf__job__ext_8hpp_source.html">bf_job_ext.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">taskMake</a>(</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>       [=](<a class="code hl_struct" href="structbf_1_1job_1_1_task.html">Task</a>* <span class="keyword">const</span> parent_task) <span class="keyword">mutable</span> {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>         <span class="keyword">const</span> <a class="code hl_enumeration" href="namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a">QueueType</a> parent_q_type = <a class="code hl_function" href="namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb">detail::taskQType</a>(parent_task);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>         (<a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(<a class="code hl_function" href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">taskMake</a>(std::move(fns), parent_task), parent_q_type), ...);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>       },</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>       parent);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00511">taskMake()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00324">bf::job::detail::taskQType()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00586">taskSubmit()</a>.</p>
 
@@ -2230,7 +2313,7 @@ template&lt;typename <a class="el" href="namespacebf_1_1job.html#a875be9fb42e0c4
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li>
-    <li class="footer">Generated on Tue Sep 20 2022 03:30:56 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Sep 20 2022 03:39:05 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
