@@ -145,12 +145,13 @@ namespace bf
       static constexpr std::size_t k_SizeOfMembers =
        sizeof(TaskFn) +
        sizeof(AtomicInt32) +
-       sizeof(AtomicInt32) +
+       sizeof(AtomicInt16) +
+       sizeof(std::uint8_t) +
+       sizeof(QueueType) +
        sizeof(TaskPtr) +
        sizeof(AtomicTaskPtr) +
        sizeof(TaskPtr) +
-       sizeof(WorkerID) +
-       sizeof(QueueType);
+       sizeof(WorkerID);
 
       static constexpr std::size_t k_TaskPaddingDataSize = k_ExpectedTaskSize - k_SizeOfMembers;
 
@@ -158,12 +159,13 @@ namespace bf
 
       TaskFn        fn;                    //!< The function that will be run.
       AtomicInt32   num_unfinished_tasks;  //!< The number of children tasks.
-      AtomicInt32   ref_count;             //!< Keeps the task from being garbage collected.
+      AtomicInt16   ref_count;             //!< Keeps the task from being garbage collected.
+      std::uint8_t  user_storage_size;     //!< Number of bytes available to the user in `padding`.
+      QueueType     q_type;                //!< The queue type this task has been submitted to, initalized to k_InvalidQueueType.
       TaskPtr       parent;                //!< The parent task, can be null.
       AtomicTaskPtr first_continuation;    //!< Head of linked list of tasks to be added on completion.
       TaskPtr       next_continuation;     //!< Next element in the linked list of continuations.
       WorkerID      owning_worker;         //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
-      QueueType     q_type;                //!< The queue type this task has been submitted to, initalized to k_InvalidQueueType.
       Padding       padding;               //!< User data storage.
 
       Task(WorkerID worker, TaskFn fn, TaskPtr parent);
@@ -315,15 +317,26 @@ namespace bf
     static Task* taskPtrToPointer(TaskPtr ptr) noexcept;
     static void  initThreadWorkerID() noexcept;
 
-    void detail::checkTaskDataSize(std::size_t data_size) noexcept
+    void detail::checkTaskDataSize(const Task* task, std::size_t data_size) noexcept
     {
-      JobAssert(data_size <= Task::k_TaskPaddingDataSize, "Attempting to store an object too large to fit within a task's storage buffer..");
-      (void)data_size;
+      JobAssert(data_size <= task->user_storage_size, "Attempting to store an object too large to fit within a task's storage buffer.");
+      (void)task, data_size;
     }
 
     QueueType detail::taskQType(const Task* const task) noexcept
     {
       return task->q_type;
+    }
+
+    void* detail::taskPaddingStart(Task* const task) noexcept
+    {
+      return task->padding.data();
+    }
+
+    void detail::taskUsePadding(Task* task, std::size_t num_bytes) noexcept
+    {
+      JobAssert(num_bytes <= task->user_storage_size, "Attempting to store an closure too large to fit within a task's storage buffer.");
+      task->user_storage_size -= static_cast<std::uint8_t>(num_bytes);
     }
 
     static WorkerID clampThreadCount(WorkerID value, WorkerID min, WorkerID max)
@@ -549,7 +562,8 @@ namespace bf
 
     TaskData taskGetData(Task* const task) noexcept
     {
-      return {&task->padding, sizeof(task->padding)};
+      const std::size_t user_data_start = sizeof(task->padding) - task->user_storage_size;
+      return {task->padding.data() + user_data_start, task->user_storage_size};
     }
 
     void taskAddContinuation(Task* const self, Task* const continuation) noexcept
@@ -693,12 +707,13 @@ namespace bf
     Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) :
       fn{fn},
       num_unfinished_tasks{1},
-      ref_count{0u},
+      ref_count{ATOMIC_VAR_INIT(0u)},
+      user_storage_size{Task::k_TaskPaddingDataSize},
+      q_type{k_InvalidQueueType}, /* Set to a valid value in 'bf::job::submitTask' */
       parent{parent},
       first_continuation{nullptr},
       next_continuation{nullptr},
       owning_worker{worker},
-      q_type{k_InvalidQueueType}, /* Set to a valid value in 'bf::job::submitTask' */
       padding{}
     {
     }

@@ -40,7 +40,7 @@ namespace bf
      * @brief
      *   The priority that you want a task to run at.
      */
-    enum class QueueType : std::uint16_t
+    enum class QueueType : std::uint8_t
     {
       NORMAL     = 0,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
       MAIN       = 1,  //!< Use this value when you need a certain task to be run specifically by the main thread.
@@ -56,8 +56,10 @@ namespace bf
 
     namespace detail
     {
-      void      checkTaskDataSize(std::size_t data_size) noexcept;
+      void      checkTaskDataSize(const Task* task, std::size_t data_size) noexcept;
       QueueType taskQType(const Task* task) noexcept;
+      void*     taskPaddingStart(Task* const task) noexcept;
+      void      taskUsePadding(Task* task, std::size_t num_bytes) noexcept;
     }  // namespace detail
 
     // Struct Definitions
@@ -151,13 +153,12 @@ namespace bf
 
     /*!
      * @brief
-     *   Pair of a pointer and the size of the buffer you can write to.
-     *   Essentially a buffer for user-data, maybe large enough to store content inline.
+     *   A buffer for user-data you can write to, maybe large enough to store task data inline.
      *
-     *   If you store non trivial data remember to manually call it's destructor at the bottom of the task function.
+     *   If you store non trivial data remember to manually call it's destructor at the end of the task function.
      *
      *   If you call 'taskEmplaceData' or 'taskSetData' and need to update the data once more be sure to
-     *   free the previous contents correctly if the data stored in the buffer is not trivial.
+     *   destruct the previous contents correctly if the data stored in the buffer is non trivial.
      */
     struct TaskData
     {
@@ -280,14 +281,7 @@ namespace bf
 
     /*!
      * @brief
-     *    Creates a new task by using the user-data buffer to store the closure.
-     *
-     *    When a task is created the `function` is copied into the userdata buffer
-     *    so the first sizeof(Closure) bytes are storing the callable.
-     *
-     *    If you want to store more user-data either be very careful to not
-     *    overwrite this function object or just store all needed data in
-     *    the function object itself (the latter is much nicer to do and safer).
+     *    Creates a new task making a copy of the closure.
      *
      * @tparam Closure
      *   The type of the callable.
@@ -345,7 +339,7 @@ namespace bf
     /*!
      * @brief
      *   Garbage collects tasks allocated on the current worker.
-    */
+     */
     void workerGC();
 
     /*!
@@ -367,16 +361,14 @@ namespace bf
     template<typename T>
     T& taskDataAs(Task* const task) noexcept
     {
-      detail::checkTaskDataSize(sizeof(T));
-
+      detail::checkTaskDataSize(task, sizeof(T));
       return *static_cast<T*>(taskGetData(task).ptr);
     }
 
     template<typename T, typename... Args>
     void taskEmplaceData(Task* const task, Args&&... args)
     {
-      detail::checkTaskDataSize(sizeof(T));
-
+      detail::checkTaskDataSize(task, sizeof(T));
       new (taskGetData(task).ptr) T(std::forward<Args>(args)...);
     }
 
@@ -391,14 +383,13 @@ namespace bf
     {
       Task* const task = taskMake(
        +[](Task* task) {
-         Closure& function = taskDataAs<Closure>(task);
+         Closure& function = *static_cast<Closure*>(detail::taskPaddingStart(task));
          function(task);
          function.~Closure();
-         // std::destroy_at(&function);
        },
        parent);
-
       taskEmplaceData<Closure>(task, std::forward<Closure>(function));
+      detail::taskUsePadding(task, sizeof(Closure));
 
       return task;
     }

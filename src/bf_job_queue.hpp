@@ -37,6 +37,7 @@ namespace bf
   // Type Aliases
 
   using AtomicInt32 = std::atomic_int32_t;
+  using AtomicInt16 = std::atomic_int16_t;
 
   // NOTE(Shareef):
   //   kSize must be a Power of Two.
