@@ -1,8 +1,10 @@
 var namespacebf_1_1job =
 [
     [ "detail", "namespacebf_1_1job_1_1detail.html", [
-      [ "checkTaskDataSize", "namespacebf_1_1job_1_1detail.html#a3976d7c24992b120b851a1b65396d742", null ],
-      [ "taskQType", "namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb", null ]
+      [ "checkTaskDataSize", "namespacebf_1_1job_1_1detail.html#aabdd24a980f9df66e4c028271cc61944", null ],
+      [ "taskQType", "namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb", null ],
+      [ "taskPaddingStart", "namespacebf_1_1job_1_1detail.html#a7da8dd4fc50cb123f027154e3980c035", null ],
+      [ "taskUsePadding", "namespacebf_1_1job_1_1detail.html#af8a0d6ce60f727781cf7f12d70956922", null ]
     ] ],
     [ "CountSplitter", "structbf_1_1job_1_1_count_splitter.html", "structbf_1_1job_1_1_count_splitter" ],
     [ "DataSizeSplitter", "structbf_1_1job_1_1_data_size_splitter.html", "structbf_1_1job_1_1_data_size_splitter" ],
@@ -23,10 +25,10 @@ var namespacebf_1_1job =
     [ "TaskHandleType", "namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2", null ],
     [ "WorkerIDType", "namespacebf_1_1job.html#afbc317f5a07cc0255051aaaac726a41d", null ],
     [ "AtomicTaskPtr", "namespacebf_1_1job.html#a5c1d844a04b0a84ca45b9d4865ada908", null ],
-    [ "QueueType", "namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a", [
-      [ "NORMAL", "namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253aa1e23852820b9154316c7c06e2b7ba051", null ],
-      [ "MAIN", "namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253aa186495f7da296bf880df3a22a492b378", null ],
-      [ "BACKGROUND", "namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253aa87ed58ce5596142e11cb65deb049bb4b", null ]
+    [ "QueueType", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9", [
+      [ "NORMAL", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a1e23852820b9154316c7c06e2b7ba051", null ],
+      [ "MAIN", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378", null ],
+      [ "BACKGROUND", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a87ed58ce5596142e11cb65deb049bb4b", null ]
     ] ],
     [ "numSystemThreads", "namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277", null ],
     [ "initialize", "namespacebf_1_1job.html#a1dbd834ed11bc519b59ebf14d42f7440", null ],

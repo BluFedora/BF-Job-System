@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['queuetype_0',['QueueType',['../namespacebf_1_1job.html#a875be9fb42e0c4b56567a56f2265253a',1,'bf::job']]]
+  ['queuetype_0',['QueueType',['../namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9',1,'bf::job']]]
 ];

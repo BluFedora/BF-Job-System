@@ -122,7 +122,7 @@ Static Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;std::size_t kSize, typename T&gt;<br />
 class bf::JobQueueM&lt; kSize, T &gt;</div>
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00045">45</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00046">46</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4f7b99756c219cb27eb1c6c37b888378" name="a4f7b99756c219cb27eb1c6c37b888378"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4f7b99756c219cb27eb1c6c37b888378">&#9670;&nbsp;</a></span>JobQueueM()</h2>
@@ -149,18 +149,18 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00059">59</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                :</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">m_CriticalLock</a>(),</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">m_Queue</a>(),</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a>(0),</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465">m_Top</a>(0)</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
-<div class="ttc" id="aclassbf_1_1_job_queue_m_html_a391f6e1178ff3dfc213bc73312092f2b"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">bf::JobQueueM::m_CriticalLock</a></div><div class="ttdeci">std::mutex m_CriticalLock</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00053">bf_job_queue.hpp:53</a></div></div>
-<div class="ttc" id="aclassbf_1_1_job_queue_m_html_a4244e306340d73b2d70b88d803d7a577"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">bf::JobQueueM::m_Bottom</a></div><div class="ttdeci">int m_Bottom</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00055">bf_job_queue.hpp:55</a></div></div>
-<div class="ttc" id="aclassbf_1_1_job_queue_m_html_a727c708100e50481d659a315dfad6416"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">bf::JobQueueM::m_Queue</a></div><div class="ttdeci">T m_Queue[kSize]</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00054">bf_job_queue.hpp:54</a></div></div>
-<div class="ttc" id="aclassbf_1_1_job_queue_m_html_ad4a6baba4f17aeb088083573d9ba4465"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465">bf::JobQueueM::m_Top</a></div><div class="ttdeci">int m_Top</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00056">bf_job_queue.hpp:56</a></div></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00060">60</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                :</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">m_CriticalLock</a>(),</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">m_Queue</a>(),</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a>(0),</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465">m_Top</a>(0)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="ttc" id="aclassbf_1_1_job_queue_m_html_a391f6e1178ff3dfc213bc73312092f2b"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">bf::JobQueueM::m_CriticalLock</a></div><div class="ttdeci">std::mutex m_CriticalLock</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00054">bf_job_queue.hpp:54</a></div></div>
+<div class="ttc" id="aclassbf_1_1_job_queue_m_html_a4244e306340d73b2d70b88d803d7a577"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">bf::JobQueueM::m_Bottom</a></div><div class="ttdeci">int m_Bottom</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00056">bf_job_queue.hpp:56</a></div></div>
+<div class="ttc" id="aclassbf_1_1_job_queue_m_html_a727c708100e50481d659a315dfad6416"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">bf::JobQueueM::m_Queue</a></div><div class="ttdeci">T m_Queue[kSize]</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00055">bf_job_queue.hpp:55</a></div></div>
+<div class="ttc" id="aclassbf_1_1_job_queue_m_html_ad4a6baba4f17aeb088083573d9ba4465"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465">bf::JobQueueM::m_Top</a></div><div class="ttdeci">int m_Top</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00057">bf_job_queue.hpp:57</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -191,18 +191,18 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00067">67</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">m_CriticalLock</a>);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      (void)guard;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">m_Queue</a>[<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a> &amp; <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#aca363aadcc21f1efdd33ff6a41069b8c">WRAP_MASK</a>] = job;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      ++<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a>;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
-<div class="ttc" id="aclassbf_1_1_job_queue_m_html_aca363aadcc21f1efdd33ff6a41069b8c"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#aca363aadcc21f1efdd33ff6a41069b8c">bf::JobQueueM::WRAP_MASK</a></div><div class="ttdeci">static constexpr std::size_t WRAP_MASK</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00051">bf_job_queue.hpp:51</a></div></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00068">68</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">m_CriticalLock</a>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      (void)guard;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">m_Queue</a>[<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a> &amp; <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#aca363aadcc21f1efdd33ff6a41069b8c">WRAP_MASK</a>] = job;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      ++<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="ttc" id="aclassbf_1_1_job_queue_m_html_aca363aadcc21f1efdd33ff6a41069b8c"><div class="ttname"><a href="classbf_1_1_job_queue_m.html#aca363aadcc21f1efdd33ff6a41069b8c">bf::JobQueueM::WRAP_MASK</a></div><div class="ttdeci">static constexpr std::size_t WRAP_MASK</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00052">bf_job_queue.hpp:52</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__queue_8hpp_source.html#l00055">bf::JobQueueM&lt; kSize, T &gt;::m_Bottom</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00053">bf::JobQueueM&lt; kSize, T &gt;::m_CriticalLock</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00054">bf::JobQueueM&lt; kSize, T &gt;::m_Queue</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00051">bf::JobQueueM&lt; kSize, T &gt;::WRAP_MASK</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__queue_8hpp_source.html#l00056">bf::JobQueueM&lt; kSize, T &gt;::m_Bottom</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00054">bf::JobQueueM&lt; kSize, T &gt;::m_CriticalLock</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00055">bf::JobQueueM&lt; kSize, T &gt;::m_Queue</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00052">bf::JobQueueM&lt; kSize, T &gt;::WRAP_MASK</a>.</p>
 
 </div>
 </div>
@@ -232,23 +232,23 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00077">77</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">m_CriticalLock</a>);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      (void)guard;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keyword">const</span> <span class="keyword">auto</span> num_jobs = <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a> - <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465">m_Top</a>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keywordflow">if</span> (num_jobs &lt;= 0)</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      }</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      --<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a>;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">m_Queue</a>[<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a> &amp; <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#aca363aadcc21f1efdd33ff6a41069b8c">WRAP_MASK</a>];</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00078">78</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b">m_CriticalLock</a>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      (void)guard;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <span class="keyword">const</span> <span class="keyword">auto</span> num_jobs = <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a> - <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465">m_Top</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keywordflow">if</span> (num_jobs &lt;= 0)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      --<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416">m_Queue</a>[<a class="code hl_variable" href="classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577">m_Bottom</a> &amp; <a class="code hl_variable" href="classbf_1_1_job_queue_m.html#aca363aadcc21f1efdd33ff6a41069b8c">WRAP_MASK</a>];</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__queue_8hpp_source.html#l00055">bf::JobQueueM&lt; kSize, T &gt;::m_Bottom</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00053">bf::JobQueueM&lt; kSize, T &gt;::m_CriticalLock</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00054">bf::JobQueueM&lt; kSize, T &gt;::m_Queue</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00056">bf::JobQueueM&lt; kSize, T &gt;::m_Top</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00051">bf::JobQueueM&lt; kSize, T &gt;::WRAP_MASK</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__queue_8hpp_source.html#l00056">bf::JobQueueM&lt; kSize, T &gt;::m_Bottom</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00054">bf::JobQueueM&lt; kSize, T &gt;::m_CriticalLock</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00055">bf::JobQueueM&lt; kSize, T &gt;::m_Queue</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00057">bf::JobQueueM&lt; kSize, T &gt;::m_Top</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00052">bf::JobQueueM&lt; kSize, T &gt;::WRAP_MASK</a>.</p>
 
 </div>
 </div>
@@ -275,9 +275,9 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00051">51</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00052">52</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00077">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00067">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00078">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00068">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
 
 </div>
 </div>
@@ -303,9 +303,9 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00053">53</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00054">54</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00077">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00067">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00078">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00068">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
 
 </div>
 </div>
@@ -331,9 +331,9 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00054">54</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00055">55</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00077">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00067">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00078">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00068">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
 
 </div>
 </div>
@@ -359,9 +359,9 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00055">55</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00056">56</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00077">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00067">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00078">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>, and <a class="el" href="bf__job__queue_8hpp_source.html#l00068">bf::JobQueueM&lt; kSize, T &gt;::push()</a>.</p>
 
 </div>
 </div>
@@ -387,9 +387,9 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00056">56</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__queue_8hpp_source.html#l00057">57</a> of file <a class="el" href="bf__job__queue_8hpp_source.html">bf_job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00077">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__queue_8hpp_source.html#l00078">bf::JobQueueM&lt; kSize, T &gt;::pop()</a>.</p>
 
 </div>
 </div>
@@ -402,7 +402,7 @@ template&lt;std::size_t kSize, typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="classbf_1_1_job_queue_m.html">JobQueueM</a></li>
-    <li class="footer">Generated on Tue Sep 20 2022 07:01:40 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Sep 21 2022 22:46:33 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
