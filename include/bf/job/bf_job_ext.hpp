@@ -143,39 +143,6 @@ namespace bf
     /*!
      * @brief
      *   Parallel for algorithm, splits the work up recursively spliting based on the
-     *   \p splitter passed in.
-     *
-     *   Assumes all callables passed in are thread safe.
-     *
-     * @tparam F
-     *   Type of function object passed in.
-     *   Must be callable like: fn(Task* task, IndexRange index_range)
-     *
-     * @tparam S
-     *   Callable splitter, must be callable like: splitter(std::size_t count)
-     *
-     * @param start
-     *   Start index for the range to be parallelized.
-     *
-     * @param count
-     *    \p start + count defines the end range.
-     *
-     * @param splitter
-     *   Callable splitter, must be callable like: splitter(std::size_t count)
-     *
-     * @param fn
-     *   Function object must be callable like: fn(Task* task, IndexRange index_range)
-     *
-     * @param parent
-     *   Parent task to add this task as a child of.
-     *
-     * @return
-     *   The new task holding the work of the parallel for.
-     */
-
-    /*!
-     * @brief
-     *   Parallel for algorithm, splits the work up recursively spliting based on the
      *   \p splitter passed in. This version is a helper for array data.
      *
      *   Assumes all callables passed in are thread safe.
