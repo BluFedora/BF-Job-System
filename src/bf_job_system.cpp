@@ -1,7 +1,8 @@
 /******************************************************************************/
 /*!
- * @file   bf_job_system.cpp
- * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
+ * @file   bf_job_api.cpp
+ * @author Shareef Rahem (https://blufedora.github.io/)
+ * @date   2020-09-03
  * @brief
  *    API for a multi-threading job system.
  *
@@ -12,9 +13,6 @@
  *      [https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h]
  *      [https://fabiensanglard.net/doom3_bfg/threading.php]
  *      [https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine]
- *
- * @version 0.0.1
- * @date    2020-09-03
  *
  * @copyright Copyright (c) 2020-2022 Shareef Abdoul-Raheem
  */
@@ -634,7 +632,9 @@ namespace bf
 
     void taskIncRef(Task* const task)
     {
-      task->ref_count.fetch_add(1, std::memory_order_relaxed);
+      const auto old_ref_count = task->ref_count.fetch_add(1, std::memory_order_relaxed);
+
+      JobAssert(old_ref_count >= 1u || task->q_type == k_InvalidQueueType, "First call to taskIncRef should not happen after the task has been submitted.");
     }
 
     void taskDecRef(Task* const task)
@@ -642,6 +642,7 @@ namespace bf
       const auto old_ref_count = task->ref_count.fetch_sub(1, std::memory_order_relaxed);
 
       JobAssert(old_ref_count >= 0, "taskDecRef: Called too many times.");
+      (void)old_ref_count;
     }
 
     bool taskIsDone(const Task* const task) noexcept

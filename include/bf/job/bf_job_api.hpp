@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*!
  * @file   bf_job_api.hpp
- * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
+ * @author Shareef Raheem (https://blufedora.github.io/)
  * @date   2020-09-03
  * @brief
  *    API for a multi-threading job system.
@@ -42,7 +42,7 @@ namespace bf
      */
     enum class QueueType : std::uint8_t
     {
-      NORMAL     = 0,  //!< Normally you will want tasks to go into this queue,  Tasks in this queue will run on either the main or worker threads.
+      NORMAL     = 0,  //!< Normally you will want tasks to go into this queue, Tasks in this queue will run on either the main or worker threads.
       MAIN       = 1,  //!< Use this value when you need a certain task to be run specifically by the main thread.
       BACKGROUND = 2,  //!< Low priority, good for asset loading. Tasks in this queue will never run on the main thread.
     };

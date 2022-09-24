@@ -131,7 +131,6 @@ TEST(JobSystemTests, GCReferenceCount)
   });
 
   taskIncRef(long_running_task);
-
   taskSubmit(long_running_task, bf::job::QueueType::BACKGROUND);
 
   while (!taskIsDone(long_running_task))
@@ -150,6 +149,31 @@ TEST(JobSystemTests, GCReferenceCount)
   {
     taskDecRef(long_running_task);
   }
+}
+
+// Checks correct refcount API usage.
+TEST(JobSystemTests, RefCountAPIUsage)
+{
+  auto* const long_running_task = bf::job::taskMake([](bf::job::Task*) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(2));
+  });
+
+  // First call to `taskIncRef` must be before a submit.
+  taskIncRef(long_running_task);
+  taskSubmit(long_running_task, bf::job::QueueType::BACKGROUND);
+
+  // Any other calls can be at any time.
+  taskIncRef(long_running_task);
+
+  while (!taskIsDone(long_running_task))
+  {
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  std::this_thread::sleep_for(std::chrono::milliseconds(5));
+
+  taskDecRef(long_running_task);
+  taskDecRef(long_running_task);
 }
 
 // TODO(SR): Test continuations.
