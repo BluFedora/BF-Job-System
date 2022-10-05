@@ -60,6 +60,7 @@ namespace bf
       QueueType taskQType(const Task* task) noexcept;
       void*     taskPaddingStart(Task* const task) noexcept;
       void      taskUsePadding(Task* task, std::size_t num_bytes) noexcept;
+      bool      mainQueueRunTask(void) noexcept;
     }  // namespace detail
 
     // Struct Definitions
@@ -130,15 +131,6 @@ namespace bf
      *   The current id of the current thread.
      */
     WorkerID currentWorker() noexcept;
-
-    /*!
-     * @brief
-     *   This should be called as frequently as you want the
-     *   main thread's queue to be flushed.
-     *
-     *   This function may only be called by the main thread.
-     */
-    void tick();
 
     /*!
      * @brief
@@ -341,6 +333,62 @@ namespace bf
      *   Garbage collects tasks allocated on the current worker.
      */
     void workerGC();
+
+    /*!
+     * @brief
+     *   Runs tasks from the main queue as long as there are tasks available
+     *   or \p condition returns false.
+     *
+     *   This function is not required to be called since the main queue will
+     *   be evaluated during other calls to this API but allows for an easy way
+     *   to flush the main queue guaranteeing a minimum latency.
+     *
+     * @tparam ConditionFn
+     *   The type of the callable. Must be callable like: `bool operator()(void);`.
+     *
+     * @param condition
+     *   The function object indicating if the main queue should continue being evaluated.
+     *   Will be called after a task has been completed.
+     *
+     * @param run_gc
+     *   Whether or not the garbage collector should be run after running tasks.
+     *
+     * @warning Must only be called from the main thread.
+     */
+    template<typename ConditionFn>
+    void tickMainQueue(ConditionFn&& condition, const bool run_gc = true) noexcept
+    {
+      do
+      {
+        if (!detail::mainQueueRunTask())
+        {
+          break;
+        }
+      } while (condition());
+
+      if (run_gc)
+      {
+        workerGC();
+      }
+    }
+
+    /*!
+     * @brief
+     *   Runs tasks from the main queue until it is empty.
+     * 
+     *   This function is not required to be called since the main queue will
+     *   be evaluated during other calls to this API but allows for an easy way
+     *   to flush the main queue guaranteeing a minimum latency.
+     *
+     * @param run_gc
+     *   Whether or not the garbage collector should be run after running tasks.
+     *
+     * @warning Must only be called from the main thread.
+     */
+    inline void tickMainQueue(const bool run_gc = true) noexcept
+    {
+      tickMainQueue([]() { return true; }, run_gc);
+    }
 
     /*!
      * @brief

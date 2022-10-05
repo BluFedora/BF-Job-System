@@ -1,6 +1,6 @@
 /******************************************************************************/
 /*!
- * @file   bf_job_api.cpp
+ * @file   bf_job_system.cpp
  * @author Shareef Rahem (https://blufedora.github.io/)
  * @date   2020-09-03
  * @brief
@@ -29,8 +29,6 @@
 #include <cstdlib>   /* abort                         */
 #include <limits>    /* numeric_limits                */
 #include <thread>    /* thread                        */
-
-#define TEST0 0
 
 #if _WIN32
 #define IS_WINDOWS 1
@@ -337,6 +335,20 @@ namespace bf
       task->user_storage_size -= static_cast<std::uint8_t>(num_bytes);
     }
 
+    bool detail::mainQueueRunTask(void) noexcept
+    {
+      const TaskPtr task_ptr = s_JobCtx.main_queue.pop();
+      const bool    is_valid = !task_ptr.isNull();
+
+      if (is_valid)
+      {
+        Task* const task = taskPtrToPointer(task_ptr);
+        task->run();
+      }
+
+      return is_valid;
+    }
+
     static WorkerID clampThreadCount(WorkerID value, WorkerID min, WorkerID max)
     {
       return std::min(std::max(min, value), max);
@@ -470,24 +482,6 @@ namespace bf
       return WorkerID(s_ThreadLocalIndex);
     }
 
-    void tick()
-    {
-      // Run any tasks from the special 'Main' queue.
-      while (true)
-      {
-        const TaskPtr task_ptr = s_JobCtx.main_queue.pop();
-
-        if (task_ptr.isNull())
-        {
-          s_JobCtx.workers[k_MainThreadID].garbageCollectAllocatedTasks();
-          return;
-        }
-
-        Task* const task = taskPtrToPointer(task_ptr);
-        task->run();
-      }
-    }
-
     void shutdown() noexcept
     {
       JobAssert(s_NextThreadLocalIndex != 0u, "Job System must be initialized before it can be shutdown.");
@@ -531,11 +525,10 @@ namespace bf
       if (worker->num_allocated_tasks == k_MaxTasksPerWorker)
       {
         worker->garbageCollectAllocatedTasks();
-
         s_JobCtx.wakeUpAllWorkers();
 
         // While we cannot allocate do some work.
-        while (!(worker->num_allocated_tasks < k_MaxTasksPerWorker))
+        while (worker->num_allocated_tasks == k_MaxTasksPerWorker)
         {
           worker->run(worker_id);
           worker->garbageCollectAllocatedTasks();
@@ -583,24 +576,24 @@ namespace bf
     template<typename QueueType>
     static void taskSubmitQPushHelper(Task* const self, const WorkerID worker_id, QueueType& queue)
     {
-      const bool          is_main_thread = worker_id == k_MainThreadID;
-      ThreadWorker* const worker         = s_JobCtx.workers + worker_id;
-      const TaskPtr       task_ptr       = self->toTaskPtr();
+      ThreadWorker* const worker   = s_JobCtx.workers + worker_id;
+      const TaskPtr       task_ptr = self->toTaskPtr();
 
       // Loop until we have successfully pushed to the queue.
       while (!queue.push(task_ptr))
       {
         // If we could not push to the queues then just do some work.
-        worker->run(is_main_thread);
+        worker->run(worker_id);
       }
     }
 
     Task* taskSubmit(Task* const self, QueueType queue) noexcept
     {
-      const WorkerID worker_id = currentWorker();
+      const WorkerID num_workers = numWorkers();
+      const WorkerID worker_id   = currentWorker();
 
       JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
-      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
+      JobAssert(worker_id < num_workers, "This thread was not created by the job system.");
 
       ThreadWorker* const worker = s_JobCtx.workers + worker_id;
 
@@ -625,8 +618,17 @@ namespace bf
         }
       }
 
-      s_JobCtx.num_available_jobs.fetch_add(1);
-      s_JobCtx.wakeUpOneWorker();
+      const std::int32_t num_pending_jobs = s_JobCtx.num_available_jobs.fetch_add(1);
+
+      if (num_pending_jobs >= num_workers)
+      {
+        s_JobCtx.wakeUpAllWorkers();
+      }
+      else
+      {
+        s_JobCtx.wakeUpOneWorker();
+      }
+
       return self;
     }
 
@@ -663,11 +665,10 @@ namespace bf
 
     void waitOnTask(const Task* const task) noexcept
     {
-      const WorkerID      worker_id   = currentWorker();
-      const std::uint32_t num_workers = numWorkers();
+      const WorkerID worker_id = currentWorker();
 
+      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
       JobAssert(task->q_type != k_InvalidQueueType, "The Task must be submitted to a queue before you wait on it.");
-      JobAssert(worker_id < num_workers, "This thread was not created by the job system.");
       JobAssert(task->owning_worker == worker_id, "You may only call this function with a task created on the current 'Worker'.");
 
       s_JobCtx.wakeUpAllWorkers();
@@ -684,9 +685,14 @@ namespace bf
 
     void JobSystem::sleep(const ThreadWorker* const worker)
     {
+      if (!worker->is_running)
+      {
+        return;
+      }
+
       std::this_thread::yield();
 
-      if (!worker->is_running)
+      if (num_available_jobs.load(std::memory_order_relaxed) != 0u)
       {
         return;
       }
@@ -730,8 +736,8 @@ namespace bf
     {
       // NOTE(SR):
       //   make sure to store the result in a local variable and use that for
-      //   comparing against zero later. otherwise, the code contains a data race
-      //   because other child tasks could change m_UnFinishedJobs in the meantime.
+      //   comparing against zero. otherwise, the code contains a data race
+      //   because other child tasks could change `num_unfinished_tasks` in the meantime.
       const std::int32_t num_jobs_left = --num_unfinished_tasks;
 
       if (num_jobs_left == 0)
