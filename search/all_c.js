@@ -6,7 +6,8 @@ var searchData=
   ['m_5ftop_3',['m_Top',['../classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465',1,'bf::JobQueueM::m_Top()'],['../classbf_1_1_job_queue_a.html#a351e51b700bc8437ea7cb7aec75df5c3',1,'bf::JobQueueA::m_Top()']]],
   ['main_4',['MAIN',['../namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378',1,'bf::job']]],
   ['main_5fqueue_5',['main_queue',['../structbf_1_1job_1_1_job_system.html#a47d831fefdd94372eb0edcc426e9f206',1,'bf::job::JobSystem']]],
-  ['max_5fcount_6',['max_count',['../structbf_1_1job_1_1_count_splitter.html#a3e0a1ecda7617d77cb80a20a9e8406f4',1,'bf::job::CountSplitter']]],
-  ['max_5fsize_7',['max_size',['../structbf_1_1job_1_1_data_size_splitter.html#a9b439afdfd913b985280337b88139f49',1,'bf::job::DataSizeSplitter']]],
-  ['memory_8',['memory',['../structbf_1_1job_1_1_task_pool.html#a3f1ecd720f1d82f155fc6e27769c7ec8',1,'bf::job::TaskPool']]]
+  ['mainqueueruntask_6',['mainQueueRunTask',['../namespacebf_1_1job_1_1detail.html#a2590cc0b2c4f54c15ca8a5b18ab668b5',1,'bf::job::detail']]],
+  ['max_5fcount_7',['max_count',['../structbf_1_1job_1_1_count_splitter.html#a3e0a1ecda7617d77cb80a20a9e8406f4',1,'bf::job::CountSplitter']]],
+  ['max_5fsize_8',['max_size',['../structbf_1_1job_1_1_data_size_splitter.html#a9b439afdfd913b985280337b88139f49',1,'bf::job::DataSizeSplitter']]],
+  ['memory_9',['memory',['../structbf_1_1job_1_1_task_pool.html#a3f1ecd720f1d82f155fc6e27769c7ec8',1,'bf::job::TaskPool']]]
 ];

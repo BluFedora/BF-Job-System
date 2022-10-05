@@ -4,7 +4,8 @@ var namespacebf_1_1job =
       [ "checkTaskDataSize", "namespacebf_1_1job_1_1detail.html#aabdd24a980f9df66e4c028271cc61944", null ],
       [ "taskQType", "namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb", null ],
       [ "taskPaddingStart", "namespacebf_1_1job_1_1detail.html#a7da8dd4fc50cb123f027154e3980c035", null ],
-      [ "taskUsePadding", "namespacebf_1_1job_1_1detail.html#af8a0d6ce60f727781cf7f12d70956922", null ]
+      [ "taskUsePadding", "namespacebf_1_1job_1_1detail.html#af8a0d6ce60f727781cf7f12d70956922", null ],
+      [ "mainQueueRunTask", "namespacebf_1_1job_1_1detail.html#a2590cc0b2c4f54c15ca8a5b18ab668b5", null ]
     ] ],
     [ "CountSplitter", "structbf_1_1job_1_1_count_splitter.html", "structbf_1_1job_1_1_count_splitter" ],
     [ "DataSizeSplitter", "structbf_1_1job_1_1_data_size_splitter.html", "structbf_1_1job_1_1_data_size_splitter" ],
@@ -35,7 +36,6 @@ var namespacebf_1_1job =
     [ "numWorkers", "namespacebf_1_1job.html#aa230de6f107416403da55c56ff39c600", null ],
     [ "processorArchitectureName", "namespacebf_1_1job.html#ae9edb9cb3acc7877cbb87a66137467c9", null ],
     [ "currentWorker", "namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031", null ],
-    [ "tick", "namespacebf_1_1job.html#a8518fcec0a8301682d27c92d93495e84", null ],
     [ "shutdown", "namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd", null ],
     [ "taskMake", "namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532", null ],
     [ "taskGetData", "namespacebf_1_1job.html#a921c7746e85094422d49fe193a523612", null ],
@@ -49,6 +49,8 @@ var namespacebf_1_1job =
     [ "taskDecRef", "namespacebf_1_1job.html#a319ff8e231fce83f3990cfc703675f95", null ],
     [ "taskIsDone", "namespacebf_1_1job.html#ac5175f1552d04cf66c93fbf126769ca6", null ],
     [ "workerGC", "namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae", null ],
+    [ "tickMainQueue", "namespacebf_1_1job.html#a6ce824ff7144aadecc7ceb931cf8708a", null ],
+    [ "tickMainQueue", "namespacebf_1_1job.html#a59157200b86879ec59a8061c995c0b61", null ],
     [ "waitOnTask", "namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619", null ],
     [ "parallel_for", "namespacebf_1_1job.html#a4ca43dbd44d354a1e2aa1e9b16efe602", null ],
     [ "parallel_for", "namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70", null ],

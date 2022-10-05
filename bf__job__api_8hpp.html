@@ -148,6 +148,8 @@ Functions</h2></td></tr>
 <tr class="separator:a7da8dd4fc50cb123f027154e3980c035"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8a0d6ce60f727781cf7f12d70956922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html#af8a0d6ce60f727781cf7f12d70956922">bf::job::detail::taskUsePadding</a> (Task *task, std::size_t num_bytes) noexcept</td></tr>
 <tr class="separator:af8a0d6ce60f727781cf7f12d70956922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2590cc0b2c4f54c15ca8a5b18ab668b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html#a2590cc0b2c4f54c15ca8a5b18ab668b5">bf::job::detail::mainQueueRunTask</a> (void) noexcept</td></tr>
+<tr class="separator:a2590cc0b2c4f54c15ca8a5b18ab668b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a569f46928160d2ff793d9acbafd35277"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277">bf::job::numSystemThreads</a> () noexcept</td></tr>
 <tr class="memdesc:a569f46928160d2ff793d9acbafd35277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277">More...</a><br /></td></tr>
 <tr class="separator:a569f46928160d2ff793d9acbafd35277"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,9 +165,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a2b7bca473a7040c5234ebba1fe6cb031"><td class="memItemLeft" align="right" valign="top">WorkerID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">bf::job::currentWorker</a> () noexcept</td></tr>
 <tr class="memdesc:a2b7bca473a7040c5234ebba1fe6cb031"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current id of the current thread. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">More...</a><br /></td></tr>
 <tr class="separator:a2b7bca473a7040c5234ebba1fe6cb031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8518fcec0a8301682d27c92d93495e84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a8518fcec0a8301682d27c92d93495e84">bf::job::tick</a> ()</td></tr>
-<tr class="memdesc:a8518fcec0a8301682d27c92d93495e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">This should be called as frequently as you want the main thread's queue to be flushed.  <a href="namespacebf_1_1job.html#a8518fcec0a8301682d27c92d93495e84">More...</a><br /></td></tr>
-<tr class="separator:a8518fcec0a8301682d27c92d93495e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f005788a248d99a196608b5727b8bcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">bf::job::shutdown</a> () noexcept</td></tr>
 <tr class="memdesc:a0f005788a248d99a196608b5727b8bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initialize'.  <a href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">More...</a><br /></td></tr>
 <tr class="separator:a0f005788a248d99a196608b5727b8bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -209,6 +208,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae">bf::job::workerGC</a> ()</td></tr>
 <tr class="memdesc:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Garbage collects tasks allocated on the current worker.  <a href="namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae">More...</a><br /></td></tr>
 <tr class="separator:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ce824ff7144aadecc7ceb931cf8708a"><td class="memTemplParams" colspan="2">template&lt;typename ConditionFn &gt; </td></tr>
+<tr class="memitem:a6ce824ff7144aadecc7ceb931cf8708a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a6ce824ff7144aadecc7ceb931cf8708a">bf::job::tickMainQueue</a> (ConditionFn &amp;&amp;condition, const bool run_gc=true) noexcept</td></tr>
+<tr class="memdesc:a6ce824ff7144aadecc7ceb931cf8708a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tasks from the main queue as long as there are tasks available or <code>condition</code> returns false.  <a href="namespacebf_1_1job.html#a6ce824ff7144aadecc7ceb931cf8708a">More...</a><br /></td></tr>
+<tr class="separator:a6ce824ff7144aadecc7ceb931cf8708a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59157200b86879ec59a8061c995c0b61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a59157200b86879ec59a8061c995c0b61">bf::job::tickMainQueue</a> (const bool run_gc=true) noexcept</td></tr>
+<tr class="memdesc:a59157200b86879ec59a8061c995c0b61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tasks from the main queue until it is empty.  <a href="namespacebf_1_1job.html#a59157200b86879ec59a8061c995c0b61">More...</a><br /></td></tr>
+<tr class="separator:a59157200b86879ec59a8061c995c0b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">bf::job::waitOnTask</a> (const Task *const task) noexcept</td></tr>
 <tr class="memdesc:a6af1eef961e26e6cbdf84dd01d86a619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified <code>task</code> is done executing. This function will block but do work while being blocked so there is no wasted time.  <a href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">More...</a><br /></td></tr>
 <tr class="separator:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,7 +241,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p >The runtime configuration for the Job System. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00071">71</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00072">72</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -263,7 +269,7 @@ Use 0 to indicate using the number of cores available on the system. </td></tr>
 <p >If you store non trivial data remember to manually call it's destructor at the end of the task function.</p>
 <p >If you call 'taskEmplaceData' or 'taskSetData' and need to update the data once more be sure to destruct the previous contents correctly if the data stored in the buffer is non trivial. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00163">163</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00155">155</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -288,7 +294,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__api_8hpp.html">bf_job_api.hpp</a></li>
-    <li class="footer">Generated on Sat Sep 24 2022 04:59:26 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Oct 5 2022 09:55:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
