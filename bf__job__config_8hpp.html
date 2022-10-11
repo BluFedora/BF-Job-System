@@ -109,19 +109,19 @@ Macros</h2></td></tr>
 <tr class="memitem:ad60ea283ef2d228cc1e0c4c1456f6f74"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bf__job__config_8hpp.html#ad60ea283ef2d228cc1e0c4c1456f6f74">JOB_SYS_ASSERTIONS</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:ad60ea283ef2d228cc1e0c4c1456f6f74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be turned on during development as it catches API misuse, then for release switched off.  <a href="bf__job__config_8hpp.html#ad60ea283ef2d228cc1e0c4c1456f6f74">More...</a><br /></td></tr>
 <tr class="separator:ad60ea283ef2d228cc1e0c4c1456f6f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acea1ed523da7fd42d0e12d40958e34ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bf__job__config_8hpp.html#acea1ed523da7fd42d0e12d40958e34ea">JOB_SYS_DETERMINISTIC_JOB_STEAL</a>&#160;&#160;&#160;1</td></tr>
-<tr class="memdesc:acea1ed523da7fd42d0e12d40958e34ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RNG for work queue stealing will be seeded in the same way.  <a href="bf__job__config_8hpp.html#acea1ed523da7fd42d0e12d40958e34ea">More...</a><br /></td></tr>
-<tr class="separator:acea1ed523da7fd42d0e12d40958e34ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9c77d642dd8a0f07d816b14d55ec9ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bf__job__config_8hpp.html#aa9c77d642dd8a0f07d816b14d55ec9ac">JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:aa9c77d642dd8a0f07d816b14d55ec9ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RNG for work queue stealing will be seeded in the same way.  <a href="bf__job__config_8hpp.html#aa9c77d642dd8a0f07d816b14d55ec9ac">More...</a><br /></td></tr>
+<tr class="separator:aa9c77d642dd8a0f07d816b14d55ec9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a494b3014635f3e97c1fdf626b236117b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">bf::job::k_MainQueueSize</a> = 128</td></tr>
+<tr class="memitem:a494b3014635f3e97c1fdf626b236117b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">bf::job::k_MainQueueSize</a> = 512</td></tr>
 <tr class="memdesc:a494b3014635f3e97c1fdf626b236117b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in the main queue.  <a href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">More...</a><br /></td></tr>
 <tr class="separator:a494b3014635f3e97c1fdf626b236117b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ec37950a885a28333f4a56868b9a07b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">bf::job::k_NormalQueueSize</a> = 4096</td></tr>
 <tr class="memdesc:a9ec37950a885a28333f4a56868b9a07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's high priority queue.  <a href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">More...</a><br /></td></tr>
 <tr class="separator:a9ec37950a885a28333f4a56868b9a07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">bf::job::k_BackgroundQueueSize</a> = 512</td></tr>
+<tr class="memitem:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">bf::job::k_BackgroundQueueSize</a> = 1024</td></tr>
 <tr class="memdesc:acbbd94aff6cd64ac8fa998309592d8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's low priority queue.  <a href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">More...</a><br /></td></tr>
 <tr class="separator:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">bf::job::k_MaxThreadsSupported</a> = 32</td></tr>
@@ -154,14 +154,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="acea1ed523da7fd42d0e12d40958e34ea" name="acea1ed523da7fd42d0e12d40958e34ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acea1ed523da7fd42d0e12d40958e34ea">&#9670;&nbsp;</a></span>JOB_SYS_DETERMINISTIC_JOB_STEAL</h2>
+<a id="aa9c77d642dd8a0f07d816b14d55ec9ac" name="aa9c77d642dd8a0f07d816b14d55ec9ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9c77d642dd8a0f07d816b14d55ec9ac">&#9670;&nbsp;</a></span>JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define JOB_SYS_DETERMINISTIC_JOB_STEAL&#160;&#160;&#160;1</td>
+          <td class="memname">#define JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -178,7 +178,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__config_8hpp.html">bf_job_config.hpp</a></li>
-    <li class="footer">Generated on Wed Oct 5 2022 09:55:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Oct 11 2022 02:07:06 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

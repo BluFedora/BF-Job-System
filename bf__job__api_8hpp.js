@@ -12,7 +12,7 @@ var bf__job__api_8hpp =
     [ "QueueType", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9", [
       [ "NORMAL", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9a1e23852820b9154316c7c06e2b7ba051", null ],
       [ "MAIN", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378", null ],
-      [ "BACKGROUND", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9a87ed58ce5596142e11cb65deb049bb4b", null ]
+      [ "WORKER", "bf__job__api_8hpp.html#a1bf27cadcb5355b162b1fb2af1978dc9a531886e636f1aa36e0fc96d49f342613", null ]
     ] ],
     [ "checkTaskDataSize", "bf__job__api_8hpp.html#aabdd24a980f9df66e4c028271cc61944", null ],
     [ "taskQType", "bf__job__api_8hpp.html#a4d4666e8dba3d32e395eb701d243c0cb", null ],

@@ -8,6 +8,6 @@ var searchData=
   ['indexrange_5',['IndexRange',['../structbf_1_1job_1_1_index_range.html',1,'bf::job']]],
   ['initialize_6',['initialize',['../namespacebf_1_1job.html#a1dbd834ed11bc519b59ebf14d42f7440',1,'bf::job']]],
   ['initthreadworkerid_7',['initThreadWorkerID',['../namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00',1,'bf::job']]],
-  ['is_5frunning_8',['is_running',['../structbf_1_1job_1_1_thread_worker.html#aa5019cbeed15986b18211e5af8dab384',1,'bf::job::ThreadWorker']]],
+  ['is_5frunning_8',['is_running',['../structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc',1,'bf::job::JobSystem']]],
   ['isnull_9',['isNull',['../structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198',1,'bf::job::TaskPtr']]]
 ];

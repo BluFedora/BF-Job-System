@@ -97,8 +97,8 @@ $(document).ready(function(){initNavTree('bf__job__config_8hpp_source.html','');
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="bf__job__config_8hpp.html#ad60ea283ef2d228cc1e0c4c1456f6f74">   19</a></span><span class="preprocessor">#define JOB_SYS_ASSERTIONS 1  </span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef JOB_SYS_DETERMINISTIC_JOB_STEAL</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="bf__job__config_8hpp.html#acea1ed523da7fd42d0e12d40958e34ea">   23</a></span><span class="preprocessor">#define JOB_SYS_DETERMINISTIC_JOB_STEAL 1  </span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="bf__job__config_8hpp.html#aa9c77d642dd8a0f07d816b14d55ec9ac">   23</a></span><span class="preprocessor">#define JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG 1  </span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebf.html">bf</a></div>
@@ -107,9 +107,9 @@ $(document).ready(function(){initNavTree('bf__job__config_8hpp_source.html','');
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  {</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// Constants / Configuration</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">   32</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">k_MainQueueSize</a>       = 128;   </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">   32</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">k_MainQueueSize</a>       = 512;   </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">   33</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">k_NormalQueueSize</a>     = 4096;  </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">   34</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">k_BackgroundQueueSize</a> = 512;   </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">   34</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">k_BackgroundQueueSize</a> = 1024;  </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">   35</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">k_MaxThreadsSupported</a> = 32;    </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  }  <span class="comment">// namespace job</span></div>
@@ -153,7 +153,7 @@ $(document).ready(function(){initNavTree('bf__job__config_8hpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__config_8hpp.html">bf_job_config.hpp</a></li>
-    <li class="footer">Generated on Wed Oct 5 2022 09:55:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Oct 11 2022 02:07:05 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

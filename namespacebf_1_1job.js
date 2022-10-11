@@ -24,12 +24,13 @@ var namespacebf_1_1job =
     [ "TaskFn", "namespacebf_1_1job.html#ae80841b2f4f6b256e5c7c3b2e4c2c541", null ],
     [ "TaskHandle", "namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e", null ],
     [ "TaskHandleType", "namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2", null ],
+    [ "AtomicTaskHandleType", "namespacebf_1_1job.html#a36963cbd0df0baee77f9dd7850240aaa", null ],
     [ "WorkerIDType", "namespacebf_1_1job.html#afbc317f5a07cc0255051aaaac726a41d", null ],
     [ "AtomicTaskPtr", "namespacebf_1_1job.html#a5c1d844a04b0a84ca45b9d4865ada908", null ],
     [ "QueueType", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9", [
       [ "NORMAL", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a1e23852820b9154316c7c06e2b7ba051", null ],
       [ "MAIN", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378", null ],
-      [ "BACKGROUND", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a87ed58ce5596142e11cb65deb049bb4b", null ]
+      [ "WORKER", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a531886e636f1aa36e0fc96d49f342613", null ]
     ] ],
     [ "numSystemThreads", "namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277", null ],
     [ "initialize", "namespacebf_1_1job.html#a1dbd834ed11bc519b59ebf14d42f7440", null ],
@@ -63,6 +64,7 @@ var namespacebf_1_1job =
     [ "k_NormalQueueSize", "namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b", null ],
     [ "k_BackgroundQueueSize", "namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2", null ],
     [ "k_MaxThreadsSupported", "namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7", null ],
+    [ "k_CachelineSize", "namespacebf_1_1job.html#a865e5e5752ed1d18586dc60dc902ce4a", null ],
     [ "k_ExpectedTaskSize", "namespacebf_1_1job.html#ae2f219351956ee01701e7652208a1757", null ],
     [ "k_MaxTasksPerWorker", "namespacebf_1_1job.html#a632f29d428e3f8e61f50dc5b83724c98", null ],
     [ "k_MainThreadID", "namespacebf_1_1job.html#a6525dfa22a68b1011e5ef1e86be52b75", null ],
