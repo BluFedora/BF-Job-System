@@ -42,9 +42,9 @@ namespace bf
      */
     enum class QueueType : std::uint8_t
     {
-      NORMAL     = 0,  //!< Normally you will want tasks to go into this queue, Tasks in this queue will run on either the main or worker threads.
-      MAIN       = 1,  //!< Use this value when you need a certain task to be run specifically by the main thread.
-      BACKGROUND = 2,  //!< Low priority, good for asset loading. Tasks in this queue will never run on the main thread.
+      NORMAL = 0,  //!< Tasks in this queue will run on either the main or worker threads.
+      MAIN   = 1,  //!< Taskis in this queue will only be run by the main thread.
+      WORKER = 2,  //!< Tasks in this queue will never run on the main thread.
     };
 
     // Type Aliases
@@ -375,7 +375,7 @@ namespace bf
     /*!
      * @brief
      *   Runs tasks from the main queue until it is empty.
-     * 
+     *
      *   This function is not required to be called since the main queue will
      *   be evaluated during other calls to this API but allows for an easy way
      *   to flush the main queue guaranteeing a minimum latency.

@@ -117,20 +117,6 @@ namespace bf
     {
     }
 
-    inline int size() const
-    {
-      const auto top = m_Top.load();
-      const auto bot = m_Bottom.load();
-
-#if 0
-      if (bot - top < 0)
-      {
-        // __debugbreak();
-      }
-#endif
-
-      return std::max(bot - top, 0);
-    }
 #if 0
     bool push(const T& job)
     {

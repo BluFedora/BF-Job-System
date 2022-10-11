@@ -131,7 +131,7 @@ TEST(JobSystemTests, GCReferenceCount)
   });
 
   taskIncRef(long_running_task);
-  taskSubmit(long_running_task, bf::job::QueueType::BACKGROUND);
+  taskSubmit(long_running_task, bf::job::QueueType::WORKER);
 
   while (!taskIsDone(long_running_task))
   {
@@ -160,7 +160,7 @@ TEST(JobSystemTests, RefCountAPIUsage)
 
   // First call to `taskIncRef` must be before a submit.
   taskIncRef(long_running_task);
-  taskSubmit(long_running_task, bf::job::QueueType::BACKGROUND);
+  taskSubmit(long_running_task, bf::job::QueueType::WORKER);
 
   // Any other calls can be at any time.
   taskIncRef(long_running_task);

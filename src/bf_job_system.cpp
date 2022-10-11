@@ -87,10 +87,11 @@ namespace bf
   {
     // Constants
 
-    static constexpr std::size_t k_ExpectedTaskSize  = std::max({std::size_t(128u), std::hardware_constructive_interference_size, std::hardware_destructive_interference_size});
+    static constexpr std::size_t k_CachelineSize     = std::max(std::hardware_constructive_interference_size, std::hardware_destructive_interference_size);
+    static constexpr std::size_t k_ExpectedTaskSize  = std::max(std::size_t(128u), k_CachelineSize);
     static constexpr std::size_t k_MaxTasksPerWorker = k_NormalQueueSize + k_BackgroundQueueSize;
     static constexpr WorkerID    k_MainThreadID      = 0;
-    static constexpr QueueType   k_InvalidQueueType  = QueueType(int(QueueType::BACKGROUND) + 1);
+    static constexpr QueueType   k_InvalidQueueType  = QueueType(int(QueueType::WORKER) + 1);
 
     // Fwd Declarations
 
@@ -98,9 +99,10 @@ namespace bf
 
     // Type Aliases
 
-    using TaskHandle     = std::uint16_t;
-    using TaskHandleType = TaskHandle;
-    using WorkerIDType   = WorkerID;
+    using TaskHandle           = std::uint16_t;
+    using TaskHandleType       = TaskHandle;
+    using AtomicTaskHandleType = std::atomic<TaskHandle>;
+    using WorkerIDType         = WorkerID;
 
     static constexpr TaskHandle NullTaskHandle = std::numeric_limits<TaskHandle>::max();
 
@@ -177,7 +179,6 @@ namespace bf
     };
 
     static_assert(sizeof(Task) == k_ExpectedTaskSize, "The task struct is expected to be this size.");
-
     static_assert(std::is_trivially_destructible_v<Task>, "Task must be trivially destructible.");
 
     template<std::size_t k_MaxTask>
@@ -244,21 +245,19 @@ namespace bf
 
     struct ThreadWorker
     {
-      using ThreadStorage       = std::aligned_storage_t<sizeof(std::thread), alignof(std::thread)>;
-      using NormalQueue         = JobQueueA<k_NormalQueueSize, TaskPtr>;
-      using BackgroundQueue     = JobQueueA<k_BackgroundQueueSize, TaskPtr>;
-      using TaskHandleArray     = std::array<TaskHandle, k_MaxTasksPerWorker>;
-      using TaskHandleToBoolMap = std::array<std::atomic_bool, k_MaxTasksPerWorker>;
+      using SharedQueue     = JobQueueA<k_NormalQueueSize, TaskPtr>;
+      using WorkerQueue     = JobQueueA<k_BackgroundQueueSize, TaskPtr>;
+      using TaskAllocator   = TaskPool<k_MaxTasksPerWorker>;
+      using ThreadStorage   = std::aligned_storage_t<sizeof(std::thread), alignof(std::thread)>;
+      using TaskHandleArray = std::array<TaskHandle, k_MaxTasksPerWorker>;
 
-      NormalQueue                   hi_queue            = {};
-      BackgroundQueue               bg_queue            = {};
-      TaskPool<k_MaxTasksPerWorker> task_memory         = {};
-      TaskHandleArray               allocated_tasks     = {};
-      TaskHandleToBoolMap           finished_tasks      = {};
-      ThreadStorage                 worker_             = {};
-      TaskHandleType                num_allocated_tasks = 0u;
-      std::atomic_bool              is_running          = ATOMIC_VAR_INIT(false);
-      pcg_state_setseq_64           rng_state           = {};
+      SharedQueue          hi_queue            = {};
+      WorkerQueue          bg_queue            = {};
+      TaskAllocator        task_memory         = {};
+      ThreadStorage        thread              = {};
+      TaskHandleArray      allocated_tasks     = {};
+      pcg_state_setseq_64  rng_state           = {};
+      AtomicTaskHandleType num_allocated_tasks = 0u;
 
       ThreadWorker() = default;
 
@@ -267,9 +266,9 @@ namespace bf
       ThreadWorker& operator=(const ThreadWorker& rhs) = delete;
       ThreadWorker& operator=(ThreadWorker&& rhs)      = delete;
 
-      std::thread* worker() { return reinterpret_cast<std::thread*>(&worker_); }
+      std::thread* worker() { return reinterpret_cast<std::thread*>(&thread); }
 
-      void     start(bool is_main_thread);
+      void     start(const WorkerID worker_index, const std::uint64_t rng_seed);
       void     garbageCollectAllocatedTasks();
       bool     run(const WorkerID worker_id);
       void     stop();
@@ -283,15 +282,16 @@ namespace bf
       JobQueueM<k_MainQueueSize, TaskPtr> main_queue                           = {};
       std::uint32_t                       num_workers                          = 0u;
       const char*                         sys_arch_str                         = "Unknown Arch";
-      ThreadWorker*                       workers                              = nullptr;
       std::mutex                          worker_sleep_mutex                   = {};
       std::condition_variable             worker_sleep_cv                      = {};
       WorkerThreadStorage                 worker_storage alignas(ThreadWorker) = {};
       AtomicInt32                         num_available_jobs                   = ATOMIC_VAR_INIT(0u);
+      std::atomic_bool                    is_running                           = ATOMIC_VAR_INIT(false);
 
-      void sleep(const ThreadWorker* worker);
-      void wakeUpOneWorker() { worker_sleep_cv.notify_one(); }
-      void wakeUpAllWorkers() { worker_sleep_cv.notify_all(); }
+      ThreadWorker* workers() { return reinterpret_cast<ThreadWorker*>(worker_storage.data()); }
+      void          sleep(const ThreadWorker* worker);
+      void          wakeUpOneWorker() { worker_sleep_cv.notify_one(); }
+      void          wakeUpAllWorkers() { worker_sleep_cv.notify_all(); }
     };
 
     static_assert(k_MaxTasksPerWorker < NullTaskHandle, "Either request less Tasks or change 'TaskHandle' to a larger type.");
@@ -407,21 +407,20 @@ namespace bf
       const WorkerID num_threads = clampThreadCount(WorkerID(params.num_threads ? params.num_threads : numSystemThreads()), WorkerID(1), WorkerID(k_MaxThreadsSupported));
 
       s_JobCtx.num_workers = num_threads;
-      s_JobCtx.workers     = reinterpret_cast<ThreadWorker*>(s_JobCtx.worker_storage.data());
 
-#if JOB_SYS_DETERMINISTIC_JOB_STEAL
+#if JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG
       constexpr std::uint64_t random_seed = 0u;
 #else
       const std::uint64_t random_seed = static_cast<std::uint64_t>(rand());
 #endif
 
-      for (std::size_t i = 0; i < num_threads; ++i)
+      s_JobCtx.is_running = true;
+
+      for (WorkerID i = 0; i < num_threads; ++i)
       {
-        ThreadWorker* const worker = new (s_JobCtx.workers + i) ThreadWorker();
+        ThreadWorker* const worker = new (s_JobCtx.workers() + i) ThreadWorker();
 
-        pcg32_srandom_r(&worker->rng_state, std::uint64_t(i) + random_seed, std::uint64_t(i) * 2u + 1u + random_seed);
-
-        worker->start(i == k_MainThreadID);
+        worker->start(i, random_seed);
       }
 
       s_IsFullyInitialized = true;
@@ -486,20 +485,16 @@ namespace bf
     {
       JobAssert(s_NextThreadLocalIndex != 0u, "Job System must be initialized before it can be shutdown.");
 
-      const std::uint32_t num_workers = s_JobCtx.num_workers;
+      s_JobCtx.is_running = false;
 
-      // Makes sure the sleeping threads do not continue to sleep.
-      for (std::uint32_t i = 1; i < num_workers; ++i)
-      {
-        s_JobCtx.workers[i].is_running = false;
-      }
+      const std::uint32_t num_workers = s_JobCtx.num_workers;
 
       // Allow one last update loop to allow them to end.
       s_JobCtx.wakeUpAllWorkers();
 
       for (std::uint32_t i = 0; i < num_workers; ++i)
       {
-        ThreadWorker* const worker = s_JobCtx.workers + i;
+        ThreadWorker* const worker = s_JobCtx.workers() + i;
 
         if (i != k_MainThreadID)
         {
@@ -515,25 +510,26 @@ namespace bf
 
     Task* taskMake(TaskFn function, Task* const parent) noexcept
     {
-      const WorkerID      worker_id   = currentWorker();
-      const std::uint32_t num_workers = numWorkers();
+      const WorkerID worker_id = currentWorker();
 
-      JobAssert(worker_id < num_workers, "This thread was not created by the job system.");
+      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
 
-      ThreadWorker* const worker = s_JobCtx.workers + worker_id;
+      ThreadWorker* const worker = s_JobCtx.workers() + worker_id;
 
       if (worker->num_allocated_tasks == k_MaxTasksPerWorker)
       {
-        worker->garbageCollectAllocatedTasks();
         s_JobCtx.wakeUpAllWorkers();
 
         // While we cannot allocate do some work.
+        worker->garbageCollectAllocatedTasks();
         while (worker->num_allocated_tasks == k_MaxTasksPerWorker)
         {
           worker->run(worker_id);
           worker->garbageCollectAllocatedTasks();
         }
       }
+
+      JobAssert(worker->num_allocated_tasks < k_MaxTasksPerWorker, "Too many tasks allocated.");
 
       Task* const      task     = worker->task_memory.allocate(worker_id, function, parent ? parent->toTaskPtr() : TaskPtr{NullTaskHandle, NullTaskHandle});
       const TaskHandle task_hdl = TaskHandle(worker->task_memory.indexOf(task));
@@ -543,10 +539,8 @@ namespace bf
         parent->num_unfinished_tasks.fetch_add(1u);
       }
 
-      JobAssert(worker->num_allocated_tasks < k_MaxTasksPerWorker, "Too many tasks allocated.");
-
       worker->allocated_tasks[worker->num_allocated_tasks++] = task_hdl;
-      worker->finished_tasks[task_hdl]                       = false;
+      ++task->ref_count;
 
       return task;
     }
@@ -576,7 +570,7 @@ namespace bf
     template<typename QueueType>
     static void taskSubmitQPushHelper(Task* const self, const WorkerID worker_id, QueueType& queue)
     {
-      ThreadWorker* const worker   = s_JobCtx.workers + worker_id;
+      ThreadWorker* const worker   = s_JobCtx.workers() + worker_id;
       const TaskPtr       task_ptr = self->toTaskPtr();
 
       // Loop until we have successfully pushed to the queue.
@@ -595,7 +589,7 @@ namespace bf
       JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
       JobAssert(worker_id < num_workers, "This thread was not created by the job system.");
 
-      ThreadWorker* const worker = s_JobCtx.workers + worker_id;
+      ThreadWorker* const worker = s_JobCtx.workers() + worker_id;
 
       self->q_type = queue;
 
@@ -611,7 +605,7 @@ namespace bf
           taskSubmitQPushHelper(self, worker_id, s_JobCtx.main_queue);
           break;
         }
-        case QueueType::BACKGROUND:
+        case QueueType::WORKER:
         {
           taskSubmitQPushHelper(self, worker_id, worker->bg_queue);
           break;
@@ -658,7 +652,7 @@ namespace bf
 
       JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
 
-      ThreadWorker& worker = s_JobCtx.workers[worker_id];
+      ThreadWorker& worker = s_JobCtx.workers()[worker_id];
 
       worker.garbageCollectAllocatedTasks();
     }
@@ -673,7 +667,7 @@ namespace bf
 
       s_JobCtx.wakeUpAllWorkers();
 
-      ThreadWorker& worker = s_JobCtx.workers[worker_id];
+      ThreadWorker& worker = s_JobCtx.workers()[worker_id];
 
       while (!taskIsDone(task))
       {
@@ -685,30 +679,26 @@ namespace bf
 
     void JobSystem::sleep(const ThreadWorker* const worker)
     {
-      if (!worker->is_running)
+      if (is_running)
       {
-        return;
+        std::this_thread::yield();
+
+        if (num_available_jobs.load(std::memory_order_relaxed) == 0u)
+        {
+          std::unique_lock<std::mutex> lock(worker_sleep_mutex);
+          worker_sleep_cv.wait(lock, [worker, this]() {
+            // NOTE(SR):
+            //   Because the stl wants 'false' to mean continue waiting the logic is a bit confusing :/
+            //
+            //   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).
+            //
+            //        Wait If:     running AND num_available_jobs == 0.
+            // Do Not Wait If: not running  OR num_available_jobs != 0.
+            //
+            return !is_running || num_available_jobs.load(std::memory_order_relaxed) != 0;
+          });
+        }
       }
-
-      std::this_thread::yield();
-
-      if (num_available_jobs.load(std::memory_order_relaxed) != 0u)
-      {
-        return;
-      }
-
-      std::unique_lock<std::mutex> lock(worker_sleep_mutex);
-      worker_sleep_cv.wait(lock, [worker, this]() {
-        // NOTE(SR):
-        //   Because the stl wants 'false' to mean continue waiting the logic is a bit confusing :/
-        //
-        //   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).
-        //
-        //        Wait If:     running AND num_available_jobs == 0.
-        // Do Not Wait If: not running  OR num_available_jobs != 0.
-        //
-        return !worker->is_running || num_available_jobs.load(std::memory_order_relaxed) != 0;
-      });
     }
 
     Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) :
@@ -727,7 +717,7 @@ namespace bf
 
     TaskPtr Task::toTaskPtr() const noexcept
     {
-      const TaskHandle self_index = TaskHandle(s_JobCtx.workers[owning_worker].task_memory.indexOf(this));
+      const TaskHandle self_index = TaskHandle(s_JobCtx.workers()[owning_worker].task_memory.indexOf(this));
 
       return {owning_worker, self_index};
     }
@@ -763,15 +753,15 @@ namespace bf
           continuation = next_continuation;
         }
 
-        ThreadWorker* const worker = s_JobCtx.workers + this->owning_worker;
-
-        worker->finished_tasks[worker->task_memory.indexOf(this)] = true;
+        --ref_count;
       }
     }
 
-    void ThreadWorker::start(bool is_main_thread)
+    void ThreadWorker::start(const WorkerID worker_index, const std::uint64_t rng_seed)
     {
-      is_running = true;
+      const bool is_main_thread = worker_index == k_MainThreadID;
+
+      pcg32_srandom_r(&rng_state, std::uint64_t(worker_index) + rng_seed, std::uint64_t(worker_index) * 2u + 1u + rng_seed);
 
       if (is_main_thread)
       {
@@ -783,7 +773,7 @@ namespace bf
           initThreadWorkerID();
 
           const WorkerID      thread_id = currentWorker();
-          ThreadWorker* const worker    = s_JobCtx.workers + thread_id;
+          ThreadWorker* const worker    = s_JobCtx.workers() + thread_id;
 
 #ifdef IS_WINDOWS
           const HANDLE handle = static_cast<HANDLE>(worker->worker()->native_handle());
@@ -819,7 +809,7 @@ namespace bf
             /* Busy Loop Wait so there is no checking of this condition in the loop itself */
           }
 
-          while (worker->is_running)
+          while (s_JobCtx.is_running)
           {
             if (!worker->run(thread_id))
             {
@@ -862,7 +852,7 @@ namespace bf
         {
           const TaskHandle task_hdl         = allocated_tasks_bgn[read_idx];
           Task* const      task_ptr         = task_memory.fromIndex(task_hdl);
-          const bool       task_is_finished = finished_tasks[task_hdl] && task_ptr->ref_count.load(std::memory_order_relaxed) == 0u;
+          const bool       task_is_finished = task_ptr->ref_count.load(std::memory_order_relaxed) == 0u;
 
           if (task_is_finished)
           {
@@ -894,35 +884,17 @@ namespace bf
 
       if (task_ptr.isNull())
       {
-        const auto trySteal = [&](const WorkerID other_worker_id) {
-          if (task_ptr.isNull())
-          {
-            ThreadWorker* const other_worker = s_JobCtx.workers + other_worker_id;
-            task_ptr                         = other_worker->hi_queue.steal();
+        const WorkerID other_worker_id = randomWorker();
 
-            if (task_ptr.isNull() && !is_main_thread)
-            {
-              task_ptr = other_worker->bg_queue.steal();
-            }
-          }
-        };
-
-        if (!is_main_thread)
+        if (other_worker_id != worker_id)
         {
-          trySteal(k_MainThreadID);
-        }
+          ThreadWorker* const other_worker = s_JobCtx.workers() + other_worker_id;
 
-        if (task_ptr.isNull())
-        {
-          while (true)
+          task_ptr = other_worker->hi_queue.steal();
+
+          if (task_ptr.isNull() && !is_main_thread)
           {
-            const WorkerID other_worker_id = randomWorker();
-
-            if (other_worker_id != worker_id)
-            {
-              trySteal(other_worker_id);
-              break;
-            }
+            task_ptr = other_worker->bg_queue.steal();
           }
         }
       }
@@ -949,7 +921,35 @@ namespace bf
 
     WorkerID ThreadWorker::randomWorker() noexcept
     {
-      return WorkerID(pcg32_boundedrand_r(&rng_state, s_JobCtx.num_workers));
+      const std::uint32_t num_workers = s_JobCtx.num_workers;
+
+      std::uint32_t weights[k_MaxThreadsSupported];
+      std::uint32_t weight_sum = 0u;
+
+      for (WorkerID i = 0u; i < num_workers; ++i)
+      {
+        const ThreadWorker& worker = s_JobCtx.workers()[i];
+
+        weights[i] = worker.num_allocated_tasks;
+        weight_sum += weights[i];
+      }
+
+      if (weight_sum != 0)
+      {
+        std::uint32_t random_number = pcg32_boundedrand_r(&rng_state, weight_sum);
+
+        for (WorkerID i = 0u; i < num_workers; ++i)
+        {
+          if (random_number < weights[i])
+          {
+            return i;
+          }
+
+          random_number -= weights[i];
+        }
+      }
+
+      return WorkerID(pcg32_boundedrand_r(&rng_state, num_workers));
     }
 
     // Helper Definitions
@@ -958,7 +958,7 @@ namespace bf
     {
       if (!ptr.isNull())
       {
-        ThreadWorker* const worker = s_JobCtx.workers + ptr.worker_id;
+        ThreadWorker* const worker = s_JobCtx.workers() + ptr.worker_id;
         Task* const         result = worker->task_memory.fromIndex(ptr.task_index);
 
         JobAssert(ptr.worker_id == result->owning_worker, "Corrupted worker ID.");
