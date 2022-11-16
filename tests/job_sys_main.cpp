@@ -23,7 +23,7 @@ TEST(JobSystemTests, JobCreationOverheadSerial)
     }
   });
 
-  bf::job::waitOnTask(bf::job::taskSubmit(root));
+  waitOnTask(taskSubmit(root));
 }
 
 // Tests the time it takes to creating empty jobs recursively split by the parallel_for.
@@ -133,10 +133,17 @@ TEST(JobSystemTests, GCReferenceCount)
   taskIncRef(long_running_task);
   taskSubmit(long_running_task, bf::job::QueueType::WORKER);
 
-  while (!taskIsDone(long_running_task))
+  if (bf::job::numWorkers() == 1u)
   {
-    std::printf("Waiting on long Running task...\n");
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    waitOnTask(long_running_task);
+  }
+  else
+  {
+    while (!taskIsDone(long_running_task))
+    {
+      std::printf("Waiting on long Running task...\n");
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    }
   }
 
   std::this_thread::sleep_for(std::chrono::milliseconds(12));
@@ -165,9 +172,16 @@ TEST(JobSystemTests, RefCountAPIUsage)
   // Any other calls can be at any time.
   taskIncRef(long_running_task);
 
-  while (!taskIsDone(long_running_task))
+  if (bf::job::numWorkers() == 1u)
   {
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    waitOnTask(long_running_task);
+  }
+  else
+  {
+    while (!taskIsDone(long_running_task))
+    {
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    }
   }
 
   std::this_thread::sleep_for(std::chrono::milliseconds(5));

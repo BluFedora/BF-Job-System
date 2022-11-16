@@ -300,7 +300,6 @@ namespace bf
 
     namespace
     {
-
       JobSystem                 s_JobCtx               = {};
       AtomicInt32               s_NextThreadLocalIndex = 0;
       thread_local std::int32_t s_ThreadLocalIndex     = 0x7FFFFFFF;
@@ -585,6 +584,12 @@ namespace bf
     {
       const WorkerID num_workers = numWorkers();
       const WorkerID worker_id   = currentWorker();
+
+      // If we only have one thread running using the working queue is invalid.
+      if (num_workers == 1u && queue == QueueType::WORKER)
+      {
+        queue = QueueType::NORMAL;
+      }
 
       JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
       JobAssert(worker_id < num_workers, "This thread was not created by the job system.");
