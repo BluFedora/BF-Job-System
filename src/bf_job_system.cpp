@@ -337,15 +337,23 @@ namespace bf
     bool detail::mainQueueRunTask(void) noexcept
     {
       const TaskPtr task_ptr = s_JobCtx.main_queue.pop();
-      const bool    is_valid = !task_ptr.isNull();
 
-      if (is_valid)
+      if (!task_ptr.isNull())
       {
         Task* const task = taskPtrToPointer(task_ptr);
         task->run();
+
+        return true;
       }
 
-      return is_valid;
+      // If no work in the main queue atleast try to do some general work.
+
+      const WorkerID worker_id = currentWorker();
+
+      ThreadWorker& worker = s_JobCtx.workers()[worker_id];
+      worker.run(worker_id);
+
+      return false;
     }
 
     static WorkerID clampThreadCount(WorkerID value, WorkerID min, WorkerID max)
@@ -477,6 +485,7 @@ namespace bf
 
     WorkerID currentWorker() noexcept
     {
+      JobAssert(WorkerID(s_ThreadLocalIndex) < numWorkers(), "This thread was not created by the job system.");
       return WorkerID(s_ThreadLocalIndex);
     }
 
@@ -510,8 +519,6 @@ namespace bf
     Task* taskMake(TaskFn function, Task* const parent) noexcept
     {
       const WorkerID worker_id = currentWorker();
-
-      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
 
       ThreadWorker* const worker = s_JobCtx.workers() + worker_id;
 
@@ -592,7 +599,6 @@ namespace bf
       }
 
       JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
-      JobAssert(worker_id < num_workers, "This thread was not created by the job system.");
 
       ThreadWorker* const worker = s_JobCtx.workers() + worker_id;
 
@@ -617,15 +623,18 @@ namespace bf
         }
       }
 
-      const std::int32_t num_pending_jobs = s_JobCtx.num_available_jobs.fetch_add(1);
+      if (queue != QueueType::MAIN)
+      {
+        const std::int32_t num_pending_jobs = s_JobCtx.num_available_jobs.fetch_add(1);
 
-      if (num_pending_jobs >= num_workers)
-      {
-        s_JobCtx.wakeUpAllWorkers();
-      }
-      else
-      {
-        s_JobCtx.wakeUpOneWorker();
+        if (num_pending_jobs >= num_workers)
+        {
+          s_JobCtx.wakeUpAllWorkers();
+        }
+        else
+        {
+          s_JobCtx.wakeUpOneWorker();
+        }
       }
 
       return self;
@@ -655,8 +664,6 @@ namespace bf
     {
       const WorkerID worker_id = currentWorker();
 
-      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
-
       ThreadWorker& worker = s_JobCtx.workers()[worker_id];
 
       worker.garbageCollectAllocatedTasks();
@@ -666,7 +673,6 @@ namespace bf
     {
       const WorkerID worker_id = currentWorker();
 
-      JobAssert(worker_id < numWorkers(), "This thread was not created by the job system.");
       JobAssert(task->q_type != k_InvalidQueueType, "The Task must be submitted to a queue before you wait on it.");
       JobAssert(task->owning_worker == worker_id, "You may only call this function with a task created on the current 'Worker'.");
 
