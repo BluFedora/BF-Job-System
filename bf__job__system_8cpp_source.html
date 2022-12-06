@@ -552,7 +552,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp_source.html','');
 <div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span> </div>
 <div class="line"><a id="l00486" name="l00486"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">  486</a></span>    <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> <a class="code hl_function" href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">currentWorker</a>() noexcept</div>
 <div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>    {</div>
-<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>      <a class="code hl_define" href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(s_ThreadLocalIndex &lt; <a class="code hl_function" href="namespacebf_1_1job.html#aa230de6f107416403da55c56ff39c600">numWorkers</a>(), <span class="stringliteral">&quot;This thread was not created by the job system.&quot;</span>);</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>      <a class="code hl_define" href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(<a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>(s_ThreadLocalIndex) &lt; <a class="code hl_function" href="namespacebf_1_1job.html#aa230de6f107416403da55c56ff39c600">numWorkers</a>(), <span class="stringliteral">&quot;This thread was not created by the job system.&quot;</span>);</div>
 <div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>      <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>(s_ThreadLocalIndex);</div>
 <div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>    }</div>
 <div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span> </div>
@@ -1224,7 +1224,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="bf__job__system_8cpp.html">bf_job_system.cpp</a></li>
-    <li class="footer">Generated on Sun Dec 4 2022 08:55:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Dec 6 2022 01:02:44 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
