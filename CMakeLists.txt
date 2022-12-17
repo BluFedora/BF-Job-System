@@ -63,3 +63,5 @@ target_link_libraries(
 )
 
 gtest_discover_tests(BFJobTesting)
+
+set_property(TARGET BFJobTesting PROPERTY FOLDER "BluFedora/Test")
