@@ -23,12 +23,13 @@
 
 #include "pcg_basic.h" /* pcg_state_setseq_64, pcg32_srandom_r, pcg32_boundedrand_r */
 
-#include <algorithm> /* partition, for_each, distance */
-#include <array>     /* array                         */
-#include <cstdio>    /* fprintf, stderr               */
-#include <cstdlib>   /* abort                         */
-#include <limits>    /* numeric_limits                */
-#include <thread>    /* thread                        */
+#include <algorithm> /* partition, for_each, distance                                                   */
+#include <array>     /* array                                                                           */
+#include <cstdio>    /* fprintf, stderr                                                                 */
+#include <cstdlib>   /* abort                                                                           */
+#include <limits>    /* numeric_limits                                                                  */
+#include <new>       /* hardware_constructive_interference_size, hardware_destructive_interference_size */
+#include <thread>    /* thread                                                                          */
 
 #if _WIN32
 #define IS_WINDOWS 1
@@ -87,7 +88,12 @@ namespace bf
   {
     // Constants
 
-    static constexpr std::size_t k_CachelineSize     = std::max(std::hardware_constructive_interference_size, std::hardware_destructive_interference_size);
+#ifdef __cpp_lib_hardware_interference_size
+    static constexpr std::size_t k_CachelineSize = std::max(std::hardware_constructive_interference_size, std::hardware_destructive_interference_size);
+#else
+    static constexpr std::size_t k_CachelineSize = 64u;
+#endif
+
     static constexpr std::size_t k_ExpectedTaskSize  = std::max(std::size_t(128u), k_CachelineSize);
     static constexpr std::size_t k_MaxTasksPerWorker = k_NormalQueueSize + k_BackgroundQueueSize;
     static constexpr WorkerID    k_MainThreadID      = 0;
@@ -697,7 +703,7 @@ namespace bf
         if (num_available_jobs.load(std::memory_order_relaxed) == 0u)
         {
           std::unique_lock<std::mutex> lock(worker_sleep_mutex);
-          worker_sleep_cv.wait(lock, [worker, this]() {
+          worker_sleep_cv.wait(lock, [this]() {
             // NOTE(SR):
             //   Because the stl wants 'false' to mean continue waiting the logic is a bit confusing :/
             //
@@ -717,7 +723,7 @@ namespace bf
       num_unfinished_tasks{1},
       ref_count{ATOMIC_VAR_INIT(0u)},
       user_storage_size{Task::k_TaskPaddingDataSize},
-      q_type{k_InvalidQueueType}, /* Set to a valid value in 'bf::job::submitTask' */
+      q_type{k_InvalidQueueType}, /* Set to a valid value in 'submitTask' */
       parent{parent},
       first_continuation{nullptr},
       next_continuation{nullptr},
@@ -786,7 +792,7 @@ namespace bf
           const WorkerID      thread_id = currentWorker();
           ThreadWorker* const worker    = s_JobCtx.workers() + thread_id;
 
-#ifdef IS_WINDOWS
+#if IS_WINDOWS
           const HANDLE handle = static_cast<HANDLE>(worker->worker()->native_handle());
 
           // Put each thread on to dedicated core
@@ -836,9 +842,10 @@ namespace bf
       if (num_allocated_tasks)
       {
         const auto allocated_tasks_bgn = allocated_tasks.begin();
-        const auto allocated_tasks_end = allocated_tasks_bgn + num_allocated_tasks;
 
 #if 0
+        const auto allocated_tasks_end = allocated_tasks_bgn + num_allocated_tasks;
+        
         const auto done_end = std::partition(
          allocated_tasks_bgn,
          allocated_tasks_end,
