@@ -155,7 +155,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A single 'job' to be run by this system. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00141">141</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00147">147</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aebc32e3c285d4ce6019c15deb7bbc2d5" name="aebc32e3c285d4ce6019c15deb7bbc2d5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aebc32e3c285d4ce6019c15deb7bbc2d5">&#9670;&nbsp;</a></span>Padding</h2>
@@ -169,7 +169,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00156">156</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00162">162</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -206,34 +206,34 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00715">715</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>                                                         :</div>
-<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">fn</a>{<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">fn</a>},</div>
-<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">num_unfinished_tasks</a>{1},</div>
-<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">ref_count</a>{ATOMIC_VAR_INIT(0u)},</div>
-<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#aaab64f62740308ea1889ad27dd41d5c2">user_storage_size</a>{<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a963431f2ea1f6f73de4357cd66b254d1">Task::k_TaskPaddingDataSize</a>},</div>
-<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">q_type</a>{<a class="code hl_variable" href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">k_InvalidQueueType</a>}, <span class="comment">/* Set to a valid value in &#39;bf::job::submitTask&#39; */</span></div>
-<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>{<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>},</div>
-<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d">first_continuation</a>{<span class="keyword">nullptr</span>},</div>
-<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">next_continuation</a>{<span class="keyword">nullptr</span>},</div>
-<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">owning_worker</a>{worker},</div>
-<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a1d5e9e7923d45b95e0e226226065f80d">padding</a>{}</div>
-<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>    {</div>
-<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>    }</div>
-<div class="ttc" id="anamespacebf_1_1job_html_ac4743caff1b0745ed1704bae6e7d51d0"><div class="ttname"><a href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">bf::job::k_InvalidQueueType</a></div><div class="ttdeci">static constexpr QueueType k_InvalidQueueType</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00094">bf_job_system.cpp:94</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a1d5e9e7923d45b95e0e226226065f80d"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a1d5e9e7923d45b95e0e226226065f80d">bf::job::Task::padding</a></div><div class="ttdeci">Padding padding</div><div class="ttdoc">User data storage.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00167">bf_job_system.cpp:167</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a4b5419369be19ab2535809796bf25b83"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">bf::job::Task::owning_worker</a></div><div class="ttdeci">WorkerID owning_worker</div><div class="ttdoc">The worker this task has been created on, needed for Task::toTaskPtr and various assertions.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00166">bf_job_system.cpp:166</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a6209f36718a94037cadd7e6c511f5495"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">bf::job::Task::parent</a></div><div class="ttdeci">TaskPtr parent</div><div class="ttdoc">The parent task, can be null.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00163">bf_job_system.cpp:163</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a64cb366e18e85029e534f08de8f92b43"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">bf::job::Task::num_unfinished_tasks</a></div><div class="ttdeci">AtomicInt32 num_unfinished_tasks</div><div class="ttdoc">The number of children tasks.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00159">bf_job_system.cpp:159</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a66ae811ff80b58475845678a43d3f29d"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d">bf::job::Task::first_continuation</a></div><div class="ttdeci">AtomicTaskPtr first_continuation</div><div class="ttdoc">Head of linked list of tasks to be added on completion.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00164">bf_job_system.cpp:164</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a963431f2ea1f6f73de4357cd66b254d1"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a963431f2ea1f6f73de4357cd66b254d1">bf::job::Task::k_TaskPaddingDataSize</a></div><div class="ttdeci">static constexpr std::size_t k_TaskPaddingDataSize</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00154">bf_job_system.cpp:154</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a9e85804abff3ad94b57b8ea7aac6d900"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">bf::job::Task::ref_count</a></div><div class="ttdeci">AtomicInt16 ref_count</div><div class="ttdoc">Keeps the task from being garbage collected.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00160">bf_job_system.cpp:160</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_aaab64f62740308ea1889ad27dd41d5c2"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#aaab64f62740308ea1889ad27dd41d5c2">bf::job::Task::user_storage_size</a></div><div class="ttdeci">std::uint8_t user_storage_size</div><div class="ttdoc">Number of bytes available to the user in padding.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00161">bf_job_system.cpp:161</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_acd1b6b1602d5c7852aab09e48d1691ea"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">bf::job::Task::q_type</a></div><div class="ttdeci">QueueType q_type</div><div class="ttdoc">The queue type this task has been submitted to, initalized to k_InvalidQueueType.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00162">bf_job_system.cpp:162</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_adf6c2ae68363b6d90a2f5d3682cb3584"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">bf::job::Task::next_continuation</a></div><div class="ttdeci">TaskPtr next_continuation</div><div class="ttdoc">Next element in the linked list of continuations.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00165">bf_job_system.cpp:165</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_ae1d00ef629ab7da19f14474103b25703"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">bf::job::Task::fn</a></div><div class="ttdeci">TaskFn fn</div><div class="ttdoc">The function that will be run.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00158">bf_job_system.cpp:158</a></div></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00721">721</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>                                                         :</div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">fn</a>{<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">fn</a>},</div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">num_unfinished_tasks</a>{1},</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">ref_count</a>{ATOMIC_VAR_INIT(0u)},</div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#aaab64f62740308ea1889ad27dd41d5c2">user_storage_size</a>{<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a963431f2ea1f6f73de4357cd66b254d1">Task::k_TaskPaddingDataSize</a>},</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">q_type</a>{<a class="code hl_variable" href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">k_InvalidQueueType</a>}, <span class="comment">/* Set to a valid value in &#39;submitTask&#39; */</span></div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>{<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>},</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d">first_continuation</a>{<span class="keyword">nullptr</span>},</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">next_continuation</a>{<span class="keyword">nullptr</span>},</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">owning_worker</a>{worker},</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>      <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a1d5e9e7923d45b95e0e226226065f80d">padding</a>{}</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>    {</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>    }</div>
+<div class="ttc" id="anamespacebf_1_1job_html_ac4743caff1b0745ed1704bae6e7d51d0"><div class="ttname"><a href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">bf::job::k_InvalidQueueType</a></div><div class="ttdeci">static constexpr QueueType k_InvalidQueueType</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00100">bf_job_system.cpp:100</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a1d5e9e7923d45b95e0e226226065f80d"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a1d5e9e7923d45b95e0e226226065f80d">bf::job::Task::padding</a></div><div class="ttdeci">Padding padding</div><div class="ttdoc">User data storage.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00173">bf_job_system.cpp:173</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a4b5419369be19ab2535809796bf25b83"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">bf::job::Task::owning_worker</a></div><div class="ttdeci">WorkerID owning_worker</div><div class="ttdoc">The worker this task has been created on, needed for Task::toTaskPtr and various assertions.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00172">bf_job_system.cpp:172</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a6209f36718a94037cadd7e6c511f5495"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">bf::job::Task::parent</a></div><div class="ttdeci">TaskPtr parent</div><div class="ttdoc">The parent task, can be null.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00169">bf_job_system.cpp:169</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a64cb366e18e85029e534f08de8f92b43"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">bf::job::Task::num_unfinished_tasks</a></div><div class="ttdeci">AtomicInt32 num_unfinished_tasks</div><div class="ttdoc">The number of children tasks.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00165">bf_job_system.cpp:165</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a66ae811ff80b58475845678a43d3f29d"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d">bf::job::Task::first_continuation</a></div><div class="ttdeci">AtomicTaskPtr first_continuation</div><div class="ttdoc">Head of linked list of tasks to be added on completion.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00170">bf_job_system.cpp:170</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a963431f2ea1f6f73de4357cd66b254d1"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a963431f2ea1f6f73de4357cd66b254d1">bf::job::Task::k_TaskPaddingDataSize</a></div><div class="ttdeci">static constexpr std::size_t k_TaskPaddingDataSize</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00160">bf_job_system.cpp:160</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a9e85804abff3ad94b57b8ea7aac6d900"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">bf::job::Task::ref_count</a></div><div class="ttdeci">AtomicInt16 ref_count</div><div class="ttdoc">Keeps the task from being garbage collected.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00166">bf_job_system.cpp:166</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_aaab64f62740308ea1889ad27dd41d5c2"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#aaab64f62740308ea1889ad27dd41d5c2">bf::job::Task::user_storage_size</a></div><div class="ttdeci">std::uint8_t user_storage_size</div><div class="ttdoc">Number of bytes available to the user in padding.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00167">bf_job_system.cpp:167</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_acd1b6b1602d5c7852aab09e48d1691ea"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">bf::job::Task::q_type</a></div><div class="ttdeci">QueueType q_type</div><div class="ttdoc">The queue type this task has been submitted to, initalized to k_InvalidQueueType.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00168">bf_job_system.cpp:168</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_adf6c2ae68363b6d90a2f5d3682cb3584"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">bf::job::Task::next_continuation</a></div><div class="ttdeci">TaskPtr next_continuation</div><div class="ttdoc">Next element in the linked list of continuations.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00171">bf_job_system.cpp:171</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_ae1d00ef629ab7da19f14474103b25703"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">bf::job::Task::fn</a></div><div class="ttdeci">TaskFn fn</div><div class="ttdoc">The function that will be run.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00164">bf_job_system.cpp:164</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00211">bf::job::TaskPool&lt; k_MaxTask &gt;::allocate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00217">bf::job::TaskPool&lt; k_MaxTask &gt;::allocate()</a>.</p>
 
 </div>
 </div>
@@ -261,16 +261,16 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00171">171</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      {</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">fn</a>(<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <a class="code hl_function" href="structbf_1_1job_1_1_task.html#a08f0cc1a8060864e947408fcf9ea5089">onFinish</a>();</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      }</div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_a08f0cc1a8060864e947408fcf9ea5089"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a08f0cc1a8060864e947408fcf9ea5089">bf::job::Task::onFinish</a></div><div class="ttdeci">void onFinish() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00736">bf_job_system.cpp:736</a></div></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00177">177</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703">fn</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <a class="code hl_function" href="structbf_1_1job_1_1_task.html#a08f0cc1a8060864e947408fcf9ea5089">onFinish</a>();</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      }</div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_a08f0cc1a8060864e947408fcf9ea5089"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a08f0cc1a8060864e947408fcf9ea5089">bf::job::Task::onFinish</a></div><div class="ttdeci">void onFinish() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00742">bf_job_system.cpp:742</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00158">fn</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00164">fn</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00337">bf::job::detail::mainQueueRunTask()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00885">bf::job::ThreadWorker::run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00343">bf::job::detail::mainQueueRunTask()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00892">bf::job::ThreadWorker::run()</a>.</p>
 
 </div>
 </div>
@@ -297,48 +297,48 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00736">736</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>    {</div>
-<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>      <span class="comment">// NOTE(SR):</span></div>
-<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>      <span class="comment">//   make sure to store the result in a local variable and use that for</span></div>
-<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>      <span class="comment">//   comparing against zero. otherwise, the code contains a data race</span></div>
-<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>      <span class="comment">//   because other child tasks could change `num_unfinished_tasks` in the meantime.</span></div>
-<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>      <span class="keyword">const</span> std::int32_t num_jobs_left = --<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">num_unfinished_tasks</a>;</div>
-<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span> </div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>      <span class="keywordflow">if</span> (num_jobs_left == 0)</div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>      {</div>
-<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198">isNull</a>())</div>
-<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>        {</div>
-<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>          <a class="code hl_function" href="structbf_1_1job_1_1_task.html#ac919c8d03241b218d4429b6feffc1e4f">Task</a>* <span class="keyword">const</span> parent_task = <a class="code hl_function" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>);</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00742">742</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>    {</div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>      <span class="comment">// NOTE(SR):</span></div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>      <span class="comment">//   make sure to store the result in a local variable and use that for</span></div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>      <span class="comment">//   comparing against zero. otherwise, the code contains a data race</span></div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>      <span class="comment">//   because other child tasks could change `num_unfinished_tasks` in the meantime.</span></div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>      <span class="keyword">const</span> std::int32_t num_jobs_left = --<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">num_unfinished_tasks</a>;</div>
 <div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
-<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>          parent_task-&gt;onFinish();</div>
-<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>        }</div>
-<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span> </div>
-<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        --<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">num_unfinished_tasks</a>;</div>
-<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
-<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>        TaskPtr continuation = <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d">first_continuation</a>.load();</div>
-<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span> </div>
-<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>        <span class="keywordflow">while</span> (!continuation.isNull())</div>
-<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>        {</div>
-<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>          <a class="code hl_function" href="structbf_1_1job_1_1_task.html#ac919c8d03241b218d4429b6feffc1e4f">Task</a>* <span class="keyword">const</span>   task              = <a class="code hl_function" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(continuation);</div>
-<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>          <span class="keyword">const</span> TaskPtr <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">next_continuation</a> = task-&gt;next_continuation;</div>
-<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span> </div>
-<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>          <a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(task, <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">q_type</a>);</div>
-<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span> </div>
-<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>          continuation = <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">next_continuation</a>;</div>
-<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>        }</div>
-<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span> </div>
-<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>        --<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">ref_count</a>;</div>
-<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>      }</div>
-<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span>    }</div>
-<div class="ttc" id="anamespacebf_1_1job_html_a3d19ffe37dfe4b108e49920545957912"><div class="ttname"><a href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">bf::job::taskPtrToPointer</a></div><div class="ttdeci">static Task * taskPtrToPointer(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00968">bf_job_system.cpp:968</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a9d8571034c2aff8664cbffc8de3e9d22"><div class="ttname"><a href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">bf::job::taskSubmit</a></div><div class="ttdeci">Task * taskSubmit(Task *const self, QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00590">bf_job_system.cpp:590</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_html_ac919c8d03241b218d4429b6feffc1e4f"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#ac919c8d03241b218d4429b6feffc1e4f">bf::job::Task::Task</a></div><div class="ttdeci">Task(WorkerID worker, TaskFn fn, TaskPtr parent)</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00715">bf_job_system.cpp:715</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_task_ptr_html_a22db6d339b844dc7c346078a00d80198"><div class="ttname"><a href="structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198">bf::job::TaskPtr::isNull</a></div><div class="ttdeci">bool isNull() const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00130">bf_job_system.cpp:130</a></div></div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>      <span class="keywordflow">if</span> (num_jobs_left == 0)</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>      {</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198">isNull</a>())</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        {</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>          <a class="code hl_function" href="structbf_1_1job_1_1_task.html#ac919c8d03241b218d4429b6feffc1e4f">Task</a>* <span class="keyword">const</span> parent_task = <a class="code hl_function" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495">parent</a>);</div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span> </div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>          parent_task-&gt;onFinish();</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>        }</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span> </div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>        --<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43">num_unfinished_tasks</a>;</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span> </div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>        TaskPtr continuation = <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d">first_continuation</a>.load();</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span> </div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>        <span class="keywordflow">while</span> (!continuation.isNull())</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>        {</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>          <a class="code hl_function" href="structbf_1_1job_1_1_task.html#ac919c8d03241b218d4429b6feffc1e4f">Task</a>* <span class="keyword">const</span>   task              = <a class="code hl_function" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(continuation);</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>          <span class="keyword">const</span> TaskPtr <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">next_continuation</a> = task-&gt;next_continuation;</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span> </div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>          <a class="code hl_function" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">taskSubmit</a>(task, <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">q_type</a>);</div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span> </div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span>          continuation = <a class="code hl_variable" href="structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584">next_continuation</a>;</div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>        }</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span> </div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>        --<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">ref_count</a>;</div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>      }</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>    }</div>
+<div class="ttc" id="anamespacebf_1_1job_html_a3d19ffe37dfe4b108e49920545957912"><div class="ttname"><a href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">bf::job::taskPtrToPointer</a></div><div class="ttdeci">static Task * taskPtrToPointer(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00975">bf_job_system.cpp:975</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a9d8571034c2aff8664cbffc8de3e9d22"><div class="ttname"><a href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">bf::job::taskSubmit</a></div><div class="ttdeci">Task * taskSubmit(Task *const self, QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00596">bf_job_system.cpp:596</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_html_ac919c8d03241b218d4429b6feffc1e4f"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#ac919c8d03241b218d4429b6feffc1e4f">bf::job::Task::Task</a></div><div class="ttdeci">Task(WorkerID worker, TaskFn fn, TaskPtr parent)</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00721">bf_job_system.cpp:721</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_task_ptr_html_a22db6d339b844dc7c346078a00d80198"><div class="ttname"><a href="structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198">bf::job::TaskPtr::isNull</a></div><div class="ttdeci">bool isNull() const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00136">bf_job_system.cpp:136</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00164">first_continuation</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00130">bf::job::TaskPtr::isNull()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00165">next_continuation</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00159">num_unfinished_tasks</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00163">parent</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00162">q_type</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00160">ref_count</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00968">bf::job::taskPtrToPointer()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00590">bf::job::taskSubmit()</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00170">first_continuation</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00136">bf::job::TaskPtr::isNull()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00171">next_continuation</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00165">num_unfinished_tasks</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00169">parent</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00168">q_type</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00166">ref_count</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00975">bf::job::taskPtrToPointer()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00596">bf::job::taskSubmit()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00171">run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00177">run()</a>.</p>
 
 </div>
 </div>
@@ -365,15 +365,15 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00729">729</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>    {</div>
-<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a> self_index = <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a>(s_JobCtx.workers()[<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">owning_worker</a>].task_memory.indexOf(<span class="keyword">this</span>));</div>
-<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span> </div>
-<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>      <span class="keywordflow">return</span> {<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">owning_worker</a>, self_index};</div>
-<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>    }</div>
-<div class="ttc" id="anamespacebf_1_1job_html_a8950eddf68eeb5563079a6239f70652e"><div class="ttname"><a href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">bf::job::TaskHandle</a></div><div class="ttdeci">std::uint16_t TaskHandle</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00102">bf_job_system.cpp:102</a></div></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00735">735</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    {</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a> self_index = <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a>(s_JobCtx.workers()[<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">owning_worker</a>].task_memory.indexOf(<span class="keyword">this</span>));</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span> </div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>      <span class="keywordflow">return</span> {<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83">owning_worker</a>, self_index};</div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>    }</div>
+<div class="ttc" id="anamespacebf_1_1job_html_a8950eddf68eeb5563079a6239f70652e"><div class="ttname"><a href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">bf::job::TaskHandle</a></div><div class="ttdeci">std::uint16_t TaskHandle</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00108">bf_job_system.cpp:108</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00166">owning_worker</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00172">owning_worker</a>.</p>
 
 </div>
 </div>
@@ -409,12 +409,12 @@ Static Public Attributes</h2></td></tr>
 <div class="line">       <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>)</div>
 <div class="ttc" id="anamespacebf_1_1job_html_a1bf27cadcb5355b162b1fb2af1978dc9"><div class="ttname"><a href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9">bf::job::QueueType</a></div><div class="ttdeci">QueueType</div><div class="ttdoc">The priority that you want a task to run at.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__api_8hpp_source.html#l00043">bf_job_api.hpp:44</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a578698ca919202a8ec0473dd4f6c5b81"><div class="ttname"><a href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">bf::job::WorkerID</a></div><div class="ttdeci">std::uint16_t WorkerID</div><div class="ttdoc">The id type of each worker thread.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__api_8hpp_source.html#l00052">bf_job_api.hpp:52</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a5c1d844a04b0a84ca45b9d4865ada908"><div class="ttname"><a href="namespacebf_1_1job.html#a5c1d844a04b0a84ca45b9d4865ada908">bf::job::AtomicTaskPtr</a></div><div class="ttdeci">std::atomic&lt; TaskPtr &gt; AtomicTaskPtr</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00132">bf_job_system.cpp:132</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a5c1d844a04b0a84ca45b9d4865ada908"><div class="ttname"><a href="namespacebf_1_1job.html#a5c1d844a04b0a84ca45b9d4865ada908">bf::job::AtomicTaskPtr</a></div><div class="ttdeci">std::atomic&lt; TaskPtr &gt; AtomicTaskPtr</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00138">bf_job_system.cpp:138</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_ae80841b2f4f6b256e5c7c3b2e4c2c541"><div class="ttname"><a href="namespacebf_1_1job.html#ae80841b2f4f6b256e5c7c3b2e4c2c541">bf::job::TaskFn</a></div><div class="ttdeci">void(*)(Task *) TaskFn</div><div class="ttdoc">The signature of the type of function for a single Task.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__api_8hpp_source.html#l00053">bf_job_api.hpp:53</a></div></div>
 <div class="ttc" id="anamespacebf_html_ad0272fd58541f83addc1dd6b2d4f4fef"><div class="ttname"><a href="namespacebf.html#ad0272fd58541f83addc1dd6b2d4f4fef">bf::AtomicInt32</a></div><div class="ttdeci">std::atomic_int32_t AtomicInt32</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00039">bf_job_queue.hpp:39</a></div></div>
 <div class="ttc" id="anamespacebf_html_adcc917d4e26d59fda06e75c373417dcd"><div class="ttname"><a href="namespacebf.html#adcc917d4e26d59fda06e75c373417dcd">bf::AtomicInt16</a></div><div class="ttdeci">std::atomic_int16_t AtomicInt16</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00040">bf_job_queue.hpp:40</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00143">143</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00149">149</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +438,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00154">154</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00160">160</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -456,9 +456,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>The function that will be run. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00158">158</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00164">164</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00211">bf::job::TaskPool&lt; k_MaxTask &gt;::allocate()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00171">run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00217">bf::job::TaskPool&lt; k_MaxTask &gt;::allocate()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00177">run()</a>.</p>
 
 </div>
 </div>
@@ -476,9 +476,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>The number of children tasks. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00159">159</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00165">165</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>.</p>
 
 </div>
 </div>
@@ -496,9 +496,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>Keeps the task from being garbage collected. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00160">160</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00166">166</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00834">bf::job::ThreadWorker::garbageCollectAllocatedTasks()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00650">bf::job::taskDecRef()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00643">bf::job::taskIncRef()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00519">bf::job::taskMake()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00840">bf::job::ThreadWorker::garbageCollectAllocatedTasks()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00656">bf::job::taskDecRef()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00649">bf::job::taskIncRef()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>.</p>
 
 </div>
 </div>
@@ -516,9 +516,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>Number of bytes available to the user in <code>padding</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00161">161</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00167">167</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00315">bf::job::detail::checkTaskDataSize()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00331">bf::job::detail::taskUsePadding()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00321">bf::job::detail::checkTaskDataSize()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00337">bf::job::detail::taskUsePadding()</a>.</p>
 
 </div>
 </div>
@@ -536,9 +536,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>The queue type this task has been submitted to, initalized to k_InvalidQueueType. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00162">162</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00168">168</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00643">bf::job::taskIncRef()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00649">bf::job::taskIncRef()</a>.</p>
 
 </div>
 </div>
@@ -556,9 +556,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>The parent task, can be null. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00163">163</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00169">169</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00211">bf::job::TaskPool&lt; k_MaxTask &gt;::allocate()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00519">bf::job::taskMake()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00217">bf::job::TaskPool&lt; k_MaxTask &gt;::allocate()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>.</p>
 
 </div>
 </div>
@@ -576,9 +576,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>Head of linked list of tasks to be added on completion. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00164">164</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00170">170</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>.</p>
 
 </div>
 </div>
@@ -596,9 +596,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>Next element in the linked list of continuations. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00165">165</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00171">171</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00736">onFinish()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00742">onFinish()</a>.</p>
 
 </div>
 </div>
@@ -616,9 +616,9 @@ Static Public Attributes</h2></td></tr>
 
 <p>The worker this task has been created on, needed for <code><a class="el" href="structbf_1_1job_1_1_task.html#a4d80f6f5f9e2bc3066bbbc926914b592">Task::toTaskPtr</a></code> and various assertions. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00166">166</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00172">172</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00968">bf::job::taskPtrToPointer()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00729">toTaskPtr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00975">bf::job::taskPtrToPointer()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00735">toTaskPtr()</a>.</p>
 
 </div>
 </div>
@@ -636,7 +636,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>User data storage. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00167">167</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00173">173</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -649,7 +649,7 @@ Static Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li><li class="navelem"><a class="el" href="structbf_1_1job_1_1_task.html">Task</a></li>
-    <li class="footer">Generated on Sat Dec 17 2022 22:37:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Thu Dec 22 2022 11:16:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

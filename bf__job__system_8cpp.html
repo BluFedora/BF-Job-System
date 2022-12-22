@@ -104,6 +104,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp.html',''); initRe
 <code>#include &lt;cstdio&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;new&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &quot;pcg_basic.c&quot;</code><br />
 </div>
@@ -209,7 +210,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a865e5e5752ed1d18586dc60dc902ce4a"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a865e5e5752ed1d18586dc60dc902ce4a">bf::job::k_CachelineSize</a> = std::max(std::hardware_constructive_interference_size, std::hardware_destructive_interference_size)</td></tr>
+<tr class="memitem:a865e5e5752ed1d18586dc60dc902ce4a"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a865e5e5752ed1d18586dc60dc902ce4a">bf::job::k_CachelineSize</a> = 64u</td></tr>
 <tr class="separator:a865e5e5752ed1d18586dc60dc902ce4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2f219351956ee01701e7652208a1757"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ae2f219351956ee01701e7652208a1757">bf::job::k_ExpectedTaskSize</a> = std::max(std::size_t(128u), k_CachelineSize)</td></tr>
 <tr class="separator:ae2f219351956ee01701e7652208a1757"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,7 +245,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;std::size_t k_MaxTask&gt;<br />
 union bf::job::TaskPool&lt; k_MaxTask &gt;::TaskMemoryBlock</div>
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00191">191</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00197">197</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -290,7 +291,7 @@ storage</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00081">81</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00082">82</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -300,7 +301,7 @@ storage</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="bf__job__system_8cpp.html">bf_job_system.cpp</a></li>
-    <li class="footer">Generated on Sat Dec 17 2022 22:37:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Thu Dec 22 2022 11:16:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
