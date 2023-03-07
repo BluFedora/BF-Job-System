@@ -25,12 +25,13 @@ var searchData=
   ['taskptrtopointer_22',['taskPtrToPointer',['../namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912',1,'bf::job']]],
   ['taskqtype_23',['taskQType',['../namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb',1,'bf::job::detail']]],
   ['tasksetdata_24',['taskSetData',['../namespacebf_1_1job.html#af57f75705be9ca98403dd7181c6744b6',1,'bf::job']]],
-  ['tasksubmit_25',['taskSubmit',['../namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22',1,'bf::job']]],
-  ['tasksubmitqpushhelper_26',['taskSubmitQPushHelper',['../namespacebf_1_1job.html#a26d9d7e71f60828db101a6e8ba474741',1,'bf::job']]],
-  ['taskusepadding_27',['taskUsePadding',['../namespacebf_1_1job_1_1detail.html#af8a0d6ce60f727781cf7f12d70956922',1,'bf::job::detail']]],
-  ['thread_28',['thread',['../structbf_1_1job_1_1_thread_worker.html#a91bebdc403903d1f96968146aee0a26e',1,'bf::job::ThreadWorker']]],
-  ['threadstorage_29',['ThreadStorage',['../structbf_1_1job_1_1_thread_worker.html#a81e0e06c2f7fcaf46a92245abffe9372',1,'bf::job::ThreadWorker']]],
-  ['threadworker_30',['ThreadWorker',['../structbf_1_1job_1_1_thread_worker.html',1,'bf::job::ThreadWorker'],['../structbf_1_1job_1_1_thread_worker.html#afeca0a9214092ad5fd155be342f04651',1,'bf::job::ThreadWorker::ThreadWorker(ThreadWorker &amp;&amp;rhs)=delete'],['../structbf_1_1job_1_1_thread_worker.html#a224f99b614c9ebd157d21d66c50dba54',1,'bf::job::ThreadWorker::ThreadWorker(const ThreadWorker &amp;rhs)=delete'],['../structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093',1,'bf::job::ThreadWorker::ThreadWorker()=default']]],
-  ['tickmainqueue_31',['tickMainQueue',['../namespacebf_1_1job.html#a59157200b86879ec59a8061c995c0b61',1,'bf::job::tickMainQueue(const bool run_gc=true) noexcept'],['../namespacebf_1_1job.html#a6ce824ff7144aadecc7ceb931cf8708a',1,'bf::job::tickMainQueue(ConditionFn &amp;&amp;condition, const bool run_gc=true) noexcept']]],
-  ['totaskptr_32',['toTaskPtr',['../structbf_1_1job_1_1_task.html#a4d80f6f5f9e2bc3066bbbc926914b592',1,'bf::job::Task']]]
+  ['tasksubmit_25',['taskSubmit',['../namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe',1,'bf::job']]],
+  ['tasksubmitandwait_26',['taskSubmitAndWait',['../namespacebf_1_1job.html#ab8c157c4fa8f519e8100b1632d1ec428',1,'bf::job']]],
+  ['tasksubmitqpushhelper_27',['taskSubmitQPushHelper',['../namespacebf_1_1job.html#a26d9d7e71f60828db101a6e8ba474741',1,'bf::job']]],
+  ['taskusepadding_28',['taskUsePadding',['../namespacebf_1_1job_1_1detail.html#af8a0d6ce60f727781cf7f12d70956922',1,'bf::job::detail']]],
+  ['thread_29',['thread',['../structbf_1_1job_1_1_thread_worker.html#a91bebdc403903d1f96968146aee0a26e',1,'bf::job::ThreadWorker']]],
+  ['threadstorage_30',['ThreadStorage',['../structbf_1_1job_1_1_thread_worker.html#a81e0e06c2f7fcaf46a92245abffe9372',1,'bf::job::ThreadWorker']]],
+  ['threadworker_31',['ThreadWorker',['../structbf_1_1job_1_1_thread_worker.html',1,'bf::job::ThreadWorker'],['../structbf_1_1job_1_1_thread_worker.html#afeca0a9214092ad5fd155be342f04651',1,'bf::job::ThreadWorker::ThreadWorker(ThreadWorker &amp;&amp;rhs)=delete'],['../structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093',1,'bf::job::ThreadWorker::ThreadWorker()=default'],['../structbf_1_1job_1_1_thread_worker.html#a224f99b614c9ebd157d21d66c50dba54',1,'bf::job::ThreadWorker::ThreadWorker(const ThreadWorker &amp;rhs)=delete']]],
+  ['tickmainqueue_32',['tickMainQueue',['../namespacebf_1_1job.html#a6ce824ff7144aadecc7ceb931cf8708a',1,'bf::job::tickMainQueue(ConditionFn &amp;&amp;condition, const bool run_gc=true) noexcept'],['../namespacebf_1_1job.html#a59157200b86879ec59a8061c995c0b61',1,'bf::job::tickMainQueue(const bool run_gc=true) noexcept']]],
+  ['totaskptr_33',['toTaskPtr',['../structbf_1_1job_1_1_task.html#a4d80f6f5f9e2bc3066bbbc926914b592',1,'bf::job::Task']]]
 ];

@@ -189,9 +189,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a26d9d7e71f60828db101a6e8ba474741"><td class="memTemplParams" colspan="2">template&lt;typename QueueType &gt; </td></tr>
 <tr class="memitem:a26d9d7e71f60828db101a6e8ba474741"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a26d9d7e71f60828db101a6e8ba474741">bf::job::taskSubmitQPushHelper</a> (Task *const self, const WorkerID worker_id, QueueType &amp;queue)</td></tr>
 <tr class="separator:a26d9d7e71f60828db101a6e8ba474741"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d8571034c2aff8664cbffc8de3e9d22"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">bf::job::taskSubmit</a> (Task *const self, QueueType queue=QueueType::NORMAL) noexcept</td></tr>
-<tr class="memdesc:a9d8571034c2aff8664cbffc8de3e9d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">More...</a><br /></td></tr>
-<tr class="separator:a9d8571034c2aff8664cbffc8de3e9d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac32a249803a51e77725f088581fefbe"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">bf::job::taskSubmit</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
+<tr class="memdesc:aac32a249803a51e77725f088581fefbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">More...</a><br /></td></tr>
+<tr class="separator:aac32a249803a51e77725f088581fefbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a16013b6b11e1be5fc9f92ddc8ebe682b">bf::job::taskIncRef</a> (Task *const task)</td></tr>
 <tr class="memdesc:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the task's ref count preventing it from being garbage collected.  <a href="namespacebf_1_1job.html#a16013b6b11e1be5fc9f92ddc8ebe682b">More...</a><br /></td></tr>
 <tr class="separator:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,6 +207,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">bf::job::waitOnTask</a> (const Task *const task) noexcept</td></tr>
 <tr class="memdesc:a6af1eef961e26e6cbdf84dd01d86a619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified <code>task</code> is done executing. This function will block but do work while being blocked so there is no wasted time.  <a href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">More...</a><br /></td></tr>
 <tr class="separator:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c157c4fa8f519e8100b1632d1ec428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ab8c157c4fa8f519e8100b1632d1ec428">bf::job::taskSubmitAndWait</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
+<tr class="memdesc:ab8c157c4fa8f519e8100b1632d1ec428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as calling <code>taskSubmit</code> followed by <code>waitOnTask</code>.  <a href="namespacebf_1_1job.html#ab8c157c4fa8f519e8100b1632d1ec428">More...</a><br /></td></tr>
+<tr class="separator:ab8c157c4fa8f519e8100b1632d1ec428"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -301,7 +304,7 @@ storage</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="bf__job__system_8cpp.html">bf_job_system.cpp</a></li>
-    <li class="footer">Generated on Thu Dec 22 2022 11:16:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Mar 7 2023 02:02:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

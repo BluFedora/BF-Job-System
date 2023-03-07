@@ -177,9 +177,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a59f5325afedfb4a33100a2d87ad45ed9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a59f5325afedfb4a33100a2d87ad45ed9">bf::job::taskAddContinuation</a> (Task *const self, Task *const continuation) noexcept</td></tr>
 <tr class="memdesc:a59f5325afedfb4a33100a2d87ad45ed9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 'continuation' is a task that will be added to a queue after the 'self' <a class="el" href="structbf_1_1job_1_1_task.html" title="A single &#39;job&#39; to be run by this system.">Task</a> has finished running.  <a href="namespacebf_1_1job.html#a59f5325afedfb4a33100a2d87ad45ed9">More...</a><br /></td></tr>
 <tr class="separator:a59f5325afedfb4a33100a2d87ad45ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d8571034c2aff8664cbffc8de3e9d22"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">bf::job::taskSubmit</a> (Task *const self, QueueType queue=QueueType::NORMAL) noexcept</td></tr>
-<tr class="memdesc:a9d8571034c2aff8664cbffc8de3e9d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespacebf_1_1job.html#a9d8571034c2aff8664cbffc8de3e9d22">More...</a><br /></td></tr>
-<tr class="separator:a9d8571034c2aff8664cbffc8de3e9d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac32a249803a51e77725f088581fefbe"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">bf::job::taskSubmit</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
+<tr class="memdesc:aac32a249803a51e77725f088581fefbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">More...</a><br /></td></tr>
+<tr class="separator:aac32a249803a51e77725f088581fefbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb85604e4d907f4190c55d798c628982"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:abb85604e4d907f4190c55d798c628982"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#abb85604e4d907f4190c55d798c628982">bf::job::taskDataAs</a> (Task *const task) noexcept</td></tr>
 <tr class="memdesc:abb85604e4d907f4190c55d798c628982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the user-data pointer as the T you specified. No safety is guaranteed, this is just a dumb cast.  <a href="namespacebf_1_1job.html#abb85604e4d907f4190c55d798c628982">More...</a><br /></td></tr>
@@ -218,6 +218,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">bf::job::waitOnTask</a> (const Task *const task) noexcept</td></tr>
 <tr class="memdesc:a6af1eef961e26e6cbdf84dd01d86a619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified <code>task</code> is done executing. This function will block but do work while being blocked so there is no wasted time.  <a href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">More...</a><br /></td></tr>
 <tr class="separator:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c157c4fa8f519e8100b1632d1ec428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ab8c157c4fa8f519e8100b1632d1ec428">bf::job::taskSubmitAndWait</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
+<tr class="memdesc:ab8c157c4fa8f519e8100b1632d1ec428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as calling <code>taskSubmit</code> followed by <code>waitOnTask</code>.  <a href="namespacebf_1_1job.html#ab8c157c4fa8f519e8100b1632d1ec428">More...</a><br /></td></tr>
+<tr class="separator:ab8c157c4fa8f519e8100b1632d1ec428"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >API for a multi-threading job system. </p>
@@ -294,7 +297,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__api_8hpp.html">bf_job_api.hpp</a></li>
-    <li class="footer">Generated on Thu Dec 22 2022 11:16:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Mar 7 2023 02:02:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

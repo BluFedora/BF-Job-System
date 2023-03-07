@@ -389,7 +389,7 @@ Public Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>{ <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span>std::thread*<span class="keyword">&gt;</span>(&amp;<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a91bebdc403903d1f96968146aee0a26e">thread</a>); }</div>
 <div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_a91bebdc403903d1f96968146aee0a26e"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#a91bebdc403903d1f96968146aee0a26e">bf::job::ThreadWorker::thread</a></div><div class="ttdeci">ThreadStorage thread</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00263">bf_job_system.cpp:263</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00940">randomWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00777">start()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00933">stop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00945">randomWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00782">start()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00938">stop()</a>.</p>
 
 </div>
 </div>
@@ -419,78 +419,78 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00777">777</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>    {</div>
-<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span> is_main_thread = worker_index == <a class="code hl_variable" href="namespacebf_1_1job.html#a6525dfa22a68b1011e5ef1e86be52b75">k_MainThreadID</a>;</div>
-<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span> </div>
-<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>      pcg32_srandom_r(&amp;<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af">rng_state</a>, std::uint64_t(worker_index) + rng_seed, std::uint64_t(worker_index) * 2u + 1u + rng_seed);</div>
-<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span> </div>
-<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>      <span class="keywordflow">if</span> (is_main_thread)</div>
-<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>      {</div>
-<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>        <a class="code hl_function" href="namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00">initThreadWorkerID</a>();</div>
-<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>      }</div>
-<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>      {</div>
-<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>        <span class="keyword">new</span> (<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>()) std::thread([]() {</div>
-<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>          <a class="code hl_function" href="namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00">initThreadWorkerID</a>();</div>
-<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span> </div>
-<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>      thread_id = <a class="code hl_function" href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">currentWorker</a>();</div>
-<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>          <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093">ThreadWorker</a>* <span class="keyword">const</span> <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>    = s_JobCtx.workers() + thread_id;</div>
-<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span> </div>
-<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span><span class="preprocessor">#if IS_WINDOWS</span></div>
-<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span>          <span class="keyword">const</span> HANDLE handle = <span class="keyword">static_cast&lt;</span>HANDLE<span class="keyword">&gt;</span>(<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>-&gt;worker()-&gt;native_handle());</div>
-<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span> </div>
-<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>          <span class="comment">// Put each thread on to dedicated core</span></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00782">782</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>    {</div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span> is_main_thread = worker_index == <a class="code hl_variable" href="namespacebf_1_1job.html#a6525dfa22a68b1011e5ef1e86be52b75">k_MainThreadID</a>;</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span> </div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>      pcg32_srandom_r(&amp;<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af">rng_state</a>, std::uint64_t(worker_index) + rng_seed, std::uint64_t(worker_index) * 2u + 1u + rng_seed);</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span> </div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>      <span class="keywordflow">if</span> (is_main_thread)</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>      {</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>        <a class="code hl_function" href="namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00">initThreadWorkerID</a>();</div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>      }</div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>      {</div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>        <span class="keyword">new</span> (<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>()) std::thread([]() {</div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>          <a class="code hl_function" href="namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00">initThreadWorkerID</a>();</div>
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span> </div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>      thread_id = <a class="code hl_function" href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">currentWorker</a>();</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>          <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093">ThreadWorker</a>* <span class="keyword">const</span> <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>    = s_JobCtx.workers() + thread_id;</div>
 <div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span> </div>
-<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>          <span class="keyword">const</span> DWORD_PTR affinity_mask   = 1ull &lt;&lt; thread_id;</div>
-<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>          <span class="keyword">const</span> DWORD_PTR affinity_result = SetThreadAffinityMask(handle, affinity_mask);</div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span><span class="preprocessor">#if IS_WINDOWS</span></div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>          <span class="keyword">const</span> HANDLE handle = <span class="keyword">static_cast&lt;</span>HANDLE<span class="keyword">&gt;</span>(<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>-&gt;worker()-&gt;native_handle());</div>
 <div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span> </div>
-<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>          <span class="keywordflow">if</span> (affinity_result &gt; 0)</div>
-<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>          {</div>
-<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>            <span class="comment">// Increase thread priority</span></div>
-<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span> </div>
-<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>            <span class="comment">// const BOOL priority_result = SetThreadPriority(handle, THREAD_PRIORITY_HIGHEST);</span></div>
-<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>            <span class="comment">// JobAssert(priority_result != 0, &quot;Failed to set thread priority.&quot;);</span></div>
-<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span> </div>
-<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>            <span class="comment">// Name the thread</span></div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>          <span class="comment">// Put each thread on to dedicated core</span></div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span> </div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>          <span class="keyword">const</span> DWORD_PTR affinity_mask   = 1ull &lt;&lt; thread_id;</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>          <span class="keyword">const</span> DWORD_PTR affinity_result = SetThreadAffinityMask(handle, affinity_mask);</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span> </div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>          <span class="keywordflow">if</span> (affinity_result &gt; 0)</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>          {</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>            <span class="comment">// Increase thread priority</span></div>
 <div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span> </div>
-<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>            <span class="keywordtype">char</span>      thread_name[32]                    = u8<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>            <span class="keywordtype">wchar_t</span>   thread_name_w[<span class="keyword">sizeof</span>(thread_name)] = L<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> c_size                             = std::snprintf(thread_name, <span class="keyword">sizeof</span>(thread_name), <span class="stringliteral">&quot;bf::JobSystem_%i&quot;</span>, <span class="keywordtype">int</span>(thread_id));</div>
-<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span> </div>
-<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>            std::mbstowcs(thread_name_w, thread_name, c_size);</div>
-<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span> </div>
-<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>            <span class="keyword">const</span> HRESULT hr = SetThreadDescription(handle, thread_name_w);</div>
-<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>            <a class="code hl_define" href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(SUCCEEDED(hr), <span class="stringliteral">&quot;Failed to set thread name.&quot;</span>);</div>
-<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>            (void)hr;</div>
-<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>          }</div>
-<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span> </div>
-<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>          <span class="keywordflow">while</span> (!s_IsFullyInitialized)</div>
-<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>          {</div>
-<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>            <span class="comment">/* Busy Loop Wait so there is no checking of this condition in the loop itself */</span></div>
-<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>          }</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>            <span class="comment">// const BOOL priority_result = SetThreadPriority(handle, THREAD_PRIORITY_HIGHEST);</span></div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>            <span class="comment">// JobAssert(priority_result != 0, &quot;Failed to set thread priority.&quot;);</span></div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span> </div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>            <span class="comment">// Name the thread</span></div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span> </div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>            <span class="keywordtype">char</span>      thread_name[32]                    = u8<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>            <span class="keywordtype">wchar_t</span>   thread_name_w[<span class="keyword">sizeof</span>(thread_name)] = L<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> c_size                             = std::snprintf(thread_name, <span class="keyword">sizeof</span>(thread_name), <span class="stringliteral">&quot;bf::JobSystem_%i&quot;</span>, <span class="keywordtype">int</span>(thread_id));</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span> </div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>            std::mbstowcs(thread_name_w, thread_name, c_size);</div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span> </div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>            <span class="keyword">const</span> HRESULT hr = SetThreadDescription(handle, thread_name_w);</div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>            <a class="code hl_define" href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(SUCCEEDED(hr), <span class="stringliteral">&quot;Failed to set thread name.&quot;</span>);</div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>            (void)hr;</div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>          }</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span> </div>
-<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>          <span class="keywordflow">while</span> (s_JobCtx.is_running)</div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>          <span class="keywordflow">while</span> (!s_IsFullyInitialized)</div>
 <div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>          {</div>
-<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>            <span class="keywordflow">if</span> (!<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>-&gt;run(thread_id))</div>
-<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>            {</div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>              s_JobCtx.sleep(<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>);</div>
-<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>            }</div>
-<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>          }</div>
-<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>        });</div>
-<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>      }</div>
-<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>    }</div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>            <span class="comment">/* Busy Loop Wait so there is no checking of this condition in the loop itself */</span></div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>          }</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>          <span class="keywordflow">while</span> (s_JobCtx.is_running)</div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>          {</div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>            <span class="keywordflow">if</span> (!<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>-&gt;run(thread_id))</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>            {</div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>              s_JobCtx.sleep(<a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>);</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span>            }</div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>          }</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>        });</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>      }</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>    }</div>
 <div class="ttc" id="abf__job__system_8cpp_html_a3c45a50fae3515f1fa7aa7def616e68f"><div class="ttname"><a href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a></div><div class="ttdeci">#define JobAssert(expr, msg)</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00082">bf_job_system.cpp:82</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a2b7bca473a7040c5234ebba1fe6cb031"><div class="ttname"><a href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">bf::job::currentWorker</a></div><div class="ttdeci">WorkerID currentWorker() noexcept</div><div class="ttdoc">The current id of the current thread. This function can be called by any thread concurrently.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00492">bf_job_system.cpp:492</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a578698ca919202a8ec0473dd4f6c5b81"><div class="ttname"><a href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">bf::job::WorkerID</a></div><div class="ttdeci">std::uint16_t WorkerID</div><div class="ttdoc">The id type of each worker thread.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__api_8hpp_source.html#l00052">bf_job_api.hpp:52</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a6525dfa22a68b1011e5ef1e86be52b75"><div class="ttname"><a href="namespacebf_1_1job.html#a6525dfa22a68b1011e5ef1e86be52b75">bf::job::k_MainThreadID</a></div><div class="ttdeci">static constexpr WorkerID k_MainThreadID</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00099">bf_job_system.cpp:99</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a8fb4aaef1245850e67605cbd69222b00"><div class="ttname"><a href="namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00">bf::job::initThreadWorkerID</a></div><div class="ttdeci">static void initThreadWorkerID() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00990">bf_job_system.cpp:990</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a8fb4aaef1245850e67605cbd69222b00"><div class="ttname"><a href="namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00">bf::job::initThreadWorkerID</a></div><div class="ttdeci">static void initThreadWorkerID() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00995">bf_job_system.cpp:995</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_a40cd98243024d6889559a7291b853779"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">bf::job::ThreadWorker::worker</a></div><div class="ttdeci">std::thread * worker()</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00275">bf_job_system.cpp:275</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_a676f8a7f17dca420d83fb80f0e0314af"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af">bf::job::ThreadWorker::rng_state</a></div><div class="ttdeci">pcg_state_setseq_64 rng_state</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00265">bf_job_system.cpp:265</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_acab25600969e545c9145d19724a7b093"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093">bf::job::ThreadWorker::ThreadWorker</a></div><div class="ttdeci">ThreadWorker()=default</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00492">bf::job::currentWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00990">bf::job::initThreadWorkerID()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00082">JobAssert</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00099">bf::job::k_MainThreadID</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00265">rng_state</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00275">worker()</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00492">bf::job::currentWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00995">bf::job::initThreadWorkerID()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00082">JobAssert</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00099">bf::job::k_MainThreadID</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00265">rng_state</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00275">worker()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00416">bf::job::initialize()</a>.</p>
 
@@ -511,57 +511,57 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00840">840</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>    {</div>
-<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a>)</div>
-<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>      {</div>
-<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>        <span class="keyword">const</span> <span class="keyword">auto</span> allocated_tasks_bgn = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a4e2279557d40bb9f99798edaa4614245">allocated_tasks</a>.begin();</div>
-<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
-<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="preprocessor">#if 0</span></div>
-<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>        <span class="keyword">const</span> <span class="keyword">auto</span> allocated_tasks_end = allocated_tasks_bgn + <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a>;</div>
-<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>        </div>
-<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>        <span class="keyword">const</span> <span class="keyword">auto</span> done_end = std::partition(</div>
-<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>         allocated_tasks_bgn,</div>
-<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>         allocated_tasks_end,</div>
-<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>         [<span class="keyword">this</span>](<span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a> task_hdl) {</div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>           <span class="keyword">const</span> <span class="keywordtype">bool</span> task_is_finished = finished_tasks[task_hdl];</div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span> </div>
-<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>           <span class="keywordflow">if</span> (task_is_finished)</div>
-<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>           {</div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>             <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#aaa84e02def1507234a96cd01575d661c">deallocate</a>(<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#a7e80c5f23b8f446153a4b1188e8b528b">fromIndex</a>(task_hdl));</div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>           }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00845">845</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>    {</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a>)</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>      {</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>        <span class="keyword">const</span> <span class="keyword">auto</span> allocated_tasks_bgn = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a4e2279557d40bb9f99798edaa4614245">allocated_tasks</a>.begin();</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span> </div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span><span class="preprocessor">#if 0</span></div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>        <span class="keyword">const</span> <span class="keyword">auto</span> allocated_tasks_end = allocated_tasks_bgn + <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a>;</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>        </div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>        <span class="keyword">const</span> <span class="keyword">auto</span> done_end = std::partition(</div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>         allocated_tasks_bgn,</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>         allocated_tasks_end,</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>         [<span class="keyword">this</span>](<span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a> task_hdl) {</div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>           <span class="keyword">const</span> <span class="keywordtype">bool</span> task_is_finished = finished_tasks[task_hdl];</div>
 <div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span> </div>
-<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>           <span class="keywordflow">return</span> !task_is_finished;</div>
-<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>         });</div>
-<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span> </div>
-<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>        <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a> = <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a>(std::distance(allocated_tasks_bgn, done_end));</div>
-<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2">TaskHandleType</a> num_tasks = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a>;</div>
-<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>        <a class="code hl_typedef" href="namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2">TaskHandleType</a>       read_idx  = 0u;</div>
-<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>        <a class="code hl_typedef" href="namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2">TaskHandleType</a>       write_idx = 0u;</div>
-<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span> </div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>        <span class="keywordflow">while</span> (read_idx != num_tasks)</div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>        {</div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a> task_hdl         = allocated_tasks_bgn[read_idx];</div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>          Task* <span class="keyword">const</span>      task_ptr         = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#a7e80c5f23b8f446153a4b1188e8b528b">fromIndex</a>(task_hdl);</div>
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>          <span class="keyword">const</span> <span class="keywordtype">bool</span>       task_is_finished = task_ptr-&gt;<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">ref_count</a>.load(std::memory_order_relaxed) == 0u;</div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span> </div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>          <span class="keywordflow">if</span> (task_is_finished)</div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>          {</div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>            <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#aaa84e02def1507234a96cd01575d661c">deallocate</a>(task_ptr);</div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>          }</div>
-<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>          <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>          {</div>
-<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>            allocated_tasks_bgn[write_idx++] = task_hdl;</div>
-<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>          }</div>
-<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span> </div>
-<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>          ++read_idx;</div>
-<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>        }</div>
-<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span> </div>
-<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>        <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a> = write_idx;</div>
-<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>      }</div>
-<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>    }</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>           <span class="keywordflow">if</span> (task_is_finished)</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>           {</div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span>             <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#aaa84e02def1507234a96cd01575d661c">deallocate</a>(<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#a7e80c5f23b8f446153a4b1188e8b528b">fromIndex</a>(task_hdl));</div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>           }</div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span> </div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>           <span class="keywordflow">return</span> !task_is_finished;</div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>         });</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span> </div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>        <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a> = <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a>(std::distance(allocated_tasks_bgn, done_end));</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2">TaskHandleType</a> num_tasks = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a>;</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>        <a class="code hl_typedef" href="namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2">TaskHandleType</a>       read_idx  = 0u;</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>        <a class="code hl_typedef" href="namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2">TaskHandleType</a>       write_idx = 0u;</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span> </div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>        <span class="keywordflow">while</span> (read_idx != num_tasks)</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>        {</div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">TaskHandle</a> task_hdl         = allocated_tasks_bgn[read_idx];</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>          Task* <span class="keyword">const</span>      task_ptr         = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#a7e80c5f23b8f446153a4b1188e8b528b">fromIndex</a>(task_hdl);</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>          <span class="keyword">const</span> <span class="keywordtype">bool</span>       task_is_finished = task_ptr-&gt;<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">ref_count</a>.load(std::memory_order_relaxed) == 0u;</div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>          <span class="keywordflow">if</span> (task_is_finished)</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>          {</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>            <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a61719c66fbcdcb5065fa67136b866653">task_memory</a>.<a class="code hl_function" href="structbf_1_1job_1_1_task_pool.html#aaa84e02def1507234a96cd01575d661c">deallocate</a>(task_ptr);</div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>          }</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>          <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>          {</div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>            allocated_tasks_bgn[write_idx++] = task_hdl;</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>          }</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span> </div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>          ++read_idx;</div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>        }</div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span> </div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>        <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b">num_allocated_tasks</a> = write_idx;</div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>      }</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>    }</div>
 <div class="ttc" id="anamespacebf_1_1job_html_a8950eddf68eeb5563079a6239f70652e"><div class="ttname"><a href="namespacebf_1_1job.html#a8950eddf68eeb5563079a6239f70652e">bf::job::TaskHandle</a></div><div class="ttdeci">std::uint16_t TaskHandle</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00108">bf_job_system.cpp:108</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a967b829249d237baa271bd67d75febe2"><div class="ttname"><a href="namespacebf_1_1job.html#a967b829249d237baa271bd67d75febe2">bf::job::TaskHandleType</a></div><div class="ttdeci">TaskHandle TaskHandleType</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00109">bf_job_system.cpp:109</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_task_html_a9e85804abff3ad94b57b8ea7aac6d900"><div class="ttname"><a href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">bf::job::Task::ref_count</a></div><div class="ttdeci">AtomicInt16 ref_count</div><div class="ttdoc">Keeps the task from being garbage collected.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00166">bf_job_system.cpp:166</a></div></div>
@@ -593,53 +593,53 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00892">892</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>    {</div>
-<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span> is_main_thread = worker_id == <a class="code hl_variable" href="namespacebf_1_1job.html#a6525dfa22a68b1011e5ef1e86be52b75">k_MainThreadID</a>;</div>
-<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span> </div>
-<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>      TaskPtr task_ptr = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a28426ffbdf2fccd00d34299340269423">hi_queue</a>.<a class="code hl_function" href="classbf_1_1_job_queue_a.html#a131a5c460397335a5886efdff95eeb47">pop</a>();</div>
-<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span> </div>
-<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>      <span class="keywordflow">if</span> (task_ptr.isNull())</div>
-<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>      {</div>
-<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>        task_ptr = is_main_thread ? s_JobCtx.main_queue.pop() : <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#aa29179328dd6b4b1bd6ff810aa37d023">bg_queue</a>.<a class="code hl_function" href="classbf_1_1_job_queue_a.html#a131a5c460397335a5886efdff95eeb47">pop</a>();</div>
-<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>      }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00897">897</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>    {</div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span> is_main_thread = worker_id == <a class="code hl_variable" href="namespacebf_1_1job.html#a6525dfa22a68b1011e5ef1e86be52b75">k_MainThreadID</a>;</div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span> </div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>      TaskPtr task_ptr = <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a28426ffbdf2fccd00d34299340269423">hi_queue</a>.<a class="code hl_function" href="classbf_1_1_job_queue_a.html#a131a5c460397335a5886efdff95eeb47">pop</a>();</div>
 <div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span> </div>
 <div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>      <span class="keywordflow">if</span> (task_ptr.isNull())</div>
 <div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>      {</div>
-<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> other_worker_id = <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a4930a517dbcf3ef84fb0bdda8a194afb">randomWorker</a>();</div>
-<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span> </div>
-<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span>        <span class="keywordflow">if</span> (other_worker_id != worker_id)</div>
-<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>        {</div>
-<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>          <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093">ThreadWorker</a>* <span class="keyword">const</span> other_worker = s_JobCtx.workers() + other_worker_id;</div>
-<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span> </div>
-<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>          task_ptr = other_worker-&gt;hi_queue.steal();</div>
-<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span> </div>
-<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>          <span class="keywordflow">if</span> (task_ptr.isNull() &amp;&amp; !is_main_thread)</div>
-<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>          {</div>
-<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>            task_ptr = other_worker-&gt;bg_queue.steal();</div>
-<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>          }</div>
-<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span>        }</div>
-<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span>      }</div>
-<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span> </div>
-<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>      <span class="keywordflow">if</span> (task_ptr.isNull())</div>
-<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>      {</div>
-<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>        task_ptr = is_main_thread ? s_JobCtx.main_queue.pop() : <a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#aa29179328dd6b4b1bd6ff810aa37d023">bg_queue</a>.<a class="code hl_function" href="classbf_1_1_job_queue_a.html#a131a5c460397335a5886efdff95eeb47">pop</a>();</div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>      }</div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span> </div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>      <span class="keywordflow">if</span> (task_ptr.isNull())</div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>      {</div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> other_worker_id = <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a4930a517dbcf3ef84fb0bdda8a194afb">randomWorker</a>();</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span> </div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>        <span class="keywordflow">if</span> (other_worker_id != worker_id)</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>        {</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>          <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093">ThreadWorker</a>* <span class="keyword">const</span> other_worker = s_JobCtx.workers() + other_worker_id;</div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span> </div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>          task_ptr = other_worker-&gt;hi_queue.steal();</div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span> </div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span>          <span class="keywordflow">if</span> (task_ptr.isNull() &amp;&amp; !is_main_thread)</div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span>          {</div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>            task_ptr = other_worker-&gt;bg_queue.steal();</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>          }</div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>        }</div>
 <div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>      }</div>
 <div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span> </div>
-<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>      s_JobCtx.num_available_jobs.fetch_sub(1);</div>
-<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span> </div>
-<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>      Task* <span class="keyword">const</span> task = <a class="code hl_function" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(task_ptr);</div>
-<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>      task-&gt;run();</div>
+<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>      <span class="keywordflow">if</span> (task_ptr.isNull())</div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span>      {</div>
+<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>      }</div>
 <div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span> </div>
-<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>    }</div>
+<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>      s_JobCtx.num_available_jobs.fetch_sub(1);</div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span> </div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>      Task* <span class="keyword">const</span> task = <a class="code hl_function" href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">taskPtrToPointer</a>(task_ptr);</div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>      task-&gt;run();</div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span> </div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span>    }</div>
 <div class="ttc" id="aclassbf_1_1_job_queue_a_html_a131a5c460397335a5886efdff95eeb47"><div class="ttname"><a href="classbf_1_1_job_queue_a.html#a131a5c460397335a5886efdff95eeb47">bf::JobQueueA::pop</a></div><div class="ttdeci">T pop()</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__queue_8hpp_source.html#l00218">bf_job_queue.hpp:218</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a3d19ffe37dfe4b108e49920545957912"><div class="ttname"><a href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">bf::job::taskPtrToPointer</a></div><div class="ttdeci">static Task * taskPtrToPointer(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00975">bf_job_system.cpp:975</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a3d19ffe37dfe4b108e49920545957912"><div class="ttname"><a href="namespacebf_1_1job.html#a3d19ffe37dfe4b108e49920545957912">bf::job::taskPtrToPointer</a></div><div class="ttdeci">static Task * taskPtrToPointer(TaskPtr ptr) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00980">bf_job_system.cpp:980</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_a28426ffbdf2fccd00d34299340269423"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#a28426ffbdf2fccd00d34299340269423">bf::job::ThreadWorker::hi_queue</a></div><div class="ttdeci">SharedQueue hi_queue</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00260">bf_job_system.cpp:260</a></div></div>
-<div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_a4930a517dbcf3ef84fb0bdda8a194afb"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#a4930a517dbcf3ef84fb0bdda8a194afb">bf::job::ThreadWorker::randomWorker</a></div><div class="ttdeci">WorkerID randomWorker() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00940">bf_job_system.cpp:940</a></div></div>
+<div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_a4930a517dbcf3ef84fb0bdda8a194afb"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#a4930a517dbcf3ef84fb0bdda8a194afb">bf::job::ThreadWorker::randomWorker</a></div><div class="ttdeci">WorkerID randomWorker() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00945">bf_job_system.cpp:945</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_thread_worker_html_aa29179328dd6b4b1bd6ff810aa37d023"><div class="ttname"><a href="structbf_1_1job_1_1_thread_worker.html#aa29179328dd6b4b1bd6ff810aa37d023">bf::job::ThreadWorker::bg_queue</a></div><div class="ttdeci">WorkerQueue bg_queue</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00261">bf_job_system.cpp:261</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00261">bg_queue</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00260">hi_queue</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00136">bf::job::TaskPtr::isNull()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00099">bf::job::k_MainThreadID</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00218">bf::JobQueueA&lt; kSize, T &gt;::pop()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00940">randomWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00177">bf::job::Task::run()</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00251">bf::JobQueueA&lt; kSize, T &gt;::steal()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00975">bf::job::taskPtrToPointer()</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00261">bg_queue</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00260">hi_queue</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00136">bf::job::TaskPtr::isNull()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00099">bf::job::k_MainThreadID</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00218">bf::JobQueueA&lt; kSize, T &gt;::pop()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00945">randomWorker()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00177">bf::job::Task::run()</a>, <a class="el" href="bf__job__queue_8hpp_source.html#l00251">bf::JobQueueA&lt; kSize, T &gt;::steal()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00980">bf::job::taskPtrToPointer()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00343">bf::job::detail::mainQueueRunTask()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00583">bf::job::taskSubmitQPushHelper()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00678">bf::job::waitOnTask()</a>.</p>
 
@@ -660,12 +660,12 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00933">933</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>    {</div>
-<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>      <span class="comment">// Join throws an exception if the thread is not joinable. this should always be true.</span></div>
-<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span>      <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>()-&gt;join();</div>
-<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>      <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>()-&gt;~thread();</div>
-<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00938">938</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span>    {</div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span>      <span class="comment">// Join throws an exception if the thread is not joinable. this should always be true.</span></div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>      <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>()-&gt;join();</div>
+<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span>      <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>()-&gt;~thread();</div>
+<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l00275">worker()</a>.</p>
 
@@ -696,43 +696,43 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00940">940</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>    {</div>
-<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span>      <span class="keyword">const</span> std::uint32_t num_workers = s_JobCtx.num_workers;</div>
-<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span> </div>
-<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span>      std::uint32_t weights[<a class="code hl_variable" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">k_MaxThreadsSupported</a>];</div>
-<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span>      std::uint32_t weight_sum = 0u;</div>
-<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span> </div>
-<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>      <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> i = 0u; i &lt; num_workers; ++i)</div>
-<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>      {</div>
-<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>        <span class="keyword">const</span> <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093">ThreadWorker</a>&amp; <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a> = s_JobCtx.workers()[i];</div>
-<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span> </div>
-<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span>        weights[i] = <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>.num_allocated_tasks;</div>
-<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>        weight_sum += weights[i];</div>
-<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>      }</div>
-<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span> </div>
-<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>      <span class="keywordflow">if</span> (weight_sum != 0)</div>
-<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>      {</div>
-<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>        std::uint32_t random_number = pcg32_boundedrand_r(&amp;<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af">rng_state</a>, weight_sum);</div>
-<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span> </div>
-<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> i = 0u; i &lt; num_workers; ++i)</div>
-<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>        {</div>
-<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span>          <span class="keywordflow">if</span> (random_number &lt; weights[i])</div>
-<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>          {</div>
-<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span>            <span class="keywordflow">return</span> i;</div>
-<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span>          }</div>
-<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span> </div>
-<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>          random_number -= weights[i];</div>
-<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>        }</div>
-<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>      }</div>
-<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span> </div>
-<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span>      <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>(pcg32_boundedrand_r(&amp;<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af">rng_state</a>, num_workers));</div>
-<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00945">945</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>    {</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>      <span class="keyword">const</span> std::uint32_t num_workers = s_JobCtx.num_workers;</div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span> </div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>      std::uint32_t weights[<a class="code hl_variable" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">k_MaxThreadsSupported</a>];</div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>      std::uint32_t weight_sum = 0u;</div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span> </div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>      <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> i = 0u; i &lt; num_workers; ++i)</div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>      {</div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>        <span class="keyword">const</span> <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#acab25600969e545c9145d19724a7b093">ThreadWorker</a>&amp; <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a> = s_JobCtx.workers()[i];</div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span> </div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>        weights[i] = <a class="code hl_function" href="structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779">worker</a>.num_allocated_tasks;</div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>        weight_sum += weights[i];</div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span>      }</div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span> </div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>      <span class="keywordflow">if</span> (weight_sum != 0)</div>
+<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span>      {</div>
+<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>        std::uint32_t random_number = pcg32_boundedrand_r(&amp;<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af">rng_state</a>, weight_sum);</div>
+<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span> </div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a> i = 0u; i &lt; num_workers; ++i)</div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span>        {</div>
+<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>          <span class="keywordflow">if</span> (random_number &lt; weights[i])</div>
+<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>          {</div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>            <span class="keywordflow">return</span> i;</div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span>          }</div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span> </div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span>          random_number -= weights[i];</div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>        }</div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span>      }</div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span> </div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span>      <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">WorkerID</a>(pcg32_boundedrand_r(&amp;<a class="code hl_variable" href="structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af">rng_state</a>, num_workers));</div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span>    }</div>
 <div class="ttc" id="anamespacebf_1_1job_html_a9f32cd8117952ffa2c8772faa3d9acd7"><div class="ttname"><a href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">bf::job::k_MaxThreadsSupported</a></div><div class="ttdeci">static constexpr std::size_t k_MaxThreadsSupported</div><div class="ttdoc">The maximum number of threads that can be created, this is so that the library can be non dynamically...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__config_8hpp_source.html#l00035">bf_job_config.hpp:35</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="bf__job__config_8hpp_source.html#l00035">bf::job::k_MaxThreadsSupported</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00265">rng_state</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00275">worker()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00892">run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00897">run()</a>.</p>
 
 </div>
 </div>
@@ -751,7 +751,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00260">260</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00892">run()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00596">bf::job::taskSubmit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00897">run()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00596">bf::job::taskSubmit()</a>.</p>
 
 </div>
 </div>
@@ -769,7 +769,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00261">261</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00892">run()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00596">bf::job::taskSubmit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00897">run()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00596">bf::job::taskSubmit()</a>.</p>
 
 </div>
 </div>
@@ -787,7 +787,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00262">262</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00840">garbageCollectAllocatedTasks()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00975">bf::job::taskPtrToPointer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00845">garbageCollectAllocatedTasks()</a>, <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00980">bf::job::taskPtrToPointer()</a>.</p>
 
 </div>
 </div>
@@ -821,7 +821,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00264">264</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00840">garbageCollectAllocatedTasks()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00845">garbageCollectAllocatedTasks()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>.</p>
 
 </div>
 </div>
@@ -839,7 +839,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00265">265</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00940">randomWorker()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00777">start()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00945">randomWorker()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00782">start()</a>.</p>
 
 </div>
 </div>
@@ -857,7 +857,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00266">266</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00840">garbageCollectAllocatedTasks()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bf__job__system_8cpp_source.html#l00845">garbageCollectAllocatedTasks()</a>, and <a class="el" href="bf__job__system_8cpp_source.html#l00525">bf::job::taskMake()</a>.</p>
 
 </div>
 </div>
@@ -870,7 +870,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li><li class="navelem"><a class="el" href="structbf_1_1job_1_1_thread_worker.html">ThreadWorker</a></li>
-    <li class="footer">Generated on Thu Dec 22 2022 11:16:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Mar 7 2023 02:02:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
