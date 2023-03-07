@@ -217,7 +217,7 @@ namespace bf
      * @return Task*
      *   Returns the task passed in.
      */
-    Task* taskSubmit(Task* const self, QueueType queue = QueueType::NORMAL) noexcept;
+    Task* taskSubmit(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
 
     /*!
      * @brief
@@ -403,6 +403,17 @@ namespace bf
      *   The task to wait to finish executing.
      */
     void waitOnTask(const Task* const task) noexcept;
+
+    /*!
+     * @brief Same as calling `taskSubmit` followed by `waitOnTask`.
+     *
+     * @param self
+     *   The task to submit and wait to finish executing.
+     *
+     * @param queue
+     *   The queue you want the task to run on.
+     */
+    void taskSubmitAndWait(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
 
     // Template Function Implementation
 

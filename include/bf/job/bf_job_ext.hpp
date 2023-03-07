@@ -58,6 +58,11 @@ namespace bf
 
     struct CountSplitter
     {
+      static CountSplitter EvenSplit(const std::size_t total_num_items)
+      {
+        return CountSplitter{total_num_items / numWorkers()};
+      }
+
       std::size_t max_count;
 
       bool operator()(const std::size_t count) const { return count > max_count; }

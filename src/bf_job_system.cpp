@@ -692,6 +692,11 @@ namespace bf
       }
     }
 
+    void taskSubmitAndWait(Task* const self, const QueueType queue) noexcept
+    {
+      waitOnTask(taskSubmit(self, queue));
+    }
+
     // Member Fn Definitions
 
     void JobSystem::sleep(const ThreadWorker* const worker)
