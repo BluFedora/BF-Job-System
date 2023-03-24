@@ -13,6 +13,21 @@
 
 static constexpr int k_NumJobsForTestingOverhead = 65000;
 
+std::unique_ptr<int[]> AllocateIntArray(const std::size_t num_elements)
+{
+  return std::unique_ptr<int[]>(new int[num_elements]());
+}
+
+template<class _Rep, class _Period>
+void ThreadSleep(const std::chrono::duration<_Rep, _Period>& time)
+{
+#if defined(__EMSCRIPTEN_PTHREADS__) || !defined(__EMSCRIPTEN__)
+  std::this_thread::sleep_for(std::chrono::milliseconds(12));
+#else
+  // std::this_thread::sleep_for(time);
+#endif
+}
+
 // Tests the time it takes to creating empty jobs serially.
 TEST(JobSystemTests, JobCreationOverheadSerial)
 {
@@ -42,7 +57,7 @@ TEST(JobSystemTests, BasicParallelForRange)
 {
   static constexpr int         k_DataSize   = 1000000;
   static constexpr int         k_DataSplit  = 2500;
-  const std::unique_ptr<int[]> example_data = std::make_unique<int[]>(k_DataSize);
+  const std::unique_ptr<int[]> example_data = AllocateIntArray(k_DataSize);
 
   std::fill_n(example_data.get(), k_DataSize, 0);
 
@@ -70,12 +85,12 @@ TEST(JobSystemTests, BasicParallelForArray)
 
   const int multiplier = 5;
 
-  const std::unique_ptr<int[]> example_data = std::make_unique<int[]>(k_DataSize);
+  const std::unique_ptr<int[]> example_data = AllocateIntArray(k_DataSize);
 
   std::iota(example_data.get(), example_data.get() + k_DataSize, 0);
 
   bf::job::Task* const task = bf::job::parallel_for(
-   example_data.get(), k_DataSize, bf::job::CountSplitter{k_DataSplit}, [multiplier](bf::job::Task*, int* data, std::size_t data_count) {
+   example_data.get(), k_DataSize, bf::job::CountSplitter{k_DataSplit}, [](bf::job::Task*, int* data, std::size_t data_count) {
      EXPECT_LE(data_count, k_DataSplit);
 
      for (std::size_t i = 0; i < data_count; ++i)
@@ -96,7 +111,7 @@ TEST(JobSystemTests, BasicParallelForArray)
 TEST(JobSystemTests, BasicParallelInvoke)
 {
   static constexpr int         k_DataSize   = 1000000;
-  const std::unique_ptr<int[]> example_data = std::make_unique<int[]>(k_DataSize);
+  const std::unique_ptr<int[]> example_data = AllocateIntArray(k_DataSize);
 
   std::fill_n(example_data.get(), k_DataSize, 0);
 
@@ -127,7 +142,7 @@ TEST(JobSystemTests, BasicParallelInvoke)
 TEST(JobSystemTests, GCReferenceCount)
 {
   auto* const long_running_task = bf::job::taskMake([](bf::job::Task*) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(12));
+    ThreadSleep(std::chrono::milliseconds(12));
   });
 
   taskIncRef(long_running_task);
@@ -142,11 +157,11 @@ TEST(JobSystemTests, GCReferenceCount)
     while (!taskIsDone(long_running_task))
     {
       std::printf("Waiting on long Running task...\n");
-      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      ThreadSleep(std::chrono::milliseconds(1));
     }
   }
 
-  std::this_thread::sleep_for(std::chrono::milliseconds(12));
+  ThreadSleep(std::chrono::milliseconds(12));
 
   bf::job::workerGC();
 
@@ -158,11 +173,11 @@ TEST(JobSystemTests, GCReferenceCount)
   }
 }
 
-// Checks correct refcount API usage.
+// Checks correct ref count API usage.
 TEST(JobSystemTests, RefCountAPIUsage)
 {
   auto* const long_running_task = bf::job::taskMake([](bf::job::Task*) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(2));
+    ThreadSleep(std::chrono::milliseconds(2));
   });
 
   // First call to `taskIncRef` must be before a submit.
@@ -180,18 +195,18 @@ TEST(JobSystemTests, RefCountAPIUsage)
   {
     while (!taskIsDone(long_running_task))
     {
-      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      ThreadSleep(std::chrono::milliseconds(1));
     }
   }
 
-  std::this_thread::sleep_for(std::chrono::milliseconds(5));
+  ThreadSleep(std::chrono::milliseconds(5));
 
   taskDecRef(long_running_task);
   taskDecRef(long_running_task);
 }
 
 // TODO(SR): Test continuations.
-// TODO(SR): Test Dependecies / parent child relationships (this is implicitly tested by the every test though...).
+// TODO(SR): Test Dependencies / parent child relationships (this is implicitly tested by the every test though...).
 
 int main(int argc, char* argv[])
 {

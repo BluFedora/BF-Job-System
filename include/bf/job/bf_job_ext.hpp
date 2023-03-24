@@ -86,10 +86,10 @@ namespace bf
 
     /*!
      * @brief
-     *   Parallel for algorithm, splits the work up recursively spliting based on the
+     *   Parallel for algorithm, splits the work up recursively splitting based on the
      *   \p splitter passed in.
      *
-     *   Assumes all callables passed in are thread safe.
+     *   Assumes all callable objects passed in can be invoked on multiple threads at the same time.
      *
      * @tparam F
      *   Type of function object passed in.
@@ -147,10 +147,10 @@ namespace bf
 
     /*!
      * @brief
-     *   Parallel for algorithm, splits the work up recursively spliting based on the
+     *   Parallel for algorithm, splits the work up recursively splitting based on the
      *   \p splitter passed in. This version is a helper for array data.
      *
-     *   Assumes all callables passed in are thread safe.
+     *   Assumes all callable objects passed in can be invoked on multiple threads at the same time.
      *
      * @tparam T
      *   Type of the array to process.

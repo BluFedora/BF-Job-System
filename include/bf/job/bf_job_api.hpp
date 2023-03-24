@@ -100,7 +100,7 @@ namespace bf
      *   The customization parameters to initialize the system with.
      *
      */
-    void initialize(const JobSystemCreateOptions& params = {0u}) noexcept;
+    void initialize(const JobSystemCreateOptions& params = {}) noexcept;
 
     /*!
      * @brief

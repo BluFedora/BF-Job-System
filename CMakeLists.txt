@@ -14,27 +14,39 @@ add_library(
   BF_Job
   STATIC
     # Public Headers
-    "${PROJECT_SOURCE_DIR}/include/bf/job/bf_job_api.hpp"
-    "${PROJECT_SOURCE_DIR}/include/bf/job/bf_job_config.hpp"
-    "${PROJECT_SOURCE_DIR}/include/bf/job/bf_job_ext.hpp"
+    "include/bf/job/bf_job_api.hpp"
+    "include/bf/job/bf_job_config.hpp"
+    "include/bf/job/bf_job_ext.hpp"
 
     # Private Headers
-    "${PROJECT_SOURCE_DIR}/src/bf_job_queue.hpp"
+    "src/bf_job_queue.hpp"
 
     # Source
-    "${PROJECT_SOURCE_DIR}/src/bf_job_system.cpp"
+    "src/bf_job_system.cpp"
 )
 
 target_include_directories(
   BF_Job
   PUBLIC
-    "${PROJECT_SOURCE_DIR}/include"
+    "include"
   PRIVATE
-    "${PROJECT_SOURCE_DIR}/lib/pcg"
+    "lib/pcg"
 )
 
-set_property(TARGET BF_Job PROPERTY FOLDER "BluFedora/Foundation")
+set_target_properties(
+  BF_Job
+  PROPERTIES
+    CXX_STANDARD          17
+    CXX_STANDARD_REQUIRED on
+    CXX_EXTENSIONS        off
+    FOLDER                "BluFedora/Foundation"
+)
 
+target_compile_features(
+  BF_Job
+  PUBLIC 
+    cxx_std_17
+)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -65,3 +77,17 @@ target_link_libraries(
 gtest_discover_tests(BFJobTesting)
 
 set_property(TARGET BFJobTesting PROPERTY FOLDER "BluFedora/Test")
+
+if (EMSCRIPTEN)
+  # target_compile_options(
+  #   BF_Job
+  #   PRIVATE
+  #     "-pthread"
+  # )
+
+  target_link_options(
+    BFJobTesting
+    PRIVATE
+      "-sTOTAL_MEMORY=33554432"
+  )
+endif()

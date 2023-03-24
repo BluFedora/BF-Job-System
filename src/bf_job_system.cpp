@@ -321,7 +321,8 @@ namespace bf
     void detail::checkTaskDataSize(const Task* task, std::size_t data_size) noexcept
     {
       JobAssert(data_size <= task->user_storage_size, "Attempting to store an object too large to fit within a task's storage buffer.");
-      (void)task, data_size;
+      (void)task;
+      (void)data_size;
     }
 
     QueueType detail::taskQType(const Task* const task) noexcept
@@ -726,7 +727,7 @@ namespace bf
     Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) :
       fn{fn},
       num_unfinished_tasks{1},
-      ref_count{ATOMIC_VAR_INIT(0u)},
+      ref_count{0u},
       user_storage_size{Task::k_TaskPaddingDataSize},
       q_type{k_InvalidQueueType}, /* Set to a valid value in 'submitTask' */
       parent{parent},
