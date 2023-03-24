@@ -33,7 +33,7 @@ var namespacebf_1_1job =
       [ "WORKER", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a531886e636f1aa36e0fc96d49f342613", null ]
     ] ],
     [ "numSystemThreads", "namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277", null ],
-    [ "initialize", "namespacebf_1_1job.html#a1dbd834ed11bc519b59ebf14d42f7440", null ],
+    [ "initialize", "namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825", null ],
     [ "numWorkers", "namespacebf_1_1job.html#aa230de6f107416403da55c56ff39c600", null ],
     [ "processorArchitectureName", "namespacebf_1_1job.html#ae9edb9cb3acc7877cbb87a66137467c9", null ],
     [ "currentWorker", "namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031", null ],

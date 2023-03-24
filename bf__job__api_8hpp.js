@@ -20,7 +20,7 @@ var bf__job__api_8hpp =
     [ "taskUsePadding", "bf__job__api_8hpp.html#af8a0d6ce60f727781cf7f12d70956922", null ],
     [ "mainQueueRunTask", "bf__job__api_8hpp.html#a2590cc0b2c4f54c15ca8a5b18ab668b5", null ],
     [ "numSystemThreads", "bf__job__api_8hpp.html#a569f46928160d2ff793d9acbafd35277", null ],
-    [ "initialize", "bf__job__api_8hpp.html#a1dbd834ed11bc519b59ebf14d42f7440", null ],
+    [ "initialize", "bf__job__api_8hpp.html#a72e3e5b2fab272b1cd1bb5842b09e825", null ],
     [ "numWorkers", "bf__job__api_8hpp.html#aa230de6f107416403da55c56ff39c600", null ],
     [ "processorArchitectureName", "bf__job__api_8hpp.html#ae9edb9cb3acc7877cbb87a66137467c9", null ],
     [ "currentWorker", "bf__job__api_8hpp.html#a2b7bca473a7040c5234ebba1fe6cb031", null ],
