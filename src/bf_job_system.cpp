@@ -418,7 +418,7 @@ namespace bf
     {
       JobAssert(s_NextThreadLocalIndex == 0u, "Job System must be shutdown before it can be initialized again.");
 
-      const WorkerID default_num_threads = numSystemThreads() / 2;
+      const WorkerID default_num_threads = WorkerID(numSystemThreads() / 2);
       const WorkerID num_threads         = clampThreadCount(WorkerID(params.num_threads ? params.num_threads : default_num_threads), WorkerID(1), WorkerID(k_MaxThreadsSupported));
 
       s_JobCtx.num_workers = num_threads;
