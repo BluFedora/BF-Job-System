@@ -90,7 +90,7 @@ TEST(JobSystemTests, BasicParallelForArray)
   std::iota(example_data.get(), example_data.get() + k_DataSize, 0);
 
   bf::job::Task* const task = bf::job::parallel_for(
-   example_data.get(), k_DataSize, bf::job::CountSplitter{k_DataSplit}, [](bf::job::Task*, int* data, std::size_t data_count) {
+   example_data.get(), k_DataSize, bf::job::CountSplitter{k_DataSplit}, [multiplier](bf::job::Task*, int* data, std::size_t data_count) {
      EXPECT_LE(data_count, k_DataSplit);
 
      for (std::size_t i = 0; i < data_count; ++i)
