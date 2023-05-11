@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['padding_0',['padding',['../structbf_1_1job_1_1_task.html#a1d5e9e7923d45b95e0e226226065f80d',1,'bf::job::Task']]],
-  ['parent_1',['parent',['../structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495',1,'bf::job::Task']]],
-  ['ptr_2',['ptr',['../namespacebf_1_1job.html#a25348a17d7317b42b3fc6a9f55ff70c7',1,'bf::job::TaskData']]]
+  ['ref_5fcount_0',['ref_count',['../structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900',1,'bf::job::Task']]],
+  ['rng_5fstate_1',['rng_state',['../structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af',1,'bf::job::ThreadWorker']]]
 ];

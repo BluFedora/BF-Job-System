@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['current_5fblock_0',['current_block',['../structbf_1_1job_1_1_task_pool.html#a0ba403216f9a2fc980b415874adb321a',1,'bf::job::TaskPool']]]
+  ['first_5fcontinuation_0',['first_continuation',['../structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d',1,'bf::job::Task']]],
+  ['fn_1',['fn',['../structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703',1,'bf::job::Task']]]
 ];

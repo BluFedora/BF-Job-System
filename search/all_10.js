@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['q_5ftype_0',['q_type',['../structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea',1,'bf::job::Task']]],
-  ['queuetype_1',['QueueType',['../namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9',1,'bf::job']]]
+  ['randomworker_0',['randomWorker',['../structbf_1_1job_1_1_thread_worker.html#a4930a517dbcf3ef84fb0bdda8a194afb',1,'bf::job::ThreadWorker']]],
+  ['readme_2emd_1',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['ref_5fcount_2',['ref_count',['../structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900',1,'bf::job::Task']]],
+  ['rng_5fstate_3',['rng_state',['../structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af',1,'bf::job::ThreadWorker']]],
+  ['run_4',['run',['../structbf_1_1job_1_1_task.html#a9bba41a1103f6d1cb4dbfb120d325b53',1,'bf::job::Task::run()'],['../structbf_1_1job_1_1_thread_worker.html#a78345f493b2b89d08ddd2ea9096356ca',1,'bf::job::ThreadWorker::run()']]]
 ];

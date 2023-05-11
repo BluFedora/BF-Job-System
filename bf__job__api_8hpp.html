@@ -135,7 +135,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378">bf::job::MAIN</a> = 1
 , <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a531886e636f1aa36e0fc96d49f342613">bf::job::WORKER</a> = 2
  }</td></tr>
-<tr class="memdesc:a1bf27cadcb5355b162b1fb2af1978dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The priority that you want a task to run at.  <a href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9">More...</a><br /></td></tr>
+<tr class="memdesc:a1bf27cadcb5355b162b1fb2af1978dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines which threads the a task will be allowed to run on.  <a href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9">More...</a><br /></td></tr>
 <tr class="separator:a1bf27cadcb5355b162b1fb2af1978dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -154,7 +154,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a569f46928160d2ff793d9acbafd35277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277">More...</a><br /></td></tr>
 <tr class="separator:a569f46928160d2ff793d9acbafd35277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72e3e5b2fab272b1cd1bb5842b09e825"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825">bf::job::initialize</a> (const JobSystemCreateOptions &amp;params={}) noexcept</td></tr>
-<tr class="memdesc:a72e3e5b2fab272b1cd1bb5842b09e825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the Job system and creates all the worker threads. The thread that calls 'bfJob::initialize' is considered (and should be) the main thread.  <a href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825">More...</a><br /></td></tr>
+<tr class="memdesc:a72e3e5b2fab272b1cd1bb5842b09e825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the Job system and creates all the worker threads. The thread that calls '<a class="el" href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825" title="Sets up the Job system and creates all the worker threads. The thread that calls &#39;job::initialize&#39; is...">job::initialize</a>' is considered the main thread.  <a href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825">More...</a><br /></td></tr>
 <tr class="separator:a72e3e5b2fab272b1cd1bb5842b09e825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa230de6f107416403da55c56ff39c600"><td class="memItemLeft" align="right" valign="top">std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#aa230de6f107416403da55c56ff39c600">bf::job::numWorkers</a> () noexcept</td></tr>
 <tr class="memdesc:aa230de6f107416403da55c56ff39c600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of workers created by the system. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#aa230de6f107416403da55c56ff39c600">More...</a><br /></td></tr>
@@ -227,7 +227,7 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Shareef Raheem (<a href="https://blufedora.github.io/">https://blufedora.github.io/</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2020-09-03</dd></dl>
 <p>References: [<a href="https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/">https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/</a>] [<a href="https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/">https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/</a>] [<a href="https://github.com/cdwfs/cds_job/blob/master/cds_job.h">https://github.com/cdwfs/cds_job/blob/master/cds_job.h</a>] [<a href="https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h">https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h</a>] [<a href="https://fabiensanglard.net/doom3_bfg/threading.php">https://fabiensanglard.net/doom3_bfg/threading.php</a>] [<a href="https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine">https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine</a>]</p>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020-2022 Shareef Abdoul-Raheem </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020-2023 Shareef Abdoul-Raheem </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
 </div><hr/><h2 class="groupheader">Class Documentation</h2>
@@ -297,7 +297,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__api_8hpp.html">bf_job_api.hpp</a></li>
-    <li class="footer">Generated on Fri Apr 7 2023 06:21:09 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Thu May 11 2023 02:10:16 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

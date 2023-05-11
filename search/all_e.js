@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['onfinish_0',['onFinish',['../structbf_1_1job_1_1_task.html#a08f0cc1a8060864e947408fcf9ea5089',1,'bf::job::Task']]],
-  ['operator_21_3d_1',['operator!=',['../structbf_1_1job_1_1index__iterator.html#a68017782b900a78533ad2ffc516b2882',1,'bf::job::index_iterator']]],
-  ['operator_28_29_2',['operator()',['../structbf_1_1job_1_1_static_count_splitter.html#a01737663f134fe1bd6957ed7b7656d88',1,'bf::job::StaticCountSplitter::operator()()'],['../structbf_1_1job_1_1_count_splitter.html#a75d48dbc4a7d8b6cab77402671288f6c',1,'bf::job::CountSplitter::operator()()'],['../structbf_1_1job_1_1_static_data_size_splitter.html#aafc4034af8eeae8b358d336106a4ff34',1,'bf::job::StaticDataSizeSplitter::operator()()'],['../structbf_1_1job_1_1_data_size_splitter.html#ac599036acd7c41acdb51c4434b7b2dff',1,'bf::job::DataSizeSplitter::operator()()']]],
-  ['operator_2a_3',['operator*',['../structbf_1_1job_1_1index__iterator.html#a267bf8662c6fd800ab988a32f0f67380',1,'bf::job::index_iterator']]],
-  ['operator_2b_2b_4',['operator++',['../structbf_1_1job_1_1index__iterator.html#a44d870ac9ee54db0f952fbf876928922',1,'bf::job::index_iterator::operator++()'],['../structbf_1_1job_1_1index__iterator.html#a7c10336eef07582230da52a26d631646',1,'bf::job::index_iterator::operator++(int)']]],
-  ['operator_3d_5',['operator=',['../structbf_1_1job_1_1_thread_worker.html#a50e2f202407c54326cf467b2cfe543c0',1,'bf::job::ThreadWorker::operator=(const ThreadWorker &amp;rhs)=delete'],['../structbf_1_1job_1_1_thread_worker.html#a25f6b530e8afabef68adcc53e3a63244',1,'bf::job::ThreadWorker::operator=(ThreadWorker &amp;&amp;rhs)=delete']]],
-  ['operator_3d_3d_6',['operator==',['../structbf_1_1job_1_1index__iterator.html#abbce4eff275379377aba8553e2bdbd33',1,'bf::job::index_iterator']]],
-  ['owning_5fworker_7',['owning_worker',['../structbf_1_1job_1_1_task.html#a4b5419369be19ab2535809796bf25b83',1,'bf::job::Task']]]
+  ['padding_0',['padding',['../structbf_1_1job_1_1_task.html#a1d5e9e7923d45b95e0e226226065f80d',1,'bf::job::Task']]],
+  ['padding_1',['Padding',['../structbf_1_1job_1_1_task.html#aebc32e3c285d4ce6019c15deb7bbc2d5',1,'bf::job::Task']]],
+  ['parallel_5ffor_2',['parallel_for',['../namespacebf_1_1job.html#a4ca43dbd44d354a1e2aa1e9b16efe602',1,'bf::job::parallel_for(const std::size_t start, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)'],['../namespacebf_1_1job.html#ada994a5d80a85361eb84532b8a098b70',1,'bf::job::parallel_for(T *const data, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)']]],
+  ['parallel_5finvoke_3',['parallel_invoke',['../namespacebf_1_1job.html#a008a5ea3f69205f8c2dd07d4645f344e',1,'bf::job']]],
+  ['parent_4',['parent',['../structbf_1_1job_1_1_task.html#a6209f36718a94037cadd7e6c511f5495',1,'bf::job::Task']]],
+  ['pop_5',['pop',['../classbf_1_1_job_queue_m.html#affcf301a5b9222b66c78aa5f50eaf58a',1,'bf::JobQueueM::pop()'],['../classbf_1_1_job_queue_a.html#a131a5c460397335a5886efdff95eeb47',1,'bf::JobQueueA::pop()']]],
+  ['processorarchitecturename_6',['processorArchitectureName',['../namespacebf_1_1job.html#ae9edb9cb3acc7877cbb87a66137467c9',1,'bf::job']]],
+  ['ptr_7',['ptr',['../namespacebf_1_1job.html#a25348a17d7317b42b3fc6a9f55ff70c7',1,'bf::job::TaskData']]],
+  ['push_8',['push',['../classbf_1_1_job_queue_m.html#a07dc90f00a9ab7e129de874bf4be417a',1,'bf::JobQueueM::push()'],['../classbf_1_1_job_queue_a.html#afd06cfa3076e0b13d6f1c028d5c1dc3d',1,'bf::JobQueueA::push()']]]
 ];

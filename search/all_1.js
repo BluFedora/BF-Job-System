@@ -9,8 +9,7 @@ var searchData=
   ['bf_5fjob_5fqueue_2ehpp_6',['bf_job_queue.hpp',['../bf__job__queue_8hpp.html',1,'']]],
   ['bf_5fjob_5fsystem_2ecpp_7',['bf_job_system.cpp',['../bf__job__system_8cpp.html',1,'']]],
   ['bf_5fmemory_5fbarrier_8',['BF_MEMORY_BARRIER',['../bf__job__queue_8hpp.html#aac122126bf0f15227ee21bdc09f18297',1,'bf_job_queue.hpp']]],
-  ['bg_5fqueue_9',['bg_queue',['../structbf_1_1job_1_1_thread_worker.html#aa29179328dd6b4b1bd6ff810aa37d023',1,'bf::job::ThreadWorker']]],
-  ['blufedora_20job_20system_20library_10',['BluFedora Job System Library',['../index.html',1,'']]],
-  ['detail_11',['detail',['../namespacebf_1_1job_1_1detail.html',1,'bf::job']]],
-  ['job_12',['job',['../namespacebf_1_1job.html',1,'bf']]]
+  ['blufedora_20job_20system_20library_9',['BluFedora Job System Library',['../index.html',1,'']]],
+  ['detail_10',['detail',['../namespacebf_1_1job_1_1detail.html',1,'bf::job']]],
+  ['job_11',['job',['../namespacebf_1_1job.html',1,'bf']]]
 ];

@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['idx_0',['idx',['../structbf_1_1job_1_1index__iterator.html#afe8ec8798ac4d2ada750688ece1aa557',1,'bf::job::index_iterator']]],
-  ['idx_5fbgn_1',['idx_bgn',['../structbf_1_1job_1_1_index_range.html#a319172078b2589e69ddda0c2f811eb37',1,'bf::job::IndexRange']]],
-  ['idx_5fend_2',['idx_end',['../structbf_1_1job_1_1_index_range.html#a5c6190780f55a7cdcf27fe19577857e8',1,'bf::job::IndexRange']]],
-  ['index_5fiterator_3',['index_iterator',['../structbf_1_1job_1_1index__iterator.html',1,'bf::job::index_iterator'],['../structbf_1_1job_1_1index__iterator.html#a1e65971901fba7b2b4aaedba15ec8273',1,'bf::job::index_iterator::index_iterator()']]],
-  ['indexof_4',['indexOf',['../structbf_1_1job_1_1_task_pool.html#a84c0f9eb0bdee2578e46fff7e8b5d19f',1,'bf::job::TaskPool']]],
-  ['indexrange_5',['IndexRange',['../structbf_1_1job_1_1_index_range.html',1,'bf::job']]],
-  ['initialize_6',['initialize',['../namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825',1,'bf::job']]],
-  ['initthreadworkerid_7',['initThreadWorkerID',['../namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00',1,'bf::job']]],
-  ['is_5frunning_8',['is_running',['../structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc',1,'bf::job::JobSystem']]],
-  ['isnull_9',['isNull',['../structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198',1,'bf::job::TaskPtr']]]
+  ['job_5fsys_5fassertions_0',['JOB_SYS_ASSERTIONS',['../bf__job__config_8hpp.html#ad60ea283ef2d228cc1e0c4c1456f6f74',1,'bf_job_config.hpp']]],
+  ['job_5fsys_5fdeterministic_5fjob_5fsteal_5frng_1',['JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG',['../bf__job__config_8hpp.html#aa9c77d642dd8a0f07d816b14d55ec9ac',1,'bf_job_config.hpp']]],
+  ['jobassert_2',['JobAssert',['../bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f',1,'bf_job_system.cpp']]],
+  ['jobqueuea_3',['JobQueueA',['../classbf_1_1_job_queue_a.html',1,'bf::JobQueueA&lt; kSize, T &gt;'],['../classbf_1_1_job_queue_a.html#a38de516224b292e9bf706a61a1b643a6',1,'bf::JobQueueA::JobQueueA()']]],
+  ['jobqueuea_3c_20k_5fbackgroundqueuesize_2c_20taskptr_20_3e_4',['JobQueueA&lt; k_BackgroundQueueSize, TaskPtr &gt;',['../classbf_1_1_job_queue_a.html',1,'bf']]],
+  ['jobqueuea_3c_20k_5fnormalqueuesize_2c_20taskptr_20_3e_5',['JobQueueA&lt; k_NormalQueueSize, TaskPtr &gt;',['../classbf_1_1_job_queue_a.html',1,'bf']]],
+  ['jobqueuem_6',['JobQueueM',['../classbf_1_1_job_queue_m.html',1,'bf::JobQueueM&lt; kSize, T &gt;'],['../classbf_1_1_job_queue_m.html#a4f7b99756c219cb27eb1c6c37b888378',1,'bf::JobQueueM::JobQueueM()']]],
+  ['jobsystem_7',['JobSystem',['../structbf_1_1job_1_1_job_system.html',1,'bf::job']]],
+  ['jobsystemcreateoptions_8',['JobSystemCreateOptions',['../namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options',1,'bf::job']]]
 ];

@@ -1,15 +1,12 @@
 var searchData=
 [
-  ['k_5fbackgroundqueuesize_0',['k_BackgroundQueueSize',['../namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2',1,'bf::job']]],
-  ['k_5fcachelinesize_1',['k_CachelineSize',['../namespacebf_1_1job.html#a865e5e5752ed1d18586dc60dc902ce4a',1,'bf::job']]],
-  ['k_5fexpectedtasksize_2',['k_ExpectedTaskSize',['../namespacebf_1_1job.html#ae2f219351956ee01701e7652208a1757',1,'bf::job']]],
-  ['k_5finvalidqueuetype_3',['k_InvalidQueueType',['../namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0',1,'bf::job']]],
-  ['k_5fmainqueuesize_4',['k_MainQueueSize',['../namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b',1,'bf::job']]],
-  ['k_5fmainthreadid_5',['k_MainThreadID',['../namespacebf_1_1job.html#a6525dfa22a68b1011e5ef1e86be52b75',1,'bf::job']]],
-  ['k_5fmaxtaskminusone_6',['k_MaxTaskMinusOne',['../structbf_1_1job_1_1_task_pool.html#a9198e9d8f4412e54967323d4d50e1750',1,'bf::job::TaskPool']]],
-  ['k_5fmaxtasksperworker_7',['k_MaxTasksPerWorker',['../namespacebf_1_1job.html#a632f29d428e3f8e61f50dc5b83724c98',1,'bf::job']]],
-  ['k_5fmaxthreadssupported_8',['k_MaxThreadsSupported',['../namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7',1,'bf::job']]],
-  ['k_5fnormalqueuesize_9',['k_NormalQueueSize',['../namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b',1,'bf::job']]],
-  ['k_5fsizeofmembers_10',['k_SizeOfMembers',['../structbf_1_1job_1_1_task.html#a906c92ebcbf36f7ff449e5fcd82d2a1e',1,'bf::job::Task']]],
-  ['k_5ftaskpaddingdatasize_11',['k_TaskPaddingDataSize',['../structbf_1_1job_1_1_task.html#a963431f2ea1f6f73de4357cd66b254d1',1,'bf::job::Task']]]
+  ['next_0',['next',['../structbf_1_1job_1_1_task_pool.html#a0d74fa4272680cc251ef5fc4000dcc69',1,'bf::job::TaskPool::TaskMemoryBlock']]],
+  ['next_5fcontinuation_1',['next_continuation',['../structbf_1_1job_1_1_task.html#adf6c2ae68363b6d90a2f5d3682cb3584',1,'bf::job::Task']]],
+  ['normal_5fqueue_2',['normal_queue',['../structbf_1_1job_1_1_thread_worker.html#a14665fab487ea8c7a08e4132f5d8aacf',1,'bf::job::ThreadWorker']]],
+  ['nulltaskhandle_3',['NullTaskHandle',['../namespacebf_1_1job.html#a2b89b0b4d5ea7b4eba8b638b9a21f564',1,'bf::job']]],
+  ['num_5fallocated_5ftasks_4',['num_allocated_tasks',['../structbf_1_1job_1_1_thread_worker.html#a481366c54969de84ee6222b65be0de0b',1,'bf::job::ThreadWorker']]],
+  ['num_5favailable_5fjobs_5',['num_available_jobs',['../structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6',1,'bf::job::JobSystem']]],
+  ['num_5fthreads_6',['num_threads',['../namespacebf_1_1job.html#a114aadc5c9276a01b135777528d9f356',1,'bf::job::JobSystemCreateOptions']]],
+  ['num_5funfinished_5ftasks_7',['num_unfinished_tasks',['../structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43',1,'bf::job::Task']]],
+  ['num_5fworkers_8',['num_workers',['../structbf_1_1job_1_1_job_system.html#a8b5c0cc14eac9860ddbc3e7ba9cb2755',1,'bf::job::JobSystem']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bg_5fqueue_0',['bg_queue',['../structbf_1_1job_1_1_thread_worker.html#aa29179328dd6b4b1bd6ff810aa37d023',1,'bf::job::ThreadWorker']]]
+  ['current_5fblock_0',['current_block',['../structbf_1_1job_1_1_task_pool.html#a0ba403216f9a2fc980b415874adb321a',1,'bf::job::TaskPool']]]
 ];
