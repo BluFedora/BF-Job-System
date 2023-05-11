@@ -139,6 +139,7 @@ namespace bf
 
     static_assert(sizeof(TaskPtr) == 4u, "Expected to be the size of two uint16's.");
     static_assert(sizeof(AtomicTaskPtr) == sizeof(TaskPtr), "Expected to be lockfree so no extra data members should have been added.");
+    static_assert(AtomicTaskPtr::is_always_lock_free, "Should always be lock free.");
 
     /*!
      * @brief
@@ -165,7 +166,7 @@ namespace bf
       AtomicInt32   num_unfinished_tasks;  //!< The number of children tasks.
       AtomicInt16   ref_count;             //!< Keeps the task from being garbage collected.
       std::uint8_t  user_storage_size;     //!< Number of bytes available to the user in `padding`.
-      QueueType     q_type;                //!< The queue type this task has been submitted to, initalized to k_InvalidQueueType.
+      QueueType     q_type;                //!< The queue type this task has been submitted to, initialized to k_InvalidQueueType.
       TaskPtr       parent;                //!< The parent task, can be null.
       AtomicTaskPtr first_continuation;    //!< Head of linked list of tasks to be added on completion.
       TaskPtr       next_continuation;     //!< Next element in the linked list of continuations.
@@ -257,8 +258,8 @@ namespace bf
       using ThreadStorage   = std::aligned_storage_t<sizeof(std::thread), alignof(std::thread)>;
       using TaskHandleArray = std::array<TaskHandle, k_MaxTasksPerWorker>;
 
-      SharedQueue          hi_queue            = {};
-      WorkerQueue          bg_queue            = {};
+      SharedQueue          normal_queue        = {};
+      WorkerQueue          worker_queue        = {};
       TaskAllocator        task_memory         = {};
       ThreadStorage        thread              = {};
       TaskHandleArray      allocated_tasks     = {};
@@ -343,6 +344,8 @@ namespace bf
 
     bool detail::mainQueueRunTask(void) noexcept
     {
+      JobAssert(currentWorker() == k_MainThreadID, "Must only be called by main thread.");
+
       const TaskPtr task_ptr = s_JobCtx.main_queue.pop();
 
       if (!task_ptr.isNull())
@@ -353,7 +356,7 @@ namespace bf
         return true;
       }
 
-      // If no work in the main queue atleast try to do some general work.
+      // If no work in the main queue at least try to do some general work.
 
       const WorkerID worker_id = currentWorker();
 
@@ -597,6 +600,8 @@ namespace bf
 
     Task* taskSubmit(Task* const self, QueueType queue) noexcept
     {
+      JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
+
       const WorkerID num_workers = numWorkers();
       const WorkerID worker_id   = currentWorker();
 
@@ -606,8 +611,6 @@ namespace bf
         queue = QueueType::NORMAL;
       }
 
-      JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
-
       ThreadWorker* const worker = s_JobCtx.workers() + worker_id;
 
       self->q_type = queue;
@@ -616,7 +619,7 @@ namespace bf
       {
         case QueueType::NORMAL:
         {
-          taskSubmitQPushHelper(self, worker_id, worker->hi_queue);
+          taskSubmitQPushHelper(self, worker_id, worker->normal_queue);
           break;
         }
         case QueueType::MAIN:
@@ -626,7 +629,7 @@ namespace bf
         }
         case QueueType::WORKER:
         {
-          taskSubmitQPushHelper(self, worker_id, worker->bg_queue);
+          taskSubmitQPushHelper(self, worker_id, worker->worker_queue);
           break;
         }
       }
@@ -900,11 +903,11 @@ namespace bf
     {
       const bool is_main_thread = worker_id == k_MainThreadID;
 
-      TaskPtr task_ptr = hi_queue.pop();
+      TaskPtr task_ptr = normal_queue.pop();
 
       if (task_ptr.isNull())
       {
-        task_ptr = is_main_thread ? s_JobCtx.main_queue.pop() : bg_queue.pop();
+        task_ptr = is_main_thread ? s_JobCtx.main_queue.pop() : worker_queue.pop();
       }
 
       if (task_ptr.isNull())
@@ -915,11 +918,11 @@ namespace bf
         {
           ThreadWorker* const other_worker = s_JobCtx.workers() + other_worker_id;
 
-          task_ptr = other_worker->hi_queue.steal();
+          task_ptr = other_worker->normal_queue.steal();
 
           if (task_ptr.isNull() && !is_main_thread)
           {
-            task_ptr = other_worker->bg_queue.steal();
+            task_ptr = other_worker->worker_queue.steal();
           }
         }
       }

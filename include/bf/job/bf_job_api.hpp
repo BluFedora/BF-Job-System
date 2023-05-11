@@ -14,7 +14,7 @@
  *      [https://fabiensanglard.net/doom3_bfg/threading.php]
  *      [https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine]
  *
- * @copyright Copyright (c) 2020-2022 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2023 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef BF_JOB_API_HPP
@@ -38,12 +38,12 @@ namespace bf
 
     /*!
      * @brief
-     *   The priority that you want a task to run at.
+     *   Determines which threads the a task will be allowed to run on.
      */
     enum class QueueType : std::uint8_t
     {
       NORMAL = 0,  //!< Tasks in this queue will run on either the main or worker threads.
-      MAIN   = 1,  //!< Taskis in this queue will only be run by the main thread.
+      MAIN   = 1,  //!< Tasks in this queue will only be run by the main thread.
       WORKER = 2,  //!< Tasks in this queue will never run on the main thread.
     };
 
@@ -88,17 +88,16 @@ namespace bf
 
     // Main System API
     //
-    // API functions can only be called by the thread that called 'bfJob::initialize' or from a within a Task function.
+    // API functions can only be called by the thread that called 'job::initialize' or from a within a Task function.
     //
 
     /*!
      * @brief
      *   Sets up the Job system and creates all the worker threads.
-     *   The thread that calls 'bfJob::initialize' is considered (and should be) the main thread.
+     *   The thread that calls 'job::initialize' is considered the main thread.
      *
      * @param params
      *   The customization parameters to initialize the system with.
-     *
      */
     void initialize(const JobSystemCreateOptions& params = {}) noexcept;
 
@@ -137,7 +136,8 @@ namespace bf
      *   This will deallocate any memory used by the system
      *   and shutdown any threads created by 'bfJob::initialize'.
      *
-     *   This function may only be called by the main thread.
+     *  @warning
+     *    This function may only be called by the main thread.
      */
     void shutdown() noexcept;
 
@@ -314,7 +314,7 @@ namespace bf
      * @brief
      *   Returns the done status of the task.
      *
-     *   This is only safe to call after submiting the task if you have an active reference to
+     *   This is only safe to call after submitting the task if you have an active reference to
      *   the task through a call to taskIncRef.
      *
      * @param task
@@ -397,7 +397,7 @@ namespace bf
      *
      *   You may only call this function with a task created on the current 'Worker'.
      *
-     *   It is a logic error to call this function on a task that has not been taskSubmit'd.
+     *   It is a logic error to call this function on a task that has not been submitted (\ref taskSubmit).
      *
      * @param task
      *   The task to wait to finish executing.
@@ -461,7 +461,7 @@ namespace bf
 /*
   MIT License
 
-  Copyright (c) 2020-2022 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2023 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
