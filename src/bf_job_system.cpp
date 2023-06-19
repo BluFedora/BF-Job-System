@@ -14,7 +14,7 @@
  *      [https://fabiensanglard.net/doom3_bfg/threading.php]
  *      [https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine]
  *
- * @copyright Copyright (c) 2020-2022 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2023 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #include "bf/job/bf_job_api.hpp"
@@ -30,6 +30,8 @@
 #include <limits>    /* numeric_limits                                                                  */
 #include <new>       /* hardware_constructive_interference_size, hardware_destructive_interference_size */
 #include <thread>    /* thread                                                                          */
+
+// TODO(SR): Alignment requirements need to be taken account of for padding storage.
 
 #if _WIN32
 #define IS_WINDOWS 1
@@ -137,14 +139,10 @@ namespace bf
     };
     using AtomicTaskPtr = std::atomic<TaskPtr>;
 
-    static_assert(sizeof(TaskPtr) == 4u, "Expected to be the size of two uint16's.");
-    static_assert(sizeof(AtomicTaskPtr) == sizeof(TaskPtr), "Expected to be lockfree so no extra data members should have been added.");
-    static_assert(AtomicTaskPtr::is_always_lock_free, "Should always be lock free.");
+    static_assert(sizeof(TaskPtr) == sizeof(std::uint16_t) * 2u, "Expected to be the size of two uint16's.");
+    static_assert(sizeof(AtomicTaskPtr) == sizeof(TaskPtr), "Expected to be lock-free so no extra data members should have been added.");
+    static_assert(AtomicTaskPtr::is_always_lock_free, "Should always be lock-free.");
 
-    /*!
-     * @brief
-     *   A single 'job' to be run by this system.
-     */
     struct Task
     {
       static constexpr std::size_t k_SizeOfMembers =
@@ -296,7 +294,7 @@ namespace bf
       std::atomic_bool                    is_running                           = ATOMIC_VAR_INIT(false);
 
       ThreadWorker* workers() { return reinterpret_cast<ThreadWorker*>(worker_storage.data()); }
-      void          sleep(const ThreadWorker* worker);
+      void          sleep();
       void          wakeUpOneWorker() { worker_sleep_cv.notify_one(); }
       void          wakeUpAllWorkers() { worker_sleep_cv.notify_all(); }
     };
@@ -484,9 +482,9 @@ namespace bf
 #endif
     }
 
-    std::uint32_t numWorkers() noexcept
+    std::uint16_t numWorkers() noexcept
     {
-      return s_JobCtx.num_workers;
+      return std::uint16_t(s_JobCtx.num_workers);
     }
 
     const char* processorArchitectureName() noexcept
@@ -605,7 +603,7 @@ namespace bf
       const WorkerID num_workers = numWorkers();
       const WorkerID worker_id   = currentWorker();
 
-      // If we only have one thread running using the working queue is invalid.
+      // If we only have one thread running using the worker queue is invalid.
       if (num_workers == 1u && queue == QueueType::WORKER)
       {
         queue = QueueType::NORMAL;
@@ -632,6 +630,13 @@ namespace bf
           taskSubmitQPushHelper(self, worker_id, worker->worker_queue);
           break;
         }
+        default:
+#if defined(__GNUC__)  // GCC, Clang, ICC
+          __builtin_unreachable();
+#elif defined(_MSC_VER)  // MSVC
+          __assume(false);
+#endif
+          break;
       }
 
       if (queue != QueueType::MAIN)
@@ -704,7 +709,7 @@ namespace bf
 
     // Member Fn Definitions
 
-    void JobSystem::sleep(const ThreadWorker* const worker)
+    void JobSystem::sleep()
     {
       if (is_running)
       {
@@ -722,8 +727,7 @@ namespace bf
             //        Wait If:     running AND num_available_jobs == 0.
             // Do Not Wait If: not running  OR num_available_jobs != 0.
             //
-            return !is_running || num_available_jobs.load(std::memory_order_relaxed) != 0;
-          });
+            return !is_running || num_available_jobs.load(std::memory_order_relaxed) != 0; });
         }
       }
     }
@@ -772,12 +776,12 @@ namespace bf
 
         while (!continuation.isNull())
         {
-          Task* const   task              = taskPtrToPointer(continuation);
-          const TaskPtr next_continuation = task->next_continuation;
+          Task* const   task      = taskPtrToPointer(continuation);
+          const TaskPtr next_task = task->next_continuation;
 
           taskSubmit(task, q_type);
 
-          continuation = next_continuation;
+          continuation = next_task;
         }
 
         --ref_count;
@@ -840,10 +844,9 @@ namespace bf
           {
             if (!worker->run(thread_id))
             {
-              s_JobCtx.sleep(worker);
+              s_JobCtx.sleep();
             }
-          }
-        });
+          } });
       }
     }
 
@@ -951,6 +954,7 @@ namespace bf
     {
       const std::uint32_t num_workers = s_JobCtx.num_workers;
 
+#if 0
       std::uint32_t weights[k_MaxThreadsSupported];
       std::uint32_t weight_sum = 0u;
 
@@ -976,7 +980,7 @@ namespace bf
           random_number -= weights[i];
         }
       }
-
+#endif
       return WorkerID(pcg32_boundedrand_r(&rng_state, num_workers));
     }
 
@@ -1030,7 +1034,7 @@ namespace bf
 /*
   MIT License
 
-  Copyright (c) 2020-2022 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2023 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

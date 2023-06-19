@@ -32,6 +32,10 @@ namespace bf
   {
     // Fwd Declarations
 
+    /*!
+     * @brief
+     *   A single 'job' to be run by this system.
+     */
     struct Task;
 
     // Enums
@@ -109,7 +113,7 @@ namespace bf
      * @return std::size_t
      *   The number of workers created by the system.
      */
-    std::uint32_t numWorkers() noexcept;
+    std::uint16_t numWorkers() noexcept;
 
     /*!
      * @brief
@@ -356,7 +360,8 @@ namespace bf
      * @warning Must only be called from the main thread.
      */
     template<typename ConditionFn>
-    void tickMainQueue(ConditionFn&& condition, const bool run_gc = true) noexcept
+    void tickMainQueue(ConditionFn&& condition,
+                       const bool    run_gc = true) noexcept
     {
       do
       {
@@ -415,7 +420,7 @@ namespace bf
      */
     void taskSubmitAndWait(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
 
-    // Template Function Implementation
+    // Template Function Implementation //
 
     template<typename T>
     T& taskDataAs(Task* const task) noexcept
@@ -438,15 +443,17 @@ namespace bf
     }
 
     template<typename Closure>
+    static void taskLambdaWrapper(Task* task)
+    {
+      Closure& function = *static_cast<Closure*>(detail::taskPaddingStart(task));
+      function(task);
+      function.~Closure();
+    }
+
+    template<typename Closure>
     Task* taskMake(Closure&& function, Task* const parent)
     {
-      Task* const task = taskMake(
-       +[](Task* task) {
-         Closure& function = *static_cast<Closure*>(detail::taskPaddingStart(task));
-         function(task);
-         function.~Closure();
-       },
-       parent);
+      Task* const task = taskMake(&taskLambdaWrapper<Closure>, parent);
       taskEmplaceData<Closure>(task, std::forward<Closure>(function));
       detail::taskUsePadding(task, sizeof(Closure));
 

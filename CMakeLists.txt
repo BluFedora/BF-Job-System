@@ -33,13 +33,21 @@ target_include_directories(
     "lib/pcg"
 )
 
+# $<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>
+target_compile_options(BF_Job 
+  PRIVATE
+    $<$<CXX_COMPILER_ID:MSVC>:/W4> # /WX
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic> # -Werror
+)
+
 set_target_properties(
   BF_Job
   PROPERTIES
-    CXX_STANDARD          17
-    CXX_STANDARD_REQUIRED on
-    CXX_EXTENSIONS        off
-    FOLDER                "BluFedora/Foundation"
+    FOLDER                   "BluFedora/Foundation"
+    CXX_STANDARD             17
+    CXX_STANDARD_REQUIRED    on
+    CXX_EXTENSIONS           off
+    COMPILE_WARNING_AS_ERROR on
 )
 
 target_compile_features(

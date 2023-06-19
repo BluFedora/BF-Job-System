@@ -58,9 +58,9 @@ namespace bf
 
     struct CountSplitter
     {
-      static CountSplitter EvenSplit(const std::size_t total_num_items)
+      static CountSplitter EvenSplit(const std::size_t total_num_items, const std::size_t num_items_per_thread = 1u)
       {
-        return CountSplitter{total_num_items / numWorkers()};
+        return CountSplitter{(total_num_items / num_items_per_thread) / numWorkers()};
       }
 
       std::size_t max_count;
@@ -172,7 +172,7 @@ namespace bf
      *   Callable splitter, must be callable like: splitter(std::size_t count)
      *
      * @param fn
-     *   Function object must be callable like: fn(Task* task, IndexRange index_range)
+     *   Function object must be callable like: fn(job::Task* task, T* data_start, const std::size_t num_items)
      *
      * @param parent
      *   Parent task to add this task as a child of.
