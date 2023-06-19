@@ -11,5 +11,5 @@ var searchData=
   ['num_5funfinished_5ftasks_8',['num_unfinished_tasks',['../structbf_1_1job_1_1_task.html#a64cb366e18e85029e534f08de8f92b43',1,'bf::job::Task']]],
   ['num_5fworkers_9',['num_workers',['../structbf_1_1job_1_1_job_system.html#a8b5c0cc14eac9860ddbc3e7ba9cb2755',1,'bf::job::JobSystem']]],
   ['numsystemthreads_10',['numSystemThreads',['../namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277',1,'bf::job']]],
-  ['numworkers_11',['numWorkers',['../namespacebf_1_1job.html#aa230de6f107416403da55c56ff39c600',1,'bf::job']]]
+  ['numworkers_11',['numWorkers',['../namespacebf_1_1job.html#a22f508fbe2fbb2af4771335253cc8008',1,'bf::job']]]
 ];

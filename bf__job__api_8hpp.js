@@ -21,7 +21,7 @@ var bf__job__api_8hpp =
     [ "mainQueueRunTask", "bf__job__api_8hpp.html#a2590cc0b2c4f54c15ca8a5b18ab668b5", null ],
     [ "numSystemThreads", "bf__job__api_8hpp.html#a569f46928160d2ff793d9acbafd35277", null ],
     [ "initialize", "bf__job__api_8hpp.html#a72e3e5b2fab272b1cd1bb5842b09e825", null ],
-    [ "numWorkers", "bf__job__api_8hpp.html#aa230de6f107416403da55c56ff39c600", null ],
+    [ "numWorkers", "bf__job__api_8hpp.html#a22f508fbe2fbb2af4771335253cc8008", null ],
     [ "processorArchitectureName", "bf__job__api_8hpp.html#ae9edb9cb3acc7877cbb87a66137467c9", null ],
     [ "currentWorker", "bf__job__api_8hpp.html#a2b7bca473a7040c5234ebba1fe6cb031", null ],
     [ "shutdown", "bf__job__api_8hpp.html#a0f005788a248d99a196608b5727b8bcd", null ],
@@ -40,5 +40,6 @@ var bf__job__api_8hpp =
     [ "tickMainQueue", "bf__job__api_8hpp.html#a6ce824ff7144aadecc7ceb931cf8708a", null ],
     [ "tickMainQueue", "bf__job__api_8hpp.html#a59157200b86879ec59a8061c995c0b61", null ],
     [ "waitOnTask", "bf__job__api_8hpp.html#a6af1eef961e26e6cbdf84dd01d86a619", null ],
-    [ "taskSubmitAndWait", "bf__job__api_8hpp.html#ab8c157c4fa8f519e8100b1632d1ec428", null ]
+    [ "taskSubmitAndWait", "bf__job__api_8hpp.html#ab8c157c4fa8f519e8100b1632d1ec428", null ],
+    [ "taskLambdaWrapper", "bf__job__api_8hpp.html#afafbf9098dbbf51eaa29d063212bedde", null ]
 ];

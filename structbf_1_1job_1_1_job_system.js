@@ -2,7 +2,7 @@ var structbf_1_1job_1_1_job_system =
 [
     [ "WorkerThreadStorage", "structbf_1_1job_1_1_job_system.html#a261a4dafd660422a451dc6862102ea41", null ],
     [ "workers", "structbf_1_1job_1_1_job_system.html#aab2ccaf673c3bbeebf4cbda75b0e9545", null ],
-    [ "sleep", "structbf_1_1job_1_1_job_system.html#a9f9e4fab0cbd7dc30dc013ad60f09620", null ],
+    [ "sleep", "structbf_1_1job_1_1_job_system.html#a4400ed445706221fa7fa9b1990a89ff1", null ],
     [ "wakeUpOneWorker", "structbf_1_1job_1_1_job_system.html#acabf3f5d1615b9593dac000ea13820d1", null ],
     [ "wakeUpAllWorkers", "structbf_1_1job_1_1_job_system.html#a9d1f7d6bf0dee0274012098b7dea50b4", null ],
     [ "main_queue", "structbf_1_1job_1_1_job_system.html#a47d831fefdd94372eb0edcc426e9f206", null ],

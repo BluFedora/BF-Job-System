@@ -3,7 +3,7 @@ var searchData=
   ['sharedqueue_0',['SharedQueue',['../structbf_1_1job_1_1_thread_worker.html#a22d14e53cb8b3ff8dbad04901375e0f9',1,'bf::job::ThreadWorker']]],
   ['shutdown_1',['shutdown',['../namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd',1,'bf::job']]],
   ['size_2',['size',['../namespacebf_1_1job.html#aa34099e0efbbeeaa2b2ba98d4e6cabcf',1,'bf::job::TaskData']]],
-  ['sleep_3',['sleep',['../structbf_1_1job_1_1_job_system.html#a9f9e4fab0cbd7dc30dc013ad60f09620',1,'bf::job::JobSystem']]],
+  ['sleep_3',['sleep',['../structbf_1_1job_1_1_job_system.html#a4400ed445706221fa7fa9b1990a89ff1',1,'bf::job::JobSystem']]],
   ['start_4',['start',['../structbf_1_1job_1_1_thread_worker.html#a6c280b2b837b1da7def3e247d44de09f',1,'bf::job::ThreadWorker']]],
   ['staticcountsplitter_5',['StaticCountSplitter',['../structbf_1_1job_1_1_static_count_splitter.html',1,'bf::job']]],
   ['staticdatasizesplitter_6',['StaticDataSizeSplitter',['../structbf_1_1job_1_1_static_data_size_splitter.html',1,'bf::job']]],
