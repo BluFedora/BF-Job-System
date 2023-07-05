@@ -58,8 +58,13 @@ namespace bf
 
     struct CountSplitter
     {
-      static CountSplitter EvenSplit(const std::size_t total_num_items, const std::size_t num_items_per_thread = 1u)
+      static CountSplitter EvenSplit(const std::size_t total_num_items, std::size_t num_items_per_thread = 1u)
       {
+        if (num_items_per_thread < 1u)
+        {
+          num_items_per_thread = 1u;
+        }
+
         return CountSplitter{(total_num_items / num_items_per_thread) / numWorkers()};
       }
 
