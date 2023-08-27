@@ -731,7 +731,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp_source.html','');
 <div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    {</div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>      <span class="keyword">const</span> <span class="keyword">auto</span> old_ref_count = task-&gt;<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900">ref_count</a>.fetch_add(1, std::memory_order_relaxed);</div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
-<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>      <a class="code hl_define" href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(old_ref_count &gt;= 1u || task-&gt;<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">q_type</a> == <a class="code hl_variable" href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">k_InvalidQueueType</a>, <span class="stringliteral">&quot;First call to taskIncRef should not happen after the task has been submitted.&quot;</span>);</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>      <a class="code hl_define" href="bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(old_ref_count &gt;= std::int16_t(1) || task-&gt;<a class="code hl_variable" href="structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea">q_type</a> == <a class="code hl_variable" href="namespacebf_1_1job.html#ac4743caff1b0745ed1704bae6e7d51d0">k_InvalidQueueType</a>, <span class="stringliteral">&quot;First call to taskIncRef should not happen after the task has been submitted.&quot;</span>);</div>
 <div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>    }</div>
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> </div>
 <div class="line"><a id="l00666" name="l00666"></a><span class="lineno"><a class="line" href="namespacebf_1_1job.html#a319ff8e231fce83f3990cfc703675f95">  666</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespacebf_1_1job.html#a319ff8e231fce83f3990cfc703675f95">taskDecRef</a>(<a class="code hl_struct" href="structbf_1_1job_1_1_task.html">Task</a>* <span class="keyword">const</span> task)</div>
@@ -1250,7 +1250,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="bf__job__system_8cpp.html">bf_job_system.cpp</a></li>
-    <li class="footer">Generated on Wed Jul 5 2023 15:56:49 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sun Aug 27 2023 22:35:39 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
