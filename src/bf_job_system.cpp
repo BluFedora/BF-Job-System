@@ -660,7 +660,7 @@ namespace bf
     {
       const auto old_ref_count = task->ref_count.fetch_add(1, std::memory_order_relaxed);
 
-      JobAssert(old_ref_count >= 1u || task->q_type == k_InvalidQueueType, "First call to taskIncRef should not happen after the task has been submitted.");
+      JobAssert(old_ref_count >= std::int16_t(1) || task->q_type == k_InvalidQueueType, "First call to taskIncRef should not happen after the task has been submitted.");
     }
 
     void taskDecRef(Task* const task)
