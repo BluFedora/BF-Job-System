@@ -17,6 +17,7 @@ add_library(
     "include/bf/job/bf_job_api.hpp"
     "include/bf/job/bf_job_config.hpp"
     "include/bf/job/bf_job_ext.hpp"
+    "include/concurrent/initialization_token.hpp"
 
     # Private Headers
     "src/bf_job_queue.hpp"

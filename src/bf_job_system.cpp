@@ -415,7 +415,7 @@ namespace bf
 #endif
     }
 
-    void initialize(const JobSystemCreateOptions& params) noexcept
+    InitializationToken initialize(const JobSystemCreateOptions& params) noexcept
     {
       JobAssert(s_NextThreadLocalIndex == 0u, "Job System must be shutdown before it can be initialized again.");
 
@@ -480,6 +480,8 @@ namespace bf
         }
       }
 #endif
+
+      return InitializationToken(num_threads);
     }
 
     std::uint16_t numWorkers() noexcept

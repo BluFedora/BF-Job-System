@@ -22,6 +22,8 @@
 
 #include "bf_job_config.hpp" /* size_t, Config Constants */
 
+#include "concurrent/initialization_token.hpp" // InitializationToken
+
 #include <cstdint> /* uint8_t, uint16_t */
 #include <new>     /* placement new     */
 #include <utility> /* forward           */
@@ -30,6 +32,8 @@ namespace bf
 {
   namespace job
   {
+    using namespace Job; // TODO(SR): Remove me when transition to new namespace completed.
+
     // Fwd Declarations
 
     /*!
@@ -69,15 +73,7 @@ namespace bf
 
     // Struct Definitions
 
-    /*!
-     * @brief
-     *   The runtime configuration for the Job System.
-     */
-    struct JobSystemCreateOptions
-    {
-      std::size_t num_threads = 0u;  //!< Use 0 to indicate using the number of cores available on the system.
-    };
-
+ 
     /*!
      * @brief
      *   Makes some system calls to grab the number threads / processors on the device.
@@ -103,7 +99,7 @@ namespace bf
      * @param params
      *   The customization parameters to initialize the system with.
      */
-    void initialize(const JobSystemCreateOptions& params = {}) noexcept;
+    InitializationToken initialize(const JobSystemCreateOptions& params = {}) noexcept;
 
     /*!
      * @brief
