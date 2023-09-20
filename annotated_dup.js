@@ -7,7 +7,6 @@ var annotated_dup =
         [ "index_iterator", "structbf_1_1job_1_1index__iterator.html", "structbf_1_1job_1_1index__iterator" ],
         [ "IndexRange", "structbf_1_1job_1_1_index_range.html", "structbf_1_1job_1_1_index_range" ],
         [ "JobSystem", "structbf_1_1job_1_1_job_system.html", "structbf_1_1job_1_1_job_system" ],
-        [ "JobSystemCreateOptions", "namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options", "namespacebf_1_1job_structbf_1_1job_1_1_job_system_create_options_dup" ],
         [ "StaticCountSplitter", "structbf_1_1job_1_1_static_count_splitter.html", "structbf_1_1job_1_1_static_count_splitter" ],
         [ "StaticDataSizeSplitter", "structbf_1_1job_1_1_static_data_size_splitter.html", "structbf_1_1job_1_1_static_data_size_splitter" ],
         [ "Task", "structbf_1_1job_1_1_task.html", "structbf_1_1job_1_1_task" ],
@@ -18,5 +17,9 @@ var annotated_dup =
       ] ],
       [ "JobQueueA", "classbf_1_1_job_queue_a.html", "classbf_1_1_job_queue_a" ],
       [ "JobQueueM", "classbf_1_1_job_queue_m.html", "classbf_1_1_job_queue_m" ]
+    ] ],
+    [ "Job", "namespace_job.html", [
+      [ "InitializationToken", "struct_job_1_1_initialization_token.html", "struct_job_1_1_initialization_token" ],
+      [ "JobSystemCreateOptions", "namespace_job.html#struct_job_1_1_job_system_create_options", "namespace_job_struct_job_1_1_job_system_create_options_dup" ]
     ] ]
 ];

@@ -11,5 +11,6 @@ var searchData=
   ['bf_5fmemory_5fbarrier_8',['BF_MEMORY_BARRIER',['../bf__job__queue_8hpp.html#aac122126bf0f15227ee21bdc09f18297',1,'bf_job_queue.hpp']]],
   ['blufedora_20job_20system_20library_9',['BluFedora Job System Library',['../index.html',1,'']]],
   ['detail_10',['detail',['../namespacebf_1_1job_1_1detail.html',1,'bf::job']]],
-  ['job_11',['job',['../namespacebf_1_1job.html',1,'bf']]]
+  ['initialize_11',['initialize',['../struct_job_1_1_initialization_token.html#aaec56a382c6f63247612d6e8bc13fb04',1,'Job::InitializationToken']]],
+  ['job_12',['job',['../namespacebf_1_1job.html',1,'bf']]]
 ];

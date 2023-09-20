@@ -19,7 +19,7 @@ var bf__job__system_8cpp =
     [ "initThreadWorkerID", "bf__job__system_8cpp.html#a8fb4aaef1245850e67605cbd69222b00", null ],
     [ "clampThreadCount", "bf__job__system_8cpp.html#a291d4a5da74e434cc85514cca213ec72", null ],
     [ "numSystemThreads", "bf__job__system_8cpp.html#a569f46928160d2ff793d9acbafd35277", null ],
-    [ "initialize", "bf__job__system_8cpp.html#a72e3e5b2fab272b1cd1bb5842b09e825", null ],
+    [ "initialize", "bf__job__system_8cpp.html#a25712487e5e9d095d6746a09985bb235", null ],
     [ "numWorkers", "bf__job__system_8cpp.html#a22f508fbe2fbb2af4771335253cc8008", null ],
     [ "processorArchitectureName", "bf__job__system_8cpp.html#ae9edb9cb3acc7877cbb87a66137467c9", null ],
     [ "currentWorker", "bf__job__system_8cpp.html#a2b7bca473a7040c5234ebba1fe6cb031", null ],

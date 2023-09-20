@@ -6,8 +6,10 @@ var searchData=
   ['index_5fiterator_3',['index_iterator',['../structbf_1_1job_1_1index__iterator.html',1,'bf::job::index_iterator'],['../structbf_1_1job_1_1index__iterator.html#a1e65971901fba7b2b4aaedba15ec8273',1,'bf::job::index_iterator::index_iterator()']]],
   ['indexof_4',['indexOf',['../structbf_1_1job_1_1_task_pool.html#a84c0f9eb0bdee2578e46fff7e8b5d19f',1,'bf::job::TaskPool']]],
   ['indexrange_5',['IndexRange',['../structbf_1_1job_1_1_index_range.html',1,'bf::job']]],
-  ['initialize_6',['initialize',['../namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825',1,'bf::job']]],
-  ['initthreadworkerid_7',['initThreadWorkerID',['../namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00',1,'bf::job']]],
-  ['is_5frunning_8',['is_running',['../structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc',1,'bf::job::JobSystem']]],
-  ['isnull_9',['isNull',['../structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198',1,'bf::job::TaskPtr']]]
+  ['initialization_5ftoken_2ehpp_6',['initialization_token.hpp',['../initialization__token_8hpp.html',1,'']]],
+  ['initializationtoken_7',['InitializationToken',['../struct_job_1_1_initialization_token.html#a7b08da2722b4894dd1520c08ade6ce7c',1,'Job::InitializationToken::InitializationToken()'],['../struct_job_1_1_initialization_token.html',1,'Job::InitializationToken']]],
+  ['initialize_8',['initialize',['../namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235',1,'bf::job']]],
+  ['initthreadworkerid_9',['initThreadWorkerID',['../namespacebf_1_1job.html#a8fb4aaef1245850e67605cbd69222b00',1,'bf::job']]],
+  ['is_5frunning_10',['is_running',['../structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc',1,'bf::job::JobSystem']]],
+  ['isnull_11',['isNull',['../structbf_1_1job_1_1_task_ptr.html#a22db6d339b844dc7c346078a00d80198',1,'bf::job::TaskPtr']]]
 ];

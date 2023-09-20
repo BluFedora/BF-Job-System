@@ -1,8 +1,5 @@
 var bf__job__api_8hpp =
 [
-    [ "bf::job::JobSystemCreateOptions", "namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options", [
-      [ "num_threads", "namespacebf_1_1job.html#a114aadc5c9276a01b135777528d9f356", null ]
-    ] ],
     [ "bf::job::TaskData", "namespacebf_1_1job.html#structbf_1_1job_1_1_task_data", [
       [ "ptr", "namespacebf_1_1job.html#a25348a17d7317b42b3fc6a9f55ff70c7", null ],
       [ "size", "namespacebf_1_1job.html#aa34099e0efbbeeaa2b2ba98d4e6cabcf", null ]
@@ -20,7 +17,7 @@ var bf__job__api_8hpp =
     [ "taskUsePadding", "bf__job__api_8hpp.html#af8a0d6ce60f727781cf7f12d70956922", null ],
     [ "mainQueueRunTask", "bf__job__api_8hpp.html#a2590cc0b2c4f54c15ca8a5b18ab668b5", null ],
     [ "numSystemThreads", "bf__job__api_8hpp.html#a569f46928160d2ff793d9acbafd35277", null ],
-    [ "initialize", "bf__job__api_8hpp.html#a72e3e5b2fab272b1cd1bb5842b09e825", null ],
+    [ "initialize", "bf__job__api_8hpp.html#a25712487e5e9d095d6746a09985bb235", null ],
     [ "numWorkers", "bf__job__api_8hpp.html#a22f508fbe2fbb2af4771335253cc8008", null ],
     [ "processorArchitectureName", "bf__job__api_8hpp.html#ae9edb9cb3acc7877cbb87a66137467c9", null ],
     [ "currentWorker", "bf__job__api_8hpp.html#a2b7bca473a7040c5234ebba1fe6cb031", null ],

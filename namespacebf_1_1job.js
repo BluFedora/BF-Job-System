@@ -12,7 +12,6 @@ var namespacebf_1_1job =
     [ "index_iterator", "structbf_1_1job_1_1index__iterator.html", "structbf_1_1job_1_1index__iterator" ],
     [ "IndexRange", "structbf_1_1job_1_1_index_range.html", "structbf_1_1job_1_1_index_range" ],
     [ "JobSystem", "structbf_1_1job_1_1_job_system.html", "structbf_1_1job_1_1_job_system" ],
-    [ "JobSystemCreateOptions", "namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options", "namespacebf_1_1job_structbf_1_1job_1_1_job_system_create_options_dup" ],
     [ "StaticCountSplitter", "structbf_1_1job_1_1_static_count_splitter.html", "structbf_1_1job_1_1_static_count_splitter" ],
     [ "StaticDataSizeSplitter", "structbf_1_1job_1_1_static_data_size_splitter.html", "structbf_1_1job_1_1_static_data_size_splitter" ],
     [ "Task", "structbf_1_1job_1_1_task.html", "structbf_1_1job_1_1_task" ],
@@ -33,7 +32,7 @@ var namespacebf_1_1job =
       [ "WORKER", "namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a531886e636f1aa36e0fc96d49f342613", null ]
     ] ],
     [ "numSystemThreads", "namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277", null ],
-    [ "initialize", "namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825", null ],
+    [ "initialize", "namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235", null ],
     [ "numWorkers", "namespacebf_1_1job.html#a22f508fbe2fbb2af4771335253cc8008", null ],
     [ "processorArchitectureName", "namespacebf_1_1job.html#ae9edb9cb3acc7877cbb87a66137467c9", null ],
     [ "currentWorker", "namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031", null ],

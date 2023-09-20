@@ -83,7 +83,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">BluFedora Job System Library </div></div>
+  <div class="headertitle"><div class="title">BluFedora <a class="el" href="namespace_job.html">Job</a> System Library </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_README"></a> This is a C++17 library for handling of Tasks / Jobs in a multi-threaded environment.</p>
@@ -110,7 +110,7 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main()</div>
 <div class="line">{</div>
-<div class="line">  <span class="keywordflow">if</span> (!<a class="code hl_function" href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825">bf::job::initialize</a>())</div>
+<div class="line">  <span class="keywordflow">if</span> (!<a class="code hl_function" href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235">bf::job::initialize</a>())</div>
 <div class="line">  {</div>
 <div class="line">    <span class="keywordflow">return</span> 1;</div>
 <div class="line">  }</div>
@@ -152,17 +152,17 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacebf_1_1job_html_a0f005788a248d99a196608b5727b8bcd"><div class="ttname"><a href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">bf::job::shutdown</a></div><div class="ttdeci">void shutdown() noexcept</div><div class="ttdoc">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initia...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00501">bf_job_system.cpp:501</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a0f005788a248d99a196608b5727b8bcd"><div class="ttname"><a href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">bf::job::shutdown</a></div><div class="ttdeci">void shutdown() noexcept</div><div class="ttdoc">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initia...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00503">bf_job_system.cpp:503</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a25712487e5e9d095d6746a09985bb235"><div class="ttname"><a href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235">bf::job::initialize</a></div><div class="ttdeci">InitializationToken initialize(const JobSystemCreateOptions &amp;params={}) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'job::initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00418">bf_job_system.cpp:418</a></div></div>
 <div class="ttc" id="anamespacebf_1_1job_html_a4ca43dbd44d354a1e2aa1e9b16efe602"><div class="ttname"><a href="namespacebf_1_1job.html#a4ca43dbd44d354a1e2aa1e9b16efe602">bf::job::parallel_for</a></div><div class="ttdeci">Task * parallel_for(const std::size_t start, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</div><div class="ttdoc">Parallel for algorithm, splits the work up recursively splitting based on the splitter passed in.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00125">bf_job_ext.hpp:125</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a6af1eef961e26e6cbdf84dd01d86a619"><div class="ttname"><a href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">bf::job::waitOnTask</a></div><div class="ttdeci">void waitOnTask(const Task *const task) noexcept</div><div class="ttdoc">Waits until the specified task is done executing. This function will block but do work while being bl...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00688">bf_job_system.cpp:688</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_a72e3e5b2fab272b1cd1bb5842b09e825"><div class="ttname"><a href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825">bf::job::initialize</a></div><div class="ttdeci">void initialize(const JobSystemCreateOptions &amp;params={}) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'job::initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00418">bf_job_system.cpp:418</a></div></div>
-<div class="ttc" id="anamespacebf_1_1job_html_aac32a249803a51e77725f088581fefbe"><div class="ttname"><a href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">bf::job::taskSubmit</a></div><div class="ttdeci">Task * taskSubmit(Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00599">bf_job_system.cpp:599</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_a6af1eef961e26e6cbdf84dd01d86a619"><div class="ttname"><a href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">bf::job::waitOnTask</a></div><div class="ttdeci">void waitOnTask(const Task *const task) noexcept</div><div class="ttdoc">Waits until the specified task is done executing. This function will block but do work while being bl...</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00690">bf_job_system.cpp:690</a></div></div>
+<div class="ttc" id="anamespacebf_1_1job_html_aac32a249803a51e77725f088581fefbe"><div class="ttname"><a href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">bf::job::taskSubmit</a></div><div class="ttdeci">Task * taskSubmit(Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00601">bf_job_system.cpp:601</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_count_splitter_html"><div class="ttname"><a href="structbf_1_1job_1_1_count_splitter.html">bf::job::CountSplitter</a></div><div class="ttdef"><b>Definition:</b> <a href="bf__job__ext_8hpp_source.html#l00059">bf_job_ext.hpp:60</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
 Architecture</h1>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Task</h2>
-<p >A <code>Task</code> is a single unit of work that can be scheduled by the Job System. Each <code>Task</code> has a total sizeof of 128bytes (2 * hardware interference size) with some of the bytes taken by essential bookkeeping date then the rest used for user storage.</p>
+<p >A <code>Task</code> is a single unit of work that can be scheduled by the <a class="el" href="namespace_job.html">Job</a> System. Each <code>Task</code> has a total sizeof of 128bytes (2 * hardware interference size) with some of the bytes taken by essential bookkeeping date then the rest used for user storage.</p>
 <p >A <code>Task</code>s can be added as a child of another task, this means that when you wait on the parent <code>Task</code> then it will wait for all child <code>Task</code> as well.</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Queues</h2>
@@ -188,7 +188,7 @@ Libraries Used</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Aug 27 2023 22:35:39 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Sep 20 2023 10:46:13 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

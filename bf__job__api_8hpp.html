@@ -96,6 +96,7 @@ $(document).ready(function(){initNavTree('bf__job__api_8hpp.html',''); initResiz
 <p>API for a multi-threading job system.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="bf__job__config_8hpp_source.html">bf_job_config.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="initialization__token_8hpp_source.html">concurrent/initialization_token.hpp</a>&quot;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;new&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
@@ -104,9 +105,6 @@ $(document).ready(function(){initNavTree('bf__job__api_8hpp.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structbf_1_1job_1_1_job_system_create_options"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options">bf::job::JobSystemCreateOptions</a></td></tr>
-<tr class="memdesc:structbf_1_1job_1_1_job_system_create_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">The runtime configuration for the Job System.  <a href="namespacebf_1_1job.html#structbf_1_1job_1_1_job_system_create_options">More...</a><br /></td></tr>
-<tr class="separator:structbf_1_1job_1_1_job_system_create_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structbf_1_1job_1_1_task_data"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_data">bf::job::TaskData</a></td></tr>
 <tr class="memdesc:structbf_1_1job_1_1_task_data"><td class="mdescLeft">&#160;</td><td class="mdescRight">A buffer for user-data you can write to, maybe large enough to store task data inline.  <a href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_data">More...</a><br /></td></tr>
 <tr class="separator:structbf_1_1job_1_1_task_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,9 +151,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a569f46928160d2ff793d9acbafd35277"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277">bf::job::numSystemThreads</a> () noexcept</td></tr>
 <tr class="memdesc:a569f46928160d2ff793d9acbafd35277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277">More...</a><br /></td></tr>
 <tr class="separator:a569f46928160d2ff793d9acbafd35277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72e3e5b2fab272b1cd1bb5842b09e825"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825">bf::job::initialize</a> (const JobSystemCreateOptions &amp;params={}) noexcept</td></tr>
-<tr class="memdesc:a72e3e5b2fab272b1cd1bb5842b09e825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the Job system and creates all the worker threads. The thread that calls '<a class="el" href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825" title="Sets up the Job system and creates all the worker threads. The thread that calls &#39;job::initialize&#39; is...">job::initialize</a>' is considered the main thread.  <a href="namespacebf_1_1job.html#a72e3e5b2fab272b1cd1bb5842b09e825">More...</a><br /></td></tr>
-<tr class="separator:a72e3e5b2fab272b1cd1bb5842b09e825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25712487e5e9d095d6746a09985bb235"><td class="memItemLeft" align="right" valign="top">InitializationToken&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235">bf::job::initialize</a> (const JobSystemCreateOptions &amp;params={}) noexcept</td></tr>
+<tr class="memdesc:a25712487e5e9d095d6746a09985bb235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the <a class="el" href="namespace_job.html">Job</a> system and creates all the worker threads. The thread that calls '<a class="el" href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235" title="Sets up the Job system and creates all the worker threads. The thread that calls &#39;job::initialize&#39; is...">job::initialize</a>' is considered the main thread.  <a href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235">More...</a><br /></td></tr>
+<tr class="separator:a25712487e5e9d095d6746a09985bb235"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22f508fbe2fbb2af4771335253cc8008"><td class="memItemLeft" align="right" valign="top">std::uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a22f508fbe2fbb2af4771335253cc8008">bf::job::numWorkers</a> () noexcept</td></tr>
 <tr class="memdesc:a22f508fbe2fbb2af4771335253cc8008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of workers created by the system. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a22f508fbe2fbb2af4771335253cc8008">More...</a><br /></td></tr>
 <tr class="separator:a22f508fbe2fbb2af4771335253cc8008"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,32 +232,6 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
 </div><hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structbf_1_1job_1_1_job_system_create_options" id="structbf_1_1job_1_1_job_system_create_options"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structbf_1_1job_1_1_job_system_create_options">&#9670;&nbsp;</a></span>bf::job::JobSystemCreateOptions</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct bf::job::JobSystemCreateOptions</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p >The runtime configuration for the Job System. </p>
-
-<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00076">76</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a id="a114aadc5c9276a01b135777528d9f356" name="a114aadc5c9276a01b135777528d9f356"></a>size_t</td>
-<td class="fieldname">
-num_threads</td>
-<td class="fielddoc">
-Use 0 to indicate using the number of cores available on the system. </td></tr>
-</table>
-
-</div>
-</div>
 <a name="structbf_1_1job_1_1_task_data" id="structbf_1_1job_1_1_task_data"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#structbf_1_1job_1_1_task_data">&#9670;&nbsp;</a></span>bf::job::TaskData</h2>
 
@@ -275,7 +247,7 @@ Use 0 to indicate using the number of cores available on the system. </td></tr>
 <p >If you store non trivial data remember to manually call it's destructor at the end of the task function.</p>
 <p >If you call 'taskEmplaceData' or 'taskSetData' and need to update the data once more be sure to destruct the previous contents correctly if the data stored in the buffer is non trivial. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00159">159</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00155">155</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -300,7 +272,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__api_8hpp.html">bf_job_api.hpp</a></li>
-    <li class="footer">Generated on Sun Aug 27 2023 22:35:39 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Sep 20 2023 10:46:13 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
