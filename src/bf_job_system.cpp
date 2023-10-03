@@ -34,20 +34,20 @@
 // TODO(SR): Alignment requirements need to be taken account of for padding storage.
 
 #if _WIN32
-#define IS_WINDOWS 1
-#define IS_POSIX 0
+#define IS_WINDOWS         1
+#define IS_POSIX           0
 #define IS_SINGLE_THREADED 0
 #elif __APPLE__
-#define IS_WINDOWS 0
-#define IS_POSIX 1
+#define IS_WINDOWS         0
+#define IS_POSIX           1
 #define IS_SINGLE_THREADED 0
 #elif (__ANDROID__ || __linux || __unix || __posix)
-#define IS_WINDOWS 0
-#define IS_POSIX 1
+#define IS_WINDOWS         0
+#define IS_POSIX           1
 #define IS_SINGLE_THREADED 0
 #elif __EMSCRIPTEN__
-#define IS_WINDOWS 0
-#define IS_POSIX 0
+#define IS_WINDOWS         0
+#define IS_POSIX           0
 #define IS_SINGLE_THREADED 1
 #endif
 
@@ -715,7 +715,7 @@ namespace bf
     {
       if (is_running)
       {
-        std::this_thread::yield();
+        Job::PauseProcessor();
 
         if (num_available_jobs.load(std::memory_order_relaxed) == 0u)
         {
@@ -1011,6 +1011,34 @@ namespace bf
     }
   }  // namespace job
 }  // namespace bf
+
+#if defined(_MSC_VER)
+#define NativePause YieldProcessor
+#elif defined(__clang__) || defined(__INTEL_COMPILER) || (__GNUC_PREREQ(4, 7) && defined(__SSE__))
+#include <xmmintrin.h>
+#define NativePause _mm_pause
+#elif defined(__arm__)
+#ifdef __CC_ARM
+#define NativePause() __yield()
+#else
+#define NativePause() __asm__ __volatile__("yield")
+#endif
+#else
+#error "Unsupported platform"
+#define NativePause std::this_thread::yield
+#endif
+
+void Job::PauseProcessor()
+{
+  NativePause();
+}
+
+void Job::YieldTimeSlice()
+{
+  // Windows : SwitchToThread()
+  // Linux   : sched_yield()
+  std::this_thread::yield();
+}
 
 #undef IS_WINDOWS
 #undef IS_POSIX

@@ -45,6 +45,10 @@ namespace Job
 
     friend InitializationToken bf::job::initialize(const JobSystemCreateOptions&) noexcept;
   };
+
+  void PauseProcessor();
+  void YieldTimeSlice();
+
 }  // namespace Job
 
 #endif // LIB_FOUNDATION_JOB_INITALIZATION_TOKEN_HPP
