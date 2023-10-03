@@ -10,6 +10,7 @@ var bf__job__system_8cpp =
     [ "bf::job::ThreadWorker", "structbf_1_1job_1_1_thread_worker.html", "structbf_1_1job_1_1_thread_worker" ],
     [ "bf::job::JobSystem", "structbf_1_1job_1_1_job_system.html", "structbf_1_1job_1_1_job_system" ],
     [ "JobAssert", "bf__job__system_8cpp.html#a3c45a50fae3515f1fa7aa7def616e68f", null ],
+    [ "NativePause", "bf__job__system_8cpp.html#af1f8f96c9abf19bf3d0754524aaa2efc", null ],
     [ "TaskHandle", "bf__job__system_8cpp.html#a8950eddf68eeb5563079a6239f70652e", null ],
     [ "TaskHandleType", "bf__job__system_8cpp.html#a967b829249d237baa271bd67d75febe2", null ],
     [ "AtomicTaskHandleType", "bf__job__system_8cpp.html#a36963cbd0df0baee77f9dd7850240aaa", null ],

@@ -196,7 +196,7 @@ Public Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>    {</div>
 <div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc">is_running</a>)</div>
 <div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>      {</div>
-<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>        std::this_thread::yield();</div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>        <a class="code hl_function" href="namespace_job.html#a9b2154154d8415e9f83b659a2673ea17">Job::PauseProcessor</a>();</div>
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span> </div>
 <div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6">num_available_jobs</a>.load(std::memory_order_relaxed) == 0u)</div>
 <div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>        {</div>
@@ -214,11 +214,14 @@ Public Attributes</h2></td></tr>
 <div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>        }</div>
 <div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>      }</div>
 <div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    }</div>
+<div class="ttc" id="anamespace_job_html_a9b2154154d8415e9f83b659a2673ea17"><div class="ttname"><a href="namespace_job.html#a9b2154154d8415e9f83b659a2673ea17">Job::PauseProcessor</a></div><div class="ttdeci">void PauseProcessor()</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l01031">bf_job_system.cpp:1031</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_a004da6b464263334993b2906bf7b4dd6"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6">bf::job::JobSystem::num_available_jobs</a></div><div class="ttdeci">AtomicInt32 num_available_jobs</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00293">bf_job_system.cpp:293</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_a624298dcf808f02a23ab8716bf4361bc"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc">bf::job::JobSystem::is_running</a></div><div class="ttdeci">std::atomic_bool is_running</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00294">bf_job_system.cpp:294</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_ab3fa2ae6eec44df84d00f2c344a11afc"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">bf::job::JobSystem::worker_sleep_mutex</a></div><div class="ttdeci">std::mutex worker_sleep_mutex</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00290">bf_job_system.cpp:290</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_af05eceb84fe22cd6878497b803fb9a1b"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">bf::job::JobSystem::worker_sleep_cv</a></div><div class="ttdeci">std::condition_variable worker_sleep_cv</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00291">bf_job_system.cpp:291</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l01031">Job::PauseProcessor()</a>.</p>
+
 </div>
 </div>
 <a id="acabf3f5d1615b9593dac000ea13820d1" name="acabf3f5d1615b9593dac000ea13820d1"></a>
@@ -415,7 +418,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li><li class="navelem"><a class="el" href="structbf_1_1job_1_1_job_system.html">JobSystem</a></li>
-    <li class="footer">Generated on Wed Sep 20 2023 10:46:13 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Oct 3 2023 00:13:52 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
