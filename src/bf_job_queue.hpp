@@ -4,7 +4,7 @@
   @author Shareef Abdoul-Raheem
   @brief
     These are basic Single Producer Multiple Consumer Queues.
-    Push and Pop MST be called by the producer / owning thread.
+    Push and Pop MUST be called by the producer / owning thread.
     Steal MUST be called by anyone BUT the producer / owning thread.
 
     Copyright (C) 2020-2021 Shareef Abdoul-Raheem
@@ -41,7 +41,6 @@ namespace bf
 
   // NOTE(Shareef):
   //   kSize must be a Power of Two.
-  //   T should be a pointer type.
   template<std::size_t kSize, typename T>
   class JobQueueM
   {
@@ -65,11 +64,13 @@ namespace bf
     {
     }
 
+    // TODO(SR): This circular buffer seems broken.
+
     bool push(const T& job)
     {
       std::lock_guard<std::mutex> guard(m_CriticalLock);
       (void)guard;
-
+      
       m_Queue[m_Bottom & WRAP_MASK] = job;
       ++m_Bottom;
       return true;
@@ -79,14 +80,14 @@ namespace bf
     {
       std::lock_guard<std::mutex> guard(m_CriticalLock);
       (void)guard;
-
+      
       const auto num_jobs = m_Bottom - m_Top;
-
+      
       if (num_jobs <= 0)
       {
         return nullptr;
       }
-
+      
       --m_Bottom;
       return m_Queue[m_Bottom & WRAP_MASK];
     }
@@ -94,7 +95,6 @@ namespace bf
 
   // NOTE(Shareef):
   //   kSize must be a Power of Two.
-  //   T should be a pointer type.
   template<std::size_t kSize, typename T>
   class JobQueueA
   {

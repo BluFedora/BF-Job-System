@@ -70,6 +70,11 @@ namespace bf
 
       std::size_t max_count;
 
+      CountSplitter(std::size_t count) :
+        max_count{count}
+      {
+      }
+
       bool operator()(const std::size_t count) const { return count > max_count; }
     };
 

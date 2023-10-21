@@ -419,7 +419,7 @@ namespace bf
     {
       JobAssert(s_NextThreadLocalIndex == 0u, "Job System must be shutdown before it can be initialized again.");
 
-      const WorkerID default_num_threads = WorkerID(numSystemThreads() / 2);
+      const WorkerID default_num_threads = WorkerID(numSystemThreads());
       const WorkerID num_threads         = clampThreadCount(WorkerID(params.num_threads ? params.num_threads : default_num_threads), WorkerID(1), WorkerID(k_MaxThreadsSupported));
 
       s_JobCtx.num_workers = num_threads;
@@ -574,14 +574,12 @@ namespace bf
       JobAssert(continuation->q_type == k_InvalidQueueType, "A continuation must not have already been submitted to a queue.");
       JobAssert(continuation->next_continuation.isNull(), "A continuation must not have already been added to another task.");
 
-      const TaskPtr new_head = continuation->toTaskPtr();
-      TaskPtr       expected_head;
-      do
-      {
-        expected_head                   = self->first_continuation.load();
-        continuation->next_continuation = expected_head;
+      const TaskPtr new_head          = continuation->toTaskPtr();
+      continuation->next_continuation = self->first_continuation.load(std::memory_order_relaxed);
 
-      } while (!std::atomic_compare_exchange_weak(&self->first_continuation, &expected_head, new_head));
+      while (!std::atomic_compare_exchange_weak(&self->first_continuation, &continuation->next_continuation, new_head))
+      {
+      }
     }
 
     template<typename QueueType>
