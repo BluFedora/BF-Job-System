@@ -192,35 +192,35 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00714">714</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>    {</div>
-<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc">is_running</a>)</div>
-<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>      {</div>
-<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>        <a class="code hl_function" href="namespace_job.html#a9b2154154d8415e9f83b659a2673ea17">Job::PauseProcessor</a>();</div>
-<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span> </div>
-<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6">num_available_jobs</a>.load(std::memory_order_relaxed) == 0u)</div>
-<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>        {</div>
-<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>          std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">worker_sleep_mutex</a>);</div>
-<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>          <a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.wait(lock, [<span class="keyword">this</span>]() {</div>
-<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>            <span class="comment">// NOTE(SR):</span></div>
-<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>            <span class="comment">//   Because the stl wants &#39;false&#39; to mean continue waiting the logic is a bit confusing :/</span></div>
+<p class="definition">Definition at line <a class="el" href="bf__job__system_8cpp_source.html#l00712">712</a> of file <a class="el" href="bf__job__system_8cpp_source.html">bf_job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>    {</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc">is_running</a>)</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>      {</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>        <a class="code hl_function" href="namespace_job.html#a9b2154154d8415e9f83b659a2673ea17">Job::PauseProcessor</a>();</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span> </div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6">num_available_jobs</a>.load(std::memory_order_relaxed) == 0u)</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>        {</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>          std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">worker_sleep_mutex</a>);</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>          <a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">worker_sleep_cv</a>.wait(lock, [<span class="keyword">this</span>]() {</div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>            <span class="comment">// NOTE(SR):</span></div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>            <span class="comment">//   Because the stl wants &#39;false&#39; to mean continue waiting the logic is a bit confusing :/</span></div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>            <span class="comment">//</span></div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>            <span class="comment">//   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).</span></div>
 <div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>            <span class="comment">//</span></div>
-<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>            <span class="comment">//   Returns false if the waiting should be continued, aka num_queued_jobs == 0u (also return true if not running).</span></div>
-<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>            <span class="comment">//</span></div>
-<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>            <span class="comment">//        Wait If:     running AND num_available_jobs == 0.</span></div>
-<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>            <span class="comment">// Do Not Wait If: not running  OR num_available_jobs != 0.</span></div>
-<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>            <span class="comment">//</span></div>
-<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>            <span class="keywordflow">return</span> !<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc">is_running</a> || <a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6">num_available_jobs</a>.load(std::memory_order_relaxed) != 0; });</div>
-<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>        }</div>
-<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>      }</div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    }</div>
-<div class="ttc" id="anamespace_job_html_a9b2154154d8415e9f83b659a2673ea17"><div class="ttname"><a href="namespace_job.html#a9b2154154d8415e9f83b659a2673ea17">Job::PauseProcessor</a></div><div class="ttdeci">void PauseProcessor()</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l01031">bf_job_system.cpp:1031</a></div></div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>            <span class="comment">//        Wait If:     running AND num_available_jobs == 0.</span></div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>            <span class="comment">// Do Not Wait If: not running  OR num_available_jobs != 0.</span></div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>            <span class="comment">//</span></div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>            <span class="keywordflow">return</span> !<a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc">is_running</a> || <a class="code hl_variable" href="structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6">num_available_jobs</a>.load(std::memory_order_relaxed) != 0; });</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>        }</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>      }</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>    }</div>
+<div class="ttc" id="anamespace_job_html_a9b2154154d8415e9f83b659a2673ea17"><div class="ttname"><a href="namespace_job.html#a9b2154154d8415e9f83b659a2673ea17">Job::PauseProcessor</a></div><div class="ttdeci">void PauseProcessor()</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l01029">bf_job_system.cpp:1029</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_a004da6b464263334993b2906bf7b4dd6"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#a004da6b464263334993b2906bf7b4dd6">bf::job::JobSystem::num_available_jobs</a></div><div class="ttdeci">AtomicInt32 num_available_jobs</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00293">bf_job_system.cpp:293</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_a624298dcf808f02a23ab8716bf4361bc"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#a624298dcf808f02a23ab8716bf4361bc">bf::job::JobSystem::is_running</a></div><div class="ttdeci">std::atomic_bool is_running</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00294">bf_job_system.cpp:294</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_ab3fa2ae6eec44df84d00f2c344a11afc"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#ab3fa2ae6eec44df84d00f2c344a11afc">bf::job::JobSystem::worker_sleep_mutex</a></div><div class="ttdeci">std::mutex worker_sleep_mutex</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00290">bf_job_system.cpp:290</a></div></div>
 <div class="ttc" id="astructbf_1_1job_1_1_job_system_html_af05eceb84fe22cd6878497b803fb9a1b"><div class="ttname"><a href="structbf_1_1job_1_1_job_system.html#af05eceb84fe22cd6878497b803fb9a1b">bf::job::JobSystem::worker_sleep_cv</a></div><div class="ttdeci">std::condition_variable worker_sleep_cv</div><div class="ttdef"><b>Definition:</b> <a href="bf__job__system_8cpp_source.html#l00291">bf_job_system.cpp:291</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l01031">Job::PauseProcessor()</a>.</p>
+<p class="reference">References <a class="el" href="bf__job__system_8cpp_source.html#l01029">Job::PauseProcessor()</a>.</p>
 
 </div>
 </div>
@@ -418,7 +418,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li><li class="navelem"><a class="el" href="structbf_1_1job_1_1_job_system.html">JobSystem</a></li>
-    <li class="footer">Generated on Tue Oct 3 2023 00:13:52 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Oct 21 2023 22:51:23 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
