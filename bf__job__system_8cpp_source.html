@@ -1083,7 +1083,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp_source.html','');
 <div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span> </div>
 <div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span><span class="preprocessor">#if defined(_MSC_VER)</span></div>
 <div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span><span class="preprocessor">#define NativePause YieldProcessor</span></div>
-<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span><span class="preprocessor">#elif defined(__clang__) || defined(__INTEL_COMPILER) || (__GNUC_PREREQ(4, 7) &amp;&amp; defined(__SSE__))</span></div>
+<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span><span class="preprocessor">#elif defined(__clang__) &amp;&amp; defined(__SSE__) || defined(__INTEL_COMPILER)  </span><span class="comment">// || defined(__GNUC_PREREQ) &amp;&amp; (__GNUC_PREREQ(4, 7) &amp;&amp; defined(__SSE__))</span></div>
 <div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span><span class="preprocessor">#include &lt;xmmintrin.h&gt;</span></div>
 <div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span><span class="preprocessor">#define NativePause _mm_pause</span></div>
 <div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span><span class="preprocessor">#elif defined(__arm__)</span></div>
@@ -1093,7 +1093,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp_source.html','');
 <div class="line"><a id="l01022" name="l01022"></a><span class="lineno"> 1022</span><span class="preprocessor">#define NativePause() __asm__ __volatile__(&quot;yield&quot;</span>)</div>
 <div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l01024" name="l01024"></a><span class="lineno"> 1024</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span><span class="preprocessor">#error &quot;Unsupported platform&quot;</span></div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span><span class="comment">// #error &quot;Unsupported platform&quot;</span></div>
 <div class="line"><a id="l01026" name="l01026"></a><span class="lineno"><a class="line" href="bf__job__system_8cpp.html#af1f8f96c9abf19bf3d0754524aaa2efc"> 1026</a></span><span class="preprocessor">#define NativePause std::this_thread::yield</span></div>
 <div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span> </div>
@@ -1282,7 +1282,7 @@ $(document).ready(function(){initNavTree('bf__job__system_8cpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="bf__job__system_8cpp.html">bf_job_system.cpp</a></li>
-    <li class="footer">Generated on Sat Oct 21 2023 22:51:23 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Thu Nov 23 2023 11:54:08 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
