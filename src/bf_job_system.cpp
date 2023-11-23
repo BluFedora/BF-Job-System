@@ -1012,7 +1012,7 @@ namespace bf
 
 #if defined(_MSC_VER)
 #define NativePause YieldProcessor
-#elif defined(__clang__) || defined(__INTEL_COMPILER) || (__GNUC_PREREQ(4, 7) && defined(__SSE__))
+#elif defined(__clang__) && defined(__SSE__) || defined(__INTEL_COMPILER)  // || defined(__GNUC_PREREQ) && (__GNUC_PREREQ(4, 7) && defined(__SSE__))
 #include <xmmintrin.h>
 #define NativePause _mm_pause
 #elif defined(__arm__)
@@ -1022,7 +1022,7 @@ namespace bf
 #define NativePause() __asm__ __volatile__("yield")
 #endif
 #else
-#error "Unsupported platform"
+// #error "Unsupported platform"
 #define NativePause std::this_thread::yield
 #endif
 
