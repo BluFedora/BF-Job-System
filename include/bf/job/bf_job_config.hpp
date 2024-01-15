@@ -29,10 +29,10 @@ namespace bf
   {
     // Constants / Configuration
 
-    static constexpr std::size_t k_MainQueueSize       = 512;   //!< The number of tasks that can be contained in the main queue.
-    static constexpr std::size_t k_NormalQueueSize     = 4096;  //!< The number of tasks that can be contained in each worker's high priority queue.
-    static constexpr std::size_t k_BackgroundQueueSize = 1024;  //!< The number of tasks that can be contained in each worker's low priority queue.
-    static constexpr std::size_t k_MaxThreadsSupported = 64;    //!< The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.
+    static constexpr std::size_t k_MainQueueSize       = 256;   //!< The number of tasks that can be contained in the main queue.
+    static constexpr std::size_t k_NormalQueueSize     = 1024;  //!< The number of tasks that can be contained in each worker's high priority queue.
+    static constexpr std::size_t k_BackgroundQueueSize = 512;   //!< The number of tasks that can be contained in each worker's low priority queue.
+    static constexpr std::size_t k_MaxThreadsSupported = 32;    //!< The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.
 
   }  // namespace job
 }  // namespace bf
