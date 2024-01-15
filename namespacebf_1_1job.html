@@ -256,16 +256,16 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a494b3014635f3e97c1fdf626b236117b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">k_MainQueueSize</a> = 512</td></tr>
+<tr class="memitem:a494b3014635f3e97c1fdf626b236117b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">k_MainQueueSize</a> = 256</td></tr>
 <tr class="memdesc:a494b3014635f3e97c1fdf626b236117b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in the main queue.  <a href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">More...</a><br /></td></tr>
 <tr class="separator:a494b3014635f3e97c1fdf626b236117b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ec37950a885a28333f4a56868b9a07b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">k_NormalQueueSize</a> = 4096</td></tr>
+<tr class="memitem:a9ec37950a885a28333f4a56868b9a07b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">k_NormalQueueSize</a> = 1024</td></tr>
 <tr class="memdesc:a9ec37950a885a28333f4a56868b9a07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's high priority queue.  <a href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">More...</a><br /></td></tr>
 <tr class="separator:a9ec37950a885a28333f4a56868b9a07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">k_BackgroundQueueSize</a> = 1024</td></tr>
+<tr class="memitem:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">k_BackgroundQueueSize</a> = 512</td></tr>
 <tr class="memdesc:acbbd94aff6cd64ac8fa998309592d8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's low priority queue.  <a href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">More...</a><br /></td></tr>
 <tr class="separator:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">k_MaxThreadsSupported</a> = 64</td></tr>
+<tr class="memitem:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">k_MaxThreadsSupported</a> = 32</td></tr>
 <tr class="memdesc:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.  <a href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">More...</a><br /></td></tr>
 <tr class="separator:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a865e5e5752ed1d18586dc60dc902ce4a"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a865e5e5752ed1d18586dc60dc902ce4a">k_CachelineSize</a> = 64u</td></tr>
@@ -2247,7 +2247,7 @@ template&lt;typename <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::size_t bf::job::k_MainQueueSize = 512</td>
+          <td class="memname">constexpr std::size_t bf::job::k_MainQueueSize = 256</td>
         </tr>
       </table>
   </td>
@@ -2273,7 +2273,7 @@ template&lt;typename <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::size_t bf::job::k_NormalQueueSize = 4096</td>
+          <td class="memname">constexpr std::size_t bf::job::k_NormalQueueSize = 1024</td>
         </tr>
       </table>
   </td>
@@ -2299,7 +2299,7 @@ template&lt;typename <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::size_t bf::job::k_BackgroundQueueSize = 1024</td>
+          <td class="memname">constexpr std::size_t bf::job::k_BackgroundQueueSize = 512</td>
         </tr>
       </table>
   </td>
@@ -2325,7 +2325,7 @@ template&lt;typename <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::size_t bf::job::k_MaxThreadsSupported = 64</td>
+          <td class="memname">constexpr std::size_t bf::job::k_MaxThreadsSupported = 32</td>
         </tr>
       </table>
   </td>
@@ -2501,7 +2501,7 @@ template&lt;typename <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacebf.html">bf</a></li><li class="navelem"><a class="el" href="namespacebf_1_1job.html">job</a></li>
-    <li class="footer">Generated on Thu Nov 23 2023 11:54:08 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Mon Jan 15 2024 01:52:23 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
