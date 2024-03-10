@@ -6,33 +6,26 @@
  *   Token type used for other subsystems that rely on the job system to verify
  *   that the Job system has been initialized.
  *
- * @copyright Copyright (c) 2023 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2023-2024 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
-#ifndef LIB_FOUNDATION_JOB_INITALIZATION_TOKEN_HPP
-#define LIB_FOUNDATION_JOB_INITALIZATION_TOKEN_HPP
+#ifndef JOB_INITALIZATION_TOKEN_HPP
+#define JOB_INITALIZATION_TOKEN_HPP
 
 namespace Job
 {
   /*!
-     * @brief
-     *   The runtime configuration for the Job System.
-     */
+   * @brief
+   *   The runtime configuration for the Job System.
+   */
   struct JobSystemCreateOptions
   {
     unsigned int num_threads = 0u;  //!< Use 0 to indicate using the number of cores available on the system.
   };
 
   struct InitializationToken;
-}  // namespace Job
+  InitializationToken initialize(const Job::JobSystemCreateOptions& params) noexcept;
 
-namespace bf::job
-{
-  Job::InitializationToken initialize(const Job::JobSystemCreateOptions& params) noexcept;
-}
-
-namespace Job
-{
   struct InitializationToken
   {
     unsigned int num_workers_created = 0;
@@ -43,21 +36,20 @@ namespace Job
     {
     }
 
-    friend InitializationToken bf::job::initialize(const JobSystemCreateOptions&) noexcept;
+    friend InitializationToken Job::initialize(const JobSystemCreateOptions&) noexcept;
   };
 
   void PauseProcessor();
   void YieldTimeSlice();
-
 }  // namespace Job
 
-#endif // LIB_FOUNDATION_JOB_INITALIZATION_TOKEN_HPP
+#endif  // JOB_INITALIZATION_TOKEN_HPP
 
 /******************************************************************************/
 /*
   MIT License
 
-  Copyright (c) 2023 Shareef Abdoul-Raheem
+  Copyright (c) 2023-2024 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

@@ -7,7 +7,7 @@
     Push and Pop MUST be called by the producer / owning thread.
     Steal MUST be called by anyone BUT the producer / owning thread.
 
-    Copyright (C) 2020-2021 Shareef Abdoul-Raheem
+    Copyright (C) 2020-2024 Shareef Abdoul-Raheem
 */
 /******************************************************************************/
 #ifndef BF_JOB_QUEUE_HPP
@@ -32,7 +32,7 @@
 //    gcc:   __sync_synchronize();
 #define BF_MEMORY_BARRIER std::atomic_thread_fence(std::memory_order_seq_cst)
 
-namespace bf
+namespace Job
 {
   // Type Aliases
 
@@ -70,7 +70,7 @@ namespace bf
     {
       std::lock_guard<std::mutex> guard(m_CriticalLock);
       (void)guard;
-      
+
       m_Queue[m_Bottom & WRAP_MASK] = job;
       ++m_Bottom;
       return true;
@@ -80,14 +80,14 @@ namespace bf
     {
       std::lock_guard<std::mutex> guard(m_CriticalLock);
       (void)guard;
-      
+
       const auto num_jobs = m_Bottom - m_Top;
-      
+
       if (num_jobs <= 0)
       {
         return nullptr;
       }
-      
+
       --m_Bottom;
       return m_Queue[m_Bottom & WRAP_MASK];
     }
@@ -275,7 +275,7 @@ namespace bf
     }
 #endif
   };
-}  // namespace bf
+}  // namespace Job
 
 #endif /* BF_JOB_QUEUE_HPP */
 
@@ -283,7 +283,7 @@ namespace bf
 /*
   MIT License
 
-  Copyright (c) 2020-2021 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2024 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

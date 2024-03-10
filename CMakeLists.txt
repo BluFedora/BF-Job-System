@@ -14,9 +14,9 @@ add_library(
   BF_Job
   STATIC
     # Public Headers
-    "include/bf/job/bf_job_api.hpp"
-    "include/bf/job/bf_job_config.hpp"
-    "include/bf/job/bf_job_ext.hpp"
+    "include/concurrent/bf_job_api.hpp"
+    "include/concurrent/bf_job_config.hpp"
+    "include/concurrent/bf_job_ext.hpp"
     "include/concurrent/initialization_token.hpp"
 
     # Private Headers

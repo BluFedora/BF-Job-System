@@ -28,7 +28,7 @@ static void printFirst20Items()
 
 int main()
 {
-  if (!bf::job::initialize())
+  if (!Job::initialize())
   {
     return 1;
   }
@@ -42,10 +42,10 @@ int main()
   std::printf("Before:\n");
   printFirst20Items();
 
-  auto* t = bf::job::parallel_for(
+  auto* t = Job::parallel_for(
    s_ExampleData, 
    k_DataSize, 
-   bf::job::CountSplitter{6}, 
+   Job::CountSplitter{6}, 
    [](int* data, std::size_t data_size) {
      for (std::size_t i = 0; i < data_size; ++i)
      {
@@ -53,9 +53,9 @@ int main()
      }
    });
 
-  bf::job::taskSubmit(t);
+  Job::taskSubmit(t);
 
-  bf::job::waitOnTask(t);
+  Job::waitOnTask(t);
 
   std::printf("After:\n");
   printFirst20Items();
@@ -66,7 +66,7 @@ int main()
     assert(s_ExampleData[i] == i * 5);
   }
 
-  bf::job::shutdown();
+  Job::shutdown();
 
   return 0;
 }

@@ -7,7 +7,7 @@
  *    This header contains configurable constants for this Job System library.
  *    You may edit this file to configure this library at compile time.
  *
- * @copyright Copyright (c) 2020-2022 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2024 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef BF_JOB_CONFIG_HPP
@@ -23,27 +23,23 @@
 #define JOB_SYS_DETERMINISTIC_JOB_STEAL_RNG 1  //!< The RNG for work queue stealing will be seeded in the same way.
 #endif
 
-namespace bf
+namespace Job
 {
-  namespace job
-  {
-    // Constants / Configuration
+  // Constants / Configuration
 
-    static constexpr std::size_t k_MainQueueSize       = 256;   //!< The number of tasks that can be contained in the main queue.
-    static constexpr std::size_t k_NormalQueueSize     = 1024;  //!< The number of tasks that can be contained in each worker's high priority queue.
-    static constexpr std::size_t k_BackgroundQueueSize = 512;   //!< The number of tasks that can be contained in each worker's low priority queue.
-    static constexpr std::size_t k_MaxThreadsSupported = 32;    //!< The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.
+  static constexpr std::size_t k_MainQueueSize       = 256;   //!< The number of tasks that can be contained in the main queue.
+  static constexpr std::size_t k_NormalQueueSize     = 1024;  //!< The number of tasks that can be contained in each worker's high priority queue.
+  static constexpr std::size_t k_BackgroundQueueSize = 512;   //!< The number of tasks that can be contained in each worker's low priority queue.
+  static constexpr std::size_t k_MaxThreadsSupported = 32;    //!< The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.
+}  // namespace Job
 
-  }  // namespace job
-}  // namespace bf
-
-#endif /* BF_JOB_CONFIG_HPP */
+#endif // BF_JOB_CONFIG_HPP
 
 /******************************************************************************/
 /*
   MIT License
 
-  Copyright (c) 2020-2022 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2024 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
