@@ -12,5 +12,7 @@ var struct_job_1_1_job_system =
     [ "worker_sleep_cv", "struct_job_1_1_job_system.html#a25d597560d67f2f0eab5de7d39ab7114", null ],
     [ "worker_storage", "struct_job_1_1_job_system.html#ac39692708d692b6d30e07860187432f9", null ],
     [ "num_available_jobs", "struct_job_1_1_job_system.html#a491e31f7e96e7b7b40616245c17a8892", null ],
-    [ "is_running", "struct_job_1_1_job_system.html#a1f33bfc0e45953616e38eadfbd13262e", null ]
+    [ "next_thread_local_id", "struct_job_1_1_job_system.html#a25fa2254a1bd1ec91e9261f5eee76e4c", null ],
+    [ "is_running", "struct_job_1_1_job_system.html#a1f33bfc0e45953616e38eadfbd13262e", null ],
+    [ "is_fully_initialized", "struct_job_1_1_job_system.html#a5516e47beeddf0b4273f9359405f1ead", null ]
 ];

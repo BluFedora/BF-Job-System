@@ -10,6 +10,7 @@ var searchData=
   ['initializationtoken_7',['InitializationToken',['../struct_job_1_1_initialization_token.html#a7b08da2722b4894dd1520c08ade6ce7c',1,'Job::InitializationToken::InitializationToken()'],['../struct_job_1_1_initialization_token.html',1,'Job::InitializationToken']]],
   ['initialize_8',['initialize',['../namespace_job.html#aa1f3c4799a1d9e93c98b730bc3926f5d',1,'Job']]],
   ['initthreadworkerid_9',['initThreadWorkerID',['../namespace_job.html#a4e069b2ec8a8d7370a0ee9c1633abd8b',1,'Job']]],
-  ['is_5frunning_10',['is_running',['../struct_job_1_1_job_system.html#a1f33bfc0e45953616e38eadfbd13262e',1,'Job::JobSystem']]],
-  ['isnull_11',['isNull',['../struct_job_1_1_task_ptr.html#a3846e4547990f401f74a5d7c4f354ff9',1,'Job::TaskPtr']]]
+  ['is_5ffully_5finitialized_10',['is_fully_initialized',['../struct_job_1_1_job_system.html#a5516e47beeddf0b4273f9359405f1ead',1,'Job::JobSystem']]],
+  ['is_5frunning_11',['is_running',['../struct_job_1_1_job_system.html#a1f33bfc0e45953616e38eadfbd13262e',1,'Job::JobSystem']]],
+  ['isnull_12',['isNull',['../struct_job_1_1_task_ptr.html#a3846e4547990f401f74a5d7c4f354ff9',1,'Job::TaskPtr']]]
 ];
