@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BluFedora Job System: include/bf/job/bf_job_api.hpp File Reference</title>
+<title>BluFedora Job System: include/concurrent/bf_job_api.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,141 +105,139 @@ $(document).ready(function(){initNavTree('bf__job__api_8hpp.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structbf_1_1job_1_1_task_data"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_data">bf::job::TaskData</a></td></tr>
-<tr class="memdesc:structbf_1_1job_1_1_task_data"><td class="mdescLeft">&#160;</td><td class="mdescRight">A buffer for user-data you can write to, maybe large enough to store task data inline.  <a href="namespacebf_1_1job.html#structbf_1_1job_1_1_task_data">More...</a><br /></td></tr>
-<tr class="separator:structbf_1_1job_1_1_task_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_job_1_1_task_data"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#struct_job_1_1_task_data">Job::TaskData</a></td></tr>
+<tr class="memdesc:struct_job_1_1_task_data"><td class="mdescLeft">&#160;</td><td class="mdescRight">A buffer for user-data you can write to, maybe large enough to store task data inline.  <a href="namespace_job.html#struct_job_1_1_task_data">More...</a><br /></td></tr>
+<tr class="separator:struct_job_1_1_task_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespacebf"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf.html">bf</a></td></tr>
+<tr class="memitem:namespace_job"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html">Job</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacebf_1_1job"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html">bf::job</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacebf_1_1job_1_1detail"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html">bf::job::detail</a></td></tr>
+<tr class="memitem:namespace_job_1_1detail"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html">Job::detail</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a578698ca919202a8ec0473dd4f6c5b81"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">bf::job::WorkerID</a> = std::uint16_t</td></tr>
-<tr class="memdesc:a578698ca919202a8ec0473dd4f6c5b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">The id type of each worker thread.  <a href="namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81">More...</a><br /></td></tr>
-<tr class="separator:a578698ca919202a8ec0473dd4f6c5b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae80841b2f4f6b256e5c7c3b2e4c2c541"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ae80841b2f4f6b256e5c7c3b2e4c2c541">bf::job::TaskFn</a> = void(*)(Task *)</td></tr>
-<tr class="memdesc:ae80841b2f4f6b256e5c7c3b2e4c2c541"><td class="mdescLeft">&#160;</td><td class="mdescRight">The signature of the type of function for a single <a class="el" href="structbf_1_1job_1_1_task.html">Task</a>.  <a href="namespacebf_1_1job.html#ae80841b2f4f6b256e5c7c3b2e4c2c541">More...</a><br /></td></tr>
-<tr class="separator:ae80841b2f4f6b256e5c7c3b2e4c2c541"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7727f146165ae76b95cc50196df236e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ac7727f146165ae76b95cc50196df236e">Job::WorkerID</a> = std::uint16_t</td></tr>
+<tr class="memdesc:ac7727f146165ae76b95cc50196df236e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The id type of each worker thread.  <a href="namespace_job.html#ac7727f146165ae76b95cc50196df236e">More...</a><br /></td></tr>
+<tr class="separator:ac7727f146165ae76b95cc50196df236e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a553c2727a284305ddbc9d746e58267"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a2a553c2727a284305ddbc9d746e58267">Job::TaskFn</a> = void(*)(Task *)</td></tr>
+<tr class="memdesc:a2a553c2727a284305ddbc9d746e58267"><td class="mdescLeft">&#160;</td><td class="mdescRight">The signature of the type of function for a single <a class="el" href="struct_job_1_1_task.html">Task</a>.  <a href="namespace_job.html#a2a553c2727a284305ddbc9d746e58267">More...</a><br /></td></tr>
+<tr class="separator:a2a553c2727a284305ddbc9d746e58267"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a1bf27cadcb5355b162b1fb2af1978dc9"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9">bf::job::QueueType</a> : std::uint8_t { <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a1e23852820b9154316c7c06e2b7ba051">bf::job::NORMAL</a> = 0
-, <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378">bf::job::MAIN</a> = 1
-, <a class="el" href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a531886e636f1aa36e0fc96d49f342613">bf::job::WORKER</a> = 2
+<tr class="memitem:a686f6798e9f499e832cb9f125f0db5fb"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">Job::QueueType</a> : std::uint8_t { <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba1e23852820b9154316c7c06e2b7ba051">Job::NORMAL</a> = 0
+, <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba186495f7da296bf880df3a22a492b378">Job::MAIN</a> = 1
+, <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba531886e636f1aa36e0fc96d49f342613">Job::WORKER</a> = 2
  }</td></tr>
-<tr class="memdesc:a1bf27cadcb5355b162b1fb2af1978dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines which threads the a task will be allowed to run on.  <a href="namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9">More...</a><br /></td></tr>
-<tr class="separator:a1bf27cadcb5355b162b1fb2af1978dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a686f6798e9f499e832cb9f125f0db5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines which threads the a task will be allowed to run on.  <a href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">More...</a><br /></td></tr>
+<tr class="separator:a686f6798e9f499e832cb9f125f0db5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aabdd24a980f9df66e4c028271cc61944"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html#aabdd24a980f9df66e4c028271cc61944">bf::job::detail::checkTaskDataSize</a> (const Task *task, std::size_t data_size) noexcept</td></tr>
-<tr class="separator:aabdd24a980f9df66e4c028271cc61944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d4666e8dba3d32e395eb701d243c0cb"><td class="memItemLeft" align="right" valign="top">QueueType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html#a4d4666e8dba3d32e395eb701d243c0cb">bf::job::detail::taskQType</a> (const Task *task) noexcept</td></tr>
-<tr class="separator:a4d4666e8dba3d32e395eb701d243c0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7da8dd4fc50cb123f027154e3980c035"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html#a7da8dd4fc50cb123f027154e3980c035">bf::job::detail::taskPaddingStart</a> (Task *const task) noexcept</td></tr>
-<tr class="separator:a7da8dd4fc50cb123f027154e3980c035"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8a0d6ce60f727781cf7f12d70956922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html#af8a0d6ce60f727781cf7f12d70956922">bf::job::detail::taskUsePadding</a> (Task *task, std::size_t num_bytes) noexcept</td></tr>
-<tr class="separator:af8a0d6ce60f727781cf7f12d70956922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2590cc0b2c4f54c15ca8a5b18ab668b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job_1_1detail.html#a2590cc0b2c4f54c15ca8a5b18ab668b5">bf::job::detail::mainQueueRunTask</a> (void) noexcept</td></tr>
-<tr class="separator:a2590cc0b2c4f54c15ca8a5b18ab668b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a569f46928160d2ff793d9acbafd35277"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277">bf::job::numSystemThreads</a> () noexcept</td></tr>
-<tr class="memdesc:a569f46928160d2ff793d9acbafd35277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a569f46928160d2ff793d9acbafd35277">More...</a><br /></td></tr>
-<tr class="separator:a569f46928160d2ff793d9acbafd35277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25712487e5e9d095d6746a09985bb235"><td class="memItemLeft" align="right" valign="top">InitializationToken&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235">bf::job::initialize</a> (const JobSystemCreateOptions &amp;params={}) noexcept</td></tr>
-<tr class="memdesc:a25712487e5e9d095d6746a09985bb235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the <a class="el" href="namespace_job.html">Job</a> system and creates all the worker threads. The thread that calls '<a class="el" href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235" title="Sets up the Job system and creates all the worker threads. The thread that calls &#39;job::initialize&#39; is...">job::initialize</a>' is considered the main thread.  <a href="namespacebf_1_1job.html#a25712487e5e9d095d6746a09985bb235">More...</a><br /></td></tr>
-<tr class="separator:a25712487e5e9d095d6746a09985bb235"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22f508fbe2fbb2af4771335253cc8008"><td class="memItemLeft" align="right" valign="top">std::uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a22f508fbe2fbb2af4771335253cc8008">bf::job::numWorkers</a> () noexcept</td></tr>
-<tr class="memdesc:a22f508fbe2fbb2af4771335253cc8008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of workers created by the system. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a22f508fbe2fbb2af4771335253cc8008">More...</a><br /></td></tr>
-<tr class="separator:a22f508fbe2fbb2af4771335253cc8008"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9edb9cb3acc7877cbb87a66137467c9"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ae9edb9cb3acc7877cbb87a66137467c9">bf::job::processorArchitectureName</a> () noexcept</td></tr>
-<tr class="memdesc:ae9edb9cb3acc7877cbb87a66137467c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">An implementation defined name for the CPU architecture of the device. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#ae9edb9cb3acc7877cbb87a66137467c9">More...</a><br /></td></tr>
-<tr class="separator:ae9edb9cb3acc7877cbb87a66137467c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b7bca473a7040c5234ebba1fe6cb031"><td class="memItemLeft" align="right" valign="top">WorkerID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">bf::job::currentWorker</a> () noexcept</td></tr>
-<tr class="memdesc:a2b7bca473a7040c5234ebba1fe6cb031"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current id of the current thread. This function can be called by any thread concurrently.  <a href="namespacebf_1_1job.html#a2b7bca473a7040c5234ebba1fe6cb031">More...</a><br /></td></tr>
-<tr class="separator:a2b7bca473a7040c5234ebba1fe6cb031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f005788a248d99a196608b5727b8bcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">bf::job::shutdown</a> () noexcept</td></tr>
-<tr class="memdesc:a0f005788a248d99a196608b5727b8bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initialize'.  <a href="namespacebf_1_1job.html#a0f005788a248d99a196608b5727b8bcd">More...</a><br /></td></tr>
-<tr class="separator:a0f005788a248d99a196608b5727b8bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34b82edd0c4dbead425152cf008ec532"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">bf::job::taskMake</a> (TaskFn function, Task *const parent=nullptr) noexcept</td></tr>
-<tr class="memdesc:a34b82edd0c4dbead425152cf008ec532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="structbf_1_1job_1_1_task.html">Task</a> that should be later submitted by calling 'taskSubmit'.  <a href="namespacebf_1_1job.html#a34b82edd0c4dbead425152cf008ec532">More...</a><br /></td></tr>
-<tr class="separator:a34b82edd0c4dbead425152cf008ec532"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a921c7746e85094422d49fe193a523612"><td class="memItemLeft" align="right" valign="top">TaskData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a921c7746e85094422d49fe193a523612">bf::job::taskGetData</a> (Task *const task) noexcept</td></tr>
-<tr class="memdesc:a921c7746e85094422d49fe193a523612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns you the user-data buffer you way write to get data into your TaskFn.  <a href="namespacebf_1_1job.html#a921c7746e85094422d49fe193a523612">More...</a><br /></td></tr>
-<tr class="separator:a921c7746e85094422d49fe193a523612"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59f5325afedfb4a33100a2d87ad45ed9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a59f5325afedfb4a33100a2d87ad45ed9">bf::job::taskAddContinuation</a> (Task *const self, Task *const continuation) noexcept</td></tr>
-<tr class="memdesc:a59f5325afedfb4a33100a2d87ad45ed9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 'continuation' is a task that will be added to a queue after the 'self' <a class="el" href="structbf_1_1job_1_1_task.html">Task</a> has finished running.  <a href="namespacebf_1_1job.html#a59f5325afedfb4a33100a2d87ad45ed9">More...</a><br /></td></tr>
-<tr class="separator:a59f5325afedfb4a33100a2d87ad45ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac32a249803a51e77725f088581fefbe"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">bf::job::taskSubmit</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
-<tr class="memdesc:aac32a249803a51e77725f088581fefbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespacebf_1_1job.html#aac32a249803a51e77725f088581fefbe">More...</a><br /></td></tr>
-<tr class="separator:aac32a249803a51e77725f088581fefbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb85604e4d907f4190c55d798c628982"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:abb85604e4d907f4190c55d798c628982"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#abb85604e4d907f4190c55d798c628982">bf::job::taskDataAs</a> (Task *const task) noexcept</td></tr>
-<tr class="memdesc:abb85604e4d907f4190c55d798c628982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the user-data pointer as the T you specified. No safety is guaranteed, this is just a dumb cast.  <a href="namespacebf_1_1job.html#abb85604e4d907f4190c55d798c628982">More...</a><br /></td></tr>
-<tr class="separator:abb85604e4d907f4190c55d798c628982"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef7643eed8577eaad7b9dad4e887fdca"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:aef7643eed8577eaad7b9dad4e887fdca"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#aef7643eed8577eaad7b9dad4e887fdca">bf::job::taskEmplaceData</a> (Task *const task, Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:aef7643eed8577eaad7b9dad4e887fdca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the constructor of T on the user-data buffer.  <a href="namespacebf_1_1job.html#aef7643eed8577eaad7b9dad4e887fdca">More...</a><br /></td></tr>
-<tr class="separator:aef7643eed8577eaad7b9dad4e887fdca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af57f75705be9ca98403dd7181c6744b6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:af57f75705be9ca98403dd7181c6744b6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#af57f75705be9ca98403dd7181c6744b6">bf::job::taskSetData</a> (Task *const task, const T &amp;data)</td></tr>
-<tr class="memdesc:af57f75705be9ca98403dd7181c6744b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies 'data' into the user-data buffer by calling the T copy constructor.  <a href="namespacebf_1_1job.html#af57f75705be9ca98403dd7181c6744b6">More...</a><br /></td></tr>
-<tr class="separator:af57f75705be9ca98403dd7181c6744b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af43aa7fb7429e273b2776523f84499be"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
-<tr class="memitem:af43aa7fb7429e273b2776523f84499be"><td class="memTemplItemLeft" align="right" valign="top">Task *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#af43aa7fb7429e273b2776523f84499be">bf::job::taskMake</a> (Closure &amp;&amp;function, Task *const parent=nullptr)</td></tr>
-<tr class="memdesc:af43aa7fb7429e273b2776523f84499be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new task making a copy of the closure.  <a href="namespacebf_1_1job.html#af43aa7fb7429e273b2776523f84499be">More...</a><br /></td></tr>
-<tr class="separator:af43aa7fb7429e273b2776523f84499be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a16013b6b11e1be5fc9f92ddc8ebe682b">bf::job::taskIncRef</a> (Task *const task)</td></tr>
-<tr class="memdesc:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the task's ref count preventing it from being garbage collected.  <a href="namespacebf_1_1job.html#a16013b6b11e1be5fc9f92ddc8ebe682b">More...</a><br /></td></tr>
-<tr class="separator:a16013b6b11e1be5fc9f92ddc8ebe682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a319ff8e231fce83f3990cfc703675f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a319ff8e231fce83f3990cfc703675f95">bf::job::taskDecRef</a> (Task *const task)</td></tr>
-<tr class="memdesc:a319ff8e231fce83f3990cfc703675f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements the task's ref count allow it to be garbage collected.  <a href="namespacebf_1_1job.html#a319ff8e231fce83f3990cfc703675f95">More...</a><br /></td></tr>
-<tr class="separator:a319ff8e231fce83f3990cfc703675f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5175f1552d04cf66c93fbf126769ca6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ac5175f1552d04cf66c93fbf126769ca6">bf::job::taskIsDone</a> (const Task *const task) noexcept</td></tr>
-<tr class="memdesc:ac5175f1552d04cf66c93fbf126769ca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the done status of the task.  <a href="namespacebf_1_1job.html#ac5175f1552d04cf66c93fbf126769ca6">More...</a><br /></td></tr>
-<tr class="separator:ac5175f1552d04cf66c93fbf126769ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae">bf::job::workerGC</a> ()</td></tr>
-<tr class="memdesc:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Garbage collects tasks allocated on the current worker.  <a href="namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae">More...</a><br /></td></tr>
-<tr class="separator:a384cbecfdf7aaa8629c6afb2ef0d90ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ce824ff7144aadecc7ceb931cf8708a"><td class="memTemplParams" colspan="2">template&lt;typename ConditionFn &gt; </td></tr>
-<tr class="memitem:a6ce824ff7144aadecc7ceb931cf8708a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a6ce824ff7144aadecc7ceb931cf8708a">bf::job::tickMainQueue</a> (ConditionFn &amp;&amp;condition, const bool run_gc=true) noexcept</td></tr>
-<tr class="memdesc:a6ce824ff7144aadecc7ceb931cf8708a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tasks from the main queue as long as there are tasks available or <code>condition</code> returns false.  <a href="namespacebf_1_1job.html#a6ce824ff7144aadecc7ceb931cf8708a">More...</a><br /></td></tr>
-<tr class="separator:a6ce824ff7144aadecc7ceb931cf8708a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59157200b86879ec59a8061c995c0b61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a59157200b86879ec59a8061c995c0b61">bf::job::tickMainQueue</a> (const bool run_gc=true) noexcept</td></tr>
-<tr class="memdesc:a59157200b86879ec59a8061c995c0b61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tasks from the main queue until it is empty.  <a href="namespacebf_1_1job.html#a59157200b86879ec59a8061c995c0b61">More...</a><br /></td></tr>
-<tr class="separator:a59157200b86879ec59a8061c995c0b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">bf::job::waitOnTask</a> (const Task *const task) noexcept</td></tr>
-<tr class="memdesc:a6af1eef961e26e6cbdf84dd01d86a619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified <code>task</code> is done executing. This function will block but do work while being blocked so there is no wasted time.  <a href="namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619">More...</a><br /></td></tr>
-<tr class="separator:a6af1eef961e26e6cbdf84dd01d86a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8c157c4fa8f519e8100b1632d1ec428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#ab8c157c4fa8f519e8100b1632d1ec428">bf::job::taskSubmitAndWait</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
-<tr class="memdesc:ab8c157c4fa8f519e8100b1632d1ec428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as calling <code>taskSubmit</code> followed by <code>waitOnTask</code>.  <a href="namespacebf_1_1job.html#ab8c157c4fa8f519e8100b1632d1ec428">More...</a><br /></td></tr>
-<tr class="separator:ab8c157c4fa8f519e8100b1632d1ec428"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afafbf9098dbbf51eaa29d063212bedde"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
-<tr class="memitem:afafbf9098dbbf51eaa29d063212bedde"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#afafbf9098dbbf51eaa29d063212bedde">bf::job::taskLambdaWrapper</a> (Task *task)</td></tr>
-<tr class="separator:afafbf9098dbbf51eaa29d063212bedde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c2a80b0061efcff2783b9ac1edffa34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a0c2a80b0061efcff2783b9ac1edffa34">Job::detail::checkTaskDataSize</a> (const Task *task, std::size_t data_size) noexcept</td></tr>
+<tr class="separator:a0c2a80b0061efcff2783b9ac1edffa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725721f202ed179f6a4177b33f205666"><td class="memItemLeft" align="right" valign="top">QueueType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a725721f202ed179f6a4177b33f205666">Job::detail::taskQType</a> (const Task *task) noexcept</td></tr>
+<tr class="separator:a725721f202ed179f6a4177b33f205666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1efbfe3a8061891854820fba2050bcf"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#ac1efbfe3a8061891854820fba2050bcf">Job::detail::taskPaddingStart</a> (Task *const task) noexcept</td></tr>
+<tr class="separator:ac1efbfe3a8061891854820fba2050bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addf217a54cd7e0aee0463b3673b0aabf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#addf217a54cd7e0aee0463b3673b0aabf">Job::detail::taskUsePadding</a> (Task *task, std::size_t num_bytes) noexcept</td></tr>
+<tr class="separator:addf217a54cd7e0aee0463b3673b0aabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6facce7775e71b7a21a96b69a704cf9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#ad6facce7775e71b7a21a96b69a704cf9">Job::detail::mainQueueRunTask</a> (void) noexcept</td></tr>
+<tr class="separator:ad6facce7775e71b7a21a96b69a704cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69440377f73ecd3f40320af8e9cef349"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a69440377f73ecd3f40320af8e9cef349">Job::numSystemThreads</a> () noexcept</td></tr>
+<tr class="memdesc:a69440377f73ecd3f40320af8e9cef349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespace_job.html#a69440377f73ecd3f40320af8e9cef349">More...</a><br /></td></tr>
+<tr class="separator:a69440377f73ecd3f40320af8e9cef349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f3c4799a1d9e93c98b730bc3926f5d"><td class="memItemLeft" align="right" valign="top">InitializationToken&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#aa1f3c4799a1d9e93c98b730bc3926f5d">Job::initialize</a> (const JobSystemCreateOptions &amp;params={}) noexcept</td></tr>
+<tr class="memdesc:aa1f3c4799a1d9e93c98b730bc3926f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the <a class="el" href="namespace_job.html">Job</a> system and creates all the worker threads. The thread that calls 'job::initialize' is considered the main thread.  <a href="namespace_job.html#aa1f3c4799a1d9e93c98b730bc3926f5d">More...</a><br /></td></tr>
+<tr class="separator:aa1f3c4799a1d9e93c98b730bc3926f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf073aface15bce1bc026943c479b5f8"><td class="memItemLeft" align="right" valign="top">std::uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#acf073aface15bce1bc026943c479b5f8">Job::numWorkers</a> () noexcept</td></tr>
+<tr class="memdesc:acf073aface15bce1bc026943c479b5f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of workers created by the system. This function can be called by any thread concurrently.  <a href="namespace_job.html#acf073aface15bce1bc026943c479b5f8">More...</a><br /></td></tr>
+<tr class="separator:acf073aface15bce1bc026943c479b5f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab86252387d79f142d7b7d2711a14410d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ab86252387d79f142d7b7d2711a14410d">Job::processorArchitectureName</a> () noexcept</td></tr>
+<tr class="memdesc:ab86252387d79f142d7b7d2711a14410d"><td class="mdescLeft">&#160;</td><td class="mdescRight">An implementation defined name for the CPU architecture of the device. This function can be called by any thread concurrently.  <a href="namespace_job.html#ab86252387d79f142d7b7d2711a14410d">More...</a><br /></td></tr>
+<tr class="separator:ab86252387d79f142d7b7d2711a14410d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c1e485223676699a1c812fab848541"><td class="memItemLeft" align="right" valign="top">WorkerID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#af3c1e485223676699a1c812fab848541">Job::currentWorker</a> () noexcept</td></tr>
+<tr class="memdesc:af3c1e485223676699a1c812fab848541"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current id of the current thread. This function can be called by any thread concurrently.  <a href="namespace_job.html#af3c1e485223676699a1c812fab848541">More...</a><br /></td></tr>
+<tr class="separator:af3c1e485223676699a1c812fab848541"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a108b2ec30f7216a3e469bd66385380ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a108b2ec30f7216a3e469bd66385380ab">Job::shutdown</a> () noexcept</td></tr>
+<tr class="memdesc:a108b2ec30f7216a3e469bd66385380ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initialize'.  <a href="namespace_job.html#a108b2ec30f7216a3e469bd66385380ab">More...</a><br /></td></tr>
+<tr class="separator:a108b2ec30f7216a3e469bd66385380ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b0c05e6a3e492e026a843596c7e04e"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ad6b0c05e6a3e492e026a843596c7e04e">Job::taskMake</a> (TaskFn function, Task *const parent=nullptr) noexcept</td></tr>
+<tr class="memdesc:ad6b0c05e6a3e492e026a843596c7e04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="struct_job_1_1_task.html">Task</a> that should be later submitted by calling 'taskSubmit'.  <a href="namespace_job.html#ad6b0c05e6a3e492e026a843596c7e04e">More...</a><br /></td></tr>
+<tr class="separator:ad6b0c05e6a3e492e026a843596c7e04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88a09c7017d793c5492d97f0309e9e83"><td class="memItemLeft" align="right" valign="top">TaskData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a88a09c7017d793c5492d97f0309e9e83">Job::taskGetData</a> (Task *const task) noexcept</td></tr>
+<tr class="memdesc:a88a09c7017d793c5492d97f0309e9e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns you the user-data buffer you way write to get data into your TaskFn.  <a href="namespace_job.html#a88a09c7017d793c5492d97f0309e9e83">More...</a><br /></td></tr>
+<tr class="separator:a88a09c7017d793c5492d97f0309e9e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23e18638ca7a5f8883de8ca4ff18711a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a23e18638ca7a5f8883de8ca4ff18711a">Job::taskAddContinuation</a> (Task *const self, Task *const continuation) noexcept</td></tr>
+<tr class="memdesc:a23e18638ca7a5f8883de8ca4ff18711a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 'continuation' is a task that will be added to a queue after the 'self' <a class="el" href="struct_job_1_1_task.html">Task</a> has finished running.  <a href="namespace_job.html#a23e18638ca7a5f8883de8ca4ff18711a">More...</a><br /></td></tr>
+<tr class="separator:a23e18638ca7a5f8883de8ca4ff18711a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a339849e02f2105213cecb86e764bcc"><td class="memItemLeft" align="right" valign="top">Task *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a2a339849e02f2105213cecb86e764bcc">Job::taskSubmit</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
+<tr class="memdesc:a2a339849e02f2105213cecb86e764bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespace_job.html#a2a339849e02f2105213cecb86e764bcc">More...</a><br /></td></tr>
+<tr class="separator:a2a339849e02f2105213cecb86e764bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa8262392bcfb41a78dd6f88cfc66583"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aaa8262392bcfb41a78dd6f88cfc66583"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#aaa8262392bcfb41a78dd6f88cfc66583">Job::taskDataAs</a> (Task *const task) noexcept</td></tr>
+<tr class="memdesc:aaa8262392bcfb41a78dd6f88cfc66583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the user-data pointer as the T you specified. No safety is guaranteed, this is just a dumb cast.  <a href="namespace_job.html#aaa8262392bcfb41a78dd6f88cfc66583">More...</a><br /></td></tr>
+<tr class="separator:aaa8262392bcfb41a78dd6f88cfc66583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acec10f2d523979ff45c51afc878c94b5"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
+<tr class="memitem:acec10f2d523979ff45c51afc878c94b5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#acec10f2d523979ff45c51afc878c94b5">Job::taskEmplaceData</a> (Task *const task, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:acec10f2d523979ff45c51afc878c94b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the constructor of T on the user-data buffer.  <a href="namespace_job.html#acec10f2d523979ff45c51afc878c94b5">More...</a><br /></td></tr>
+<tr class="separator:acec10f2d523979ff45c51afc878c94b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcc3fada917ffd44bd80b41bb08c314f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:adcc3fada917ffd44bd80b41bb08c314f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#adcc3fada917ffd44bd80b41bb08c314f">Job::taskSetData</a> (Task *const task, const T &amp;data)</td></tr>
+<tr class="memdesc:adcc3fada917ffd44bd80b41bb08c314f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies 'data' into the user-data buffer by calling the T copy constructor.  <a href="namespace_job.html#adcc3fada917ffd44bd80b41bb08c314f">More...</a><br /></td></tr>
+<tr class="separator:adcc3fada917ffd44bd80b41bb08c314f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba660633e1456a9aa236f609174008e7"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
+<tr class="memitem:aba660633e1456a9aa236f609174008e7"><td class="memTemplItemLeft" align="right" valign="top">Task *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#aba660633e1456a9aa236f609174008e7">Job::taskMake</a> (Closure &amp;&amp;function, Task *const parent=nullptr)</td></tr>
+<tr class="memdesc:aba660633e1456a9aa236f609174008e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new task making a copy of the closure.  <a href="namespace_job.html#aba660633e1456a9aa236f609174008e7">More...</a><br /></td></tr>
+<tr class="separator:aba660633e1456a9aa236f609174008e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b3ee53414c751ba55618ac7904fd564"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a8b3ee53414c751ba55618ac7904fd564">Job::taskIncRef</a> (Task *const task)</td></tr>
+<tr class="memdesc:a8b3ee53414c751ba55618ac7904fd564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the task's ref count preventing it from being garbage collected.  <a href="namespace_job.html#a8b3ee53414c751ba55618ac7904fd564">More...</a><br /></td></tr>
+<tr class="separator:a8b3ee53414c751ba55618ac7904fd564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201657cf53b6f36fcb6baf8e8a56528e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a201657cf53b6f36fcb6baf8e8a56528e">Job::taskDecRef</a> (Task *const task)</td></tr>
+<tr class="memdesc:a201657cf53b6f36fcb6baf8e8a56528e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements the task's ref count allow it to be garbage collected.  <a href="namespace_job.html#a201657cf53b6f36fcb6baf8e8a56528e">More...</a><br /></td></tr>
+<tr class="separator:a201657cf53b6f36fcb6baf8e8a56528e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa3db14d494acd341ab6dde0173152fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#afa3db14d494acd341ab6dde0173152fa">Job::taskIsDone</a> (const Task *const task) noexcept</td></tr>
+<tr class="memdesc:afa3db14d494acd341ab6dde0173152fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the done status of the task.  <a href="namespace_job.html#afa3db14d494acd341ab6dde0173152fa">More...</a><br /></td></tr>
+<tr class="separator:afa3db14d494acd341ab6dde0173152fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d43c039e77c4945fb646d7e71f7bf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a56d43c039e77c4945fb646d7e71f7bf8">Job::workerGC</a> ()</td></tr>
+<tr class="memdesc:a56d43c039e77c4945fb646d7e71f7bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Garbage collects tasks allocated on the current worker.  <a href="namespace_job.html#a56d43c039e77c4945fb646d7e71f7bf8">More...</a><br /></td></tr>
+<tr class="separator:a56d43c039e77c4945fb646d7e71f7bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b97a10fd43fecae1545937448f33e50"><td class="memTemplParams" colspan="2">template&lt;typename ConditionFn &gt; </td></tr>
+<tr class="memitem:a3b97a10fd43fecae1545937448f33e50"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#a3b97a10fd43fecae1545937448f33e50">Job::tickMainQueue</a> (ConditionFn &amp;&amp;condition, const bool run_gc=true) noexcept</td></tr>
+<tr class="memdesc:a3b97a10fd43fecae1545937448f33e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tasks from the main queue as long as there are tasks available or <code>condition</code> returns false.  <a href="namespace_job.html#a3b97a10fd43fecae1545937448f33e50">More...</a><br /></td></tr>
+<tr class="separator:a3b97a10fd43fecae1545937448f33e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5177578fe3cc9b4af31357504c9eca04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a5177578fe3cc9b4af31357504c9eca04">Job::tickMainQueue</a> (const bool run_gc=true) noexcept</td></tr>
+<tr class="memdesc:a5177578fe3cc9b4af31357504c9eca04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tasks from the main queue until it is empty.  <a href="namespace_job.html#a5177578fe3cc9b4af31357504c9eca04">More...</a><br /></td></tr>
+<tr class="separator:a5177578fe3cc9b4af31357504c9eca04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88b9884d06cd944a6c386c50b27cc9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#af88b9884d06cd944a6c386c50b27cc9d">Job::waitOnTask</a> (const Task *const task) noexcept</td></tr>
+<tr class="memdesc:af88b9884d06cd944a6c386c50b27cc9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified <code>task</code> is done executing. This function will block but do work while being blocked so there is no wasted time.  <a href="namespace_job.html#af88b9884d06cd944a6c386c50b27cc9d">More...</a><br /></td></tr>
+<tr class="separator:af88b9884d06cd944a6c386c50b27cc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1aa3b0a171319dc766dbd4b7966b0db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ab1aa3b0a171319dc766dbd4b7966b0db">Job::taskSubmitAndWait</a> (Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</td></tr>
+<tr class="memdesc:ab1aa3b0a171319dc766dbd4b7966b0db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as calling <code>taskSubmit</code> followed by <code>waitOnTask</code>.  <a href="namespace_job.html#ab1aa3b0a171319dc766dbd4b7966b0db">More...</a><br /></td></tr>
+<tr class="separator:ab1aa3b0a171319dc766dbd4b7966b0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0888cd9cc24f19f422a987c8c26dc74"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
+<tr class="memitem:aa0888cd9cc24f19f422a987c8c26dc74"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#aa0888cd9cc24f19f422a987c8c26dc74">Job::taskLambdaWrapper</a> (Task *task)</td></tr>
+<tr class="separator:aa0888cd9cc24f19f422a987c8c26dc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >API for a multi-threading job system. </p>
 <dl class="section author"><dt>Author</dt><dd>Shareef Raheem (<a href="https://blufedora.github.io/">https://blufedora.github.io/</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2020-09-03</dd></dl>
 <p>References: [<a href="https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/">https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/</a>] [<a href="https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/">https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/</a>] [<a href="https://github.com/cdwfs/cds_job/blob/master/cds_job.h">https://github.com/cdwfs/cds_job/blob/master/cds_job.h</a>] [<a href="https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h">https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h</a>] [<a href="https://fabiensanglard.net/doom3_bfg/threading.php">https://fabiensanglard.net/doom3_bfg/threading.php</a>] [<a href="https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine">https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine</a>]</p>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020-2023 Shareef Abdoul-Raheem </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020-2024 Shareef Abdoul-Raheem </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
 </div><hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structbf_1_1job_1_1_task_data" id="structbf_1_1job_1_1_task_data"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structbf_1_1job_1_1_task_data">&#9670;&nbsp;</a></span>bf::job::TaskData</h2>
+<a name="struct_job_1_1_task_data" id="struct_job_1_1_task_data"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_job_1_1_task_data">&#9670;&nbsp;</a></span>Job::TaskData</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct bf::job::TaskData</td>
+          <td class="memname">struct Job::TaskData</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -247,17 +245,17 @@ Functions</h2></td></tr>
 <p >If you store non trivial data remember to manually call it's destructor at the end of the task function.</p>
 <p >If you call 'taskEmplaceData' or 'taskSetData' and need to update the data once more be sure to destruct the previous contents correctly if the data stored in the buffer is non trivial. </p>
 
-<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00155">155</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bf__job__api_8hpp_source.html#l00151">151</a> of file <a class="el" href="bf__job__api_8hpp_source.html">bf_job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a25348a17d7317b42b3fc6a9f55ff70c7" name="a25348a17d7317b42b3fc6a9f55ff70c7"></a>void *</td>
+<a id="a206e9e451cca5c05ad02c69ad733d8f0" name="a206e9e451cca5c05ad02c69ad733d8f0"></a>void *</td>
 <td class="fieldname">
 ptr</td>
 <td class="fielddoc">
 The start of the buffer you may write to. </td></tr>
 <tr><td class="fieldtype">
-<a id="aa34099e0efbbeeaa2b2ba98d4e6cabcf" name="aa34099e0efbbeeaa2b2ba98d4e6cabcf"></a>size_t</td>
+<a id="a19841c4464efdc31fd3315982499ec87" name="a19841c4464efdc31fd3315982499ec87"></a>size_t</td>
 <td class="fieldname">
 size</td>
 <td class="fielddoc">
@@ -271,8 +269,8 @@ The size of the buffer. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__api_8hpp.html">bf_job_api.hpp</a></li>
-    <li class="footer">Generated on Mon Jan 15 2024 01:52:23 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_3456df1ae52d53fc831eb405b13e9d7d.html">concurrent</a></li><li class="navelem"><a class="el" href="bf__job__api_8hpp.html">bf_job_api.hpp</a></li>
+    <li class="footer">Generated on Sun Mar 10 2024 03:39:51 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

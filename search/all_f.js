@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['q_5ftype_0',['q_type',['../structbf_1_1job_1_1_task.html#acd1b6b1602d5c7852aab09e48d1691ea',1,'bf::job::Task']]],
-  ['queuetype_1',['QueueType',['../namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9',1,'bf::job']]]
+  ['q_5ftype_0',['q_type',['../struct_job_1_1_task.html#a40f07d88edbde168f40a127417678479',1,'Job::Task']]],
+  ['queuetype_1',['QueueType',['../namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb',1,'Job']]]
 ];

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['waitontask_0',['waitOnTask',['../namespacebf_1_1job.html#a6af1eef961e26e6cbdf84dd01d86a619',1,'bf::job']]],
-  ['wakeupallworkers_1',['wakeUpAllWorkers',['../structbf_1_1job_1_1_job_system.html#a9d1f7d6bf0dee0274012098b7dea50b4',1,'bf::job::JobSystem']]],
-  ['wakeuponeworker_2',['wakeUpOneWorker',['../structbf_1_1job_1_1_job_system.html#acabf3f5d1615b9593dac000ea13820d1',1,'bf::job::JobSystem']]],
-  ['worker_3',['worker',['../structbf_1_1job_1_1_thread_worker.html#a40cd98243024d6889559a7291b853779',1,'bf::job::ThreadWorker']]],
-  ['workergc_4',['workerGC',['../namespacebf_1_1job.html#a384cbecfdf7aaa8629c6afb2ef0d90ae',1,'bf::job']]],
-  ['workers_5',['workers',['../structbf_1_1job_1_1_job_system.html#aab2ccaf673c3bbeebf4cbda75b0e9545',1,'bf::job::JobSystem']]]
+  ['waitontask_0',['waitOnTask',['../namespace_job.html#af88b9884d06cd944a6c386c50b27cc9d',1,'Job']]],
+  ['wakeupallworkers_1',['wakeUpAllWorkers',['../struct_job_1_1_job_system.html#a4e973f6adbb169cc9101bf2dc03b4f9c',1,'Job::JobSystem']]],
+  ['wakeuponeworker_2',['wakeUpOneWorker',['../struct_job_1_1_job_system.html#a8581a4dcf5b0bfb84c9ec2fcbada9e22',1,'Job::JobSystem']]],
+  ['worker_3',['worker',['../struct_job_1_1_thread_worker.html#a8cbf37325fed1058a8c88dbcf2903b49',1,'Job::ThreadWorker']]],
+  ['workergc_4',['workerGC',['../namespace_job.html#a56d43c039e77c4945fb646d7e71f7bf8',1,'Job']]],
+  ['workers_5',['workers',['../struct_job_1_1_job_system.html#a91778fc9dd08ee0494a9e232bb1322ea',1,'Job::JobSystem']]]
 ];

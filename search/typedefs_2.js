@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sharedqueue_0',['SharedQueue',['../structbf_1_1job_1_1_thread_worker.html#a22d14e53cb8b3ff8dbad04901375e0f9',1,'bf::job::ThreadWorker']]]
+  ['sharedqueue_0',['SharedQueue',['../struct_job_1_1_thread_worker.html#adac302bd59e629e07b97ccecf371a4f3',1,'Job::ThreadWorker']]]
 ];

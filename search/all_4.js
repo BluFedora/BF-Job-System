@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['end_0',['end',['../structbf_1_1job_1_1_index_range.html#a9c0f0d1369540f150781668c4d29981d',1,'bf::job::IndexRange']]],
-  ['evensplit_1',['EvenSplit',['../structbf_1_1job_1_1_count_splitter.html#ad5d66552bdb8553ba1bd7fae9539b7c2',1,'bf::job::CountSplitter']]]
+  ['end_0',['end',['../struct_job_1_1_index_range.html#a84c9aeb845c78d9a0c22cedf865e0136',1,'Job::IndexRange']]],
+  ['evensplit_1',['EvenSplit',['../struct_job_1_1_count_splitter.html#adac17102ad0e6e4385e0dc40835e4722',1,'Job::CountSplitter']]]
 ];

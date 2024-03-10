@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ref_5fcount_0',['ref_count',['../structbf_1_1job_1_1_task.html#a9e85804abff3ad94b57b8ea7aac6d900',1,'bf::job::Task']]],
-  ['rng_5fstate_1',['rng_state',['../structbf_1_1job_1_1_thread_worker.html#a676f8a7f17dca420d83fb80f0e0314af',1,'bf::job::ThreadWorker']]]
+  ['ref_5fcount_0',['ref_count',['../struct_job_1_1_task.html#ad250be63c90480ce2094701213c6e1bb',1,'Job::Task']]],
+  ['rng_5fstate_1',['rng_state',['../struct_job_1_1_thread_worker.html#a430e6b9a481b570617a83a21cf241c9e',1,'Job::ThreadWorker']]]
 ];

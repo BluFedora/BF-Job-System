@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deallocate_0',['deallocate',['../structbf_1_1job_1_1_task_pool.html#aaa84e02def1507234a96cd01575d661c',1,'bf::job::TaskPool']]]
+  ['deallocate_0',['deallocate',['../struct_job_1_1_task_pool.html#abb047604aef75a41ba1c1c14c09cf3d6',1,'Job::TaskPool']]]
 ];

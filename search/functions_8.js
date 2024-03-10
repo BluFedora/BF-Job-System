@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jobqueuea_0',['JobQueueA',['../classbf_1_1_job_queue_a.html#a38de516224b292e9bf706a61a1b643a6',1,'bf::JobQueueA']]],
-  ['jobqueuem_1',['JobQueueM',['../classbf_1_1_job_queue_m.html#a4f7b99756c219cb27eb1c6c37b888378',1,'bf::JobQueueM']]]
+  ['jobqueuea_0',['JobQueueA',['../class_job_1_1_job_queue_a.html#a3613b6cdba874276e5aae85be304ac71',1,'Job::JobQueueA']]],
+  ['jobqueuem_1',['JobQueueM',['../class_job_1_1_job_queue_m.html#a4dc43e70a477b322dd0f210f9741ad9d',1,'Job::JobQueueM']]]
 ];

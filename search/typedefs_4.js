@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['workerid_0',['WorkerID',['../namespacebf_1_1job.html#a578698ca919202a8ec0473dd4f6c5b81',1,'bf::job']]],
-  ['workeridtype_1',['WorkerIDType',['../namespacebf_1_1job.html#afbc317f5a07cc0255051aaaac726a41d',1,'bf::job']]],
-  ['workerqueue_2',['WorkerQueue',['../structbf_1_1job_1_1_thread_worker.html#aae92c3c1a3842ef1b842c9db67added5',1,'bf::job::ThreadWorker']]],
-  ['workerthreadstorage_3',['WorkerThreadStorage',['../structbf_1_1job_1_1_job_system.html#a261a4dafd660422a451dc6862102ea41',1,'bf::job::JobSystem']]]
+  ['workerid_0',['WorkerID',['../namespace_job.html#ac7727f146165ae76b95cc50196df236e',1,'Job']]],
+  ['workeridtype_1',['WorkerIDType',['../namespace_job.html#aef42ab2f4880b98a40cf86e5541503e0',1,'Job']]],
+  ['workerqueue_2',['WorkerQueue',['../struct_job_1_1_thread_worker.html#ac2b4163261da5b37d16653b7077ed348',1,'Job::ThreadWorker']]],
+  ['workerthreadstorage_3',['WorkerThreadStorage',['../struct_job_1_1_job_system.html#ab4864f9ac1b47672f5732cec6161373b',1,'Job::JobSystem']]]
 ];

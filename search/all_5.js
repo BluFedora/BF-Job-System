@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['first_5fcontinuation_0',['first_continuation',['../structbf_1_1job_1_1_task.html#a66ae811ff80b58475845678a43d3f29d',1,'bf::job::Task']]],
-  ['fn_1',['fn',['../structbf_1_1job_1_1_task.html#ae1d00ef629ab7da19f14474103b25703',1,'bf::job::Task']]],
-  ['fromindex_2',['fromIndex',['../structbf_1_1job_1_1_task_pool.html#a7e80c5f23b8f446153a4b1188e8b528b',1,'bf::job::TaskPool']]]
+  ['first_5fcontinuation_0',['first_continuation',['../struct_job_1_1_task.html#a94f41088edb21e43187d4f38e06e9f3e',1,'Job::Task']]],
+  ['fn_1',['fn',['../struct_job_1_1_task.html#a9fbe343a9ea009841c1d0507eb21739e',1,'Job::Task']]],
+  ['fromindex_2',['fromIndex',['../struct_job_1_1_task_pool.html#aad04e800bf342adaab918a7aa38c49f7',1,'Job::TaskPool']]]
 ];

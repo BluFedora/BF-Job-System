@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BluFedora Job System: include/bf/job/bf_job_config.hpp File Reference</title>
+<title>BluFedora Job System: include/concurrent/bf_job_config.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,9 +99,7 @@ $(document).ready(function(){initNavTree('bf__job__config_8hpp.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespacebf"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf.html">bf</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacebf_1_1job"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html">bf::job</a></td></tr>
+<tr class="memitem:namespace_job"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html">Job</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -115,18 +113,18 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a494b3014635f3e97c1fdf626b236117b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">bf::job::k_MainQueueSize</a> = 256</td></tr>
-<tr class="memdesc:a494b3014635f3e97c1fdf626b236117b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in the main queue.  <a href="namespacebf_1_1job.html#a494b3014635f3e97c1fdf626b236117b">More...</a><br /></td></tr>
-<tr class="separator:a494b3014635f3e97c1fdf626b236117b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ec37950a885a28333f4a56868b9a07b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">bf::job::k_NormalQueueSize</a> = 1024</td></tr>
-<tr class="memdesc:a9ec37950a885a28333f4a56868b9a07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's high priority queue.  <a href="namespacebf_1_1job.html#a9ec37950a885a28333f4a56868b9a07b">More...</a><br /></td></tr>
-<tr class="separator:a9ec37950a885a28333f4a56868b9a07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">bf::job::k_BackgroundQueueSize</a> = 512</td></tr>
-<tr class="memdesc:acbbd94aff6cd64ac8fa998309592d8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's low priority queue.  <a href="namespacebf_1_1job.html#acbbd94aff6cd64ac8fa998309592d8a2">More...</a><br /></td></tr>
-<tr class="separator:acbbd94aff6cd64ac8fa998309592d8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">bf::job::k_MaxThreadsSupported</a> = 32</td></tr>
-<tr class="memdesc:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.  <a href="namespacebf_1_1job.html#a9f32cd8117952ffa2c8772faa3d9acd7">More...</a><br /></td></tr>
-<tr class="separator:a9f32cd8117952ffa2c8772faa3d9acd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb4533c1983996477b7303dabc980bb"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#afcb4533c1983996477b7303dabc980bb">Job::k_MainQueueSize</a> = 256</td></tr>
+<tr class="memdesc:afcb4533c1983996477b7303dabc980bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in the main queue.  <a href="namespace_job.html#afcb4533c1983996477b7303dabc980bb">More...</a><br /></td></tr>
+<tr class="separator:afcb4533c1983996477b7303dabc980bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa82db4effc5a52b9713dc7418eb2d3ac"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#aa82db4effc5a52b9713dc7418eb2d3ac">Job::k_NormalQueueSize</a> = 1024</td></tr>
+<tr class="memdesc:aa82db4effc5a52b9713dc7418eb2d3ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's high priority queue.  <a href="namespace_job.html#aa82db4effc5a52b9713dc7418eb2d3ac">More...</a><br /></td></tr>
+<tr class="separator:aa82db4effc5a52b9713dc7418eb2d3ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c20b3e83efa34ab9748f09de354be8c"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a9c20b3e83efa34ab9748f09de354be8c">Job::k_BackgroundQueueSize</a> = 512</td></tr>
+<tr class="memdesc:a9c20b3e83efa34ab9748f09de354be8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of tasks that can be contained in each worker's low priority queue.  <a href="namespace_job.html#a9c20b3e83efa34ab9748f09de354be8c">More...</a><br /></td></tr>
+<tr class="separator:a9c20b3e83efa34ab9748f09de354be8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29387793a4818f49ddb463d42b500750"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a29387793a4818f49ddb463d42b500750">Job::k_MaxThreadsSupported</a> = 32</td></tr>
+<tr class="memdesc:a29387793a4818f49ddb463d42b500750"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of threads that can be created, this is so that the library can be non dynamically allocating.  <a href="namespace_job.html#a29387793a4818f49ddb463d42b500750">More...</a><br /></td></tr>
+<tr class="separator:a29387793a4818f49ddb463d42b500750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This header contains configurable constants for this <a class="el" href="namespace_job.html">Job</a> System library. You may edit this file to configure this library at compile time. </p>
@@ -177,8 +175,8 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6b263b20d1de113e640628a369cd9cc4.html">bf</a></li><li class="navelem"><a class="el" href="dir_a3d9097c994da282ca2b8a23b5575fd4.html">job</a></li><li class="navelem"><a class="el" href="bf__job__config_8hpp.html">bf_job_config.hpp</a></li>
-    <li class="footer">Generated on Mon Jan 15 2024 01:52:23 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_3456df1ae52d53fc831eb405b13e9d7d.html">concurrent</a></li><li class="navelem"><a class="el" href="bf__job__config_8hpp.html">bf_job_config.hpp</a></li>
+    <li class="footer">Generated on Sun Mar 10 2024 03:39:51 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

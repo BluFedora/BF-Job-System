@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['m_5fbottom_0',['m_Bottom',['../classbf_1_1_job_queue_m.html#a4244e306340d73b2d70b88d803d7a577',1,'bf::JobQueueM::m_Bottom()'],['../classbf_1_1_job_queue_a.html#a8d07cfef8417addccc83b475e903efa8',1,'bf::JobQueueA::m_Bottom()']]],
-  ['m_5fcriticallock_1',['m_CriticalLock',['../classbf_1_1_job_queue_m.html#a391f6e1178ff3dfc213bc73312092f2b',1,'bf::JobQueueM']]],
-  ['m_5fqueue_2',['m_Queue',['../classbf_1_1_job_queue_m.html#a727c708100e50481d659a315dfad6416',1,'bf::JobQueueM::m_Queue()'],['../classbf_1_1_job_queue_a.html#a34a41cbe6bd0dcc38045ff7cd1e1eebe',1,'bf::JobQueueA::m_Queue()']]],
-  ['m_5ftop_3',['m_Top',['../classbf_1_1_job_queue_m.html#ad4a6baba4f17aeb088083573d9ba4465',1,'bf::JobQueueM::m_Top()'],['../classbf_1_1_job_queue_a.html#a351e51b700bc8437ea7cb7aec75df5c3',1,'bf::JobQueueA::m_Top()']]],
-  ['main_4',['MAIN',['../namespacebf_1_1job.html#a1bf27cadcb5355b162b1fb2af1978dc9a186495f7da296bf880df3a22a492b378',1,'bf::job']]],
-  ['main_5fqueue_5',['main_queue',['../structbf_1_1job_1_1_job_system.html#a47d831fefdd94372eb0edcc426e9f206',1,'bf::job::JobSystem']]],
-  ['mainqueueruntask_6',['mainQueueRunTask',['../namespacebf_1_1job_1_1detail.html#a2590cc0b2c4f54c15ca8a5b18ab668b5',1,'bf::job::detail']]],
-  ['max_5fcount_7',['max_count',['../structbf_1_1job_1_1_count_splitter.html#a3e0a1ecda7617d77cb80a20a9e8406f4',1,'bf::job::CountSplitter']]],
-  ['max_5fsize_8',['max_size',['../structbf_1_1job_1_1_data_size_splitter.html#a9b439afdfd913b985280337b88139f49',1,'bf::job::DataSizeSplitter']]],
-  ['memory_9',['memory',['../structbf_1_1job_1_1_task_pool.html#a3f1ecd720f1d82f155fc6e27769c7ec8',1,'bf::job::TaskPool']]]
+  ['m_5fbottom_0',['m_Bottom',['../class_job_1_1_job_queue_m.html#a6cdfa56774eb4665624a960d73407a74',1,'Job::JobQueueM::m_Bottom()'],['../class_job_1_1_job_queue_a.html#a0ff3e02f010476cf9270dc5320efad5d',1,'Job::JobQueueA::m_Bottom()']]],
+  ['m_5fcriticallock_1',['m_CriticalLock',['../class_job_1_1_job_queue_m.html#a8f958c4c3bfeb144e30e137ebaf818de',1,'Job::JobQueueM']]],
+  ['m_5fqueue_2',['m_Queue',['../class_job_1_1_job_queue_m.html#ad5e8c52feaac26f10d32ce919ca7f3fb',1,'Job::JobQueueM::m_Queue()'],['../class_job_1_1_job_queue_a.html#abf201bd3eb1fdc53f7514adbacc85cfd',1,'Job::JobQueueA::m_Queue()']]],
+  ['m_5ftop_3',['m_Top',['../class_job_1_1_job_queue_m.html#ac67041d6b5f14be524c54c8b8b3529e3',1,'Job::JobQueueM::m_Top()'],['../class_job_1_1_job_queue_a.html#a9080ce13dfcfeea46e76d198205f0aba',1,'Job::JobQueueA::m_Top()']]],
+  ['main_4',['MAIN',['../namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba186495f7da296bf880df3a22a492b378',1,'Job']]],
+  ['main_5fqueue_5',['main_queue',['../struct_job_1_1_job_system.html#a5973eb828a1ca208da77aaf55d9a06fa',1,'Job::JobSystem']]],
+  ['mainqueueruntask_6',['mainQueueRunTask',['../namespace_job_1_1detail.html#ad6facce7775e71b7a21a96b69a704cf9',1,'Job::detail']]],
+  ['max_5fcount_7',['max_count',['../struct_job_1_1_count_splitter.html#af3b79ca73bd9970436f34274879e196b',1,'Job::CountSplitter']]],
+  ['max_5fsize_8',['max_size',['../struct_job_1_1_data_size_splitter.html#a77907626ce2e79fdbeb00ed9691fd8a3',1,'Job::DataSizeSplitter']]],
+  ['memory_9',['memory',['../struct_job_1_1_task_pool.html#aca0e1084cc97cd905f35af622073079a',1,'Job::TaskPool']]]
 ];

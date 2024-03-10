@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['user_5fstorage_5fsize_0',['user_storage_size',['../structbf_1_1job_1_1_task.html#aaab64f62740308ea1889ad27dd41d5c2',1,'bf::job::Task']]]
+  ['user_5fstorage_5fsize_0',['user_storage_size',['../struct_job_1_1_task.html#aa198f3e4cc72e698aa22f3c0de67163e',1,'Job::Task']]]
 ];
