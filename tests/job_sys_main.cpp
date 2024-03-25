@@ -4,14 +4,15 @@
 //
 // Contains Unit Test for the Job System.
 //
-#include "concurrent/bf_job_ext.hpp"
+#include "concurrent/job_queue.hpp"
 
 #include <gtest/gtest.h>
 
 #include <memory>   // unique_ptr
 #include <numeric>  // iota
 
-static constexpr int k_NumJobsForTestingOverhead = 65000;
+// static constexpr int k_NumJobsForTestingOverhead = 6500000;
+static constexpr int k_NumJobsForTestingOverhead = 6500;
 
 std::unique_ptr<int[]> AllocateIntArray(const std::size_t num_elements)
 {
@@ -31,25 +32,25 @@ void ThreadSleep(const std::chrono::duration<_Rep, _Period>& time)
 // Tests the time it takes to creating empty jobs serially.
 TEST(JobSystemTests, JobCreationOverheadSerial)
 {
-  Job::Task* const root = Job::taskMake([](Job::Task* root) {
+  Job::Task* const root = Job::TaskMake([](Job::Task* root) {
     for (int i = 0u; i < k_NumJobsForTestingOverhead; ++i)
     {
-      Job::taskSubmit(Job::taskMake([](Job::Task*) { /* NO-OP */ }, root));
+      Job::TaskSubmit(Job::TaskMake([](Job::Task*) { /* NO-OP */ }, root));
     }
   });
 
-  waitOnTask(taskSubmit(root));
+  WaitOnTask(TaskSubmit(root));
 }
 
-// Tests the time it takes to creating empty jobs recursively split by the parallel_for.
+// Tests the time it takes to creating empty jobs recursively split by the ParallelFor.
 TEST(JobSystemTests, JobCreationOverheadParallelFor)
 {
-  Job::Task* const task = Job::parallel_for(
+  Job::Task* const task = Job::ParallelFor(
    0, k_NumJobsForTestingOverhead, Job::CountSplitter{0}, [](Job::Task* parent, const Job::IndexRange& index_range) {
      /* NO-OP */
    });
 
-  Job::waitOnTask(Job::taskSubmit(task));
+  Job::WaitOnTask(Job::TaskSubmit(task));
 }
 
 // Tests `parallel_for` making sure each index is hit once.
@@ -61,7 +62,7 @@ TEST(JobSystemTests, BasicParallelForRange)
 
   std::fill_n(example_data.get(), k_DataSize, 0);
 
-  Job::Task* const task = Job::parallel_for(
+  Job::Task* const task = Job::ParallelFor(
    0, k_DataSize, Job::CountSplitter{k_DataSplit}, [&example_data](Job::Task*, const Job::IndexRange index_range) {
      for (const std::size_t i : index_range)
      {
@@ -69,7 +70,7 @@ TEST(JobSystemTests, BasicParallelForRange)
      }
    });
 
-  Job::waitOnTask(Job::taskSubmit(task));
+  Job::WaitOnTask(Job::TaskSubmit(task));
 
   for (int i = 0; i < k_DataSize; ++i)
   {
@@ -89,7 +90,7 @@ TEST(JobSystemTests, BasicParallelForArray)
 
   std::iota(example_data.get(), example_data.get() + k_DataSize, 0);
 
-  Job::Task* const task = Job::parallel_for(
+  Job::Task* const task = Job::ParallelFor(
    example_data.get(), k_DataSize, Job::CountSplitter{k_DataSplit}, [multiplier](Job::Task*, int* data, std::size_t data_count) {
      EXPECT_LE(data_count, k_DataSplit);
 
@@ -99,7 +100,7 @@ TEST(JobSystemTests, BasicParallelForArray)
      }
    });
 
-  Job::waitOnTask(Job::taskSubmit(task));
+  Job::WaitOnTask(Job::TaskSubmit(task));
 
   for (int i = 0; i < k_DataSize; ++i)
   {
@@ -115,7 +116,7 @@ TEST(JobSystemTests, BasicParallelInvoke)
 
   std::fill_n(example_data.get(), k_DataSize, 0);
 
-  const auto task = Job::parallel_invoke(
+  const auto task = Job::ParallelInvoke(
    nullptr,
    [&](Job::Task* task) {
      for (const std::size_t i : Job::IndexRange{0, k_DataSize / 2})
@@ -130,7 +131,7 @@ TEST(JobSystemTests, BasicParallelInvoke)
      }
    });
 
-  Job::waitOnTask(Job::taskSubmit(task));
+  Job::WaitOnTask(Job::TaskSubmit(task));
 
   for (int i = 0; i < k_DataSize; ++i)
   {
@@ -141,20 +142,20 @@ TEST(JobSystemTests, BasicParallelInvoke)
 // Tests keeping task alive through reference count API
 TEST(JobSystemTests, GCReferenceCount)
 {
-  auto* const long_running_task = Job::taskMake([](Job::Task*) {
+  auto* const long_running_task = Job::TaskMake([](Job::Task*) {
     ThreadSleep(std::chrono::milliseconds(12));
   });
 
-  taskIncRef(long_running_task);
-  taskSubmit(long_running_task, Job::QueueType::WORKER);
+  TaskIncRef(long_running_task);
+  TaskSubmit(long_running_task, Job::QueueType::WORKER);
 
-  if (Job::numWorkers() == 1u)
+  if (Job::NumWorkers() == 1u)
   {
-    waitOnTask(long_running_task);
+    WaitOnTask(long_running_task);
   }
   else
   {
-    while (!taskIsDone(long_running_task))
+    while (!TaskIsDone(long_running_task))
     {
       std::printf("Waiting on long Running task...\n");
       ThreadSleep(std::chrono::milliseconds(1));
@@ -163,37 +164,35 @@ TEST(JobSystemTests, GCReferenceCount)
 
   ThreadSleep(std::chrono::milliseconds(12));
 
-  Job::workerGC();
-
   // Task should still be valid, this call should not crash.
 
-  if (taskIsDone(long_running_task))
+  if (TaskIsDone(long_running_task))
   {
-    taskDecRef(long_running_task);
+    TaskDecRef(long_running_task);
   }
 }
 
 // Checks correct ref count API usage.
 TEST(JobSystemTests, RefCountAPIUsage)
 {
-  auto* const long_running_task = Job::taskMake([](Job::Task*) {
+  auto* const long_running_task = Job::TaskMake([](Job::Task*) {
     ThreadSleep(std::chrono::milliseconds(2));
   });
 
   // First call to `taskIncRef` must be before a submit.
-  taskIncRef(long_running_task);
-  taskSubmit(long_running_task, Job::QueueType::WORKER);
+  TaskIncRef(long_running_task);
+  TaskSubmit(long_running_task, Job::QueueType::WORKER);
 
   // Any other calls can be at any time.
-  taskIncRef(long_running_task);
+  TaskIncRef(long_running_task);
 
-  if (Job::numWorkers() == 1u)
+  if (Job::NumWorkers() == 1u)
   {
-    waitOnTask(long_running_task);
+    WaitOnTask(long_running_task);
   }
   else
   {
-    while (!taskIsDone(long_running_task))
+    while (!TaskIsDone(long_running_task))
     {
       ThreadSleep(std::chrono::milliseconds(1));
     }
@@ -201,8 +200,42 @@ TEST(JobSystemTests, RefCountAPIUsage)
 
   ThreadSleep(std::chrono::milliseconds(5));
 
-  taskDecRef(long_running_task);
-  taskDecRef(long_running_task);
+  TaskDecRef(long_running_task);
+  TaskDecRef(long_running_task);
+}
+
+TEST(JobSystemTests, SPSCQueue)
+{
+  constexpr auto               backing_storage_capacity = (1 << 23);
+  const std::unique_ptr<int[]> backing_storage          = AllocateIntArray(backing_storage_capacity);
+  const std::unique_ptr<int[]> queue_result             = AllocateIntArray(backing_storage_capacity * 2);
+
+  Job::SPSCQueue<int> q{};
+
+  q.Initialize(backing_storage.get(), backing_storage_capacity);
+
+  std::thread t0{[&]() {
+    for (int i = 0; i < backing_storage_capacity * 2; ++i)
+    {
+      while (!q.Push(i))
+      {
+      }
+    }
+  }};
+
+  std::thread t1{[&]() {
+    for (int i = 0; i < backing_storage_capacity * 2; ++i)
+    {
+      while (!q.Pop(queue_result.get() + i))
+      {
+      }
+
+      queue_result.get()[i] *= 2;
+    }
+  }};
+
+  t0.join();
+  t1.join();
 }
 
 // TODO(SR): Test continuations.

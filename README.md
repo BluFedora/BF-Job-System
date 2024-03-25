@@ -28,10 +28,7 @@ static void printFirst20Items()
 
 int main()
 {
-  if (!Job::initialize())
-  {
-    return 1;
-  }
+   Job::Initialize(Job::MemRequirementsForConfig({}));
 
   // Initialize Dummy Data
   for (int i = 0; i < k_DataSize; ++i)
@@ -42,7 +39,7 @@ int main()
   std::printf("Before:\n");
   printFirst20Items();
 
-  auto* t = Job::parallel_for(
+  auto* t = Job::ParallelFor(
    s_ExampleData, 
    k_DataSize, 
    Job::CountSplitter{6}, 
@@ -53,9 +50,9 @@ int main()
      }
    });
 
-  Job::taskSubmit(t);
+  Job::TaskSubmit(t);
 
-  Job::waitOnTask(t);
+  Job::WaitOnTask(t);
 
   std::printf("After:\n");
   printFirst20Items();
@@ -66,7 +63,7 @@ int main()
     assert(s_ExampleData[i] == i * 5);
   }
 
-  Job::shutdown();
+  Job::Shutdown();
 
   return 0;
 }

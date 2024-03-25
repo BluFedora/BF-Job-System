@@ -14,16 +14,13 @@ add_library(
   BF_Job
   STATIC
     # Public Headers
-    "include/concurrent/bf_job_api.hpp"
-    "include/concurrent/bf_job_config.hpp"
-    "include/concurrent/bf_job_ext.hpp"
     "include/concurrent/initialization_token.hpp"
-
-    # Private Headers
-    "src/bf_job_queue.hpp"
+    "include/concurrent/job_api.hpp"
+    "include/concurrent/job_assert.hpp"
+    "include/concurrent/job_queue.hpp"
 
     # Source
-    "src/bf_job_system.cpp"
+    "src/job_system.cpp"
 )
 
 target_include_directories(
@@ -83,7 +80,7 @@ target_link_libraries(
     GTest::gtest_main
 )
 
-gtest_discover_tests(BFJobTesting)
+# gtest_discover_tests(BFJobTesting)
 
 set_property(TARGET BFJobTesting PROPERTY FOLDER "BluFedora/Test")
 

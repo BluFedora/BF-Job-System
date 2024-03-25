@@ -1,6 +1,6 @@
 /******************************************************************************/
 /*!
- * @file   bf_job_api.hpp
+ * @file   job_api.hpp
  * @author Shareef Raheem (https://blufedora.github.io/)
  * @date   2020-09-03
  * @brief
@@ -19,8 +19,6 @@
 /******************************************************************************/
 #ifndef JOB_API_HPP
 #define JOB_API_HPP
-
-#include "bf_job_config.hpp" /* size_t, Config Constants */
 
 #include "concurrent/initialization_token.hpp"  // InitializationToken
 
@@ -67,14 +65,12 @@ namespace Job
     bool      mainQueueRunTask(void) noexcept;
   }  // namespace detail
 
-  // Struct Definitions
-
   /*!
    * @brief
    *   Makes some system calls to grab the number threads / processors on the device.
    *   This function can be called by any thread concurrently.
    *
-   *   Can be called before and after job system initialization.
+   *   Can be called even if the job system has not been initialized.
    *
    * @return std::size_t
    *   The number threads / processors on the computer.
@@ -82,29 +78,50 @@ namespace Job
   std::size_t numSystemThreads() noexcept;
 
   // Main System API
-  //
-  // API functions can only be called by the thread that called 'job::initialize' or from a within a Task function.
-  //
+
+  /*!
+   * @brief
+   *   The runtime configuration for the Job System.
+   */
+  struct JobSystemCreateOptions
+  {
+    std::uint16_t num_threads        = 0;     //!< Use 0 to indicate using the number of cores available on the system.
+    std::uint16_t main_queue_size    = 256;   //!< Number of tasks in the job system's `QueueType::MAIN` queue. (Must be non-zero power of two)
+    std::uint16_t normal_queue_size  = 1024;  //!< Number of tasks in each worker's `QueueType::NORMAL` queue. (Must be non-zero power of two)
+    std::uint16_t worker_queue_size  = 32;    //!< Number of tasks in each worker's `QueueType::WORKER` queue. (Must be non-zero power of two)
+    std::uint64_t job_steal_rng_seed = 0u;    //!< The RNG for work queue stealing will be seeded with this value.
+  };
+
+  /*!
+   * @brief
+   *   The memory requirements for a given configuration `JobSystemCreateOptions`.
+   */
+  struct JobSystemMemoryRequirements
+  {
+    JobSystemCreateOptions options;
+    std::size_t            byte_size;
+    std::size_t            alignment;
+  };
+
+  JobSystemMemoryRequirements MemRequirementsForConfig(const JobSystemCreateOptions& options);
 
   /*!
    * @brief
    *   Sets up the Job system and creates all the worker threads.
-   *   The thread that calls 'job::initialize' is considered the main thread.
+   *   The thread that calls 'Job::Initialize' is considered the main thread.
    *
-   * @param params
+   * @param memory_requirements
    *   The customization parameters to initialize the system with.
-   */
-  InitializationToken initialize(const JobSystemCreateOptions& params = {}) noexcept;
-
-  /*!
-   * @brief
-   *   Returns the number of workers created by the system.
-   *   This function can be called by any thread concurrently.
+   *   To be gotten from `Job::MemRequirementsForConfig`.
    *
-   * @return std::size_t
-   *   The number of workers created by the system.
+   * @param memory
+   *   Must be `memory_requirements.byte_size` in size and with alignment `memory_requirements.alignment`.
+   *   If nullptr then the system heap will be used.
+   *
+   * @return
+   *   The `InitializationToken` can be used by other subsystem to verify that the Job System has been initialized.
    */
-  std::uint16_t numWorkers() noexcept;
+  InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements, void* const memory = nullptr) noexcept;
 
   /*!
    * @brief
@@ -114,17 +131,29 @@ namespace Job
    * @return const char*
    *   Nul terminated name for the CPU architecture of the device.
    */
-  const char* processorArchitectureName() noexcept;
+  const char* ProcessorArchitectureName() noexcept;
+
+  /*!
+   * @brief
+   *   Returns the number of workers created by the system.
+   *   This function can be called by any thread concurrently.
+   *
+   * @return std::size_t
+   *   The number of workers created by the system.
+   */
+  std::uint16_t NumWorkers() noexcept;
 
   /*!
    * @brief
    *   The current id of the current thread.
    *   This function can be called by any thread concurrently.
    *
+   *   The main thread will always be 0.
+   *
    * @return WorkerID
    *   The current id of the current thread.
    */
-  WorkerID currentWorker() noexcept;
+  WorkerID CurrentWorker() noexcept;
 
   /*!
    * @brief
@@ -134,7 +163,7 @@ namespace Job
    *  @warning
    *    This function may only be called by the main thread.
    */
-  void shutdown() noexcept;
+  void Shutdown() noexcept;
 
   // Task API
 
@@ -144,7 +173,7 @@ namespace Job
    *
    *   If you store non trivial data remember to manually call it's destructor at the end of the task function.
    *
-   *   If you call 'taskEmplaceData' or 'taskSetData' and need to update the data once more be sure to
+   *   If you call 'TaskEmplaceData' or 'TaskSetData' and need to update the data once more be sure to
    *   destruct the previous contents correctly if the data stored in the buffer is non trivial.
    */
   struct TaskData
@@ -155,18 +184,18 @@ namespace Job
 
   /*!
    * @brief
-   *   Creates a new Task that should be later submitted by calling 'taskSubmit'.
+   *   Creates a new Task that should be later submitted by calling 'TaskSubmit'.
    *
    * @param function
    *   The function you want run by the scheduler.
    *
    * @param parent
-   *   An optional parent Task used in conjunction with 'waitOnTask' to force dependencies.
+   *   An optional parent Task used in conjunction with 'WaitOnTask' to force dependencies.
    *
    * @return Task*
    *   The newly created task.
    */
-  Task* taskMake(TaskFn function, Task* const parent = nullptr) noexcept;
+  Task* TaskMake(const TaskFn function, Task* const parent = nullptr) noexcept;
 
   /*!
    * @brief
@@ -178,7 +207,7 @@ namespace Job
    * @return TaskData
    *   The user-data buffer you may read and write.
    */
-  TaskData taskGetData(Task* const task) noexcept;
+  TaskData TaskGetData(Task* const task) noexcept;
 
   /*!
    * @brief
@@ -193,7 +222,7 @@ namespace Job
    *   The Task to run after 'self' has finished.
    *   This task must not have already been submitted to a queue.
    */
-  void taskAddContinuation(Task* const self, Task* const continuation) noexcept;
+  void TaskAddContinuation(Task* const self, Task* const continuation) noexcept;
 
   /*!
    * @brief
@@ -201,7 +230,7 @@ namespace Job
    *
    *   The Task is not required to have been created on the same thread that submits.
    *
-   *   You may now wait on this task using 'waitOnTask'.
+   *   You may now wait on this task using 'WaitOnTask'.
    *
    * @param self
    *   The task to submit.
@@ -212,7 +241,7 @@ namespace Job
    * @return Task*
    *   Returns the task passed in.
    */
-  Task* taskSubmit(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
+  Task* TaskSubmit(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
 
   /*!
    * @brief
@@ -229,7 +258,7 @@ namespace Job
    *   The user-data buffer casted as a T.
    */
   template<typename T>
-  T& taskDataAs(Task* const task) noexcept;
+  T& TaskDataAs(Task* const task) noexcept;
 
   /*!
    * @brief
@@ -248,7 +277,7 @@ namespace Job
    *   The arguments passed into the constructor of the user-data buffer casted as a T.
    */
   template<typename T, typename... Args>
-  void taskEmplaceData(Task* const task, Args&&... args);
+  void TaskEmplaceData(Task* const task, Args&&... args);
 
   /*!
    * @brief
@@ -264,7 +293,7 @@ namespace Job
    *   The data copied into the user-data buffer.
    */
   template<typename T>
-  void taskSetData(Task* const task, const T& data);
+  void TaskSetData(Task* const task, const T& data);
 
   /*!
    * @brief
@@ -277,13 +306,13 @@ namespace Job
    *   The non pointer callable you want to store.
    *
    * @param parent
-   *   An optional parent Task used in conjunction with 'waitOnTask' to force dependencies.
+   *   An optional parent Task used in conjunction with 'WaitOnTask' to force dependencies.
    *
    * @return Task*
    *   The newly created task.
    */
   template<typename Closure>
-  Task* taskMake(Closure&& function, Task* const parent = nullptr);
+  Task* TaskMake(Closure&& function, Task* const parent = nullptr);
 
   /*!
    * @brief
@@ -294,7 +323,7 @@ namespace Job
    * @param task
    *   The task's who's ref count should be incremented.
    */
-  void taskIncRef(Task* const task);
+  void TaskIncRef(Task* const task) noexcept;
 
   /*!
    * @brief
@@ -303,14 +332,14 @@ namespace Job
    * @param task
    *   The task's who's ref count should be decremented.
    */
-  void taskDecRef(Task* const task);
+  void TaskDecRef(Task* const task) noexcept;
 
   /*!
    * @brief
    *   Returns the done status of the task.
    *
    *   This is only safe to call after submitting the task if you have an active reference to
-   *   the task through a call to taskIncRef.
+   *   the task through a call to TaskIncRef.
    *
    * @param task
    *   The task to check whether or not it's done.
@@ -319,15 +348,9 @@ namespace Job
    *   true  - The task is done running.
    *   false - The task is still running.
    *
-   * @see taskIncRef
+   * @see TaskIncRef
    */
-  bool taskIsDone(const Task* const task) noexcept;
-
-  /*!
-   * @brief
-   *   Garbage collects tasks allocated on the current worker.
-   */
-  void workerGC();
+  bool TaskIsDone(const Task* const task) noexcept;
 
   /*!
    * @brief
@@ -351,8 +374,7 @@ namespace Job
    * @warning Must only be called from the main thread.
    */
   template<typename ConditionFn>
-  void tickMainQueue(ConditionFn&& condition,
-                     const bool    run_gc = true) noexcept
+  void TickMainQueue(ConditionFn&& condition) noexcept
   {
     do
     {
@@ -361,11 +383,6 @@ namespace Job
         break;
       }
     } while (condition());
-
-    if (run_gc)
-    {
-      workerGC();
-    }
   }
 
   /*!
@@ -381,9 +398,9 @@ namespace Job
    *
    * @warning Must only be called from the main thread.
    */
-  inline void tickMainQueue(const bool run_gc = true) noexcept
+  inline void TickMainQueue() noexcept
   {
-    tickMainQueue([]() { return true; }, run_gc);
+    TickMainQueue([]() { return true; });
   }
 
   /*!
@@ -393,12 +410,12 @@ namespace Job
    *
    *   You may only call this function with a task created on the current 'Worker'.
    *
-   *   It is a logic error to call this function on a task that has not been submitted (\ref taskSubmit).
+   *   It is a logic error to call this function on a task that has not been submitted (\ref TaskSubmit).
    *
    * @param task
    *   The task to wait to finish executing.
    */
-  void waitOnTask(const Task* const task) noexcept;
+  void WaitOnTask(const Task* const task) noexcept;
 
   /*!
    * @brief Same as calling `taskSubmit` followed by `waitOnTask`.
@@ -409,28 +426,31 @@ namespace Job
    * @param queue
    *   The queue you want the task to run on.
    */
-  void taskSubmitAndWait(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
+  void TaskSubmitAndWait(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
+
+  void PauseProcessor();
+  void YieldTimeSlice();
 
   // Template Function Implementation //
 
   template<typename T>
-  T& taskDataAs(Task* const task) noexcept
+  T& TaskDataAs(Task* const task) noexcept
   {
     detail::checkTaskDataSize(task, sizeof(T));
-    return *static_cast<T*>(taskGetData(task).ptr);
+    return *static_cast<T*>(TaskGetData(task).ptr);
   }
 
   template<typename T, typename... Args>
-  void taskEmplaceData(Task* const task, Args&&... args)
+  void TaskEmplaceData(Task* const task, Args&&... args)
   {
     detail::checkTaskDataSize(task, sizeof(T));
-    new (taskGetData(task).ptr) T(std::forward<Args>(args)...);
+    new (TaskGetData(task).ptr) T(std::forward<Args>(args)...);
   }
 
   template<typename T>
-  void taskSetData(Task* const task, const T& data)
+  void TaskSetData(Task* const task, const T& data)
   {
-    taskEmplaceData<T>(task, data);
+    TaskEmplaceData<T>(task, data);
   }
 
   template<typename Closure>
@@ -442,17 +462,227 @@ namespace Job
   }
 
   template<typename Closure>
-  Task* taskMake(Closure&& function, Task* const parent)
+  Task* TaskMake(Closure&& function, Task* const parent)
   {
-    Task* const task = taskMake(&taskLambdaWrapper<Closure>, parent);
-    taskEmplaceData<Closure>(task, std::forward<Closure>(function));
+    Task* const task = TaskMake(&taskLambdaWrapper<Closure>, parent);
+    TaskEmplaceData<Closure>(task, std::forward<Closure>(function));
     detail::taskUsePadding(task, sizeof(Closure));
 
     return task;
   }
+
+  // Parallel For API
+
+  /*!
+   * @brief
+   *   Range of indices to iterator over.
+   */
+  struct IndexIterator
+  {
+    std::size_t idx;
+
+    IndexIterator(const std::size_t idx) :
+      idx{idx} {}
+
+    IndexIterator& operator++() { return ++idx, *this; }
+    IndexIterator  operator++(int) { return IndexIterator{idx++}; }
+    std::size_t    operator*() const { return idx; }
+    friend bool    operator==(const IndexIterator& lhs, const IndexIterator& rhs) { return lhs.idx == rhs.idx; }
+    friend bool    operator!=(const IndexIterator& lhs, const IndexIterator& rhs) { return lhs.idx != rhs.idx; }
+  };
+
+  struct IndexRange
+  {
+    std::size_t idx_bgn;
+    std::size_t idx_end;
+
+    std::size_t   length() const { return idx_end - idx_bgn; }
+    IndexIterator begin() const { return IndexIterator(idx_bgn); }
+    IndexIterator end() const { return IndexIterator(idx_end); }
+  };
+
+  template<std::size_t max_count>
+  struct StaticCountSplitter
+  {
+    static_assert(max_count > 0, "The 'max_count' must be at least 1.");
+
+    bool operator()(const std::size_t count) const { return count > max_count; }
+  };
+
+  struct CountSplitter
+  {
+    static CountSplitter EvenSplit(const std::size_t total_num_items, std::size_t num_items_per_thread = 1u)
+    {
+      if (num_items_per_thread < 1u)
+      {
+        num_items_per_thread = 1u;
+      }
+
+      return CountSplitter{(total_num_items / num_items_per_thread) / NumWorkers()};
+    }
+
+    std::size_t max_count;
+
+    CountSplitter(std::size_t count) :
+      max_count{count}
+    {
+    }
+
+    bool operator()(const std::size_t count) const { return count > max_count; }
+  };
+
+  template<typename T, std::size_t max_size>
+  struct StaticDataSizeSplitter
+  {
+    static_assert(max_size >= sizeof(T), "The 'max_size' must be at least the size of a single object.");
+
+    bool operator()(const std::size_t count) const { return sizeof(T) * count > max_size; }
+  };
+
+  template<typename T>
+  struct DataSizeSplitter
+  {
+    std::size_t max_size;
+
+    bool operator()(const std::size_t count) const { return sizeof(T) * count > max_size; }
+  };
+
+  /*!
+   * @brief
+   *   Parallel for algorithm, splits the work up recursively splitting based on the
+   *   \p splitter passed in.
+   *
+   *   Assumes all callable objects passed in can be invoked on multiple threads at the same time.
+   *
+   * @tparam F
+   *   Type of function object passed in.
+   *   Must be callable like: fn(Task* task, IndexRange index_range)
+   *
+   * @tparam S
+   *   Callable splitter, must be callable like: splitter(std::size_t count)
+   *
+   * @param start
+   *   Start index for the range to be parallelized.
+   *
+   * @param count
+   *    \p start + count defines the end range.
+   *
+   * @param splitter
+   *   Callable splitter, must be callable like: splitter(std::size_t count)
+   *
+   * @param fn
+   *   Function object must be callable like: fn(Task* task, IndexRange index_range)
+   *
+   * @param parent
+   *   Parent task to add this task as a child of.
+   *
+   * @return
+   *   The new task holding the work of the parallel for.
+   */
+  template<typename F, typename S>
+  Task* ParallelFor(const std::size_t start, const std::size_t count, S&& splitter, F&& fn, Task* parent = nullptr)
+  {
+    return TaskMake(
+     [=, splitter = std::move(splitter), fn = std::move(fn)](Task* const task) {
+       if (count > 1u && splitter(count))
+       {
+         const std::size_t left_count    = count / 2;
+         const std::size_t right_count   = count - left_count;
+         const QueueType   parent_q_type = detail::taskQType(task);
+
+         if (left_count)
+         {
+           TaskSubmit(ParallelFor(start, left_count, splitter, fn, task), parent_q_type);
+         }
+
+         if (right_count)
+         {
+           TaskSubmit(ParallelFor(start + left_count, right_count, splitter, fn, task), parent_q_type);
+         }
+       }
+       else
+       {
+         fn(task, IndexRange{start, start + count});
+       }
+     },
+     parent);
+  }
+
+  /*!
+   * @brief
+   *   Parallel for algorithm, splits the work up recursively splitting based on the
+   *   \p splitter passed in. This version is a helper for array data.
+   *
+   *   Assumes all callable objects passed in can be invoked on multiple threads at the same time.
+   *
+   * @tparam T
+   *   Type of the array to process.
+   *
+   * @tparam F
+   *   Type of function object passed in.
+   *   Must be callable like: fn(Task* task, IndexRange index_range)
+   *
+   * @tparam S
+   *   Callable splitter, must be callable like: splitter(std::size_t count)
+   *
+   * @param data
+   *   The start of the array to process.
+   *
+   * @param count
+   *   The number of elements in the \p data array.
+   *
+   * @param splitter
+   *   Callable splitter, must be callable like: splitter(std::size_t count)
+   *
+   * @param fn
+   *   Function object must be callable like: fn(job::Task* task, T* data_start, const std::size_t num_items)
+   *
+   * @param parent
+   *   Parent task to add this task as a child of.
+   *
+   * @return
+   *   The new task holding the work of the parallel for.
+   */
+  template<typename T, typename F, typename S>
+  Task* ParallelFor(T* const data, const std::size_t count, S&& splitter, F&& fn, Task* parent = nullptr)
+  {
+    return ParallelFor(
+     std::size_t(0), count, std::move(splitter), [data, fn = std::move(fn)](Task* const task, const IndexRange index_range) {
+       fn(task, data + index_range.idx_bgn, index_range.length());
+     },
+     parent);
+  }
+
+  /*!
+   * @brief
+   *   Invokes each passed in function object in parallel.
+   *
+   * @tparam ...F
+   *   The function objects types.
+   *   Must be callable like: fn(Task* task)
+   *
+   * @param parent
+   *   Parent task to add this task as a child of.
+   *
+   * @param ...fns
+   *    Function objects must be callable like: fn(Task* task)
+   *
+   * @return
+   *   The new task holding the work of the parallel invoke.
+   */
+  template<typename... F>
+  Task* ParallelInvoke(Task* const parent, F&&... fns)
+  {
+    return TaskMake(
+     [=](Task* const parent_task) mutable {
+       const QueueType parent_q_type = detail::taskQType(parent_task);
+       (TaskSubmit(TaskMake(std::move(fns), parent_task), parent_q_type), ...);
+     },
+     parent);
+  }
 }  // namespace Job
 
-#endif // JOB_API_HPP
+#endif  // JOB_API_HPP
 
 /******************************************************************************/
 /*

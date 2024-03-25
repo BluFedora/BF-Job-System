@@ -14,17 +14,11 @@
 
 namespace Job
 {
-  /*!
-   * @brief
-   *   The runtime configuration for the Job System.
-   */
-  struct JobSystemCreateOptions
-  {
-    unsigned int num_threads = 0u;  //!< Use 0 to indicate using the number of cores available on the system.
-  };
-
+  struct JobSystemCreateOptions;
+  struct JobSystemMemoryRequirements;
   struct InitializationToken;
-  InitializationToken initialize(const Job::JobSystemCreateOptions& params) noexcept;
+
+  InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements, void* const memory) noexcept;
 
   struct InitializationToken
   {
@@ -36,11 +30,9 @@ namespace Job
     {
     }
 
-    friend InitializationToken Job::initialize(const JobSystemCreateOptions&) noexcept;
+    friend InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements, void* const memory) noexcept;
   };
 
-  void PauseProcessor();
-  void YieldTimeSlice();
 }  // namespace Job
 
 #endif  // JOB_INITALIZATION_TOKEN_HPP
