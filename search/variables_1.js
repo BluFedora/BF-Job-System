@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['current_5fblock_0',['current_block',['../struct_job_1_1_task_pool.html#a80f66f0410c275f948e9e3992050b80b',1,'Job::TaskPool']]]
+  ['byte_5fsize_0',['byte_size',['../namespace_job.html#ac8d9a46abe68344e8cc1cb30cf57850d',1,'Job::JobSystemMemoryRequirements']]]
 ];

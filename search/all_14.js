@@ -1,20 +1,4 @@
 var searchData=
 [
-  ['waitontask_0',['waitOnTask',['../namespace_job.html#af88b9884d06cd944a6c386c50b27cc9d',1,'Job']]],
-  ['wakeupallworkers_1',['wakeUpAllWorkers',['../struct_job_1_1_job_system.html#a4e973f6adbb169cc9101bf2dc03b4f9c',1,'Job::JobSystem']]],
-  ['wakeuponeworker_2',['wakeUpOneWorker',['../struct_job_1_1_job_system.html#a8581a4dcf5b0bfb84c9ec2fcbada9e22',1,'Job::JobSystem']]],
-  ['worker_3',['worker',['../struct_job_1_1_thread_worker.html#a8cbf37325fed1058a8c88dbcf2903b49',1,'Job::ThreadWorker']]],
-  ['worker_4',['WORKER',['../namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba531886e636f1aa36e0fc96d49f342613',1,'Job']]],
-  ['worker_5fid_5',['worker_id',['../struct_job_1_1_task_ptr.html#a402409245d09036197b4e927ef0b80ee',1,'Job::TaskPtr']]],
-  ['worker_5fqueue_6',['worker_queue',['../struct_job_1_1_thread_worker.html#a1d8bd380d466acf71d65045ba74097f1',1,'Job::ThreadWorker']]],
-  ['worker_5fsleep_5fcv_7',['worker_sleep_cv',['../struct_job_1_1_job_system.html#a25d597560d67f2f0eab5de7d39ab7114',1,'Job::JobSystem']]],
-  ['worker_5fsleep_5fmutex_8',['worker_sleep_mutex',['../struct_job_1_1_job_system.html#ac3ae08abf9e2737f77d38b4a79f06c15',1,'Job::JobSystem']]],
-  ['worker_5fstorage_9',['worker_storage',['../struct_job_1_1_job_system.html#ac39692708d692b6d30e07860187432f9',1,'Job::JobSystem']]],
-  ['workergc_10',['workerGC',['../namespace_job.html#a56d43c039e77c4945fb646d7e71f7bf8',1,'Job']]],
-  ['workerid_11',['WorkerID',['../namespace_job.html#ac7727f146165ae76b95cc50196df236e',1,'Job']]],
-  ['workeridtype_12',['WorkerIDType',['../namespace_job.html#aef42ab2f4880b98a40cf86e5541503e0',1,'Job']]],
-  ['workerqueue_13',['WorkerQueue',['../struct_job_1_1_thread_worker.html#ac2b4163261da5b37d16653b7077ed348',1,'Job::ThreadWorker']]],
-  ['workers_14',['workers',['../struct_job_1_1_job_system.html#a91778fc9dd08ee0494a9e232bb1322ea',1,'Job::JobSystem']]],
-  ['workerthreadstorage_15',['WorkerThreadStorage',['../struct_job_1_1_job_system.html#ab4864f9ac1b47672f5732cec6161373b',1,'Job::JobSystem']]],
-  ['wrap_5fmask_16',['WRAP_MASK',['../class_job_1_1_job_queue_a.html#a37438f01824c2c94f3ac6083fb4e1843',1,'Job::JobQueueA::WRAP_MASK()'],['../class_job_1_1_job_queue_m.html#ace8bfab8e6c3e10d2c402b29f8f615b2',1,'Job::JobQueueM::WRAP_MASK()']]]
+  ['value_5ftype_0',['value_type',['../class_job_1_1_m_p_m_c_queue.html#a90ca30e17ca8c69643393bc39ccaec75',1,'Job::MPMCQueue']]]
 ];

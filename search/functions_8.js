@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jobqueuea_0',['JobQueueA',['../class_job_1_1_job_queue_a.html#a3613b6cdba874276e5aae85be304ac71',1,'Job::JobQueueA']]],
-  ['jobqueuem_1',['JobQueueM',['../class_job_1_1_job_queue_m.html#a4dc43e70a477b322dd0f210f9741ad9d',1,'Job::JobQueueM']]]
+  ['numsystemthreads_0',['numSystemThreads',['../namespace_job.html#a69440377f73ecd3f40320af8e9cef349',1,'Job']]],
+  ['numworkers_1',['NumWorkers',['../namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06',1,'Job']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['garbagecollectallocatedtasks_0',['garbageCollectAllocatedTasks',['../struct_job_1_1_thread_worker.html#ac2b6d09bd4f20d16b4a48e3fc57d8ce3',1,'Job::ThreadWorker']]]
+  ['g_5fcurrentworker_0',['g_CurrentWorker',['../job__system_8cpp.html#abfa74abcec62d6d1b3d06edec0cf3b0d',1,'job_system.cpp']]],
+  ['g_5fjobsystem_1',['g_JobSystem',['../job__system_8cpp.html#afb9d4821deb09320023a531d1cb87f58',1,'job_system.cpp']]]
 ];

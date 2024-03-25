@@ -1,5 +1,5 @@
 var searchData=
 [
   ['datasizesplitter_0',['DataSizeSplitter',['../struct_job_1_1_data_size_splitter.html',1,'Job']]],
-  ['deallocate_1',['deallocate',['../struct_job_1_1_task_pool.html#abb047604aef75a41ba1c1c14c09cf3d6',1,'Job::TaskPool']]]
+  ['distance_1',['Distance',['../class_job_1_1_m_p_m_c_queue.html#aacfa595ae6d543fa9b85ecdcac3d4e71',1,'Job::MPMCQueue']]]
 ];

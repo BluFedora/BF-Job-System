@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['m_5fbottom_0',['m_Bottom',['../class_job_1_1_job_queue_m.html#a6cdfa56774eb4665624a960d73407a74',1,'Job::JobQueueM::m_Bottom()'],['../class_job_1_1_job_queue_a.html#a0ff3e02f010476cf9270dc5320efad5d',1,'Job::JobQueueA::m_Bottom()']]],
-  ['m_5fcriticallock_1',['m_CriticalLock',['../class_job_1_1_job_queue_m.html#a8f958c4c3bfeb144e30e137ebaf818de',1,'Job::JobQueueM']]],
-  ['m_5fqueue_2',['m_Queue',['../class_job_1_1_job_queue_m.html#ad5e8c52feaac26f10d32ce919ca7f3fb',1,'Job::JobQueueM::m_Queue()'],['../class_job_1_1_job_queue_a.html#abf201bd3eb1fdc53f7514adbacc85cfd',1,'Job::JobQueueA::m_Queue()']]],
-  ['m_5ftop_3',['m_Top',['../class_job_1_1_job_queue_m.html#ac67041d6b5f14be524c54c8b8b3529e3',1,'Job::JobQueueM::m_Top()'],['../class_job_1_1_job_queue_a.html#a9080ce13dfcfeea46e76d198205f0aba',1,'Job::JobQueueA::m_Top()']]],
-  ['main_5fqueue_4',['main_queue',['../struct_job_1_1_job_system.html#a5973eb828a1ca208da77aaf55d9a06fa',1,'Job::JobSystem']]],
-  ['max_5fcount_5',['max_count',['../struct_job_1_1_count_splitter.html#af3b79ca73bd9970436f34274879e196b',1,'Job::CountSplitter']]],
-  ['max_5fsize_6',['max_size',['../struct_job_1_1_data_size_splitter.html#a77907626ce2e79fdbeb00ed9691fd8a3',1,'Job::DataSizeSplitter']]],
-  ['memory_7',['memory',['../struct_job_1_1_task_pool.html#aca0e1084cc97cd905f35af622073079a',1,'Job::TaskPool']]]
+  ['idx_0',['idx',['../struct_job_1_1_index_iterator.html#a675ec318f6f126fe6fc511e91a7d8033',1,'Job::IndexIterator']]],
+  ['idx_5fbgn_1',['idx_bgn',['../struct_job_1_1_index_range.html#aceb44881dc7d7dcaa6b37c93bdb92329',1,'Job::IndexRange']]],
+  ['idx_5fend_2',['idx_end',['../struct_job_1_1_index_range.html#afeb438869dc0d0ef6156057dde7e3b2b',1,'Job::IndexRange']]],
+  ['init_5fcv_3',['init_cv',['../namespace_job.html#aea7eded61e2238418bb232de730caf53',1,'Job::InitializationLock']]],
+  ['init_5flock_4',['init_lock',['../namespace_job.html#a0d5db0ce93f3106774a05370d8bde73d',1,'Job::JobSystemContext']]],
+  ['init_5fmutex_5',['init_mutex',['../namespace_job.html#af387d34b32af61c8e087ea987605f220',1,'Job::InitializationLock']]],
+  ['is_5finitialized_6',['is_initialized',['../namespace_job.html#a517a5d8465226c1c1cddb87f57109a65',1,'Job::InitializationLock']]],
+  ['is_5frunning_7',['is_running',['../namespace_job.html#a93ec86776cd50eb50948754288be9f7b',1,'Job::JobSystemContext']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['user_5fstorage_5fsize_0',['user_storage_size',['../struct_job_1_1_task.html#aa198f3e4cc72e698aa22f3c0de67163e',1,'Job::Task']]]
+  ['q_5ftype_0',['q_type',['../struct_job_1_1_task.html#a40f07d88edbde168f40a127417678479',1,'Job::Task']]]
 ];

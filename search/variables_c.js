@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['task_5findex_0',['task_index',['../struct_job_1_1_task_ptr.html#a39917df4dfc271d00f8df97540caaba5',1,'Job::TaskPtr']]],
-  ['task_5fmemory_1',['task_memory',['../struct_job_1_1_thread_worker.html#aab389bee33cdee07728c04a828b5a6b5',1,'Job::ThreadWorker']]],
-  ['thread_2',['thread',['../struct_job_1_1_thread_worker.html#a58083cd0d3359a9e1522a4bfba03031d',1,'Job::ThreadWorker']]]
+  ['padding_0',['padding',['../struct_job_1_1_task.html#aebb8066dcd81bf25adf87bc6b47e7eec',1,'Job::Task']]],
+  ['parent_1',['parent',['../struct_job_1_1_task.html#ad8a9fae9c5a3c3f3a579b9bcba60c8ef',1,'Job::Task']]],
+  ['ptr_2',['ptr',['../namespace_job.html#a206e9e451cca5c05ad02c69ad733d8f0',1,'Job::TaskData']]]
 ];
