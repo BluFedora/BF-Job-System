@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 Examples</h1>
 <p >Minimal Example</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="job__queue_8hpp.html">concurrent/job_queue.hpp</a>&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="job__api_8hpp.html">concurrent/job_api.hpp</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;cassert&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
@@ -149,8 +149,8 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="ajob__queue_8hpp_html"><div class="ttname"><a href="job__queue_8hpp.html">job_queue.hpp</a></div><div class="ttdoc">Concurrent Queue Implmementations for different situations.</div></div>
-<div class="ttc" id="anamespace_job_html_a10e900d5d6bbe064a7197d291ef9a201"><div class="ttname"><a href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">Job::Initialize</a></div><div class="ttdeci">InitializationToken Initialize(const JobSystemMemoryRequirements &amp;memory_requirements, void *const memory) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'Job::Initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00726">job_system.cpp:726</a></div></div>
+<div class="ttc" id="ajob__api_8hpp_html"><div class="ttname"><a href="job__api_8hpp.html">job_api.hpp</a></div><div class="ttdoc">API for a multi-threading job system.</div></div>
+<div class="ttc" id="anamespace_job_html_a10e900d5d6bbe064a7197d291ef9a201"><div class="ttname"><a href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">Job::Initialize</a></div><div class="ttdeci">InitializationToken Initialize(const JobSystemMemoryRequirements &amp;memory_requirementss={}, void *const memory=nullptr) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'Job::Initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00726">job_system.cpp:726</a></div></div>
 <div class="ttc" id="anamespace_job_html_a136f0bed0a70a7389c7e5ce4821a2629"><div class="ttname"><a href="namespace_job.html#a136f0bed0a70a7389c7e5ce4821a2629">Job::TaskSubmit</a></div><div class="ttdeci">Task * TaskSubmit(Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01010">job_system.cpp:1010</a></div></div>
 <div class="ttc" id="anamespace_job_html_a2961eee80e34c41deade7924657154b8"><div class="ttname"><a href="namespace_job.html#a2961eee80e34c41deade7924657154b8">Job::WaitOnTask</a></div><div class="ttdeci">void WaitOnTask(const Task *const task) noexcept</div><div class="ttdoc">Waits until the specified task is done executing. This function will block but do work while being bl...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01103">job_system.cpp:1103</a></div></div>
 <div class="ttc" id="anamespace_job_html_a9d923fa374392c284942ea7d8f90e466"><div class="ttname"><a href="namespace_job.html#a9d923fa374392c284942ea7d8f90e466">Job::Shutdown</a></div><div class="ttdeci">void Shutdown() noexcept</div><div class="ttdoc">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initia...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00907">job_system.cpp:907</a></div></div>
@@ -186,7 +186,7 @@ Libraries Used</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Mar 26 2024 10:12:57 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Mar 26 2024 10:20:24 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

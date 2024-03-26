@@ -179,7 +179,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba186495f7da296bf880df3a22a492b378">MAIN</a> = 1
 , <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba531886e636f1aa36e0fc96d49f342613">WORKER</a> = 2
  }</td></tr>
-<tr class="memdesc:a686f6798e9f499e832cb9f125f0db5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines which threads the a task will be allowed to run on.  <a href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">More...</a><br /></td></tr>
+<tr class="memdesc:a686f6798e9f499e832cb9f125f0db5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines which threads the task will be allowed to run on.  <a href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">More...</a><br /></td></tr>
 <tr class="separator:a686f6798e9f499e832cb9f125f0db5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af06568a1c2e63b5742b0569cd9afbb53"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53">SPMCDequeStatus</a> { <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a>
 , <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">FAILED_RACE</a>
@@ -189,12 +189,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a10e900d5d6bbe064a7197d291ef9a201"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_job_1_1_initialization_token.html">InitializationToken</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">Initialize</a> (const <a class="el" href="struct_job_1_1_job_system_memory_requirements.html">JobSystemMemoryRequirements</a> &amp;memory_requirementss={}, void *const memory=nullptr) noexcept</td></tr>
-<tr class="memdesc:a10e900d5d6bbe064a7197d291ef9a201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the <a class="el" href="namespace_job.html">Job</a> system and creates all the worker threads. The thread that calls '<a class="el" href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201" title="Sets up the Job system and creates all the worker threads. The thread that calls &#39;Job::Initialize&#39; is...">Job::Initialize</a>' is considered the main thread.  <a href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">More...</a><br /></td></tr>
-<tr class="separator:a10e900d5d6bbe064a7197d291ef9a201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada79d1288c5458f1451a414ec89d2ba6"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6">NumSystemThreads</a> () noexcept</td></tr>
 <tr class="memdesc:ada79d1288c5458f1451a414ec89d2ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6">More...</a><br /></td></tr>
 <tr class="separator:ada79d1288c5458f1451a414ec89d2ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e900d5d6bbe064a7197d291ef9a201"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_job_1_1_initialization_token.html">InitializationToken</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">Initialize</a> (const <a class="el" href="struct_job_1_1_job_system_memory_requirements.html">JobSystemMemoryRequirements</a> &amp;memory_requirementss={}, void *const memory=nullptr) noexcept</td></tr>
+<tr class="memdesc:a10e900d5d6bbe064a7197d291ef9a201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the <a class="el" href="namespace_job.html">Job</a> system and creates all the worker threads. The thread that calls '<a class="el" href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201" title="Sets up the Job system and creates all the worker threads. The thread that calls &#39;Job::Initialize&#39; is...">Job::Initialize</a>' is considered the main thread.  <a href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">More...</a><br /></td></tr>
+<tr class="separator:a10e900d5d6bbe064a7197d291ef9a201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77a997446d916b36e7478c7627694a51"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a77a997446d916b36e7478c7627694a51">ProcessorArchitectureName</a> () noexcept</td></tr>
 <tr class="memdesc:a77a997446d916b36e7478c7627694a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">An implementation defined name for the CPU architecture of the device. This function can be called by any thread concurrently.  <a href="namespace_job.html#a77a997446d916b36e7478c7627694a51">More...</a><br /></td></tr>
 <tr class="separator:a77a997446d916b36e7478c7627694a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -813,7 +813,7 @@ thread_id</td>
 </table>
 </div><div class="memdoc">
 
-<p>Determines which threads the a task will be allowed to run on. </p>
+<p>Determines which threads the task will be allowed to run on. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a686f6798e9f499e832cb9f125f0db5fba1e23852820b9154316c7c06e2b7ba051" name="a686f6798e9f499e832cb9f125f0db5fba1e23852820b9154316c7c06e2b7ba051"></a>NORMAL&#160;</td><td class="fielddoc"><p >Tasks in this queue will run on either the main or worker threads. </p>
 </td></tr>
@@ -876,6 +876,87 @@ thread_id</td>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ada79d1288c5458f1451a414ec89d2ba6" name="ada79d1288c5458f1451a414ec89d2ba6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada79d1288c5458f1451a414ec89d2ba6">&#9670;&nbsp;</a></span>NumSystemThreads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t Job::NumSystemThreads </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently. </p>
+<p >Can be called even if the job system has not been initialized.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::size_t The number threads / processors on the computer. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00837">837</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>{</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="preprocessor">#if IS_SINGLE_THREADED</span></div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>  <span class="keyword">const</span> <span class="keyword">auto</span> n = std::thread::hardware_concurrency();</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>  <span class="keywordflow">return</span> n != 0 ? n : 1;</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="preprocessor">#if 0</span></div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span> </div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span><span class="preprocessor">#if IS_WINDOWS</span></div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>    SYSTEM_INFO sysinfo;</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>    GetSystemInfo(&amp;sysinfo);</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>    <span class="keywordflow">return</span> sysinfo.dwNumberOfProcessors;</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="preprocessor">#elif IS_POSIX</span></div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>    <span class="keywordflow">return</span> sysconf(_SC_NPROCESSORS_ONLN) <span class="comment">/* * 2*/</span>;</div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="preprocessor">#elif 0  </span><span class="comment">// FreeBSD, MacOS X, NetBSD, OpenBSD</span></div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>    nt          mib[4];</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>    <span class="keywordtype">int</span>         numCPU;</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>    std::size_t len = <span class="keyword">sizeof</span>(numCPU);</div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span> </div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>    <span class="comment">/* set the mib for hw.ncpu */</span></div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>    mib[0] = CTL_HW;</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>    mib[1] = HW_AVAILCPU;  <span class="comment">// alternatively, try HW_NCPU;</span></div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span> </div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>    <span class="comment">/* get the number of CPUs from the system */</span></div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>    sysctl(mib, 2, &amp;numCPU, &amp;len, NULL, 0);</div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span> </div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>    <span class="keywordflow">if</span> (numCPU &lt; 1)</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>    {</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>      mib[1] = HW_NCPU;</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>      sysctl(mib, 2, &amp;numCPU, &amp;len, NULL, 0);</div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>      <span class="keywordflow">if</span> (numCPU &lt; 1)</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>        numCPU = 1;</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>    }</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span> </div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>    <span class="keywordflow">return</span> numCPU;</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span><span class="preprocessor">#elif 0  </span><span class="comment">// HPUX</span></div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    <span class="keywordflow">return</span> mpctl(MPC_GETNUMSPUS, NULL, NULL);</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span><span class="preprocessor">#elif 0  </span><span class="comment">// IRIX</span></div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>    <span class="keywordflow">return</span> sysconf(_SC_NPROC_ONLN);</div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span><span class="preprocessor">#elif 0  </span><span class="comment">// Objective-C (Mac OS X &gt;=10.5 or iOS)</span></div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>    NSUInteger a = [[NSProcessInfo processInfo] processorCount];</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>    NSUInteger b = [[NSProcessInfo processInfo] activeProcessorCount];</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>    <span class="keywordflow">return</span> a;</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span> </div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a10e900d5d6bbe064a7197d291ef9a201" name="a10e900d5d6bbe064a7197d291ef9a201"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10e900d5d6bbe064a7197d291ef9a201">&#9670;&nbsp;</a></span>Initialize()</h2>
 
@@ -1036,7 +1117,7 @@ thread_id</td>
 <div class="ttc" id="anamespace_job_html_a049da5bae449544c7b17c3aceeee3a79"><div class="ttname"><a href="namespace_job.html#a049da5bae449544c7b17c3aceeee3a79">Job::JobSystemContext::main_queue</a></div><div class="ttdeci">LockedQueue&lt; TaskPtr &gt; main_queue</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00217">job_system.cpp:217</a></div></div>
 <div class="ttc" id="anamespace_job_html_a0882adb15126b4fe2a94c21f744b6525"><div class="ttname"><a href="namespace_job.html#a0882adb15126b4fe2a94c21f744b6525">Job::JobSystemCreateOptions::job_steal_rng_seed</a></div><div class="ttdeci">std::uint64_t job_steal_rng_seed</div><div class="ttdoc">The RNG for work queue stealing will be seeded with this value.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00092">job_api.hpp:92</a></div></div>
 <div class="ttc" id="anamespace_job_html_a0d5db0ce93f3106774a05370d8bde73d"><div class="ttname"><a href="namespace_job.html#a0d5db0ce93f3106774a05370d8bde73d">Job::JobSystemContext::init_lock</a></div><div class="ttdeci">InitializationLock init_lock</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00208">job_system.cpp:208</a></div></div>
-<div class="ttc" id="anamespace_job_html_a10e900d5d6bbe064a7197d291ef9a201"><div class="ttname"><a href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">Job::Initialize</a></div><div class="ttdeci">InitializationToken Initialize(const JobSystemMemoryRequirements &amp;memory_requirements, void *const memory) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'Job::Initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00726">job_system.cpp:726</a></div></div>
+<div class="ttc" id="anamespace_job_html_a10e900d5d6bbe064a7197d291ef9a201"><div class="ttname"><a href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">Job::Initialize</a></div><div class="ttdeci">InitializationToken Initialize(const JobSystemMemoryRequirements &amp;memory_requirementss={}, void *const memory=nullptr) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'Job::Initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00726">job_system.cpp:726</a></div></div>
 <div class="ttc" id="anamespace_job_html_a4bb74989f721fcb35b1263dde853e604"><div class="ttname"><a href="namespace_job.html#a4bb74989f721fcb35b1263dde853e604">Job::k_MainThreadID</a></div><div class="ttdeci">static constexpr WorkerID k_MainThreadID</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00079">job_system.cpp:79</a></div></div>
 <div class="ttc" id="anamespace_job_html_a65f68139b9fe13d51e749b62b85b5614"><div class="ttname"><a href="namespace_job.html#a65f68139b9fe13d51e749b62b85b5614">Job::JobSystemCreateOptions::normal_queue_size</a></div><div class="ttdeci">std::uint16_t normal_queue_size</div><div class="ttdoc">Number of tasks in each worker's QueueType::NORMAL queue. (Must be non-zero power of two)</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00090">job_api.hpp:90</a></div></div>
 <div class="ttc" id="anamespace_job_html_a6ed368a7c87ea03926bf80cfa2e47709"><div class="ttname"><a href="namespace_job.html#a6ed368a7c87ea03926bf80cfa2e47709">Job::JobSystemContext::needs_delete</a></div><div class="ttdeci">bool needs_delete</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00212">job_system.cpp:212</a></div></div>
@@ -1055,93 +1136,12 @@ thread_id</td>
 <div class="ttc" id="anamespace_job_html_struct_job_1_1_job_system_create_options"><div class="ttname"><a href="namespace_job.html#struct_job_1_1_job_system_create_options">Job::JobSystemCreateOptions</a></div><div class="ttdoc">The runtime configuration for the Job System.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00086">job_api.hpp:87</a></div></div>
 <div class="ttc" id="anamespace_job_html_struct_job_1_1_thread_local_state"><div class="ttname"><a href="namespace_job.html#struct_job_1_1_thread_local_state">Job::ThreadLocalState</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00182">job_system.cpp:183</a></div></div>
 <div class="ttc" id="anamespaceworker_html"><div class="ttname"><a href="namespaceworker.html">worker</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00429">job_system.cpp:430</a></div></div>
-<div class="ttc" id="astruct_job_1_1_initialization_token_html"><div class="ttname"><a href="struct_job_1_1_initialization_token.html">Job::InitializationToken</a></div><div class="ttdef"><b>Definition:</b> <a href="initialization__token_8hpp_source.html#l00023">initialization_token.hpp:24</a></div></div>
+<div class="ttc" id="astruct_job_1_1_initialization_token_html"><div class="ttname"><a href="struct_job_1_1_initialization_token.html">Job::InitializationToken</a></div><div class="ttdef"><b>Definition:</b> <a href="job__init__token_8hpp_source.html#l00022">job_init_token.hpp:23</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00227">g_CurrentWorker</a>, <a class="el" href="job__system_8cpp_source.html#l00226">g_JobSystem</a>, <a class="el" href="job__system_8cpp_source.html#l00208">Job::JobSystemContext::init_lock</a>, <a class="el" href="job__system_8cpp_source.html#l00726">Initialize()</a>, <a class="el" href="job__system_8cpp_source.html#l00213">Job::JobSystemContext::is_running</a>, <a class="el" href="job__api_8hpp_source.html#l00092">Job::JobSystemCreateOptions::job_steal_rng_seed</a>, <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>, <a class="el" href="job__system_8cpp_source.html#l00079">k_MainThreadID</a>, <a class="el" href="job__system_8cpp_source.html#l00217">Job::JobSystemContext::main_queue</a>, <a class="el" href="job__api_8hpp_source.html#l00089">Job::JobSystemCreateOptions::main_queue_size</a>, <a class="el" href="job__system_8cpp_source.html#l00212">Job::JobSystemContext::needs_delete</a>, <a class="el" href="job__api_8hpp_source.html#l00090">Job::JobSystemCreateOptions::normal_queue_size</a>, <a class="el" href="job__system_8cpp_source.html#l00220">Job::JobSystemContext::num_available_jobs</a>, <a class="el" href="job__system_8cpp_source.html#l00207">Job::JobSystemContext::num_tasks_per_worker</a>, <a class="el" href="job__system_8cpp_source.html#l00206">Job::JobSystemContext::num_workers</a>, <a class="el" href="job__system_8cpp_source.html#l00209">Job::JobSystemContext::sys_arch_str</a>, <a class="el" href="job__system_8cpp_source.html#l00211">Job::JobSystemContext::system_alloc_alignment</a>, <a class="el" href="job__system_8cpp_source.html#l00210">Job::JobSystemContext::system_alloc_size</a>, <a class="el" href="job__api_8hpp_source.html#l00091">Job::JobSystemCreateOptions::worker_queue_size</a>, and <a class="el" href="job__system_8cpp_source.html#l00205">Job::JobSystemContext::workers</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00726">Initialize()</a>.</p>
 
-</div>
-</div>
-<a id="ada79d1288c5458f1451a414ec89d2ba6" name="ada79d1288c5458f1451a414ec89d2ba6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada79d1288c5458f1451a414ec89d2ba6">&#9670;&nbsp;</a></span>NumSystemThreads()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::size_t Job::NumSystemThreads </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently. </p>
-<p >Can be called even if the job system has not been initialized.</p>
-<dl class="section return"><dt>Returns</dt><dd>std::size_t The number threads / processors on the computer. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00837">837</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>{</div>
-<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="preprocessor">#if IS_SINGLE_THREADED</span></div>
-<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>  <span class="keyword">const</span> <span class="keyword">auto</span> n = std::thread::hardware_concurrency();</div>
-<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>  <span class="keywordflow">return</span> n != 0 ? n : 1;</div>
-<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
-<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="preprocessor">#if 0</span></div>
-<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span> </div>
-<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span><span class="preprocessor">#if IS_WINDOWS</span></div>
-<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>    SYSTEM_INFO sysinfo;</div>
-<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>    GetSystemInfo(&amp;sysinfo);</div>
-<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>    <span class="keywordflow">return</span> sysinfo.dwNumberOfProcessors;</div>
-<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="preprocessor">#elif IS_POSIX</span></div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>    <span class="keywordflow">return</span> sysconf(_SC_NPROCESSORS_ONLN) <span class="comment">/* * 2*/</span>;</div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="preprocessor">#elif 0  </span><span class="comment">// FreeBSD, MacOS X, NetBSD, OpenBSD</span></div>
-<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>    nt          mib[4];</div>
-<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>    <span class="keywordtype">int</span>         numCPU;</div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>    std::size_t len = <span class="keyword">sizeof</span>(numCPU);</div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span> </div>
-<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>    <span class="comment">/* set the mib for hw.ncpu */</span></div>
-<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>    mib[0] = CTL_HW;</div>
-<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>    mib[1] = HW_AVAILCPU;  <span class="comment">// alternatively, try HW_NCPU;</span></div>
-<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span> </div>
-<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>    <span class="comment">/* get the number of CPUs from the system */</span></div>
-<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>    sysctl(mib, 2, &amp;numCPU, &amp;len, NULL, 0);</div>
-<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span> </div>
-<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>    <span class="keywordflow">if</span> (numCPU &lt; 1)</div>
-<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>    {</div>
-<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>      mib[1] = HW_NCPU;</div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>      sysctl(mib, 2, &amp;numCPU, &amp;len, NULL, 0);</div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>      <span class="keywordflow">if</span> (numCPU &lt; 1)</div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>        numCPU = 1;</div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>    }</div>
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span> </div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>    <span class="keywordflow">return</span> numCPU;</div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span><span class="preprocessor">#elif 0  </span><span class="comment">// HPUX</span></div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    <span class="keywordflow">return</span> mpctl(MPC_GETNUMSPUS, NULL, NULL);</div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span><span class="preprocessor">#elif 0  </span><span class="comment">// IRIX</span></div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>    <span class="keywordflow">return</span> sysconf(_SC_NPROC_ONLN);</div>
-<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span><span class="preprocessor">#elif 0  </span><span class="comment">// Objective-C (Mac OS X &gt;=10.5 or iOS)</span></div>
-<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>    NSUInteger a = [[NSProcessInfo processInfo] processorCount];</div>
-<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>    NSUInteger b = [[NSProcessInfo processInfo] activeProcessorCount];</div>
-<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
-<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>    <span class="keywordflow">return</span> a;</div>
-<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span> </div>
-<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>}</div>
-</div><!-- fragment -->
 </div>
 </div>
 <a id="a77a997446d916b36e7478c7627694a51" name="a77a997446d916b36e7478c7627694a51"></a>
@@ -2451,7 +2451,7 @@ template&lt;typename F , typename S &gt; </div>
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>     parent);</div>
 <div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>  }</div>
 <div class="ttc" id="anamespace_job_1_1detail_html_a725721f202ed179f6a4177b33f205666"><div class="ttname"><a href="namespace_job_1_1detail.html#a725721f202ed179f6a4177b33f205666">Job::detail::taskQType</a></div><div class="ttdeci">QueueType taskQType(const Task *task) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01173">job_system.cpp:1173</a></div></div>
-<div class="ttc" id="anamespace_job_html_a686f6798e9f499e832cb9f125f0db5fb"><div class="ttname"><a href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">Job::QueueType</a></div><div class="ttdeci">QueueType</div><div class="ttdoc">Determines which threads the a task will be allowed to run on.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00046">job_api.hpp:47</a></div></div>
+<div class="ttc" id="anamespace_job_html_a686f6798e9f499e832cb9f125f0db5fb"><div class="ttname"><a href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">Job::QueueType</a></div><div class="ttdeci">QueueType</div><div class="ttdoc">Determines which threads the task will be allowed to run on.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00046">job_api.hpp:47</a></div></div>
 <div class="ttc" id="anamespace_job_html_a9d0b26b28577004e29e759e45c2425e2"><div class="ttname"><a href="namespace_job.html#a9d0b26b28577004e29e759e45c2425e2">Job::ParallelFor</a></div><div class="ttdeci">Task * ParallelFor(T *const data, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</div><div class="ttdoc">Parallel for algorithm, splits the work up recursively splitting based on the splitter passed in....</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00681">job_api.hpp:681</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="job__api_8hpp_source.html#l00617">ParallelFor()</a>, <a class="el" href="job__system_8cpp_source.html#l00943">TaskMake()</a>, <a class="el" href="job__system_8cpp_source.html#l01173">Job::detail::taskQType()</a>, and <a class="el" href="job__system_8cpp_source.html#l01010">TaskSubmit()</a>.</p>
@@ -2759,7 +2759,7 @@ template&lt;typename... F&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_job.html">Job</a></li>
-    <li class="footer">Generated on Tue Mar 26 2024 10:12:57 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Mar 26 2024 10:20:24 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
