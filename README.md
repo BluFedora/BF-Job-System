@@ -7,8 +7,7 @@ This is a C++17 library for handling of Tasks / Jobs in a multi-threaded environ
 Minimal Example
 
 ```cpp
-
-#include "bf/JobSystemExt.hpp"
+#include "concurrent/job_api.hpp"
 
 #include <cassert>
 #include <iostream>
@@ -77,7 +76,7 @@ int main()
 A `Task` is a single unit of work that can be scheduled by the Job System. Each `Task` has a total sizeof of 128bytes (2 * hardware interference size)
 with some of the bytes taken by essential bookkeeping date then the rest used for user storage.
 
-A `Task`s can be added as a child of another task, this means that when you wait on the parent `Task` then it will wait for all child `Task` as well.
+A `Task`s can be added as a child of another task, this means that when you wait on the parent `Task` then it will wait for all child `Task`s as well.
 
 ### Queues
 
@@ -85,12 +84,9 @@ A Queue hold a list of `Task`s waiting to be executed. There are four different 
 
 - `MAIN` This queue has a guarantee that the task will be run on the main thread.
 - `NORMAL` Slightly lower priority than 'QueueType::HIGH'.
-- `BACKGROUND` This queue has a guarantee that the task will never be run on the main thread.
+- `WORKER` This queue has a guarantee that the task will never be run on the main thread.
 
 ## Dependencies
 
-- C++17 or higher
-
-## Libraries Used
-
+- C++ Standard Library (C++17 or above)
 - [PCG Random](https://www.pcg-random.org/)

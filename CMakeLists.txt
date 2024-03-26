@@ -14,9 +14,9 @@ add_library(
   BF_Job
   STATIC
     # Public Headers
-    "include/concurrent/initialization_token.hpp"
     "include/concurrent/job_api.hpp"
     "include/concurrent/job_assert.hpp"
+    "include/concurrent/job_init_token.hpp"
     "include/concurrent/job_queue.hpp"
 
     # Source

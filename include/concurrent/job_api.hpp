@@ -20,8 +20,8 @@
 #ifndef JOB_API_HPP
 #define JOB_API_HPP
 
-#include "initialization_token.hpp"  // InitializationToken
-#include "job_assert.hpp"            // JobAssert
+#include "job_assert.hpp"      // JobAssert
+#include "job_init_token.hpp"  // InitializationToken
 
 #include <cstdint>  // sized integer types
 #include <new>      // placement new
@@ -41,7 +41,7 @@ namespace Job
 
   /*!
    * @brief
-   *   Determines which threads the a task will be allowed to run on.
+   *   Determines which threads the task will be allowed to run on.
    */
   enum class QueueType : std::uint8_t
   {

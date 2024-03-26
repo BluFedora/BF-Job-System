@@ -22,7 +22,7 @@ namespace Job
   {
     void assertHandler(const bool condition, const char* const filename, const int line_number, const char* const msg);
   }
-}  // namespace
+}  // namespace Job
 
 #define JobAssert(expr, msg) ::Job::detail::assertHandler((expr), __FILE__, __LINE__, msg)
 #else

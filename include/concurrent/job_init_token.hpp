@@ -1,6 +1,6 @@
 /******************************************************************************/
 /*!
- * @file   initialization_token.hpp
+ * @file   job_init_token.hpp
  * @author Shareef Abdoul-Raheem (https://blufedora.github.io/)
  * @brief
  *   Token type used for other subsystems that rely on the job system to verify
@@ -14,7 +14,6 @@
 
 namespace Job
 {
-  struct JobSystemCreateOptions;
   struct JobSystemMemoryRequirements;
   struct InitializationToken;
 
@@ -22,7 +21,7 @@ namespace Job
 
   struct InitializationToken
   {
-    unsigned int num_workers_created = 0;
+    unsigned int num_workers_created;
 
    private:
     InitializationToken(const unsigned int num_workers_created) :
@@ -32,7 +31,6 @@ namespace Job
 
     friend InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements, void* const memory) noexcept;
   };
-
 }  // namespace Job
 
 #endif  // JOB_INITALIZATION_TOKEN_HPP

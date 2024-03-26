@@ -11,7 +11,7 @@
 #ifndef JOB_QUEUE_HPP
 #define JOB_QUEUE_HPP
 
-#include "job_api.hpp"  // PauseProcessor
+#include "job_api.hpp"     // PauseProcessor
 #include "job_assert.hpp"  // JobAssert
 
 #include <algorithm>  // copy_n
