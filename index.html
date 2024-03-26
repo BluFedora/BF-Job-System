@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 Examples</h1>
 <p >Minimal Example</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;bf/JobSystemExt.hpp&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="job__queue_8hpp.html">concurrent/job_queue.hpp</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;cassert&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
@@ -149,6 +149,7 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
+<div class="ttc" id="ajob__queue_8hpp_html"><div class="ttname"><a href="job__queue_8hpp.html">job_queue.hpp</a></div><div class="ttdoc">Concurrent Queue Implmementations for different situations.</div></div>
 <div class="ttc" id="anamespace_job_html_a10e900d5d6bbe064a7197d291ef9a201"><div class="ttname"><a href="namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201">Job::Initialize</a></div><div class="ttdeci">InitializationToken Initialize(const JobSystemMemoryRequirements &amp;memory_requirements, void *const memory) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'Job::Initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00726">job_system.cpp:726</a></div></div>
 <div class="ttc" id="anamespace_job_html_a136f0bed0a70a7389c7e5ce4821a2629"><div class="ttname"><a href="namespace_job.html#a136f0bed0a70a7389c7e5ce4821a2629">Job::TaskSubmit</a></div><div class="ttdeci">Task * TaskSubmit(Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01010">job_system.cpp:1010</a></div></div>
 <div class="ttc" id="anamespace_job_html_a2961eee80e34c41deade7924657154b8"><div class="ttname"><a href="namespace_job.html#a2961eee80e34c41deade7924657154b8">Job::WaitOnTask</a></div><div class="ttdeci">void WaitOnTask(const Task *const task) noexcept</div><div class="ttdoc">Waits until the specified task is done executing. This function will block but do work while being bl...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01103">job_system.cpp:1103</a></div></div>
@@ -160,14 +161,14 @@ Architecture</h1>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Task</h2>
 <p >A <code>Task</code> is a single unit of work that can be scheduled by the <a class="el" href="namespace_job.html">Job</a> System. Each <code>Task</code> has a total sizeof of 128bytes (2 * hardware interference size) with some of the bytes taken by essential bookkeeping date then the rest used for user storage.</p>
-<p >A <code>Task</code>s can be added as a child of another task, this means that when you wait on the parent <code>Task</code> then it will wait for all child <code>Task</code> as well.</p>
+<p >A <code>Task</code>s can be added as a child of another task, this means that when you wait on the parent <code>Task</code> then it will wait for all child <code>Task</code>s as well.</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Queues</h2>
 <p >A Queue hold a list of <code>Task</code>s waiting to be executed. There are four different types of queues.</p>
 <ul>
 <li><code>MAIN</code> This queue has a guarantee that the task will be run on the main thread.</li>
 <li><code>NORMAL</code> Slightly lower priority than 'QueueType::HIGH'.</li>
-<li><code>BACKGROUND</code> This queue has a guarantee that the task will never be run on the main thread.</li>
+<li><code>WORKER</code> This queue has a guarantee that the task will never be run on the main thread.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Dependencies</h1>
@@ -185,7 +186,7 @@ Libraries Used</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Mar 26 2024 10:10:35 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Mar 26 2024 10:12:57 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
