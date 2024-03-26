@@ -31,8 +31,7 @@ var NAVTREE =
         [ "Task", "index.html#autotoc_md3", null ],
         [ "Queues", "index.html#autotoc_md4", null ]
       ] ],
-      [ "Dependencies", "index.html#autotoc_md5", null ],
-      [ "Libraries Used", "index.html#autotoc_md6", null ]
+      [ "Dependencies", "index.html#autotoc_md5", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -69,7 +68,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"job__system_8cpp.html#a2b005d277912bb3695b8b53b19341a53"
+"job__system_8cpp.html#a4bb56989a0a31d03a041c40e8ac99cc7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
