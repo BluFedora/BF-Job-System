@@ -32,9 +32,6 @@
 #include <new>       /* hardware_constructive_interference_size, hardware_destructive_interference_size */
 #include <thread>    /* thread                                                                          */
 
-// TODO(SR): Alignment requirements need to be taken account of for Task::padding storage.
-// TODO(SR): Replace std::thread w/ platform API...
-
 #if _WIN32
 #define IS_WINDOWS         1
 #define IS_POSIX           0
@@ -88,8 +85,8 @@ namespace Job
   using TaskHandleType       = TaskHandle;
   using AtomicTaskHandleType = std::atomic<TaskHandle>;
   using WorkerIDType         = WorkerID;
-  using AtomicInt16          = std::atomic_int16_t;
   using AtomicInt32          = std::atomic_int32_t;
+  using Byte                 = unsigned char;
 
   static constexpr TaskHandle NullTaskHandle = std::numeric_limits<TaskHandle>::max();
 
@@ -100,15 +97,15 @@ namespace Job
     WorkerID   worker_id;
     TaskHandle task_index;
 
-    TaskPtr() = default;
+    TaskPtr() noexcept = default;
 
-    TaskPtr(WorkerID worker_id, TaskHandle task_idx) :
+    TaskPtr(WorkerID worker_id, TaskHandle task_idx) noexcept :
       worker_id{worker_id},
       task_index{task_idx}
     {
     }
 
-    TaskPtr(std::nullptr_t) :
+    TaskPtr(std::nullptr_t) noexcept :
       worker_id{NullTaskHandle},
       task_index{NullTaskHandle}
     {
@@ -122,12 +119,25 @@ namespace Job
   static_assert(sizeof(TaskPtr) == sizeof(std::uint16_t) * 2u, "Expected to be the size of two uint16's.");
   static_assert(sizeof(AtomicTaskPtr) == sizeof(TaskPtr) && AtomicTaskPtr::is_always_lock_free, "Expected to be lock-free so no extra data members should have been added.");
 
-  struct Task
+  // NOTE(SR): So that 32bit and 64bit build have the same `Task` layout.
+  union TaskFnStorage
+  {
+    TaskFn        fn;
+    std::uint64_t pad;
+
+    TaskFnStorage(const TaskFn fn) noexcept :
+      fn{fn}
+    {
+    }
+  };
+  static_assert(sizeof(TaskFnStorage) == sizeof(std::uint64_t) && alignof(TaskFnStorage) == alignof(std::uint64_t), "Expected to always be 8 bytes.");
+
+  struct alignas(k_CachelineSize) Task
   {
     static constexpr std::size_t k_SizeOfMembers =
-     sizeof(TaskFn) +
+     sizeof(TaskFnStorage) +
      sizeof(AtomicInt32) +
-     sizeof(AtomicInt16) +
+     sizeof(AtomicInt32) +
      sizeof(std::uint8_t) +
      sizeof(QueueType) +
      sizeof(TaskPtr) +
@@ -137,39 +147,31 @@ namespace Job
 
     static constexpr std::size_t k_TaskPaddingDataSize = k_ExpectedTaskSize - k_SizeOfMembers;
 
-    using Padding = std::array<std::uint8_t, k_TaskPaddingDataSize>;
+    using Padding = std::array<Byte, k_TaskPaddingDataSize>;
 
-    TaskFn        fn;                    //!< The function that will be run.
+    TaskFnStorage fn_storage;            //!< The function that will be run.
     AtomicInt32   num_unfinished_tasks;  //!< The number of children tasks.
-    AtomicInt16   ref_count;             //!< Keeps the task from being garbage collected.
-    std::uint8_t  user_storage_size;     //!< Number of bytes available to the user in `padding`.
-    QueueType     q_type;                //!< The queue type this task has been submitted to, initialized to k_InvalidQueueType.
+    AtomicInt32   ref_count;             //!< Keeps the task from being garbage collected.
     TaskPtr       parent;                //!< The parent task, can be null.
     AtomicTaskPtr first_continuation;    //!< Head of linked list of tasks to be added on completion.
     TaskPtr       next_continuation;     //!< Next element in the linked list of continuations.
     WorkerID      owning_worker;         //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
+    QueueType     q_type;                //!< The queue type this task has been submitted to, initialized to k_InvalidQueueType.
+    std::uint8_t  user_data_start;       //!< Offset into `padding` that can be used for user data.
     Padding       padding;               //!< User data storage.
 
     Task(WorkerID worker, TaskFn fn, TaskPtr parent) noexcept;
-
-    void run()
-    {
-      fn(this);
-      onFinish();
-    }
-
-    void    onFinish() noexcept;
-    TaskPtr toTaskPtr() const noexcept;
   };
 
   static_assert(sizeof(Task) == k_ExpectedTaskSize, "The task struct is expected to be this size.");
   static_assert(std::is_trivially_destructible_v<Task>, "Task must be trivially destructible.");
 
-  union TaskMemoryBlock
+  union alignas(Task) TaskMemoryBlock
   {
     TaskMemoryBlock* next;
-    alignas(Task) unsigned char storage[sizeof(Task)];
+    unsigned char    storage[sizeof(Task)];
   };
+  static_assert(sizeof(TaskMemoryBlock) == sizeof(Task) && alignof(TaskMemoryBlock) == alignof(Task), "TaskMemoryBlock should have no overhead.");
 
   struct TaskPool
   {
@@ -198,17 +200,17 @@ namespace Job
 
   struct JobSystemContext
   {
-    // State that wont be changing during the main runtime.
+    // State that wont be changing during the system's runtime.
 
     ThreadLocalState*  workers;
     std::uint32_t      num_workers;
     std::uint32_t      num_tasks_per_worker;
     InitializationLock init_lock;
     const char*        sys_arch_str;
-    std::atomic_bool   is_running;
     std::size_t        system_alloc_size;
     std::size_t        system_alloc_alignment;
     bool               needs_delete;
+    std::atomic_bool   is_running;
 
     // Shared Mutable State
 
@@ -243,14 +245,9 @@ namespace
 {
   using namespace Job;
 
-  static Job::JobSystemContext* gJobSystem()
-  {
-    return g_JobSystem;
-  }
-
   namespace system
   {
-    static void WaitForAllThreadsReady(Job::InitializationLock* const init_lock)
+    static void WaitForAllThreadsReady(Job::InitializationLock* const init_lock) noexcept
     {
       std::unique_lock<std::mutex> lock(init_lock->init_mutex);
 
@@ -259,7 +256,7 @@ namespace
       });
     }
 
-    static void SetInitialized(Job::InitializationLock* const init_lock)
+    static void SetInitialized(Job::InitializationLock* const init_lock) noexcept
     {
       init_lock->init_mutex.lock();
       init_lock->is_initialized = true;
@@ -267,19 +264,19 @@ namespace
       init_lock->init_cv.notify_all();
     }
 
-    static void WakeUpAllWorkers()
+    static void WakeUpAllWorkers() noexcept
     {
-      gJobSystem()->worker_sleep_cv.notify_all();
+      g_JobSystem->worker_sleep_cv.notify_all();
     }
 
-    static void WakeUpOneWorker()
+    static void WakeUpOneWorker() noexcept
     {
-      gJobSystem()->worker_sleep_cv.notify_one();
+      g_JobSystem->worker_sleep_cv.notify_one();
     }
 
-    static void Sleep()
+    static void Sleep() noexcept
     {
-      Job::JobSystemContext* const job_system = gJobSystem();
+      Job::JobSystemContext* const job_system = g_JobSystem;
 
       if (job_system->is_running.load(std::memory_order_relaxed))
       {
@@ -305,14 +302,14 @@ namespace
     static ThreadLocalState* GetWorker(const WorkerID worker_id)
     {
       JobAssert(worker_id < NumWorkers(), "This thread was not created by the job system.");
-      return gJobSystem()->workers + worker_id;
+      return g_JobSystem->workers + worker_id;
     }
 
   }  // namespace system
 
   namespace task_pool
   {
-    static void Initialize(Job::TaskPool* const pool, Job::TaskMemoryBlock* const memory, const Job::TaskHandleType capacity)
+    static void Initialize(Job::TaskPool* const pool, Job::TaskMemoryBlock* const memory, const Job::TaskHandleType capacity) noexcept
     {
       const Job::TaskHandleType capacity_minus_one = capacity - 1;
 
@@ -326,19 +323,19 @@ namespace
       pool->freelist = &memory[0];
     }
 
-    static TaskHandle TaskToIndex(const Job::TaskPool& pool, const Task* const task)
+    static TaskHandle TaskToIndex(const Job::TaskPool& pool, const Task* const task) noexcept
     {
       const TaskMemoryBlock* const block = reinterpret_cast<const TaskMemoryBlock*>(task);
 
       return TaskHandle(block - pool.memory);
     }
 
-    static Task* TaskFromIndex(const Job::TaskPool& pool, const std::size_t idx)
+    static Task* TaskFromIndex(const Job::TaskPool& pool, const std::size_t idx) noexcept
     {
       return reinterpret_cast<Task*>(&pool.memory[idx].storage);
     }
 
-    static Task* AllocateTask(Job::TaskPool* const pool, WorkerID worker, TaskFn fn, TaskPtr parent)
+    static Task* AllocateTask(Job::TaskPool* const pool, WorkerID worker, TaskFn fn, TaskPtr parent) noexcept
     {
       TaskMemoryBlock* const result = std::exchange(pool->freelist, pool->freelist->next);
 
@@ -347,7 +344,7 @@ namespace
       return new (result) Task(worker, fn, parent);
     }
 
-    static void DeallocateTask(Job::TaskPool* const pool, Task* const task)
+    static void DeallocateTask(Job::TaskPool* const pool, Task* const task) noexcept
     {
       task->~Task();
 
@@ -373,11 +370,65 @@ namespace
 
       return nullptr;
     }
+
+    static void TaskOnFinish(Task* const self) noexcept
+    {
+      const std::int32_t num_jobs_left = self->num_unfinished_tasks.fetch_sub(1, std::memory_order_relaxed) - 1;
+
+      if (num_jobs_left == 0)
+      {
+        Task* const parent_task = task::TaskPtrToPointer(self->parent);
+
+        if (parent_task)
+        {
+          TaskOnFinish(parent_task);
+        }
+
+        std::atomic_signal_fence(std::memory_order_release);
+
+        self->num_unfinished_tasks.fetch_sub(1, std::memory_order_relaxed);
+
+        TaskPtr continuation_ptr = self->first_continuation.load(std::memory_order_relaxed);
+
+        while (!continuation_ptr.isNull())
+        {
+          Task* const     continuation = task::TaskPtrToPointer(continuation_ptr);
+          const TaskPtr   next_task    = continuation->next_continuation;
+          const QueueType q_type       = std::exchange(continuation->q_type, k_InvalidQueueType);
+
+          TaskSubmit(continuation, q_type);
+
+          continuation_ptr = next_task;
+        }
+
+        self->ref_count.fetch_sub(1, std::memory_order_relaxed);
+      }
+    }
+
+    static void RunTaskFunction(Task* const self) noexcept
+    {
+      self->fn_storage.fn(self);
+      TaskOnFinish(self);
+    }
+
+    static TaskPtr PointerToTaskPtr(const Task* const self) noexcept
+    {
+      if (self)
+      {
+        const ThreadLocalState& worker     = *system::GetWorker(self->owning_worker);
+        const TaskHandle        self_index = task_pool::TaskToIndex(worker.task_allocator, self);
+
+        return TaskPtr{self->owning_worker, self_index};
+      }
+
+      return TaskPtr(nullptr);
+    }
+
   }  // namespace task
 
   namespace worker
   {
-    static void GarbageCollectAllocatedTasks(Job::ThreadLocalState* const worker)
+    static void GarbageCollectAllocatedTasks(Job::ThreadLocalState* const worker) noexcept
     {
       TaskHandle* const    allocated_tasks = worker->allocated_tasks;
       Job::TaskPool&       task_pool       = worker->task_allocator;
@@ -389,7 +440,7 @@ namespace
       {
         const TaskHandle task_handle      = allocated_tasks[read_idx++];
         Task* const      task_ptr         = task_pool::TaskFromIndex(task_pool, task_handle);
-        const bool       task_is_finished = task_ptr->ref_count.load(std::memory_order_relaxed) == 0u;
+        const bool       task_is_finished = task_ptr->ref_count.load(std::memory_order_acquire) == 0u;
 
         if (task_is_finished)
         {
@@ -404,9 +455,9 @@ namespace
       worker->num_allocated_tasks = write_idx;
     }
 
-    static Job::ThreadLocalState* RandomWorker(Job::ThreadLocalState* const worker)
+    static Job::ThreadLocalState* RandomWorker(Job::ThreadLocalState* const worker) noexcept
     {
-      const std::uint32_t num_workers     = gJobSystem()->num_workers;
+      const std::uint32_t num_workers     = g_JobSystem->num_workers;
       const std::uint32_t other_worker_id = pcg32_boundedrand_r(&worker->rng_state, num_workers);
 
       return system::GetWorker(WorkerID(other_worker_id));
@@ -414,7 +465,7 @@ namespace
 
     static bool TryRunTask(ThreadLocalState* const worker)
     {
-      const bool is_main_thread = worker == gJobSystem()->workers;
+      const bool is_main_thread = worker == g_JobSystem->workers;
 
       TaskPtr task_ptr = nullptr;
       worker->normal_queue.Pop(&task_ptr);
@@ -459,22 +510,22 @@ namespace
         worker->last_stolen_worker = random_worker;
       }
 
-      gJobSystem()->num_available_jobs.fetch_sub(1, std::memory_order_relaxed);
+      g_JobSystem->num_available_jobs.fetch_sub(1, std::memory_order_relaxed);
 
       Task* const task = task::TaskPtrToPointer(task_ptr);
-      task->run();
+      task::RunTaskFunction(task);
 
       return true;
     }
 
-    static void InitializeThread(Job::ThreadLocalState* const worker)
+    static void InitializeThread(Job::ThreadLocalState* const worker) noexcept
     {
       worker->thread_id = std::thread([worker]() {
         std::atomic_thread_fence(std::memory_order_acquire);
 
         g_CurrentWorker = worker;
 
-        Job::JobSystemContext* const job_system = gJobSystem();
+        Job::JobSystemContext* const job_system = g_JobSystem;
 
 #if IS_WINDOWS
         const HANDLE handle = static_cast<HANDLE>(worker->thread_id.native_handle());
@@ -521,24 +572,41 @@ namespace
       });
     }
 
-    static ThreadLocalState* GetCurrent()
+    static ThreadLocalState* GetCurrent() noexcept
     {
       JobAssert(g_CurrentWorker != nullptr, "This thread was not created by the job system.");
       return g_CurrentWorker;
     }
 
-    static WorkerID GetCurrentID()
+    static WorkerID GetCurrentID() noexcept
     {
       JobAssert(g_CurrentWorker != nullptr, "This thread was not created by the job system.");
-      return WorkerID(g_CurrentWorker - gJobSystem()->workers);
+      return WorkerID(g_CurrentWorker - g_JobSystem->workers);
     }
 
-    static void ShutdownThread(Job::ThreadLocalState* const worker)
+    static void ShutdownThread(Job::ThreadLocalState* const worker) noexcept
     {
       // Join throws an exception if the thread is not joinable. this should always be true.
       worker->thread_id.join();
     }
   }  // namespace worker
+
+  namespace task
+  {
+    static void SubmitQPushHelper(const TaskPtr task_ptr, ThreadLocalState* const worker, SPMCDeque<TaskPtr>* queue) noexcept
+    {
+      if (queue->Push(task_ptr) != SPMCDequeStatus::SUCCESS)
+      {
+        // Loop until we have successfully pushed to the queue.
+        system::WakeUpAllWorkers();
+        while (queue->Push(task_ptr) != SPMCDequeStatus::SUCCESS)
+        {
+          // If we could not push to the queues then just do some work.
+          worker::TryRunTask(worker);
+        }
+      }
+    }
+  }  // namespace task
 
   static bool IsPointerAligned(const void* const ptr, const std::size_t alignment) noexcept
   {
@@ -560,7 +628,7 @@ namespace
   };
 
   template<typename T>
-  static Span<T> LinearAlloc(void*& ptr, const std::size_t num_elements)
+  static Span<T> LinearAlloc(void*& ptr, const std::size_t num_elements) noexcept
   {
     void* const result = AlignPointer(ptr, alignof(T));
 
@@ -575,7 +643,7 @@ namespace
   }
 
   template<typename T>
-  static T* SpanAlloc(Span<T>* const span, const std::size_t num_elements)
+  static T* SpanAlloc(Span<T>* const span, const std::size_t num_elements) noexcept
   {
     JobAssert(num_elements <= span->num_elements, "Out of bounds span alloc.");
 
@@ -587,7 +655,7 @@ namespace
     return result;
   }
 
-  static std::size_t AlignedSizeUp(const std::size_t size, const std::size_t alignment)
+  static std::size_t AlignedSizeUp(const std::size_t size, const std::size_t alignment) noexcept
   {
     const std::size_t remainder = size % alignment;
 
@@ -595,7 +663,7 @@ namespace
   }
 
   template<typename T>
-  static void MemoryRequirementsPush(Job::JobSystemMemoryRequirements* in_out_reqs, const std::size_t num_elements)
+  static void MemoryRequirementsPush(Job::JobSystemMemoryRequirements* in_out_reqs, const std::size_t num_elements) noexcept
   {
     in_out_reqs->byte_size = AlignedSizeUp(in_out_reqs->byte_size, alignof(T));
     in_out_reqs->alignment = in_out_reqs->alignment < alignof(T) ? alignof(T) : in_out_reqs->alignment;
@@ -610,12 +678,12 @@ namespace
 
   namespace config
   {
-    static Job::WorkerID WorkerCount(const Job::JobSystemCreateOptions& options)
+    static Job::WorkerID WorkerCount(const Job::JobSystemCreateOptions& options) noexcept
     {
-      return options.num_threads ? options.num_threads : Job::WorkerID(Job::numSystemThreads());
+      return options.num_threads ? options.num_threads : Job::WorkerID(Job::NumSystemThreads());
     }
 
-    static std::uint16_t NumTasksPerWorker(const Job::JobSystemCreateOptions& options)
+    static std::uint16_t NumTasksPerWorker(const Job::JobSystemCreateOptions& options) noexcept
     {
       const std::size_t num_tasks_per_worker = std::size_t(options.normal_queue_size) + std::size_t(options.worker_queue_size);
 
@@ -624,7 +692,7 @@ namespace
       return std::uint16_t(num_tasks_per_worker);
     }
 
-    static std::uint32_t TotalNumTasks(const Job::WorkerID num_threads, const std::uint16_t num_tasks_per_worker)
+    static std::uint32_t TotalNumTasks(const Job::WorkerID num_threads, const std::uint16_t num_tasks_per_worker) noexcept
     {
       return num_tasks_per_worker * num_threads;
     }
@@ -634,7 +702,10 @@ namespace
 
 // Public API
 
-Job::JobSystemMemoryRequirements Job::MemRequirementsForConfig(const Job::JobSystemCreateOptions& options)
+Job::JobSystemMemoryRequirements::JobSystemMemoryRequirements(const JobSystemCreateOptions& options) noexcept :
+  options{options},
+  byte_size{0},
+  alignment{0}
 {
   JobAssert(IsPowerOf2(options.main_queue_size), "Main queue size must be a power of two.");
   JobAssert(IsPowerOf2(options.normal_queue_size), "Normal queue size must be a power of two.");
@@ -644,15 +715,12 @@ Job::JobSystemMemoryRequirements Job::MemRequirementsForConfig(const Job::JobSys
   const std::uint16_t num_tasks_per_worker = config::NumTasksPerWorker(options);
   const std::uint32_t total_num_tasks      = config::TotalNumTasks(num_threads, num_tasks_per_worker);
 
-  JobSystemMemoryRequirements result{options, 0, 0};
-  MemoryRequirementsPush<JobSystemContext>(&result, 1u);
-  MemoryRequirementsPush<ThreadLocalState>(&result, num_threads);
-  MemoryRequirementsPush<TaskMemoryBlock>(&result, total_num_tasks);
-  MemoryRequirementsPush<TaskPtr>(&result, options.main_queue_size);
-  MemoryRequirementsPush<AtomicTaskPtr>(&result, total_num_tasks);
-  MemoryRequirementsPush<TaskHandle>(&result, total_num_tasks);
-
-  return result;
+  MemoryRequirementsPush<JobSystemContext>(this, 1u);
+  MemoryRequirementsPush<ThreadLocalState>(this, num_threads);
+  MemoryRequirementsPush<TaskMemoryBlock>(this, total_num_tasks);
+  MemoryRequirementsPush<TaskPtr>(this, options.main_queue_size);
+  MemoryRequirementsPush<AtomicTaskPtr>(this, total_num_tasks);
+  MemoryRequirementsPush<TaskHandle>(this, total_num_tasks);
 }
 
 Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements& memory_requirements, void* memory) noexcept
@@ -766,54 +834,13 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   return Job::InitializationToken{num_threads};
 }
 
-namespace Job
+std::size_t Job::NumSystemThreads() noexcept
 {
-  void detail::checkTaskDataSize(const Task* task, std::size_t data_size) noexcept
-  {
-    JobAssert(data_size <= task->user_storage_size, "Attempting to store an object too large to fit within a task's storage buffer.");
-    (void)task;
-    (void)data_size;
-  }
-
-  QueueType detail::taskQType(const Task* const task) noexcept
-  {
-    return task->q_type;
-  }
-
-  void* detail::taskPaddingStart(Task* const task) noexcept
-  {
-    return task->padding.data();
-  }
-
-  void detail::taskUsePadding(Task* task, std::size_t num_bytes) noexcept
-  {
-    JobAssert(num_bytes <= task->user_storage_size, "Attempting to store an closure too large to fit within a task's storage buffer.");
-    task->user_storage_size -= static_cast<std::uint8_t>(num_bytes);
-  }
-
-  bool detail::mainQueueRunTask(void) noexcept
-  {
-    JobAssert(CurrentWorker() == k_MainThreadID, "Must only be called by main thread.");
-
-    TaskPtr    task_ptr;
-    const bool is_valid_task = gJobSystem()->main_queue.Pop(&task_ptr);
-
-    if (is_valid_task)
-    {
-      Task* const task = task::TaskPtrToPointer(task_ptr);
-      task->run();
-    }
-
-    return is_valid_task;
-  }
-
-  std::size_t numSystemThreads() noexcept
-  {
 #if IS_SINGLE_THREADED
-    return 1;
+  return 1;
 #else
-    const auto n = std::thread::hardware_concurrency();
-    return n != 0 ? n : 1;
+  const auto n = std::thread::hardware_concurrency();
+  return n != 0 ? n : 1;
 #endif
 
 #if 0
@@ -857,308 +884,259 @@ namespace Job
 #endif
 
 #endif
-  }
+}
 
-  InitializationToken initialize(const JobSystemCreateOptions& params) noexcept
+std::uint16_t Job::NumWorkers() noexcept
+{
+  return std::uint16_t(g_JobSystem->num_workers);
+}
+
+const char* Job::ProcessorArchitectureName() noexcept
+{
+  return g_JobSystem->sys_arch_str;
+}
+
+WorkerID Job::CurrentWorker() noexcept
+{
+  const WorkerID worker_id = WorkerID(g_CurrentWorker - g_JobSystem->workers);
+
+  JobAssert(worker_id < NumWorkers(), "This thread was not created by the job system.");
+  return worker_id;
+}
+
+void Job::Shutdown() noexcept
+{
+  static_assert(std::is_trivially_destructible_v<TaskMemoryBlock>, "TaskMemoryBlock's destructor not called.");
+  static_assert(std::is_trivially_destructible_v<TaskPtr>, "TaskPtr's destructor not called.");
+  static_assert(std::is_trivially_destructible_v<AtomicTaskPtr>, "AtomicTaskPtr's destructor not called.");
+  static_assert(std::is_trivially_destructible_v<TaskHandle>, "TaskHandle's destructor not called.");
+
+  JobSystemContext* const job_system  = g_JobSystem;
+  const std::uint32_t     num_workers = job_system->num_workers;
+
+  job_system->is_running.store(false, std::memory_order_relaxed);
+
+  // Allow one last update loop to allow them to end.
+  system::WakeUpAllWorkers();
+
+  for (std::uint32_t i = 0; i < num_workers; ++i)
   {
-    const JobSystemMemoryRequirements mem_reqs = MemRequirementsForConfig(params);
-    return Initialize(mem_reqs);
-  }
+    ThreadLocalState* const worker = job_system->workers + i;
 
-  std::uint16_t NumWorkers() noexcept
-  {
-    return std::uint16_t(gJobSystem()->num_workers);
-  }
-
-  const char* ProcessorArchitectureName() noexcept
-  {
-    return gJobSystem()->sys_arch_str;
-  }
-
-  WorkerID CurrentWorker() noexcept
-  {
-    const WorkerID worker_id = WorkerID(g_CurrentWorker - gJobSystem()->workers);
-
-    JobAssert(worker_id < NumWorkers(), "This thread was not created by the job system.");
-    return worker_id;
-  }
-
-  void Shutdown() noexcept
-  {
-    Job::JobSystemContext* const job_system  = gJobSystem();
-    const std::uint32_t          num_workers = job_system->num_workers;
-
-    job_system->is_running.store(false, std::memory_order_relaxed);
-
-    // Allow one last update loop to allow them to end.
-    system::WakeUpAllWorkers();
-
-    for (std::uint32_t i = 0; i < num_workers; ++i)
+    if (i != 0)
     {
-      ThreadLocalState* const worker = job_system->workers + i;
-
-      if (i != 0)
-      {
-        worker::ShutdownThread(worker);
-      }
-
-      worker->~ThreadLocalState();
+      worker::ShutdownThread(worker);
     }
-    g_CurrentWorker = nullptr;
-    g_JobSystem     = nullptr;
 
-    if (job_system->needs_delete)
-    {
-      ::operator delete[](job_system, job_system->system_alloc_size, std::align_val_t{job_system->system_alloc_alignment});
-    }
+    worker->~ThreadLocalState();
   }
+  job_system->~JobSystemContext();
+  g_CurrentWorker = nullptr;
+  g_JobSystem     = nullptr;
 
-  Task* TaskMake(const TaskFn function, Task* const parent) noexcept
+  if (job_system->needs_delete)
   {
-    const WorkerID          worker_id            = worker::GetCurrentID();
-    ThreadLocalState* const worker               = system::GetWorker(worker_id);
-    const std::uint32_t     max_tasks_per_worker = gJobSystem()->num_tasks_per_worker;
+    ::operator delete[](job_system, job_system->system_alloc_size, std::align_val_t{job_system->system_alloc_alignment});
+  }
+}
+
+Task* Job::TaskMake(const TaskFn function, Task* const parent) noexcept
+{
+  const WorkerID          worker_id            = worker::GetCurrentID();
+  ThreadLocalState* const worker               = system::GetWorker(worker_id);
+  const std::uint32_t     max_tasks_per_worker = g_JobSystem->num_tasks_per_worker;
+
+  if (worker->num_allocated_tasks == max_tasks_per_worker)
+  {
+    worker::GarbageCollectAllocatedTasks(worker);
 
     if (worker->num_allocated_tasks == max_tasks_per_worker)
     {
-      worker::GarbageCollectAllocatedTasks(worker);
-
-      if (worker->num_allocated_tasks == max_tasks_per_worker)
+      // While we cannot allocate do some work.
+      system::WakeUpAllWorkers();
+      while (worker->num_allocated_tasks == max_tasks_per_worker)
       {
-        // While we cannot allocate do some work.
-        system::WakeUpAllWorkers();
-        while (worker->num_allocated_tasks == max_tasks_per_worker)
-        {
-          worker::TryRunTask(worker);
-          worker::GarbageCollectAllocatedTasks(worker);
-        }
+        worker::TryRunTask(worker);
+        worker::GarbageCollectAllocatedTasks(worker);
       }
     }
+  }
 
-    JobAssert(worker->num_allocated_tasks < max_tasks_per_worker, "Too many tasks allocated.");
+  JobAssert(worker->num_allocated_tasks < max_tasks_per_worker, "Too many tasks allocated.");
 
-    Task* const      task     = task_pool::AllocateTask(&worker->task_allocator, worker_id, function, parent ? parent->toTaskPtr() : TaskPtr{NullTaskHandle, NullTaskHandle});
-    const TaskHandle task_hdl = task_pool::TaskToIndex(worker->task_allocator, task);
+  Task* const      task     = task_pool::AllocateTask(&worker->task_allocator, worker_id, function, task::PointerToTaskPtr(parent));
+  const TaskHandle task_hdl = task_pool::TaskToIndex(worker->task_allocator, task);
 
-    if (parent)
+  if (parent)
+  {
+    parent->num_unfinished_tasks.fetch_add(1u, std::memory_order_release);
+  }
+
+  worker->allocated_tasks[worker->num_allocated_tasks++] = task_hdl;
+
+  return task;
+}
+
+TaskData Job::TaskGetData(Task* const task, const std::size_t alignment) noexcept
+{
+  Byte* const       user_storage_start = static_cast<Byte*>(AlignPointer(task->padding.data() + task->user_data_start, alignment));
+  const Byte* const user_storage_end   = &*task->padding.end();
+
+  if (user_storage_start <= user_storage_end)
+  {
+    const std::size_t user_storage_size = user_storage_end - user_storage_start;
+
+    return {user_storage_start, user_storage_size};
+  }
+
+  return {nullptr, 0u};
+}
+
+void Job::TaskAddContinuation(Task* const self, Task* const continuation, const QueueType queue) noexcept
+{
+  JobAssert(self->q_type == k_InvalidQueueType, "The parent task should not have already been submitted to a queue.");
+  JobAssert(continuation->q_type == k_InvalidQueueType, "A continuation must not have already been submitted to a queue or already added as a continuation.");
+  JobAssert(continuation->next_continuation.isNull(), "A continuation must not have already been added to another task.");
+
+  const TaskPtr new_head          = task::PointerToTaskPtr(continuation);
+  continuation->q_type            = queue;
+  continuation->next_continuation = self->first_continuation.load(std::memory_order_relaxed);
+
+  while (!std::atomic_compare_exchange_strong(&self->first_continuation, &continuation->next_continuation, new_head))
+  {
+  }
+}
+
+Task* Job::TaskSubmit(Task* const self, QueueType queue) noexcept
+{
+  JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
+
+  const WorkerID num_workers = NumWorkers();
+
+  // If we only have one thread running using the worker queue is invalid.
+  if (num_workers == 1u && queue == QueueType::WORKER)
+  {
+    queue = QueueType::NORMAL;
+  }
+
+  ThreadLocalState* const worker   = worker::GetCurrent();
+  const TaskPtr           task_ptr = task::PointerToTaskPtr(self);
+
+  self->q_type = queue;
+
+  switch (queue)
+  {
+    case QueueType::NORMAL:
     {
-      parent->num_unfinished_tasks.fetch_add(1u);
+      task::SubmitQPushHelper(task_ptr, worker, &worker->normal_queue);
+      break;
     }
-
-    worker->allocated_tasks[worker->num_allocated_tasks++] = task_hdl;
-    ++task->ref_count;
-
-    return task;
-  }
-
-  TaskData TaskGetData(Task* const task) noexcept
-  {
-    const std::size_t user_data_start = sizeof(task->padding) - task->user_storage_size;
-    return {task->padding.data() + user_data_start, task->user_storage_size};
-  }
-
-  void TaskAddContinuation(Task* const self, Task* const continuation) noexcept
-  {
-    JobAssert(self->q_type == k_InvalidQueueType, "The task should not have already been submitted to a queue.");
-    JobAssert(continuation->q_type == k_InvalidQueueType, "A continuation must not have already been submitted to a queue.");
-    JobAssert(continuation->next_continuation.isNull(), "A continuation must not have already been added to another task.");
-
-    const TaskPtr new_head          = continuation->toTaskPtr();
-    continuation->next_continuation = self->first_continuation.load(std::memory_order_relaxed);
-
-    while (!std::atomic_compare_exchange_weak(&self->first_continuation, &continuation->next_continuation, new_head))
+    case QueueType::MAIN:
     {
-    }
-  }
+      LockedQueue<TaskPtr>* const main_queue = &g_JobSystem->main_queue;
 
-  static void taskSubmitQPushHelper(const TaskPtr task_ptr, ThreadLocalState* const worker, SPMCDeque<TaskPtr>* queue)
-  {
-    if (queue->Push(task_ptr) != SPMCDequeStatus::SUCCESS)
-    {
-      // Loop until we have successfully pushed to the queue.
-      system::WakeUpAllWorkers();
-      while (queue->Push(task_ptr) != SPMCDequeStatus::SUCCESS)
+      // NOTE(SR):
+      //   The only way `main_queue` will be emptied
+      //   is by the main thread, so there is a chance
+      //   that if it does not get flushed frequently
+      //   enough then we have a this thread spinning indefinitely.
+      //
+      while (!main_queue->Push(task_ptr))
       {
-        // If we could not push to the queues then just do some work.
+        // If we could not push to the queue then just do some work.
         worker::TryRunTask(worker);
       }
+      break;
     }
-  }
-
-  Task* TaskSubmit(Task* const self, QueueType queue) noexcept
-  {
-    JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
-
-    const WorkerID num_workers = NumWorkers();
-
-    // If we only have one thread running using the worker queue is invalid.
-    if (num_workers == 1u && queue == QueueType::WORKER)
+    case QueueType::WORKER:
     {
-      queue = QueueType::NORMAL;
+      task::SubmitQPushHelper(task_ptr, worker, &worker->worker_queue);
+      break;
     }
-
-    ThreadLocalState* const worker   = worker::GetCurrent();
-    const TaskPtr           task_ptr = self->toTaskPtr();
-
-    self->q_type = queue;
-
-    switch (queue)
-    {
-      case QueueType::NORMAL:
-      {
-        taskSubmitQPushHelper(task_ptr, worker, &worker->normal_queue);
-        break;
-      }
-      case QueueType::MAIN:
-      {
-        LockedQueue<TaskPtr>* const main_queue = &gJobSystem()->main_queue;
-
-        // NOTE(SR):
-        //   The only way `main_queue` will be emptied
-        //   is by the main thread, so there is a chance
-        //   that if it does not get flushed frequently
-        //   enough then we have a this thread spinning indefinitely.
-        //
-        while (!main_queue->Push(task_ptr))
-        {
-          // If we could not push to the queue then just do some work.
-          worker::TryRunTask(worker);
-        }
-        break;
-      }
-      case QueueType::WORKER:
-      {
-        taskSubmitQPushHelper(task_ptr, worker, &worker->worker_queue);
-        break;
-      }
-      default:
+    default:
 #if defined(__GNUC__)  // GCC, Clang, ICC
-        __builtin_unreachable();
+      __builtin_unreachable();
 #elif defined(_MSC_VER)  // MSVC
-        __assume(false);
+      __assume(false);
 #endif
-        break;
-    }
+      break;
+  }
 
-    if (queue != QueueType::MAIN)
+  if (queue != QueueType::MAIN)
+  {
+    const std::int32_t num_pending_jobs = g_JobSystem->num_available_jobs.fetch_add(1, std::memory_order_relaxed);
+
+    if (num_pending_jobs >= num_workers)
     {
-      const std::int32_t num_pending_jobs = gJobSystem()->num_available_jobs.fetch_add(1, std::memory_order_relaxed);
-
-      if (num_pending_jobs >= num_workers)
-      {
-        system::WakeUpAllWorkers();
-      }
-      else
-      {
-        system::WakeUpOneWorker();
-      }
+      system::WakeUpAllWorkers();
     }
-
-    return self;
-  }
-
-  void TaskIncRef(Task* const task) noexcept
-  {
-    const auto old_ref_count = task->ref_count.fetch_add(1, std::memory_order_relaxed);
-
-    JobAssert(old_ref_count >= std::int16_t(1) || task->q_type == k_InvalidQueueType, "First call to taskIncRef should not happen after the task has been submitted.");
-    (void)old_ref_count;
-  }
-
-  void TaskDecRef(Task* const task) noexcept
-  {
-    const auto old_ref_count = task->ref_count.fetch_sub(1, std::memory_order_relaxed);
-
-    JobAssert(old_ref_count >= 0, "taskDecRef: Called too many times.");
-    (void)old_ref_count;
-  }
-
-  bool TaskIsDone(const Task* const task) noexcept
-  {
-    return task->num_unfinished_tasks.load() == -1;
-  }
-
-  void WaitOnTask(const Task* const task) noexcept
-  {
-    const WorkerID worker_id = CurrentWorker();
-
-    JobAssert(task->q_type != k_InvalidQueueType, "The Task must be submitted to a queue before you wait on it.");
-    JobAssert(task->owning_worker == worker_id, "You may only call this function with a task created on the current 'Worker'.");
-
-    system::WakeUpAllWorkers();
-
-    ThreadLocalState* const worker = system::GetWorker(worker_id);
-
-    while (!TaskIsDone(task))
+    else
     {
-      worker::TryRunTask(worker);
+      system::WakeUpOneWorker();
     }
   }
 
-  void TaskSubmitAndWait(Task* const self, const QueueType queue) noexcept
+  return self;
+}
+
+void Job::TaskIncRef(Task* const task) noexcept
+{
+  const auto old_ref_count = task->ref_count.fetch_add(1, std::memory_order_relaxed);
+
+  JobAssert(old_ref_count >= std::int16_t(1) || task->q_type == k_InvalidQueueType, "First call to taskIncRef should not happen after the task has been submitted.");
+  (void)old_ref_count;
+}
+
+void Job::TaskDecRef(Task* const task) noexcept
+{
+  const auto old_ref_count = task->ref_count.fetch_sub(1, std::memory_order_relaxed);
+
+  JobAssert(old_ref_count >= 0, "taskDecRef: Called too many times.");
+  (void)old_ref_count;
+}
+
+bool Job::TaskIsDone(const Task* const task) noexcept
+{
+  return task->num_unfinished_tasks.load(std::memory_order_acquire) == -1;
+}
+
+void Job::WaitOnTask(const Task* const task) noexcept
+{
+  const WorkerID worker_id = CurrentWorker();
+
+  JobAssert(task->q_type != k_InvalidQueueType, "The Task must be submitted to a queue before you wait on it.");
+  JobAssert(task->owning_worker == worker_id, "You may only call this function with a task created on the current 'Worker'.");
+
+  system::WakeUpAllWorkers();
+
+  ThreadLocalState* const worker = system::GetWorker(worker_id);
+
+  while (!TaskIsDone(task))
   {
-    WaitOnTask(TaskSubmit(self, queue));
+    worker::TryRunTask(worker);
   }
+}
 
-  // Member Fn Definitions
+void Job::TaskSubmitAndWait(Task* const self, const QueueType queue) noexcept
+{
+  WaitOnTask(TaskSubmit(self, queue));
+}
 
-  Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) noexcept :
-    fn{fn},
-    num_unfinished_tasks{1},
-    ref_count{0u},
-    user_storage_size{Task::k_TaskPaddingDataSize},
-    q_type{k_InvalidQueueType}, /* Set to a valid value in 'Job::submitTask' */
-    parent{parent},
-    first_continuation{nullptr},
-    next_continuation{nullptr},
-    owning_worker{worker},
-    padding{}
-  {
-  }
+// Member Fn Definitions
 
-  TaskPtr Task::toTaskPtr() const noexcept
-  {
-    const ThreadLocalState& worker     = *system::GetWorker(owning_worker);
-    const TaskHandle        self_index = task_pool::TaskToIndex(worker.task_allocator, this);
-
-    return {owning_worker, self_index};
-  }
-
-  void Task::onFinish() noexcept
-  {
-    // NOTE(SR):
-    //   Make sure to store the result in a local variable and use that for
-    //   comparing against zero. otherwise, the code contains a data race
-    //   because other child tasks could change `num_unfinished_tasks` in the meantime.
-    const std::int32_t num_jobs_left = --num_unfinished_tasks;
-
-    if (num_jobs_left == 0)
-    {
-      if (!parent.isNull())
-      {
-        Task* const parent_task = task::TaskPtrToPointer(parent);
-
-        parent_task->onFinish();
-      }
-
-      --num_unfinished_tasks;
-
-      TaskPtr continuation = first_continuation.load();
-
-      while (!continuation.isNull())
-      {
-        Task* const   task      = task::TaskPtrToPointer(continuation);
-        const TaskPtr next_task = task->next_continuation;
-
-        TaskSubmit(task, q_type);
-
-        continuation = next_task;
-      }
-
-      --ref_count;
-    }
-  }
-}  // namespace Job
+Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) noexcept :
+  fn_storage{fn},
+  num_unfinished_tasks{1},
+  ref_count{1},
+  parent{parent},
+  first_continuation{nullptr},
+  next_continuation{nullptr},
+  owning_worker{worker},
+  q_type{k_InvalidQueueType}, /* Set to a valid value in 'Job::submitTask' */
+  user_data_start{0},
+  padding{}
+{
+}
 
 #if defined(_MSC_VER)
 #define NativePause YieldProcessor
@@ -1176,20 +1154,59 @@ namespace Job
 #define NativePause std::this_thread::yield  // Implemnted w/ SwitchToThread on Win32.
 #endif
 
-void Job::PauseProcessor()
+void Job::PauseProcessor() noexcept
 {
   NativePause();
-
-  std::this_thread::yield();
 }
 
 #undef NativePause
 
-void Job::YieldTimeSlice()
+void Job::YieldTimeSlice() noexcept
 {
   // Windows : SwitchToThread()
   // Linux   : sched_yield()
   std::this_thread::yield();
+}
+
+// Private Helpers
+
+QueueType Job::detail::taskQType(const Task* const task) noexcept
+{
+  return task->q_type;
+}
+
+void* Job::detail::taskGetPrivateUserData(Task* const task, const std::size_t alignment) noexcept
+{
+  return AlignPointer(task->padding.data(), alignment);
+}
+
+void* Job::detail::taskReservePrivateUserData(Task* const task, const std::size_t num_bytes, const std::size_t alignment) noexcept
+{
+  const Byte* const user_storage_start      = task->padding.data() + task->user_data_start;
+  const Byte* const user_storage_end        = &*task->padding.end();
+  Byte* const       requested_storage_start = static_cast<Byte*>(AlignPointer(user_storage_start, alignment));
+  const Byte* const requested_storage_end   = requested_storage_start + num_bytes;
+
+  JobAssert(requested_storage_end <= user_storage_end, "Cannot store object within the task's user storage. ");
+
+  task->user_data_start = static_cast<std::uint8_t>(requested_storage_end - task->padding.data());
+
+  return requested_storage_start;
+}
+
+bool Job::detail::mainQueueTryRunTask(void) noexcept
+{
+  JobAssert(CurrentWorker() == k_MainThreadID, "Must only be called by main thread.");
+
+  TaskPtr task_ptr;
+  if (g_JobSystem->main_queue.Pop(&task_ptr))
+  {
+    Task* const task = task::TaskPtrToPointer(task_ptr);
+    task::RunTaskFunction(task);
+    return true;
+  }
+
+  return false;
 }
 
 #undef IS_WINDOWS

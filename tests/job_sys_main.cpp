@@ -29,6 +29,32 @@ void ThreadSleep(const std::chrono::duration<_Rep, _Period>& time)
 #endif
 }
 
+TEST(JobSystemTests, JobUserData)
+{
+  struct TaskData
+  {
+    alignas(64) int x;
+    float     y;
+    TaskData* z;
+  };
+
+  Job::Task* const root = Job::TaskMake([](Job::Task* root) {
+    const TaskData* const data = Job::TaskDataAs<TaskData>(root);
+
+    EXPECT_NE(data, nullptr) << "Should be able to successfully get data.";
+    EXPECT_EQ((std::uintptr_t)data % alignof(TaskData), 0) << "Pointer expected to be aligned.";
+    EXPECT_EQ(data->x, 5) << "Failed to get x.";
+    EXPECT_EQ(data->y, 4.32f) << "Failed to get y.";
+    EXPECT_EQ(data->z, (TaskData*)0xDEADBEEF) << "Failed to get z.";
+
+    Job::TaskDestructData<TaskData>(root);
+  });
+
+  Job::TaskSetData<TaskData>(root, TaskData{5, 4.32f, (TaskData*)0xDEADBEEF});
+
+  Job::TaskSubmitAndWait(root);
+}
+
 // Tests the time it takes to creating empty jobs serially.
 TEST(JobSystemTests, JobCreationOverheadSerial)
 {
@@ -239,15 +265,14 @@ TEST(JobSystemTests, SPSCQueue)
 }
 
 // TODO(SR): Test continuations.
-// TODO(SR): Test Dependencies / parent child relationships (this is implicitly tested by the every test though...).
 
 int main(int argc, char* argv[])
 {
   ::testing::InitGoogleTest(&argc, argv);
 
-  Job::initialize();
+  Job::Initialize();
   const int result = RUN_ALL_TESTS();
-  Job::shutdown();
+  Job::Shutdown();
 
   return result;
 }

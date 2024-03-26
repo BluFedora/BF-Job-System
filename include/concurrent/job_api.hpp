@@ -20,11 +20,12 @@
 #ifndef JOB_API_HPP
 #define JOB_API_HPP
 
-#include "concurrent/initialization_token.hpp"  // InitializationToken
+#include "initialization_token.hpp"  // InitializationToken
+#include "job_assert.hpp"            // JobAssert
 
-#include <cstdint> /* uint8_t, uint16_t */
-#include <new>     /* placement new     */
-#include <utility> /* forward           */
+#include <cstdint>  // sized integer types
+#include <new>      // placement new
+#include <utility>  // forward
 
 namespace Job
 {
@@ -58,11 +59,10 @@ namespace Job
 
   namespace detail
   {
-    void      checkTaskDataSize(const Task* task, std::size_t data_size) noexcept;
     QueueType taskQType(const Task* task) noexcept;
-    void*     taskPaddingStart(Task* const task) noexcept;
-    void      taskUsePadding(Task* task, std::size_t num_bytes) noexcept;
-    bool      mainQueueRunTask(void) noexcept;
+    void*     taskGetPrivateUserData(Task* const task, const std::size_t alignment) noexcept;
+    void*     taskReservePrivateUserData(Task* const task, const std::size_t num_bytes, const std::size_t alignment) noexcept;
+    bool      mainQueueTryRunTask(void) noexcept;
   }  // namespace detail
 
   /*!
@@ -75,7 +75,7 @@ namespace Job
    * @return std::size_t
    *   The number threads / processors on the computer.
    */
-  std::size_t numSystemThreads() noexcept;
+  std::size_t NumSystemThreads() noexcept;
 
   // Main System API
 
@@ -98,12 +98,12 @@ namespace Job
    */
   struct JobSystemMemoryRequirements
   {
-    JobSystemCreateOptions options;
-    std::size_t            byte_size;
-    std::size_t            alignment;
-  };
+    const JobSystemCreateOptions options;    //!< The options used to create the memory requirements.
+    std::size_t                  byte_size;  //!< The number of bytes the job system needed.
+    std::size_t                  alignment;  //!< The base alignment the pointer should be.
 
-  JobSystemMemoryRequirements MemRequirementsForConfig(const JobSystemCreateOptions& options);
+    JobSystemMemoryRequirements(const JobSystemCreateOptions& options = {}) noexcept;
+  };
 
   /*!
    * @brief
@@ -121,7 +121,7 @@ namespace Job
    * @return
    *   The `InitializationToken` can be used by other subsystem to verify that the Job System has been initialized.
    */
-  InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements, void* const memory = nullptr) noexcept;
+  InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirementss = {}, void* const memory = nullptr) noexcept;
 
   /*!
    * @brief
@@ -204,10 +204,13 @@ namespace Job
    * @param task
    *   The task whose user-data you want to grab.
    *
+   * @param alignment
+   *   The required alignment the returned pointer must have.
+   *
    * @return TaskData
    *   The user-data buffer you may read and write.
    */
-  TaskData TaskGetData(Task* const task) noexcept;
+  TaskData TaskGetData(Task* const task, const std::size_t alignment) noexcept;
 
   /*!
    * @brief
@@ -221,8 +224,11 @@ namespace Job
    * @param continuation
    *   The Task to run after 'self' has finished.
    *   This task must not have already been submitted to a queue.
+   *
+   * @param queue
+   *   The queue you want the task to run on.
    */
-  void TaskAddContinuation(Task* const self, Task* const continuation) noexcept;
+  void TaskAddContinuation(Task* const self, Task* const continuation, const QueueType queue = QueueType::NORMAL) noexcept;
 
   /*!
    * @brief
@@ -258,7 +264,7 @@ namespace Job
    *   The user-data buffer casted as a T.
    */
   template<typename T>
-  T& TaskDataAs(Task* const task) noexcept;
+  T* TaskDataAs(Task* const task) noexcept;
 
   /*!
    * @brief
@@ -294,6 +300,19 @@ namespace Job
    */
   template<typename T>
   void TaskSetData(Task* const task, const T& data);
+
+  /*!
+   * @brief
+   *   Helper for calling destructor on the task's user data.
+   *
+   * @tparam T
+   *   The expected type of the data, called ~T on the user data buffer.
+   *
+   * @param task
+   *   The task whose user-data buffer is affected.
+   */
+  template<typename T>
+  void TaskDestructData(Task* const task);
 
   /*!
    * @brief
@@ -354,8 +373,7 @@ namespace Job
 
   /*!
    * @brief
-   *   Runs tasks from the main queue as long as there are tasks available
-   *   or \p condition returns false.
+   *   Runs tasks from the main queue as long as there are tasks available and \p condition returns true.
    *
    *   This function is not required to be called since the main queue will
    *   be evaluated during other calls to this API but allows for an easy way
@@ -368,9 +386,6 @@ namespace Job
    *   The function object indicating if the main queue should continue being evaluated.
    *   Will be called after a task has been completed.
    *
-   * @param run_gc
-   *   Whether or not the garbage collector should be run after running tasks.
-   *
    * @warning Must only be called from the main thread.
    */
   template<typename ConditionFn>
@@ -378,7 +393,7 @@ namespace Job
   {
     do
     {
-      if (!detail::mainQueueRunTask())
+      if (!detail::mainQueueTryRunTask())
       {
         break;
       }
@@ -392,9 +407,6 @@ namespace Job
    *   This function is not required to be called since the main queue will
    *   be evaluated during other calls to this API but allows for an easy way
    *   to flush the main queue guaranteeing a minimum latency.
-   *
-   * @param run_gc
-   *   Whether or not the garbage collector should be run after running tasks.
    *
    * @warning Must only be called from the main thread.
    */
@@ -428,23 +440,36 @@ namespace Job
    */
   void TaskSubmitAndWait(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
 
-  void PauseProcessor();
-  void YieldTimeSlice();
+  /*!
+   * @brief
+   *   CPU pause instruction to indicate when you are in a spin wait loop.
+   */
+  void PauseProcessor() noexcept;
+
+  /*!
+   * @brief
+   *   Asks the OS to yield this threads execution to another thread on the current cpu core.
+   */
+  void YieldTimeSlice() noexcept;
 
   // Template Function Implementation //
 
   template<typename T>
-  T& TaskDataAs(Task* const task) noexcept
+  T* TaskDataAs(Task* const task) noexcept
   {
-    detail::checkTaskDataSize(task, sizeof(T));
-    return *static_cast<T*>(TaskGetData(task).ptr);
+    const TaskData data = TaskGetData(task, alignof(T));
+
+    return data.size >= sizeof(T) ? static_cast<T*>(data.ptr) : nullptr;
   }
 
   template<typename T, typename... Args>
   void TaskEmplaceData(Task* const task, Args&&... args)
   {
-    detail::checkTaskDataSize(task, sizeof(T));
-    new (TaskGetData(task).ptr) T(std::forward<Args>(args)...);
+    const TaskData data = TaskGetData(task, alignof(T));
+
+    JobAssert(data.size >= sizeof(T), "Attempting to store an object too large to fit within a task's storage buffer.");
+
+    new (data.ptr) T(std::forward<Args>(args)...);
   }
 
   template<typename T>
@@ -453,25 +478,34 @@ namespace Job
     TaskEmplaceData<T>(task, data);
   }
 
-  template<typename Closure>
-  static void taskLambdaWrapper(Task* task)
+  template<typename T>
+  void TaskDestructData(Task* const task)
   {
-    Closure& function = *static_cast<Closure*>(detail::taskPaddingStart(task));
-    function(task);
-    function.~Closure();
+    TaskDataAs<T>(task)->~T();
   }
+
+  namespace detail
+  {
+    template<typename Closure>
+    static void taskLambdaWrapper(Task* const task)
+    {
+      Closure& function = *static_cast<Closure*>(detail::taskGetPrivateUserData(task, alignof(Closure)));
+      function(task);
+      function.~Closure();
+    }
+  }  // namespace detail
 
   template<typename Closure>
   Task* TaskMake(Closure&& function, Task* const parent)
   {
-    Task* const task = TaskMake(&taskLambdaWrapper<Closure>, parent);
-    TaskEmplaceData<Closure>(task, std::forward<Closure>(function));
-    detail::taskUsePadding(task, sizeof(Closure));
+    Task* const task         = TaskMake(&detail::taskLambdaWrapper<Closure>, parent);
+    void* const private_data = detail::taskReservePrivateUserData(task, sizeof(Closure), alignof(Closure));
+    new (private_data) Closure(std::forward<Closure>(function));
 
     return task;
   }
 
-  // Parallel For API
+  // Parallel Algorithms API
 
   /*!
    * @brief
