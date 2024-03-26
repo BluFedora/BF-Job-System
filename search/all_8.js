@@ -11,5 +11,5 @@ var searchData=
   ['jobassert_8',['JobAssert',['../job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f',1,'job_assert.hpp']]],
   ['jobsystemcontext_9',['JobSystemContext',['../namespace_job.html#struct_job_1_1_job_system_context',1,'Job']]],
   ['jobsystemcreateoptions_10',['JobSystemCreateOptions',['../namespace_job.html#struct_job_1_1_job_system_create_options',1,'Job']]],
-  ['jobsystemmemoryrequirements_11',['JobSystemMemoryRequirements',['../namespace_job.html#struct_job_1_1_job_system_memory_requirements',1,'Job']]]
+  ['jobsystemmemoryrequirements_11',['JobSystemMemoryRequirements',['../struct_job_1_1_job_system_memory_requirements.html',1,'Job::JobSystemMemoryRequirements'],['../struct_job_1_1_job_system_memory_requirements.html#a3bf9e5687fe0964e9cd3ea38ece766bb',1,'Job::JobSystemMemoryRequirements::JobSystemMemoryRequirements()']]]
 ];

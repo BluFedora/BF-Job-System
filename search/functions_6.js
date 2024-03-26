@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['length_0',['length',['../struct_job_1_1_index_range.html#acfc03080318463313a0d911aa806cb9b',1,'Job::IndexRange']]]
+  ['jobsystemmemoryrequirements_0',['JobSystemMemoryRequirements',['../struct_job_1_1_job_system_memory_requirements.html#a3bf9e5687fe0964e9cd3ea38ece766bb',1,'Job::JobSystemMemoryRequirements']]]
 ];

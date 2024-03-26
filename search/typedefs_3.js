@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['taskfn_0',['TaskFn',['../namespace_job.html#a2a553c2727a284305ddbc9d746e58267',1,'Job']]],
-  ['taskhandle_1',['TaskHandle',['../namespace_job.html#a66b4ae2d934892bb03f311c31506476e',1,'Job']]],
-  ['taskhandletype_2',['TaskHandleType',['../namespace_job.html#af5130f87f126f7ce70872c29687c0ccd',1,'Job']]]
+  ['size_5ftype_0',['size_type',['../class_job_1_1_locked_queue.html#adad12b32ebe09ca9073300ff012634cb',1,'Job::LockedQueue::size_type()'],['../class_job_1_1_s_p_s_c_queue.html#a8d2fb76bc41271275524971ebbc10b72',1,'Job::SPSCQueue::size_type()'],['../class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85',1,'Job::SPMCDeque::size_type()'],['../class_job_1_1_m_p_m_c_queue.html#a2d4eff2c23e9976ca2e55378b7fe90cc',1,'Job::MPMCQueue::size_type()']]]
 ];

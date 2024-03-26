@@ -91,69 +91,21 @@ $(document).ready(function(){initNavTree('namespace_job_1_1detail.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0c2a80b0061efcff2783b9ac1edffa34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a0c2a80b0061efcff2783b9ac1edffa34">checkTaskDataSize</a> (const <a class="el" href="struct_job_1_1_task.html">Task</a> *task, std::size_t data_size) noexcept</td></tr>
-<tr class="separator:a0c2a80b0061efcff2783b9ac1edffa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a725721f202ed179f6a4177b33f205666"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">QueueType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a725721f202ed179f6a4177b33f205666">taskQType</a> (const <a class="el" href="struct_job_1_1_task.html">Task</a> *task) noexcept</td></tr>
 <tr class="separator:a725721f202ed179f6a4177b33f205666"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1efbfe3a8061891854820fba2050bcf"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#ac1efbfe3a8061891854820fba2050bcf">taskPaddingStart</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *const task) noexcept</td></tr>
-<tr class="separator:ac1efbfe3a8061891854820fba2050bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addf217a54cd7e0aee0463b3673b0aabf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#addf217a54cd7e0aee0463b3673b0aabf">taskUsePadding</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *task, std::size_t num_bytes) noexcept</td></tr>
-<tr class="separator:addf217a54cd7e0aee0463b3673b0aabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6facce7775e71b7a21a96b69a704cf9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#ad6facce7775e71b7a21a96b69a704cf9">mainQueueRunTask</a> (void) noexcept</td></tr>
-<tr class="separator:ad6facce7775e71b7a21a96b69a704cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66102c88da40e2c6b008bc97259d0d39"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a66102c88da40e2c6b008bc97259d0d39">taskGetPrivateUserData</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *const task, const std::size_t alignment) noexcept</td></tr>
+<tr class="separator:a66102c88da40e2c6b008bc97259d0d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ed74505a8477781f8e252f6f05755ca"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a5ed74505a8477781f8e252f6f05755ca">taskReservePrivateUserData</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *const task, const std::size_t num_bytes, const std::size_t alignment) noexcept</td></tr>
+<tr class="separator:a5ed74505a8477781f8e252f6f05755ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8209af0db62c504d004ec94bf3889442"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a8209af0db62c504d004ec94bf3889442">mainQueueTryRunTask</a> (void) noexcept</td></tr>
+<tr class="separator:a8209af0db62c504d004ec94bf3889442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19246b27d729b8f0451b6a58a3121358"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
+<tr class="memitem:a19246b27d729b8f0451b6a58a3121358"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a19246b27d729b8f0451b6a58a3121358">taskLambdaWrapper</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *const task)</td></tr>
+<tr class="separator:a19246b27d729b8f0451b6a58a3121358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b5a2a4d52b357006e9a502363831998"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a8b5a2a4d52b357006e9a502363831998">assertHandler</a> (const bool condition, const char *const filename, const int line_number, const char *const msg)</td></tr>
 <tr class="separator:a8b5a2a4d52b357006e9a502363831998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a0c2a80b0061efcff2783b9ac1edffa34" name="a0c2a80b0061efcff2783b9ac1edffa34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c2a80b0061efcff2783b9ac1edffa34">&#9670;&nbsp;</a></span>checkTaskDataSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Job::detail::checkTaskDataSize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_job_1_1_task.html">Task</a> *&#160;</td>
-          <td class="paramname"><em>task</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>data_size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00771">771</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>  {</div>
-<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>    <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(data_size &lt;= task-&gt;user_storage_size, <span class="stringliteral">&quot;Attempting to store an object too large to fit within a task&#39;s storage buffer.&quot;</span>);</div>
-<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>    (void)<a class="code hl_namespace" href="namespacetask.html">task</a>;</div>
-<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>    (void)data_size;</div>
-<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>  }</div>
-<div class="ttc" id="ajob__assert_8hpp_html_a3c45a50fae3515f1fa7aa7def616e68f"><div class="ttname"><a href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a></div><div class="ttdeci">#define JobAssert(expr, msg)</div><div class="ttdef"><b>Definition:</b> <a href="job__assert_8hpp_source.html#l00027">job_assert.hpp:27</a></div></div>
-<div class="ttc" id="anamespacetask_html"><div class="ttname"><a href="namespacetask.html">task</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00360">job_system.cpp:361</a></div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00437">Job::TaskDataAs()</a>, and <a class="el" href="job__api_8hpp_source.html#l00444">Job::TaskEmplaceData()</a>.</p>
-
-</div>
-</div>
 <a id="a725721f202ed179f6a4177b33f205666" name="a725721f202ed179f6a4177b33f205666"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a725721f202ed179f6a4177b33f205666">&#9670;&nbsp;</a></span>taskQType()</h2>
 
@@ -178,17 +130,18 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00778">778</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>  {</div>
-<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>    <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;q_type;</div>
-<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01173">1173</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l01174" name="l01174"></a><span class="lineno"> 1174</span>{</div>
+<div class="line"><a id="l01175" name="l01175"></a><span class="lineno"> 1175</span>  <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;q_type;</div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span>}</div>
+<div class="ttc" id="anamespacetask_html"><div class="ttname"><a href="namespacetask.html">task</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00357">job_system.cpp:358</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00583">Job::ParallelFor()</a>, and <a class="el" href="job__api_8hpp_source.html#l00674">Job::ParallelInvoke()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00617">Job::ParallelFor()</a>, and <a class="el" href="job__api_8hpp_source.html#l00708">Job::ParallelInvoke()</a>.</p>
 
 </div>
 </div>
-<a id="ac1efbfe3a8061891854820fba2050bcf" name="ac1efbfe3a8061891854820fba2050bcf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1efbfe3a8061891854820fba2050bcf">&#9670;&nbsp;</a></span>taskPaddingStart()</h2>
+<a id="a66102c88da40e2c6b008bc97259d0d39" name="a66102c88da40e2c6b008bc97259d0d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66102c88da40e2c6b008bc97259d0d39">&#9670;&nbsp;</a></span>taskGetPrivateUserData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,49 +150,16 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void * Job::detail::taskPaddingStart </td>
+          <td class="memname">void * Job::detail::taskGetPrivateUserData </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_job_1_1_task.html">Task</a> *const&#160;</td>
-          <td class="paramname"><em>task</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00783">783</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>  {</div>
-<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>    <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;padding.data();</div>
-<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>  }</div>
-</div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00457">Job::taskLambdaWrapper()</a>.</p>
-
-</div>
-</div>
-<a id="addf217a54cd7e0aee0463b3673b0aabf" name="addf217a54cd7e0aee0463b3673b0aabf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addf217a54cd7e0aee0463b3673b0aabf">&#9670;&nbsp;</a></span>taskUsePadding()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Job::detail::taskUsePadding </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_job_1_1_task.html">Task</a> *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>num_bytes</em>&#160;</td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>alignment</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -254,20 +174,17 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00788">788</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>  {</div>
-<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>    <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(num_bytes &lt;= task-&gt;user_storage_size, <span class="stringliteral">&quot;Attempting to store an closure too large to fit within a task&#39;s storage buffer.&quot;</span>);</div>
-<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>    <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;user_storage_size -= <span class="keyword">static_cast&lt;</span>std::uint8_t<span class="keyword">&gt;</span>(num_bytes);</div>
-<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01178">1178</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span>{</div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span>  <span class="keywordflow">return</span> AlignPointer(<a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;padding.data(), alignment);</div>
+<div class="line"><a id="l01181" name="l01181"></a><span class="lineno"> 1181</span>}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00465">Job::TaskMake()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00490">taskLambdaWrapper()</a>.</p>
 
 </div>
 </div>
-<a id="ad6facce7775e71b7a21a96b69a704cf9" name="ad6facce7775e71b7a21a96b69a704cf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6facce7775e71b7a21a96b69a704cf9">&#9670;&nbsp;</a></span>mainQueueRunTask()</h2>
+<a id="a5ed74505a8477781f8e252f6f05755ca" name="a5ed74505a8477781f8e252f6f05755ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ed74505a8477781f8e252f6f05755ca">&#9670;&nbsp;</a></span>taskReservePrivateUserData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,7 +193,69 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Job::detail::mainQueueRunTask </td>
+          <td class="memname">void * Job::detail::taskReservePrivateUserData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_job_1_1_task.html">Task</a> *const&#160;</td>
+          <td class="paramname"><em>task</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>num_bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>alignment</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01183">1183</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l01184" name="l01184"></a><span class="lineno"> 1184</span>{</div>
+<div class="line"><a id="l01185" name="l01185"></a><span class="lineno"> 1185</span>  <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_job.html#ae159e934d8d1f329f729f24874234d40">Byte</a>* <span class="keyword">const</span> user_storage_start      = <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;padding.data() + <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;user_data_start;</div>
+<div class="line"><a id="l01186" name="l01186"></a><span class="lineno"> 1186</span>  <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_job.html#ae159e934d8d1f329f729f24874234d40">Byte</a>* <span class="keyword">const</span> user_storage_end        = &amp;*<a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;padding.end();</div>
+<div class="line"><a id="l01187" name="l01187"></a><span class="lineno"> 1187</span>  <a class="code hl_typedef" href="namespace_job.html#ae159e934d8d1f329f729f24874234d40">Byte</a>* <span class="keyword">const</span>       requested_storage_start = <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="namespace_job.html#ae159e934d8d1f329f729f24874234d40">Byte</a>*<span class="keyword">&gt;</span>(AlignPointer(user_storage_start, alignment));</div>
+<div class="line"><a id="l01188" name="l01188"></a><span class="lineno"> 1188</span>  <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_job.html#ae159e934d8d1f329f729f24874234d40">Byte</a>* <span class="keyword">const</span> requested_storage_end   = requested_storage_start + num_bytes;</div>
+<div class="line"><a id="l01189" name="l01189"></a><span class="lineno"> 1189</span> </div>
+<div class="line"><a id="l01190" name="l01190"></a><span class="lineno"> 1190</span>  <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(requested_storage_end &lt;= user_storage_end, <span class="stringliteral">&quot;Cannot store object within the task&#39;s user storage. &quot;</span>);</div>
+<div class="line"><a id="l01191" name="l01191"></a><span class="lineno"> 1191</span> </div>
+<div class="line"><a id="l01192" name="l01192"></a><span class="lineno"> 1192</span>  <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;user_data_start = <span class="keyword">static_cast&lt;</span>std::uint8_t<span class="keyword">&gt;</span>(requested_storage_end - <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;padding.data());</div>
+<div class="line"><a id="l01193" name="l01193"></a><span class="lineno"> 1193</span> </div>
+<div class="line"><a id="l01194" name="l01194"></a><span class="lineno"> 1194</span>  <span class="keywordflow">return</span> requested_storage_start;</div>
+<div class="line"><a id="l01195" name="l01195"></a><span class="lineno"> 1195</span>}</div>
+<div class="ttc" id="ajob__assert_8hpp_html_a3c45a50fae3515f1fa7aa7def616e68f"><div class="ttname"><a href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a></div><div class="ttdeci">#define JobAssert(expr, msg)</div><div class="ttdef"><b>Definition:</b> <a href="job__assert_8hpp_source.html#l00027">job_assert.hpp:27</a></div></div>
+<div class="ttc" id="anamespace_job_html_ae159e934d8d1f329f729f24874234d40"><div class="ttname"><a href="namespace_job.html#ae159e934d8d1f329f729f24874234d40">Job::Byte</a></div><div class="ttdeci">unsigned char Byte</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00089">job_system.cpp:89</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00499">Job::TaskMake()</a>.</p>
+
+</div>
+</div>
+<a id="a8209af0db62c504d004ec94bf3889442" name="a8209af0db62c504d004ec94bf3889442"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8209af0db62c504d004ec94bf3889442">&#9670;&nbsp;</a></span>mainQueueTryRunTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Job::detail::mainQueueTryRunTask </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -290,29 +269,68 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00794">794</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>  {</div>
-<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span>    <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(<a class="code hl_function" href="namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b">CurrentWorker</a>() == <a class="code hl_variable" href="namespace_job.html#a4bb74989f721fcb35b1263dde853e604">k_MainThreadID</a>, <span class="stringliteral">&quot;Must only be called by main thread.&quot;</span>);</div>
-<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span> </div>
-<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>    <a class="code hl_struct" href="struct_job_1_1_task_ptr.html">TaskPtr</a>    task_ptr;</div>
-<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> is_valid_task = gJobSystem()-&gt;main_queue.Pop(&amp;task_ptr);</div>
-<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span> </div>
-<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>    <span class="keywordflow">if</span> (is_valid_task)</div>
-<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>    {</div>
-<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>      <a class="code hl_struct" href="struct_job_1_1_task.html">Task</a>* <span class="keyword">const</span> <a class="code hl_namespace" href="namespacetask.html">task</a> = task::TaskPtrToPointer(task_ptr);</div>
-<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>      <a class="code hl_namespace" href="namespacetask.html">task</a>-&gt;run();</div>
-<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>    }</div>
-<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span> </div>
-<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>    <span class="keywordflow">return</span> is_valid_task;</div>
-<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>  }</div>
-<div class="ttc" id="anamespace_job_html_a4bb74989f721fcb35b1263dde853e604"><div class="ttname"><a href="namespace_job.html#a4bb74989f721fcb35b1263dde853e604">Job::k_MainThreadID</a></div><div class="ttdeci">static constexpr WorkerID k_MainThreadID</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00082">job_system.cpp:82</a></div></div>
-<div class="ttc" id="anamespace_job_html_aaee5888463e3bb5cff3eff5f80d5265b"><div class="ttname"><a href="namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b">Job::CurrentWorker</a></div><div class="ttdeci">WorkerID CurrentWorker() noexcept</div><div class="ttdoc">The current id of the current thread. This function can be called by any thread concurrently.</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00878">job_system.cpp:878</a></div></div>
-<div class="ttc" id="astruct_job_1_1_task_html"><div class="ttname"><a href="struct_job_1_1_task.html">Job::Task</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00125">job_system.cpp:126</a></div></div>
-<div class="ttc" id="astruct_job_1_1_task_ptr_html"><div class="ttname"><a href="struct_job_1_1_task_ptr.html">Job::TaskPtr</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00098">job_system.cpp:99</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01197">1197</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span>{</div>
+<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span>  <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(<a class="code hl_function" href="namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b">CurrentWorker</a>() == <a class="code hl_variable" href="namespace_job.html#a4bb74989f721fcb35b1263dde853e604">k_MainThreadID</a>, <span class="stringliteral">&quot;Must only be called by main thread.&quot;</span>);</div>
+<div class="line"><a id="l01200" name="l01200"></a><span class="lineno"> 1200</span> </div>
+<div class="line"><a id="l01201" name="l01201"></a><span class="lineno"> 1201</span>  <a class="code hl_struct" href="struct_job_1_1_task_ptr.html">TaskPtr</a> task_ptr;</div>
+<div class="line"><a id="l01202" name="l01202"></a><span class="lineno"> 1202</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="job__system_8cpp.html#afb9d4821deb09320023a531d1cb87f58">g_JobSystem</a>-&gt;<a class="code hl_variable" href="namespace_job.html#a049da5bae449544c7b17c3aceeee3a79">main_queue</a>.Pop(&amp;task_ptr))</div>
+<div class="line"><a id="l01203" name="l01203"></a><span class="lineno"> 1203</span>  {</div>
+<div class="line"><a id="l01204" name="l01204"></a><span class="lineno"> 1204</span>    <a class="code hl_struct" href="struct_job_1_1_task.html">Task</a>* <span class="keyword">const</span> <a class="code hl_namespace" href="namespacetask.html">task</a> = task::TaskPtrToPointer(task_ptr);</div>
+<div class="line"><a id="l01205" name="l01205"></a><span class="lineno"> 1205</span>    task::RunTaskFunction(<a class="code hl_namespace" href="namespacetask.html">task</a>);</div>
+<div class="line"><a id="l01206" name="l01206"></a><span class="lineno"> 1206</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l01207" name="l01207"></a><span class="lineno"> 1207</span>  }</div>
+<div class="line"><a id="l01208" name="l01208"></a><span class="lineno"> 1208</span> </div>
+<div class="line"><a id="l01209" name="l01209"></a><span class="lineno"> 1209</span>  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l01210" name="l01210"></a><span class="lineno"> 1210</span>}</div>
+<div class="ttc" id="ajob__system_8cpp_html_afb9d4821deb09320023a531d1cb87f58"><div class="ttname"><a href="job__system_8cpp.html#afb9d4821deb09320023a531d1cb87f58">g_JobSystem</a></div><div class="ttdeci">static Job::JobSystemContext * g_JobSystem</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00226">job_system.cpp:226</a></div></div>
+<div class="ttc" id="anamespace_job_html_a049da5bae449544c7b17c3aceeee3a79"><div class="ttname"><a href="namespace_job.html#a049da5bae449544c7b17c3aceeee3a79">Job::JobSystemContext::main_queue</a></div><div class="ttdeci">LockedQueue&lt; TaskPtr &gt; main_queue</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00217">job_system.cpp:217</a></div></div>
+<div class="ttc" id="anamespace_job_html_a4bb74989f721fcb35b1263dde853e604"><div class="ttname"><a href="namespace_job.html#a4bb74989f721fcb35b1263dde853e604">Job::k_MainThreadID</a></div><div class="ttdeci">static constexpr WorkerID k_MainThreadID</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00079">job_system.cpp:79</a></div></div>
+<div class="ttc" id="anamespace_job_html_aaee5888463e3bb5cff3eff5f80d5265b"><div class="ttname"><a href="namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b">Job::CurrentWorker</a></div><div class="ttdeci">WorkerID CurrentWorker() noexcept</div><div class="ttdoc">The current id of the current thread. This function can be called by any thread concurrently.</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00899">job_system.cpp:899</a></div></div>
+<div class="ttc" id="astruct_job_1_1_task_html"><div class="ttname"><a href="struct_job_1_1_task.html">Job::Task</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00135">job_system.cpp:136</a></div></div>
+<div class="ttc" id="astruct_job_1_1_task_ptr_html"><div class="ttname"><a href="struct_job_1_1_task_ptr.html">Job::TaskPtr</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00095">job_system.cpp:96</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00878">Job::CurrentWorker()</a>, <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>, and <a class="el" href="job__system_8cpp_source.html#l00082">Job::k_MainThreadID</a>.</p>
+<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00899">Job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00226">g_JobSystem</a>, <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>, <a class="el" href="job__system_8cpp_source.html#l00079">Job::k_MainThreadID</a>, and <a class="el" href="job__system_8cpp_source.html#l00217">Job::JobSystemContext::main_queue</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00377">Job::TickMainQueue()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00392">Job::TickMainQueue()</a>.</p>
+
+</div>
+</div>
+<a id="a19246b27d729b8f0451b6a58a3121358" name="a19246b27d729b8f0451b6a58a3121358"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19246b27d729b8f0451b6a58a3121358">&#9670;&nbsp;</a></span>taskLambdaWrapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Closure &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Job::detail::taskLambdaWrapper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_job_1_1_task.html">Task</a> *const&#160;</td>
+          <td class="paramname"><em>task</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00490">490</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>    {</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>      Closure&amp; <span class="keyword">function</span> = *<span class="keyword">static_cast&lt;</span>Closure*<span class="keyword">&gt;</span>(<a class="code hl_function" href="namespace_job_1_1detail.html#a66102c88da40e2c6b008bc97259d0d39">detail::taskGetPrivateUserData</a>(<a class="code hl_namespace" href="namespacetask.html">task</a>, <span class="keyword">alignof</span>(Closure)));</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>      <span class="keyword">function</span>(<a class="code hl_namespace" href="namespacetask.html">task</a>);</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>      <span class="keyword">function</span>.~Closure();</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>    }</div>
+<div class="ttc" id="anamespace_job_1_1detail_html_a66102c88da40e2c6b008bc97259d0d39"><div class="ttname"><a href="namespace_job_1_1detail.html#a66102c88da40e2c6b008bc97259d0d39">Job::detail::taskGetPrivateUserData</a></div><div class="ttdeci">void * taskGetPrivateUserData(Task *const task, const std::size_t alignment) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01178">job_system.cpp:1178</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l01178">taskGetPrivateUserData()</a>.</p>
 
 </div>
 </div>
@@ -362,7 +380,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_job.html">Job</a></li><li class="navelem"><a class="el" href="namespace_job_1_1detail.html">detail</a></li>
-    <li class="footer">Generated on Mon Mar 25 2024 08:30:13 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Mar 26 2024 10:10:35 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['shutdown_0',['Shutdown',['../namespace_job.html#a9d923fa374392c284942ea7d8f90e466',1,'Job']]],
-  ['spmcdeque_1',['SPMCDeque',['../class_job_1_1_s_p_m_c_deque.html#ab9d29b5197931a30b6330583746d990d',1,'Job::SPMCDeque']]],
-  ['spscqueue_2',['SPSCQueue',['../class_job_1_1_s_p_s_c_queue.html#a8badea3338d565020cd5dff8579bb9df',1,'Job::SPSCQueue']]],
-  ['steal_3',['Steal',['../class_job_1_1_s_p_m_c_deque.html#aae298492f002c55e492aa8c62f99b5c9',1,'Job::SPMCDeque']]]
+  ['readelements_0',['ReadElements',['../class_job_1_1_m_p_m_c_queue.html#a23f13576483939716e7529244b965e22',1,'Job::MPMCQueue']]],
+  ['requestpoprange_1',['RequestPopRange',['../class_job_1_1_m_p_m_c_queue.html#a588a2d25a56622edde2f8c62560b4742',1,'Job::MPMCQueue']]],
+  ['requestwriterange_2',['RequestWriteRange',['../class_job_1_1_m_p_m_c_queue.html#acc4f7c38e831c5acabcc8f9ba15eab8b',1,'Job::MPMCQueue']]]
 ];
