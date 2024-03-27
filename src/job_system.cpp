@@ -76,7 +76,6 @@ namespace Job
 #endif
 
   static constexpr std::size_t k_ExpectedTaskSize = std::max(std::size_t(128u), k_CachelineSize);
-  static constexpr WorkerID    k_MainThreadID     = 0;
   static constexpr QueueType   k_InvalidQueueType = QueueType(int(QueueType::WORKER) + 1);
 
   // Type Aliases
@@ -299,7 +298,7 @@ namespace
       }
     }
 
-    static ThreadLocalState* GetWorker(const WorkerID worker_id)
+    static ThreadLocalState* GetWorker(const WorkerID worker_id) noexcept
     {
       JobAssert(worker_id < NumWorkers(), "This thread was not created by the job system.");
       return g_JobSystem->workers + worker_id;
@@ -463,9 +462,14 @@ namespace
       return system::GetWorker(WorkerID(other_worker_id));
     }
 
-    static bool TryRunTask(ThreadLocalState* const worker)
+    static bool IsMainThread(const ThreadLocalState* const worker) noexcept
     {
-      const bool is_main_thread = worker == g_JobSystem->workers;
+      return worker == g_JobSystem->workers;
+    }
+
+    static bool TryRunTask(ThreadLocalState* const worker) noexcept
+    {
+      const bool is_main_thread = IsMainThread(worker);
 
       TaskPtr task_ptr = nullptr;
       worker->normal_queue.Pop(&task_ptr);
@@ -671,7 +675,7 @@ namespace
     in_out_reqs->byte_size += sizeof(T) * num_elements;
   }
 
-  static bool IsPowerOf2(const std::size_t value)
+  static bool IsPowerOf2(const std::size_t value) noexcept
   {
     return (value & (value - 1)) == 0;
   }
@@ -725,6 +729,8 @@ Job::JobSystemMemoryRequirements::JobSystemMemoryRequirements(const JobSystemCre
 
 Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements& memory_requirements, void* memory) noexcept
 {
+  JobAssert(g_JobSystem == nullptr, "Already initialized.");
+
   const bool needs_delete = memory == nullptr;
 
   if (!memory)
@@ -799,6 +805,8 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   }
 #endif
 
+  ThreadLocalState* const main_thread_worker = job_system->workers;
+
   for (std::uint64_t worker_index = 0; worker_index < num_threads; ++worker_index)
   {
     ThreadLocalState* const worker = SpanAlloc(&all_workers, 1u);
@@ -809,11 +817,11 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
     worker->allocated_tasks     = SpanAlloc(&all_task_handles, num_tasks_per_worker);
     worker->num_allocated_tasks = 0u;
     pcg32_srandom_r(&worker->rng_state, worker_index + rng_seed, worker_index * 2u + 1u + rng_seed);
-    worker->last_stolen_worker = job_system->workers;  // Main thread.
+    worker->last_stolen_worker = main_thread_worker;
   }
 
   g_JobSystem     = job_system;
-  g_CurrentWorker = job_system->workers + k_MainThreadID;
+  g_CurrentWorker = main_thread_worker;
 
   std::atomic_thread_fence(std::memory_order_release);
   for (std::uint64_t worker_index = 1; worker_index < num_threads; ++worker_index)
@@ -898,14 +906,14 @@ const char* Job::ProcessorArchitectureName() noexcept
 
 WorkerID Job::CurrentWorker() noexcept
 {
-  const WorkerID worker_id = WorkerID(g_CurrentWorker - g_JobSystem->workers);
-
-  JobAssert(worker_id < NumWorkers(), "This thread was not created by the job system.");
-  return worker_id;
+  JobAssert(g_CurrentWorker != nullptr, "This thread was not created by the job system.");
+  return WorkerID(g_CurrentWorker - g_JobSystem->workers);
 }
 
 void Job::Shutdown() noexcept
 {
+  JobAssert(g_JobSystem != nullptr, "Cannot shutdown when never initialized.");
+
   static_assert(std::is_trivially_destructible_v<TaskMemoryBlock>, "TaskMemoryBlock's destructor not called.");
   static_assert(std::is_trivially_destructible_v<TaskPtr>, "TaskPtr's destructor not called.");
   static_assert(std::is_trivially_destructible_v<AtomicTaskPtr>, "AtomicTaskPtr's destructor not called.");
@@ -1196,7 +1204,7 @@ void* Job::detail::taskReservePrivateUserData(Task* const task, const std::size_
 
 bool Job::detail::mainQueueTryRunTask(void) noexcept
 {
-  JobAssert(CurrentWorker() == k_MainThreadID, "Must only be called by main thread.");
+  JobAssert(worker::IsMainThread(worker::GetCurrent()), "Must only be called by main thread.");
 
   TaskPtr task_ptr;
   if (g_JobSystem->main_queue.Pop(&task_ptr))
