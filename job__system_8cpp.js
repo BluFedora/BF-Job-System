@@ -51,7 +51,6 @@ var job__system_8cpp =
     [ "AtomicTaskPtr", "job__system_8cpp.html#a051e674ab31e8b9946de4990f3b4288b", null ],
     [ "k_CachelineSize", "job__system_8cpp.html#aef3303347f87a62f73106bf96a855e22", null ],
     [ "k_ExpectedTaskSize", "job__system_8cpp.html#aa141d8407e498c708be9a947805b6853", null ],
-    [ "k_MainThreadID", "job__system_8cpp.html#a4bb74989f721fcb35b1263dde853e604", null ],
     [ "k_InvalidQueueType", "job__system_8cpp.html#abb6be9ba0f23d0e66306290cd06d6089", null ],
     [ "NullTaskHandle", "job__system_8cpp.html#a4bb56989a0a31d03a041c40e8ac99cc7", null ],
     [ "g_JobSystem", "job__system_8cpp.html#afb9d4821deb09320023a531d1cb87f58", null ],

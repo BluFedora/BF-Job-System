@@ -79,7 +79,6 @@ var namespace_job =
     [ "k_FalseSharingPadSize", "namespace_job.html#a935d39b02b2713291aed58d9c1135fcc", null ],
     [ "k_CachelineSize", "namespace_job.html#aef3303347f87a62f73106bf96a855e22", null ],
     [ "k_ExpectedTaskSize", "namespace_job.html#aa141d8407e498c708be9a947805b6853", null ],
-    [ "k_MainThreadID", "namespace_job.html#a4bb74989f721fcb35b1263dde853e604", null ],
     [ "k_InvalidQueueType", "namespace_job.html#abb6be9ba0f23d0e66306290cd06d6089", null ],
     [ "NullTaskHandle", "namespace_job.html#a4bb56989a0a31d03a041c40e8ac99cc7", null ]
 ];
