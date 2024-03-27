@@ -369,7 +369,7 @@ $(document).ready(function(){initNavTree('job__system_8cpp_source.html',''); ini
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>      }</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    }</div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keyword">static</span> <a class="code hl_struct" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a>* GetWorker(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_job.html#ac7727f146165ae76b95cc50196df236e">WorkerID</a> worker_id)</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keyword">static</span> <a class="code hl_struct" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a>* GetWorker(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_job.html#ac7727f146165ae76b95cc50196df236e">WorkerID</a> worker_id) <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    {</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(worker_id &lt; <a class="code hl_function" href="namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06">NumWorkers</a>(), <span class="stringliteral">&quot;This thread was not created by the job system.&quot;</span>);</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="job__system_8cpp.html#afb9d4821deb09320023a531d1cb87f58">g_JobSystem</a>-&gt;<a class="code hl_variable" href="namespace_job.html#a7136616a9c9b73ef1f3ef9b28e75f76e">workers</a> + worker_id;</div>
@@ -533,12 +533,12 @@ $(document).ready(function(){initNavTree('job__system_8cpp_source.html',''); ini
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>      <span class="keywordflow">return</span> system::GetWorker(<a class="code hl_typedef" href="namespace_job.html#ac7727f146165ae76b95cc50196df236e">WorkerID</a>(other_worker_id));</div>
 <div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>    }</div>
 <div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
-<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> IsMainThread(<span class="keyword">const</span> <a class="code hl_struct" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a>* <span class="keyword">const</span> <a class="code hl_namespace" href="namespaceworker.html">worker</a>)</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> IsMainThread(<span class="keyword">const</span> <a class="code hl_struct" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a>* <span class="keyword">const</span> <a class="code hl_namespace" href="namespaceworker.html">worker</a>) <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    {</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>      <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespaceworker.html">worker</a> == <a class="code hl_variable" href="job__system_8cpp.html#afb9d4821deb09320023a531d1cb87f58">g_JobSystem</a>-&gt;<a class="code hl_variable" href="namespace_job.html#a7136616a9c9b73ef1f3ef9b28e75f76e">workers</a>;</div>
 <div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>    }</div>
 <div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
-<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> TryRunTask(<a class="code hl_struct" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a>* <span class="keyword">const</span> <a class="code hl_namespace" href="namespaceworker.html">worker</a>)</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> TryRunTask(<a class="code hl_struct" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a>* <span class="keyword">const</span> <a class="code hl_namespace" href="namespaceworker.html">worker</a>) <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>    {</div>
 <div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span> is_main_thread = IsMainThread(<a class="code hl_namespace" href="namespaceworker.html">worker</a>);</div>
 <div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span> </div>
@@ -746,7 +746,7 @@ $(document).ready(function(){initNavTree('job__system_8cpp_source.html',''); ini
 <div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>    in_out_reqs-&gt;byte_size += <span class="keyword">sizeof</span>(T) * num_elements;</div>
 <div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>  }</div>
 <div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span> </div>
-<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> IsPowerOf2(<span class="keyword">const</span> std::size_t value)</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> IsPowerOf2(<span class="keyword">const</span> std::size_t value) <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>  {</div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>    <span class="keywordflow">return</span> (value &amp; (value - 1)) == 0;</div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>  }</div>
@@ -1461,7 +1461,7 @@ $(document).ready(function(){initNavTree('job__system_8cpp_source.html',''); ini
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="job__system_8cpp.html">job_system.cpp</a></li>
-    <li class="footer">Generated on Wed Mar 27 2024 02:26:34 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Mar 27 2024 02:29:32 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
