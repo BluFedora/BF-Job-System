@@ -97,7 +97,6 @@ $(document).ready(function(){initNavTree('job__system_8cpp.html',''); initResiza
 <code>#include &quot;<a class="el" href="job__queue_8hpp_source.html">concurrent/job_queue.hpp</a>&quot;</code><br />
 <code>#include &quot;pcg_basic.h&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;array&gt;</code><br />
 <code>#include &lt;cstdio&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
@@ -191,7 +190,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00168">168</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00165">165</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -222,7 +221,7 @@ storage[sizeof(<a class="el" href="struct_job_1_1_task.html">Task</a>)]</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00175">175</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00172">172</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -253,7 +252,7 @@ freelist</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00181">181</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00178">178</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -320,7 +319,7 @@ thread_id</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00193">193</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00190">190</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -336,9 +335,9 @@ init_cv</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a517a5d8465226c1c1cddb87f57109a65" name="a517a5d8465226c1c1cddb87f57109a65"></a>bool</td>
+<a id="aa5e8e433ba17496dcee1ab1c057ee2b9" name="aa5e8e433ba17496dcee1ab1c057ee2b9"></a>atomic_uint32_t</td>
 <td class="fieldname">
-is_initialized</td>
+num_workers_ready</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -357,7 +356,7 @@ is_initialized</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00200">200</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00197">197</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -455,7 +454,7 @@ num_available_jobs</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01162">1162</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01161">1161</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 
 </div>
 </div>
@@ -480,9 +479,9 @@ num_available_jobs</td>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00225">225</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00222">222</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00907">Job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00730">Job::Initialize()</a>, <a class="el" href="job__system_8cpp_source.html#l01205">Job::detail::mainQueueTryRunTask()</a>, <a class="el" href="job__system_8cpp_source.html#l00897">Job::NumWorkers()</a>, <a class="el" href="job__system_8cpp_source.html#l00902">Job::ProcessorArchitectureName()</a>, <a class="el" href="job__system_8cpp_source.html#l00913">Job::Shutdown()</a>, <a class="el" href="job__system_8cpp_source.html#l00951">Job::TaskMake()</a>, and <a class="el" href="job__system_8cpp_source.html#l01018">Job::TaskSubmit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00903">Job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00728">Job::Initialize()</a>, <a class="el" href="job__system_8cpp_source.html#l01203">Job::detail::mainQueueTryRunTask()</a>, <a class="el" href="job__system_8cpp_source.html#l00893">Job::NumWorkers()</a>, <a class="el" href="job__system_8cpp_source.html#l00898">Job::ProcessorArchitectureName()</a>, <a class="el" href="job__system_8cpp_source.html#l00909">Job::Shutdown()</a>, <a class="el" href="job__system_8cpp_source.html#l00950">Job::TaskMake()</a>, and <a class="el" href="job__system_8cpp_source.html#l01017">Job::TaskSubmit()</a>.</p>
 
 </div>
 </div>
@@ -506,9 +505,9 @@ num_available_jobs</td>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00226">226</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00223">223</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00907">Job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00730">Job::Initialize()</a>, and <a class="el" href="job__system_8cpp_source.html#l00913">Job::Shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00903">Job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00728">Job::Initialize()</a>, and <a class="el" href="job__system_8cpp_source.html#l00909">Job::Shutdown()</a>.</p>
 
 </div>
 </div>
@@ -518,7 +517,7 @@ num_available_jobs</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="job__system_8cpp.html">job_system.cpp</a></li>
-    <li class="footer">Generated on Wed Mar 27 2024 02:29:32 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Thu Mar 28 2024 08:45:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

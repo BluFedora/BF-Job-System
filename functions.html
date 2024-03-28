@@ -136,7 +136,6 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>init_mutex&#160;:&#160;<a class="el" href="namespace_job.html#af387d34b32af61c8e087ea987605f220">Job::InitializationLock</a></li>
 <li>InitializationToken()&#160;:&#160;<a class="el" href="struct_job_1_1_initialization_token.html#a7b08da2722b4894dd1520c08ade6ce7c">Job::InitializationToken</a></li>
 <li>Initialize&#160;:&#160;<a class="el" href="struct_job_1_1_initialization_token.html#aaf153efbe0bd701b350b1cd4ccf58c31">Job::InitializationToken</a>, <a class="el" href="class_job_1_1_locked_queue.html#ad9869e002d057e91571a6e555f923ba5">Job::LockedQueue&lt; T &gt;</a>, <a class="el" href="class_job_1_1_m_p_m_c_queue.html#af76f4f002159eee8c25c1564a88cbbab">Job::MPMCQueue</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#aa89a78af9957be54a27ddd598b910561">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#aed2d3cf1f234353f42046ef58c0f2685">Job::SPSCQueue&lt; T &gt;</a></li>
-<li>is_initialized&#160;:&#160;<a class="el" href="namespace_job.html#a517a5d8465226c1c1cddb87f57109a65">Job::InitializationLock</a></li>
 <li>is_running&#160;:&#160;<a class="el" href="namespace_job.html#a93ec86776cd50eb50948754288be9f7b">Job::JobSystemContext</a></li>
 <li>IsEmpty()&#160;:&#160;<a class="el" href="class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>IsFull()&#160;:&#160;<a class="el" href="class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f">Job::SPSCQueue&lt; T &gt;</a></li>
@@ -205,6 +204,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>num_unfinished_tasks&#160;:&#160;<a class="el" href="struct_job_1_1_task.html#a7dd660a1f935e3c1b09c54e7d5e5c179">Job::Task</a></li>
 <li>num_workers&#160;:&#160;<a class="el" href="namespace_job.html#a8c3b1e96a4c0f2e3a90b75dd8255dc3b">Job::JobSystemContext</a></li>
 <li>num_workers_created&#160;:&#160;<a class="el" href="struct_job_1_1_initialization_token.html#ae85fc99a2df3d4ca02296c5906d19188">Job::InitializationToken</a></li>
+<li>num_workers_ready&#160;:&#160;<a class="el" href="namespace_job.html#aa5e8e433ba17496dcee1ab1c057ee2b9">Job::InitializationLock</a></li>
 </ul>
 
 
@@ -221,8 +221,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>pad&#160;:&#160;<a class="el" href="union_job_1_1_task_fn_storage.html#a0771c931b85622ba51961a4821454ccb">Job::TaskFnStorage</a></li>
-<li>Padding&#160;:&#160;<a class="el" href="struct_job_1_1_task.html#ad71953b3dd80bb04506bdb60d6297bbf">Job::Task</a></li>
-<li>padding&#160;:&#160;<a class="el" href="struct_job_1_1_task.html#aebb8066dcd81bf25adf87bc6b47e7eec">Job::Task</a></li>
+<li>padding&#160;:&#160;<a class="el" href="struct_job_1_1_task.html#aaaeb35dcc7d0c3afd01cb1d1c553eb9e">Job::Task</a></li>
 <li>parent&#160;:&#160;<a class="el" href="struct_job_1_1_task.html#ad8a9fae9c5a3c3f3a579b9bcba60c8ef">Job::Task</a></li>
 <li>Pop()&#160;:&#160;<a class="el" href="class_job_1_1_locked_queue.html#ae1724cc5a8be6d7e604c05f9f4730a2d">Job::LockedQueue&lt; T &gt;</a>, <a class="el" href="class_job_1_1_m_p_m_c_queue.html#aa2a8d0774bbf005c868a74d1c596aa43">Job::MPMCQueue</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#a6dfdd2299ff79d7d203d927de29059af">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#ae0e1e194b6c912cecc1ba0903d47a2a3">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>PopImpl()&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#a1566e399cad721917a62a9e9b3eddd6b">Job::MPMCQueue</a></li>
@@ -305,7 +304,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 27 2024 02:29:32 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Thu Mar 28 2024 08:45:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

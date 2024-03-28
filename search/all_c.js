@@ -15,6 +15,7 @@ var searchData=
   ['num_5funfinished_5ftasks_12',['num_unfinished_tasks',['../struct_job_1_1_task.html#a7dd660a1f935e3c1b09c54e7d5e5c179',1,'Job::Task']]],
   ['num_5fworkers_13',['num_workers',['../namespace_job.html#a8c3b1e96a4c0f2e3a90b75dd8255dc3b',1,'Job::JobSystemContext']]],
   ['num_5fworkers_5fcreated_14',['num_workers_created',['../struct_job_1_1_initialization_token.html#ae85fc99a2df3d4ca02296c5906d19188',1,'Job::InitializationToken']]],
-  ['numsystemthreads_15',['NumSystemThreads',['../namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6',1,'Job']]],
-  ['numworkers_16',['NumWorkers',['../namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06',1,'Job']]]
+  ['num_5fworkers_5fready_15',['num_workers_ready',['../namespace_job.html#aa5e8e433ba17496dcee1ab1c057ee2b9',1,'Job::InitializationLock']]],
+  ['numsystemthreads_16',['NumSystemThreads',['../namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6',1,'Job']]],
+  ['numworkers_17',['NumWorkers',['../namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06',1,'Job']]]
 ];

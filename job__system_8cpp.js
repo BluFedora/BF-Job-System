@@ -24,7 +24,7 @@ var job__system_8cpp =
     [ "Job::InitializationLock", "namespace_job.html#struct_job_1_1_initialization_lock", [
       [ "init_mutex", "namespace_job.html#af387d34b32af61c8e087ea987605f220", null ],
       [ "init_cv", "namespace_job.html#aea7eded61e2238418bb232de730caf53", null ],
-      [ "is_initialized", "namespace_job.html#a517a5d8465226c1c1cddb87f57109a65", null ]
+      [ "num_workers_ready", "namespace_job.html#aa5e8e433ba17496dcee1ab1c057ee2b9", null ]
     ] ],
     [ "Job::JobSystemContext", "namespace_job.html#struct_job_1_1_job_system_context", [
       [ "workers", "namespace_job.html#a7136616a9c9b73ef1f3ef9b28e75f76e", null ],
