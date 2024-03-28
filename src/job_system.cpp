@@ -25,7 +25,6 @@
 #include "pcg_basic.h" /* pcg_state_setseq_64, pcg32_srandom_r, pcg32_boundedrand_r */
 
 #include <algorithm> /* partition, for_each, distance                                                   */
-#include <array>     /* array                                                                           */
 #include <cstdio>    /* fprintf, stderr                                                                 */
 #include <cstdlib>   /* abort                                                                           */
 #include <limits>    /* numeric_limits                                                                  */
@@ -146,18 +145,16 @@ namespace Job
 
     static constexpr std::size_t k_TaskPaddingDataSize = k_ExpectedTaskSize - k_SizeOfMembers;
 
-    using Padding = std::array<Byte, k_TaskPaddingDataSize>;
-
-    TaskFnStorage fn_storage;            //!< The function that will be run.
-    AtomicInt32   num_unfinished_tasks;  //!< The number of children tasks.
-    AtomicInt32   ref_count;             //!< Keeps the task from being garbage collected.
-    TaskPtr       parent;                //!< The parent task, can be null.
-    AtomicTaskPtr first_continuation;    //!< Head of linked list of tasks to be added on completion.
-    TaskPtr       next_continuation;     //!< Next element in the linked list of continuations.
-    WorkerID      owning_worker;         //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
-    QueueType     q_type;                //!< The queue type this task has been submitted to, initialized to k_InvalidQueueType.
-    std::uint8_t  user_data_start;       //!< Offset into `padding` that can be used for user data.
-    Padding       padding;               //!< User data storage.
+    TaskFnStorage fn_storage;                      //!< The function that will be run.
+    AtomicInt32   num_unfinished_tasks;            //!< The number of children tasks.
+    AtomicInt32   ref_count;                       //!< Keeps the task from being garbage collected.
+    TaskPtr       parent;                          //!< The parent task, can be null.
+    AtomicTaskPtr first_continuation;              //!< Head of linked list of tasks to be added on completion.
+    TaskPtr       next_continuation;               //!< Next element in the linked list of continuations.
+    WorkerID      owning_worker;                   //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
+    QueueType     q_type;                          //!< The queue type this task has been submitted to, initialized to k_InvalidQueueType.
+    std::uint8_t  user_data_start;                 //!< Offset into `padding` that can be used for user data.
+    Byte          padding[k_TaskPaddingDataSize];  //!< User data storage.
 
     Task(WorkerID worker, TaskFn fn, TaskPtr parent) noexcept;
   };
@@ -192,9 +189,9 @@ namespace Job
 
   struct InitializationLock
   {
-    std::mutex              init_mutex     = {};
-    std::condition_variable init_cv        = {};
-    bool                    is_initialized = false;
+    std::mutex              init_mutex        = {};
+    std::condition_variable init_cv           = {};
+    std::atomic_uint32_t    num_workers_ready = {};
   };
 
   struct JobSystemContext
@@ -246,23 +243,6 @@ namespace
 
   namespace system
   {
-    static void WaitForAllThreadsReady(Job::InitializationLock* const init_lock) noexcept
-    {
-      std::unique_lock<std::mutex> lock(init_lock->init_mutex);
-
-      init_lock->init_cv.wait(lock, [init_lock]() -> bool {
-        return init_lock->is_initialized;
-      });
-    }
-
-    static void SetInitialized(Job::InitializationLock* const init_lock) noexcept
-    {
-      init_lock->init_mutex.lock();
-      init_lock->is_initialized = true;
-      init_lock->init_mutex.unlock();
-      init_lock->init_cv.notify_all();
-    }
-
     static void WakeUpAllWorkers() noexcept
     {
       g_JobSystem->worker_sleep_cv.notify_all();
@@ -522,12 +502,28 @@ namespace
       return true;
     }
 
+    static void WaitForAllThreadsReady(Job::JobSystemContext* const job_system) noexcept
+    {
+      Job::InitializationLock* const init_lock = &job_system->init_lock;
+
+      if ((init_lock->num_workers_ready.fetch_add(1u, std::memory_order_relaxed) + 1) == g_JobSystem->num_workers)
+      {
+        job_system->is_running.store(true, std::memory_order_relaxed);
+        init_lock->init_cv.notify_all();
+      }
+      else
+      {
+        std::unique_lock<std::mutex> lock(init_lock->init_mutex);
+        init_lock->init_cv.wait(lock, [init_lock]() -> bool {
+          return init_lock->num_workers_ready.load(std::memory_order_relaxed) == g_JobSystem->num_workers;
+        });
+      }
+    }
+
     static void InitializeThread(Job::ThreadLocalState* const worker) noexcept
     {
       worker->thread_id = std::thread([worker]() {
         std::atomic_thread_fence(std::memory_order_acquire);
-
-        g_CurrentWorker = worker;
 
         Job::JobSystemContext* const job_system = g_JobSystem;
 
@@ -564,7 +560,9 @@ namespace
         (void)hr;
 #endif
 
-        system::WaitForAllThreadsReady(&job_system->init_lock);
+        g_CurrentWorker = worker;
+
+        WaitForAllThreadsReady(job_system);
 
         while (job_system->is_running.load(std::memory_order_relaxed))
         {
@@ -764,6 +762,7 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   job_system->needs_delete           = needs_delete;
   job_system->system_alloc_size      = memory_requirements.byte_size;
   job_system->system_alloc_alignment = memory_requirements.alignment;
+  job_system->init_lock.num_workers_ready.store(1u, std::memory_order_relaxed);  // Main thread already initialized.
 
 #if IS_WINDOWS
   SYSTEM_INFO sysinfo;
@@ -835,9 +834,6 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   JobAssert(main_tasks_ptrs.num_elements == 0u, "All elements expected to be allocated out.");
   JobAssert(worker_task_ptrs.num_elements == 0u, "All elements expected to be allocated out.");
   JobAssert(all_task_handles.num_elements == 0u, "All elements expected to be allocated out.");
-
-  job_system->is_running.store(true, std::memory_order_relaxed);
-  system::SetInitialized(&job_system->init_lock);
 
   return Job::InitializationToken{num_threads};
 }
@@ -938,11 +934,14 @@ void Job::Shutdown() noexcept
 
     worker->~ThreadLocalState();
   }
+
+  const bool needs_delete = job_system->needs_delete;
+
   job_system->~JobSystemContext();
   g_CurrentWorker = nullptr;
   g_JobSystem     = nullptr;
 
-  if (job_system->needs_delete)
+  if (needs_delete)
   {
     ::operator delete[](job_system, job_system->system_alloc_size, std::align_val_t{job_system->system_alloc_alignment});
   }
@@ -987,8 +986,8 @@ Task* Job::TaskMake(const TaskFn function, Task* const parent) noexcept
 
 TaskData Job::TaskGetData(Task* const task, const std::size_t alignment) noexcept
 {
-  Byte* const       user_storage_start = static_cast<Byte*>(AlignPointer(task->padding.data() + task->user_data_start, alignment));
-  const Byte* const user_storage_end   = &*task->padding.end();
+  Byte* const       user_storage_start = static_cast<Byte*>(AlignPointer(task->padding + task->user_data_start, alignment));
+  const Byte* const user_storage_end   = std::end(task->padding);
 
   if (user_storage_start <= user_storage_end)
   {
@@ -1185,19 +1184,18 @@ QueueType Job::detail::taskQType(const Task* const task) noexcept
 
 void* Job::detail::taskGetPrivateUserData(Task* const task, const std::size_t alignment) noexcept
 {
-  return AlignPointer(task->padding.data(), alignment);
+  return AlignPointer(task->padding, alignment);
 }
 
 void* Job::detail::taskReservePrivateUserData(Task* const task, const std::size_t num_bytes, const std::size_t alignment) noexcept
 {
-  const Byte* const user_storage_start      = task->padding.data() + task->user_data_start;
-  const Byte* const user_storage_end        = &*task->padding.end();
-  Byte* const       requested_storage_start = static_cast<Byte*>(AlignPointer(user_storage_start, alignment));
+  const Byte* const user_storage_end        = std::end(task->padding);
+  Byte* const       requested_storage_start = static_cast<Byte*>(AlignPointer(task->padding, alignment));
   const Byte* const requested_storage_end   = requested_storage_start + num_bytes;
 
   JobAssert(requested_storage_end <= user_storage_end, "Cannot store object within the task's user storage. ");
 
-  task->user_data_start = static_cast<std::uint8_t>(requested_storage_end - task->padding.data());
+  task->user_data_start = static_cast<std::uint8_t>(requested_storage_end - task->padding);
 
   return requested_storage_start;
 }
