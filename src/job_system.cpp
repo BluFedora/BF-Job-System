@@ -68,12 +68,6 @@ namespace Job
 {
   // Constants
 
-#ifdef __cpp_lib_hardware_interference_size
-  static constexpr std::size_t k_CachelineSize = std::max(std::hardware_constructive_interference_size, std::hardware_destructive_interference_size);
-#else
-  static constexpr std::size_t k_CachelineSize = 64u;
-#endif
-
   static constexpr std::size_t k_ExpectedTaskSize = std::max(std::size_t(128u), k_CachelineSize);
   static constexpr QueueType   k_InvalidQueueType = QueueType(int(QueueType::WORKER) + 1);
 
@@ -520,6 +514,34 @@ namespace
       }
     }
 
+    static void ShutdownThread(Job::JobSystemContext* const job_system)
+    {
+      Job::InitializationLock* const init_lock = &job_system->init_lock;
+
+      if ((init_lock->num_workers_ready.fetch_sub(1u, std::memory_order_relaxed) - 1) == 0u)
+      {
+        const std::uint32_t num_workers = job_system->num_workers;
+
+        for (std::uint32_t i = 0; i < num_workers; ++i)
+        {
+          ThreadLocalState* const worker = job_system->workers + i;
+
+          worker->~ThreadLocalState();
+        }
+
+        const bool needs_delete = job_system->needs_delete;
+
+        job_system->~JobSystemContext();
+        g_CurrentWorker = nullptr;
+        g_JobSystem     = nullptr;
+
+        if (needs_delete)
+        {
+          ::operator delete[](job_system, job_system->system_alloc_size, std::align_val_t{job_system->system_alloc_alignment});
+        }
+      }
+    }
+
     static void InitializeThread(Job::ThreadLocalState* const worker) noexcept
     {
       worker->thread_id = std::thread([worker]() {
@@ -558,6 +580,8 @@ namespace
         const HRESULT hr = SetThreadDescription(handle, thread_name_w);
         JobAssert(SUCCEEDED(hr), "Failed to set thread name.");
         (void)hr;
+
+        worker->thread_id.detach();
 #endif
 
         g_CurrentWorker = worker;
@@ -571,6 +595,8 @@ namespace
             system::Sleep();
           }
         }
+
+        ShutdownThread(job_system);
       });
     }
 
@@ -584,12 +610,6 @@ namespace
     {
       JobAssert(g_CurrentWorker != nullptr, "This thread was not created by the job system.");
       return WorkerID(g_CurrentWorker - g_JobSystem->workers);
-    }
-
-    static void ShutdownThread(Job::ThreadLocalState* const worker) noexcept
-    {
-      // Join throws an exception if the thread is not joinable. this should always be true.
-      worker->thread_id.join();
     }
   }  // namespace worker
 
@@ -915,36 +935,13 @@ void Job::Shutdown() noexcept
   static_assert(std::is_trivially_destructible_v<AtomicTaskPtr>, "AtomicTaskPtr's destructor not called.");
   static_assert(std::is_trivially_destructible_v<TaskHandle>, "TaskHandle's destructor not called.");
 
-  JobSystemContext* const job_system  = g_JobSystem;
-  const std::uint32_t     num_workers = job_system->num_workers;
+  JobSystemContext* const job_system = g_JobSystem;
 
   job_system->is_running.store(false, std::memory_order_relaxed);
-
   // Allow one last update loop to allow them to end.
   system::WakeUpAllWorkers();
-
-  for (std::uint32_t i = 0; i < num_workers; ++i)
-  {
-    ThreadLocalState* const worker = job_system->workers + i;
-
-    if (i != 0)
-    {
-      worker::ShutdownThread(worker);
-    }
-
-    worker->~ThreadLocalState();
-  }
-
-  const bool needs_delete = job_system->needs_delete;
-
-  job_system->~JobSystemContext();
-  g_CurrentWorker = nullptr;
-  g_JobSystem     = nullptr;
-
-  if (needs_delete)
-  {
-    ::operator delete[](job_system, job_system->system_alloc_size, std::align_val_t{job_system->system_alloc_alignment});
-  }
+  // All threads will eventually end execution but that may happen after this function returns.
+  worker::ShutdownThread(job_system);
 }
 
 Task* Job::TaskMake(const TaskFn function, Task* const parent) noexcept

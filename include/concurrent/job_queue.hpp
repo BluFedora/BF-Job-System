@@ -28,7 +28,11 @@
 
 namespace Job
 {
-  static constexpr std::size_t k_FalseSharingPadSize = std::hardware_destructive_interference_size;
+#ifdef __cpp_lib_hardware_interference_size
+  static constexpr std::size_t k_CachelineSize = std::max(std::hardware_constructive_interference_size, std::hardware_destructive_interference_size);
+#else
+  static constexpr std::size_t k_CachelineSize = 64u;
+#endif
 
   template<typename T>
   class LockedQueue
@@ -116,21 +120,21 @@ namespace Job
    private:
     // Writer Thread
 
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ProducerIndex;
-    unsigned char m_Padding0[k_FalseSharingPadSize - sizeof(m_ProducerIndex)];
-    alignas(k_FalseSharingPadSize) size_type m_CachedConsumerIndex;
-    unsigned char m_Padding1[k_FalseSharingPadSize - sizeof(m_CachedConsumerIndex)];
+    alignas(k_CachelineSize) atomic_size_type m_ProducerIndex;
+    unsigned char m_Padding0[k_CachelineSize - sizeof(m_ProducerIndex)];
+    alignas(k_CachelineSize) size_type m_CachedConsumerIndex;
+    unsigned char m_Padding1[k_CachelineSize - sizeof(m_CachedConsumerIndex)];
 
     // Reader Thread
 
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ConsumerIndex;
-    unsigned char m_Padding2[k_FalseSharingPadSize - sizeof(m_ConsumerIndex)];
-    alignas(k_FalseSharingPadSize) size_type m_CachedProducerIndex;
-    unsigned char m_Padding3[k_FalseSharingPadSize - sizeof(m_CachedProducerIndex)];
+    alignas(k_CachelineSize) atomic_size_type m_ConsumerIndex;
+    unsigned char m_Padding2[k_CachelineSize - sizeof(m_ConsumerIndex)];
+    alignas(k_CachelineSize) size_type m_CachedProducerIndex;
+    unsigned char m_Padding3[k_CachelineSize - sizeof(m_CachedProducerIndex)];
 
     // Shared 'Immutable' State
 
-    alignas(k_FalseSharingPadSize) T* m_Data;
+    alignas(k_CachelineSize) T* m_Data;
     size_type m_Capacity;
     size_type m_CapacityMask;
 
@@ -143,6 +147,11 @@ namespace Job
     // NOTE(SR): Not thread safe.
     void Initialize(T* const memory_backing, const size_type capacity) noexcept
     {
+      (void)m_Padding0;
+      (void)m_Padding1;
+      (void)m_Padding2;
+      (void)m_Padding3;
+
       m_ProducerIndex.store(0, std::memory_order_relaxed);
       m_CachedConsumerIndex = 0;
       m_ConsumerIndex.store(0, std::memory_order_relaxed);
@@ -250,11 +259,11 @@ namespace Job
    private:
     atomic_size_type m_ProducerIndex;
     atomic_size_type m_ConsumerIndex;
-    unsigned char    m_Padding0[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
+    unsigned char    m_Padding0[k_CachelineSize - sizeof(atomic_size_type) * 2];
 
     // Shared 'Immutable' State
 
-    alignas(k_FalseSharingPadSize) AtomicT* m_Data;
+    alignas(k_CachelineSize) AtomicT* m_Data;
     size_type m_Capacity;
     size_type m_CapacityMask;
 
@@ -265,6 +274,8 @@ namespace Job
     // NOTE(SR): Not thread safe.
     void Initialize(AtomicT* const memory_backing, const size_type capacity) noexcept
     {
+      (void)m_Padding0;
+
       m_ProducerIndex = 0;
       m_ConsumerIndex = 0;
       m_Data          = memory_backing;
@@ -389,13 +400,13 @@ namespace Job
     };
 
    private:
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ProducerPending;
+    alignas(k_CachelineSize) atomic_size_type m_ProducerPending;
     atomic_size_type m_ProducerCommited;
-    unsigned char    m_Padding0[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ConsumerPending;
+    unsigned char    m_Padding0[k_CachelineSize - sizeof(atomic_size_type) * 2];
+    alignas(k_CachelineSize) atomic_size_type m_ConsumerPending;
     atomic_size_type m_ConsumerCommited;
-    unsigned char    m_Padding1[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
-    alignas(k_FalseSharingPadSize) value_type* m_Queue;
+    unsigned char    m_Padding1[k_CachelineSize - sizeof(atomic_size_type) * 2];
+    alignas(k_CachelineSize) value_type* m_Queue;
     size_type m_Capacity;
 
    public:
@@ -405,6 +416,9 @@ namespace Job
     // NOTE(SR): Not thread safe.
     void Initialize(value_type* const memory_backing, const size_type capacity) noexcept
     {
+      (void)m_Padding0;
+      (void)m_Padding1;
+
       m_ProducerPending.store(0, std::memory_order_relaxed);
       m_ProducerCommited.store(0, std::memory_order_relaxed);
       m_ConsumerPending.store(0, std::memory_order_relaxed);

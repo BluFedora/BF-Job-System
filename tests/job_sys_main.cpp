@@ -10,6 +10,7 @@
 
 #include <memory>   // unique_ptr
 #include <numeric>  // iota
+#include <thread>
 
 // static constexpr int k_NumJobsForTestingOverhead = 6500000;
 static constexpr int k_NumJobsForTestingOverhead = 6500;
@@ -117,7 +118,7 @@ TEST(JobSystemTests, BasicParallelForArray)
   std::iota(example_data.get(), example_data.get() + k_DataSize, 0);
 
   Job::Task* const task = Job::ParallelFor(
-   example_data.get(), k_DataSize, Job::CountSplitter{k_DataSplit}, [multiplier](Job::Task*, int* data, std::size_t data_count) {
+   example_data.get(), k_DataSize, Job::CountSplitter{k_DataSplit}, [](Job::Task*, int* data, std::size_t data_count) {
      EXPECT_LE(data_count, k_DataSplit);
 
      for (std::size_t i = 0; i < data_count; ++i)
@@ -230,16 +231,63 @@ TEST(JobSystemTests, RefCountAPIUsage)
   TaskDecRef(long_running_task);
 }
 
+#include <emscripten/wasm_worker.h>
+
+namespace Job
+{
+  struct EmscriptenThread
+  {
+    emscripten_wasm_worker_t worker;
+    void*                    stack_memory;
+  };
+
+  void ThreadCreate(EmscriptenThread* out_thread, const void*)
+  {
+    // __builtin_wasm_tls_base()
+
+    const size_t tls_data_size     = __builtin_wasm_tls_size();
+    const size_t tls_data_align    = __builtin_wasm_tls_align();
+    const size_t stack_size        = 1024;
+    const size_t total_memory_size = stack_size + tls_data_size;
+
+    out_thread->stack_memory = ::operator new[](total_memory_size, std::align_val_t{tls_data_align});
+
+    out_thread->worker = emscripten_create_wasm_worker(out_thread->stack_memory, total_memory_size);
+  }
+#if 0
+  void ThreadStart(const EmscriptenThread& thread)
+  {
+    emscripten_wasm_worker_post_function_vi(thread.worker, +[](int arg){
+
+      }, reinterpret_cast<int>());
+  }
+#endif
+  template<typename Callback>
+  void ThreadCreate(EmscriptenThread* out_thread, Callback&& callback)
+  {
+  }
+
+}  // namespace Job
+
 TEST(JobSystemTests, SPSCQueue)
 {
-  constexpr auto               backing_storage_capacity = (1 << 23);
-  const std::unique_ptr<int[]> backing_storage          = AllocateIntArray(backing_storage_capacity);
-  const std::unique_ptr<int[]> queue_result             = AllocateIntArray(backing_storage_capacity * 2);
+#if __EMSCRIPTEN__
+  std::printf("__builtin_wasm_tls_size()  = %zu\n", __builtin_wasm_tls_size());
+  std::printf("__builtin_wasm_tls_align() = %zu\n", __builtin_wasm_tls_align());
+  std::printf("__builtin_wasm_tls_base()  = %p\n", __builtin_wasm_tls_base());
+
+  constexpr auto backing_storage_capacity = 256;
+#else
+  constexpr auto backing_storage_capacity = (1 << 23);
+#endif
+
+  const std::unique_ptr<int[]> backing_storage = AllocateIntArray(backing_storage_capacity);
+  const std::unique_ptr<int[]> queue_result    = AllocateIntArray(backing_storage_capacity * 2);
 
   Job::SPSCQueue<int> q{};
 
   q.Initialize(backing_storage.get(), backing_storage_capacity);
-
+#if !__EMSCRIPTEN__
   std::thread t0{[&]() {
     for (int i = 0; i < backing_storage_capacity * 2; ++i)
     {
@@ -262,6 +310,7 @@ TEST(JobSystemTests, SPSCQueue)
 
   t0.join();
   t1.join();
+#endif
 }
 
 // TODO(SR): Test continuations.

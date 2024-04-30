@@ -10,6 +10,14 @@ cmake_minimum_required(VERSION 3.8)
 
 project(BF_Job VERSION 0.0.1 DESCRIPTION "Multithreaded Job System Sub Project of the Engine.")
 
+if (EMSCRIPTEN)
+  # NOTE(SR): Every single object file must have these features enabled to link with exe that uses Web Workers.
+  add_compile_options(
+    "-mbulk-memory" # Needed for `__builtin_wasm_tls_size` and Web Workers
+    "-matomics"     # Needed for Web Workers
+  )
+endif()
+
 add_library(
   BF_Job
   STATIC
@@ -85,15 +93,18 @@ target_link_libraries(
 set_property(TARGET BFJobTesting PROPERTY FOLDER "BluFedora/Test")
 
 if (EMSCRIPTEN)
-  # target_compile_options(
-  #   BF_Job
-  #   PRIVATE
-  #     "-pthread"
-  # )
+  set(EMSCRIPTEN_COMPILE_LINK_FLAGS "-sWASM_WORKERS=1")
+
+  target_compile_options(
+    BFJobTesting
+    PRIVATE
+      "${EMSCRIPTEN_COMPILE_LINK_FLAGS}"
+  )
 
   target_link_options(
     BFJobTesting
     PRIVATE
       "-sTOTAL_MEMORY=33554432"
+      "${EMSCRIPTEN_COMPILE_LINK_FLAGS}"
   )
 endif()
