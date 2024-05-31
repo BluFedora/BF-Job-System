@@ -366,12 +366,12 @@ template&lt;typename T &gt; </div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SPMCDequeStatus::SUCCESS</a>;</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    }</div>
-<div class="ttc" id="aclass_job_1_1_s_p_m_c_deque_html_a0932b130e9a24dc8658ccd999f340282"><div class="ttname"><a href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">Job::SPMCDeque::ElementAt</a></div><div class="ttdeci">AtomicT * ElementAt(const size_type index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00370">job_queue.hpp:370</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_m_c_deque_html_a0932b130e9a24dc8658ccd999f340282"><div class="ttname"><a href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">Job::SPMCDeque::ElementAt</a></div><div class="ttdeci">AtomicT * ElementAt(const size_type index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00369">job_queue.hpp:369</a></div></div>
 <div class="ttc" id="aclass_job_1_1_s_p_m_c_deque_html_a351efa25f85012add79c9845e1764f85"><div class="ttname"><a href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">Job::SPMCDeque::size_type</a></div><div class="ttdeci">std::int64_t size_type</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00247">job_queue.hpp:247</a></div></div>
 <div class="ttc" id="anamespace_job_html_af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1"><div class="ttname"><a href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">Job::SPMCDequeStatus::FAILED_SIZE</a></div><div class="ttdeci">@ FAILED_SIZE</div><div class="ttdoc">Returned from Push, Pop and Steal.</div></div>
 <div class="ttc" id="anamespace_job_html_af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c"><div class="ttname"><a href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">Job::SPMCDequeStatus::SUCCESS</a></div><div class="ttdeci">@ SUCCESS</div><div class="ttdoc">Returned from Push, Pop and Steal.</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00370">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">Job::FAILED_SIZE</a>, <a class="el" href="job__queue_8hpp_source.html#l00259">Job::SPMCDeque&lt; T &gt;::m_CapacityMask</a>, <a class="el" href="job__queue_8hpp_source.html#l00252">Job::SPMCDeque&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00251">Job::SPMCDeque&lt; T &gt;::m_ProducerIndex</a>, and <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">Job::SUCCESS</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00369">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">Job::FAILED_SIZE</a>, <a class="el" href="job__queue_8hpp_source.html#l00259">Job::SPMCDeque&lt; T &gt;::m_CapacityMask</a>, <a class="el" href="job__queue_8hpp_source.html#l00252">Job::SPMCDeque&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00251">Job::SPMCDeque&lt; T &gt;::m_ProducerIndex</a>, and <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">Job::SUCCESS</a>.</p>
 
 </div>
 </div>
@@ -403,48 +403,47 @@ template&lt;typename T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00297">297</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 <div class="fragment"><div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    {</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>      <span class="comment">// return SPMCQueueStatus::FAILED_SIZE;</span></div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> producer_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.load(std::memory_order_relaxed) - 1;</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      <span class="comment">// Reserve the slot at the producer end.</span></div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.store(producer_index, std::memory_order_relaxed);</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      <span class="comment">// The above store needs to happen before this next read</span></div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      <span class="comment">// to have consistent view of the buffer.</span></div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      <span class="comment">//</span></div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      <span class="comment">// `m_ProducerIndex` can only be written to by this thread</span></div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      <span class="comment">// so first reserve a slot then we read what the other threads have to say.</span></div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>      <span class="comment">//</span></div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      std::atomic_thread_fence(std::memory_order_seq_cst);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>      <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> consumer_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.load(std::memory_order_relaxed);</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>      <span class="keywordflow">if</span> (consumer_index &lt;= producer_index)</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>      {</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keywordflow">if</span> (consumer_index == producer_index)  <span class="comment">// Only one item in queue</span></div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        {</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>          <span class="keyword">const</span> <span class="keywordtype">bool</span> successful_pop = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.compare_exchange_strong(consumer_index, consumer_index + 1, std::memory_order_seq_cst, std::memory_order_relaxed);</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>          <span class="keywordflow">if</span> (successful_pop)</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>          {</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>            *out_value = <a class="code hl_function" href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">ElementAt</a>(producer_index)-&gt;load(std::memory_order_relaxed);</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>          }</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>          <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.store(producer_index + 1, std::memory_order_relaxed);</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>          <span class="keywordflow">return</span> successful_pop ? <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SPMCDequeStatus::SUCCESS</a> : <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">SPMCDequeStatus::FAILED_RACE</a>;</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        }</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        *out_value = <a class="code hl_function" href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">ElementAt</a>(producer_index)-&gt;load(std::memory_order_relaxed);</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SPMCDequeStatus::SUCCESS</a>;</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>      }</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>      <span class="comment">// Empty Queue, so restore to canonical empty.</span></div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.store(producer_index + 1, std::memory_order_seq_cst);</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">SPMCDequeStatus::FAILED_SIZE</a>;</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    }</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> producer_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.load(std::memory_order_relaxed) - 1;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>      <span class="comment">// Reserve the slot at the producer end.</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.store(producer_index, std::memory_order_relaxed);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      <span class="comment">// The above store needs to happen before this next read</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      <span class="comment">// to have consistent view of the buffer.</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      <span class="comment">//</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      <span class="comment">// `m_ProducerIndex` can only be written to by this thread</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      <span class="comment">// so first reserve a slot then we read what the other threads have to say.</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      <span class="comment">//</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>      std::atomic_thread_fence(std::memory_order_seq_cst);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>      <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> consumer_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.load(std::memory_order_relaxed);</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      <span class="keywordflow">if</span> (consumer_index &lt;= producer_index)</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>      {</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <span class="keywordflow">if</span> (consumer_index == producer_index)  <span class="comment">// Only one item in queue</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        {</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>          <span class="keyword">const</span> <span class="keywordtype">bool</span> successful_pop = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.compare_exchange_strong(consumer_index, consumer_index + 1, std::memory_order_seq_cst, std::memory_order_relaxed);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>          <span class="keywordflow">if</span> (successful_pop)</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>          {</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>            *out_value = <a class="code hl_function" href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">ElementAt</a>(producer_index)-&gt;load(std::memory_order_relaxed);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>          }</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>          <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.store(producer_index + 1, std::memory_order_relaxed);</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>          <span class="keywordflow">return</span> successful_pop ? <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SPMCDequeStatus::SUCCESS</a> : <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">SPMCDequeStatus::FAILED_RACE</a>;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        }</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        *out_value = <a class="code hl_function" href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">ElementAt</a>(producer_index)-&gt;load(std::memory_order_relaxed);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SPMCDequeStatus::SUCCESS</a>;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>      }</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>      <span class="comment">// Empty Queue, so restore to canonical empty.</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>      <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.store(producer_index + 1, std::memory_order_seq_cst);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">SPMCDequeStatus::FAILED_SIZE</a>;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    }</div>
 <div class="ttc" id="anamespace_job_html_af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d"><div class="ttname"><a href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">Job::SPMCDequeStatus::FAILED_RACE</a></div><div class="ttdeci">@ FAILED_RACE</div><div class="ttdoc">Returned from Pop and Steal.</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00370">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">Job::FAILED_RACE</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">Job::FAILED_SIZE</a>, <a class="el" href="job__queue_8hpp_source.html#l00252">Job::SPMCDeque&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00251">Job::SPMCDeque&lt; T &gt;::m_ProducerIndex</a>, and <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">Job::SUCCESS</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00369">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">Job::FAILED_RACE</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">Job::FAILED_SIZE</a>, <a class="el" href="job__queue_8hpp_source.html#l00252">Job::SPMCDeque&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00251">Job::SPMCDeque&lt; T &gt;::m_ProducerIndex</a>, and <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">Job::SUCCESS</a>.</p>
 
 </div>
 </div>
@@ -474,35 +473,35 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00341">341</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    {</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> read_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.load(std::memory_order_acquire);</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      <span class="comment">// Must fully read `m_ConsumerIndex` before we read the producer owned `m_ProducerIndex`.</span></div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>      std::atomic_thread_fence(std::memory_order_seq_cst);</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> write_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.load(std::memory_order_acquire);</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>      <span class="comment">// if (next_read_index &lt;= write_index)</span></div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>      <span class="keywordflow">if</span> (read_index &lt; write_index)</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>      {</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        <span class="comment">// Must load result before the CAS, since a push can happen concurrently right after the CAS.</span></div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        T result = <a class="code hl_function" href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">ElementAt</a>(read_index)-&gt;load(std::memory_order_relaxed);</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        <span class="comment">// Need strong memory ordering to read the element before the cas.</span></div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.compare_exchange_strong(read_index, read_index + 1, std::memory_order_seq_cst, std::memory_order_relaxed))</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>        {</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>          *out_value = std::move(result);</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>          <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SPMCDequeStatus::SUCCESS</a>;</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        }</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">SPMCDequeStatus::FAILED_RACE</a>;</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>      }</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">SPMCDequeStatus::FAILED_SIZE</a>;</div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00340">340</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    {</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>      <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> read_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.load(std::memory_order_acquire);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>      <span class="comment">// Must fully read `m_ConsumerIndex` before we read the producer owned `m_ProducerIndex`.</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      std::atomic_thread_fence(std::memory_order_seq_cst);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_m_c_deque.html#a351efa25f85012add79c9845e1764f85">size_type</a> write_index = <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a6ff4d55e89a16af516fbdec14ba009d6">m_ProducerIndex</a>.load(std::memory_order_acquire);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>      <span class="comment">// if (next_read_index &lt;= write_index)</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>      <span class="keywordflow">if</span> (read_index &lt; write_index)</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>      {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        <span class="comment">// Must load result before the CAS, since a push can happen concurrently right after the CAS.</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        T result = <a class="code hl_function" href="class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282">ElementAt</a>(read_index)-&gt;load(std::memory_order_relaxed);</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>        <span class="comment">// Need strong memory ordering to read the element before the cas.</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3">m_ConsumerIndex</a>.compare_exchange_strong(read_index, read_index + 1, std::memory_order_seq_cst, std::memory_order_relaxed))</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        {</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>          *out_value = std::move(result);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>          <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">SPMCDequeStatus::SUCCESS</a>;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>        }</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">SPMCDequeStatus::FAILED_RACE</a>;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>      }</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">SPMCDequeStatus::FAILED_SIZE</a>;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00370">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">Job::FAILED_RACE</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">Job::FAILED_SIZE</a>, <a class="el" href="job__queue_8hpp_source.html#l00252">Job::SPMCDeque&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00251">Job::SPMCDeque&lt; T &gt;::m_ProducerIndex</a>, and <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">Job::SUCCESS</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00369">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53a0f399b49987022f02522e78b0401292d">Job::FAILED_RACE</a>, <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1">Job::FAILED_SIZE</a>, <a class="el" href="job__queue_8hpp_source.html#l00252">Job::SPMCDeque&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00251">Job::SPMCDeque&lt; T &gt;::m_ProducerIndex</a>, and <a class="el" href="namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c">Job::SUCCESS</a>.</p>
 
 </div>
 </div>
@@ -532,14 +531,14 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00370">370</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    {</div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#ae50f12fa1ace4799216ff0bced8f9ffe">m_Data</a> + (index &amp; <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a16d542dc854defa6671cc94bf9b88b38">m_CapacityMask</a>);</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00369">369</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    {</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#ae50f12fa1ace4799216ff0bced8f9ffe">m_Data</a> + (index &amp; <a class="code hl_variable" href="class_job_1_1_s_p_m_c_deque.html#a16d542dc854defa6671cc94bf9b88b38">m_CapacityMask</a>);</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00259">Job::SPMCDeque&lt; T &gt;::m_CapacityMask</a>, and <a class="el" href="job__queue_8hpp_source.html#l00257">Job::SPMCDeque&lt; T &gt;::m_Data</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00297">Job::SPMCDeque&lt; T &gt;::Pop()</a>, <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00341">Job::SPMCDeque&lt; T &gt;::Steal()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00297">Job::SPMCDeque&lt; T &gt;::Pop()</a>, <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00340">Job::SPMCDeque&lt; T &gt;::Steal()</a>.</p>
 
 </div>
 </div>
@@ -568,7 +567,7 @@ template&lt;typename T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00251">251</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00297">Job::SPMCDeque&lt; T &gt;::Pop()</a>, <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00341">Job::SPMCDeque&lt; T &gt;::Steal()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00297">Job::SPMCDeque&lt; T &gt;::Pop()</a>, <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00340">Job::SPMCDeque&lt; T &gt;::Steal()</a>.</p>
 
 </div>
 </div>
@@ -596,7 +595,7 @@ template&lt;typename T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00252">252</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00297">Job::SPMCDeque&lt; T &gt;::Pop()</a>, <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00341">Job::SPMCDeque&lt; T &gt;::Steal()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00297">Job::SPMCDeque&lt; T &gt;::Pop()</a>, <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00340">Job::SPMCDeque&lt; T &gt;::Steal()</a>.</p>
 
 </div>
 </div>
@@ -650,7 +649,7 @@ template&lt;typename T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00257">257</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00370">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00369">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>.</p>
 
 </div>
 </div>
@@ -706,7 +705,7 @@ template&lt;typename T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00259">259</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00370">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00369">Job::SPMCDeque&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00266">Job::SPMCDeque&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00279">Job::SPMCDeque&lt; T &gt;::Push()</a>.</p>
 
 </div>
 </div>
@@ -719,7 +718,7 @@ template&lt;typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_job.html">Job</a></li><li class="navelem"><a class="el" href="class_job_1_1_s_p_m_c_deque.html">SPMCDeque</a></li>
-    <li class="footer">Generated on Thu Mar 28 2024 08:45:00 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Fri May 31 2024 06:59:18 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
