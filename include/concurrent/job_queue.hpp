@@ -296,7 +296,6 @@ namespace Job
 
     SPMCDequeStatus Pop(T* const out_value)
     {
-      // return SPMCQueueStatus::FAILED_SIZE;
       const size_type producer_index = m_ProducerIndex.load(std::memory_order_relaxed) - 1;
 
       // Reserve the slot at the producer end.
