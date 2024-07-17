@@ -2,14 +2,14 @@ var searchData=
 [
   ['m_5fcachedconsumerindex_0',['m_CachedConsumerIndex',['../class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4',1,'Job::SPSCQueue']]],
   ['m_5fcachedproducerindex_1',['m_CachedProducerIndex',['../class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20',1,'Job::SPSCQueue']]],
-  ['m_5fcapacity_2',['m_Capacity',['../class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666',1,'Job::SPSCQueue::m_Capacity()'],['../class_job_1_1_s_p_m_c_deque.html#a81b6d298fbb97cc4162c1af8ac9e7197',1,'Job::SPMCDeque::m_Capacity()'],['../class_job_1_1_m_p_m_c_queue.html#a413162ffce3f9d79d97620ae4cbfc85a',1,'Job::MPMCQueue::m_Capacity()'],['../class_job_1_1_locked_queue.html#a120a8b8d6e7ab099d7245b284b81cd8d',1,'Job::LockedQueue::m_Capacity()']]],
+  ['m_5fcapacity_2',['m_Capacity',['../class_job_1_1_locked_queue.html#a120a8b8d6e7ab099d7245b284b81cd8d',1,'Job::LockedQueue::m_Capacity()'],['../class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666',1,'Job::SPSCQueue::m_Capacity()'],['../class_job_1_1_s_p_m_c_deque.html#a81b6d298fbb97cc4162c1af8ac9e7197',1,'Job::SPMCDeque::m_Capacity()'],['../class_job_1_1_m_p_m_c_queue.html#a413162ffce3f9d79d97620ae4cbfc85a',1,'Job::MPMCQueue::m_Capacity()']]],
   ['m_5fcapacitymask_3',['m_CapacityMask',['../class_job_1_1_locked_queue.html#a754e183c962b02c6229c0b2cba97076b',1,'Job::LockedQueue::m_CapacityMask()'],['../class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb',1,'Job::SPSCQueue::m_CapacityMask()'],['../class_job_1_1_s_p_m_c_deque.html#a16d542dc854defa6671cc94bf9b88b38',1,'Job::SPMCDeque::m_CapacityMask()']]],
   ['m_5fconsumercommited_4',['m_ConsumerCommited',['../class_job_1_1_m_p_m_c_queue.html#a9132a552d8a01bbd531f7183a32169c6',1,'Job::MPMCQueue']]],
   ['m_5fconsumerindex_5',['m_ConsumerIndex',['../class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb',1,'Job::SPSCQueue::m_ConsumerIndex()'],['../class_job_1_1_s_p_m_c_deque.html#a5aa529233702b6e5e23821b1ab5890d3',1,'Job::SPMCDeque::m_ConsumerIndex()']]],
   ['m_5fconsumerpending_6',['m_ConsumerPending',['../class_job_1_1_m_p_m_c_queue.html#abd503991a2ca23cc47392933bb9092e0',1,'Job::MPMCQueue']]],
   ['m_5fdata_7',['m_Data',['../class_job_1_1_locked_queue.html#a184abe388df099a6c03417279045ea70',1,'Job::LockedQueue::m_Data()'],['../class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3',1,'Job::SPSCQueue::m_Data()'],['../class_job_1_1_s_p_m_c_deque.html#ae50f12fa1ace4799216ff0bced8f9ffe',1,'Job::SPMCDeque::m_Data()']]],
   ['m_5flock_8',['m_Lock',['../class_job_1_1_locked_queue.html#a50761d935636b9d57e8002d4475c0065',1,'Job::LockedQueue']]],
-  ['m_5fpadding0_9',['m_Padding0',['../class_job_1_1_m_p_m_c_queue.html#a01a0f2819be0e739c67f97e2451e2cce',1,'Job::MPMCQueue::m_Padding0()'],['../class_job_1_1_s_p_m_c_deque.html#ae11940988b14a6da9de5cd81dc9823c1',1,'Job::SPMCDeque::m_Padding0()'],['../class_job_1_1_s_p_s_c_queue.html#a972a126b57b237e370136bb29b4ad4f6',1,'Job::SPSCQueue::m_Padding0()']]],
+  ['m_5fpadding0_9',['m_Padding0',['../class_job_1_1_s_p_s_c_queue.html#a972a126b57b237e370136bb29b4ad4f6',1,'Job::SPSCQueue::m_Padding0()'],['../class_job_1_1_m_p_m_c_queue.html#a01a0f2819be0e739c67f97e2451e2cce',1,'Job::MPMCQueue::m_Padding0()'],['../class_job_1_1_s_p_m_c_deque.html#ae11940988b14a6da9de5cd81dc9823c1',1,'Job::SPMCDeque::m_Padding0()']]],
   ['m_5fpadding1_10',['m_Padding1',['../class_job_1_1_s_p_s_c_queue.html#a7449b92fc6cf9dcf91400357af181ad8',1,'Job::SPSCQueue::m_Padding1()'],['../class_job_1_1_m_p_m_c_queue.html#af65f30acc14d3fd395e66a8eb36acf6f',1,'Job::MPMCQueue::m_Padding1()']]],
   ['m_5fpadding2_11',['m_Padding2',['../class_job_1_1_s_p_s_c_queue.html#a4384d8618ddbab31d31e344b4e65bdc5',1,'Job::SPSCQueue']]],
   ['m_5fpadding3_12',['m_Padding3',['../class_job_1_1_s_p_s_c_queue.html#aa41e98b41c5f06a00862015b0b596029',1,'Job::SPSCQueue']]],
@@ -21,7 +21,6 @@ var searchData=
   ['m_5fwriteindex_18',['m_WriteIndex',['../class_job_1_1_locked_queue.html#a72f1452a9017098a1e79e911f2c5b4fb',1,'Job::LockedQueue']]],
   ['main_5fqueue_19',['main_queue',['../namespace_job.html#a049da5bae449544c7b17c3aceeee3a79',1,'Job::JobSystemContext']]],
   ['main_5fqueue_5fsize_20',['main_queue_size',['../namespace_job.html#aa03f5b7291117b5e37a2a7f3f20d26d1',1,'Job::JobSystemCreateOptions']]],
-  ['max_5fcount_21',['max_count',['../struct_job_1_1_count_splitter.html#af3b79ca73bd9970436f34274879e196b',1,'Job::CountSplitter']]],
-  ['max_5fsize_22',['max_size',['../struct_job_1_1_data_size_splitter.html#a77907626ce2e79fdbeb00ed9691fd8a3',1,'Job::DataSizeSplitter']]],
-  ['memory_23',['memory',['../namespace_job.html#ad78b67acabbfeffa4fa359033f9e283e',1,'Job::TaskPool']]]
+  ['max_5fcount_21',['max_count',['../struct_job_1_1_splitter.html#a04c3de8c77fa46ee6c0450823de5b9f5',1,'Job::Splitter']]],
+  ['memory_22',['memory',['../namespace_job.html#ad78b67acabbfeffa4fa359033f9e283e',1,'Job::TaskPool']]]
 ];

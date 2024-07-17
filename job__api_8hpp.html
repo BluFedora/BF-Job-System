@@ -115,17 +115,11 @@ Classes</h2></td></tr>
 <tr class="memdesc:struct_job_1_1_task_data"><td class="mdescLeft">&#160;</td><td class="mdescRight">A buffer for user-data you can write to, maybe large enough to store task data inline.  <a href="namespace_job.html#struct_job_1_1_task_data">More...</a><br /></td></tr>
 <tr class="separator:struct_job_1_1_task_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_index_iterator.html">Job::IndexIterator</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range of indices to iterator over.  <a href="struct_job_1_1_index_iterator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_index_range.html">Job::IndexRange</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range of indices to iterator over.  <a href="struct_job_1_1_index_range.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_static_count_splitter.html">Job::StaticCountSplitter&lt; max_count &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_count_splitter.html">Job::CountSplitter</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_static_data_size_splitter.html">Job::StaticDataSizeSplitter&lt; T, max_size &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_data_size_splitter.html">Job::DataSizeSplitter&lt; T &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_splitter.html">Job::Splitter</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -190,9 +184,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a381064dc945c407e9c80bf1685dd3ee7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a381064dc945c407e9c80bf1685dd3ee7">Job::TaskAddContinuation</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *const self, <a class="el" href="struct_job_1_1_task.html">Task</a> *const continuation, const <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">QueueType</a> queue=QueueType::NORMAL) noexcept</td></tr>
 <tr class="memdesc:a381064dc945c407e9c80bf1685dd3ee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 'continuation' is a task that will be added to a queue after the 'self' <a class="el" href="struct_job_1_1_task.html">Task</a> has finished running.  <a href="namespace_job.html#a381064dc945c407e9c80bf1685dd3ee7">More...</a><br /></td></tr>
 <tr class="separator:a381064dc945c407e9c80bf1685dd3ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a136f0bed0a70a7389c7e5ce4821a2629"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_job_1_1_task.html">Task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a136f0bed0a70a7389c7e5ce4821a2629">Job::TaskSubmit</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *const self, const <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">QueueType</a> queue=QueueType::NORMAL) noexcept</td></tr>
-<tr class="memdesc:a136f0bed0a70a7389c7e5ce4821a2629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespace_job.html#a136f0bed0a70a7389c7e5ce4821a2629">More...</a><br /></td></tr>
-<tr class="separator:a136f0bed0a70a7389c7e5ce4821a2629"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b5a16b048e98b8a71dfc778d2c8f564"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a2b5a16b048e98b8a71dfc778d2c8f564"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#a2b5a16b048e98b8a71dfc778d2c8f564">Job::TaskDataAs</a> (Task *const task) noexcept</td></tr>
 <tr class="memdesc:a2b5a16b048e98b8a71dfc778d2c8f564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the user-data pointer as the T you specified. No safety is guaranteed, this is just a dumb cast.  <a href="namespace_job.html#a2b5a16b048e98b8a71dfc778d2c8f564">More...</a><br /></td></tr>
@@ -229,6 +220,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a0f5c158177872f256a96aba479a04b0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a0f5c158177872f256a96aba479a04b0f">Job::TickMainQueue</a> () noexcept</td></tr>
 <tr class="memdesc:a0f5c158177872f256a96aba479a04b0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tasks from the main queue until it is empty.  <a href="namespace_job.html#a0f5c158177872f256a96aba479a04b0f">More...</a><br /></td></tr>
 <tr class="separator:a0f5c158177872f256a96aba479a04b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e34b8468f9b731c3a56b6848587f4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ae3e34b8468f9b731c3a56b6848587f4d">Job::TaskSubmit</a> (<a class="el" href="struct_job_1_1_task.html">Task</a> *const self, const <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">QueueType</a> queue=QueueType::NORMAL) noexcept</td></tr>
+<tr class="memdesc:ae3e34b8468f9b731c3a56b6848587f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the task to the specified queue.  <a href="namespace_job.html#ae3e34b8468f9b731c3a56b6848587f4d">More...</a><br /></td></tr>
+<tr class="separator:ae3e34b8468f9b731c3a56b6848587f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2961eee80e34c41deade7924657154b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a2961eee80e34c41deade7924657154b8">Job::WaitOnTask</a> (const <a class="el" href="struct_job_1_1_task.html">Task</a> *const task) noexcept</td></tr>
 <tr class="memdesc:a2961eee80e34c41deade7924657154b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified <code>task</code> is done executing. This function will block but do work while being blocked so there is no wasted time.  <a href="namespace_job.html#a2961eee80e34c41deade7924657154b8">More...</a><br /></td></tr>
 <tr class="separator:a2961eee80e34c41deade7924657154b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,6 +242,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a9e954e52e77f521bd679ceedee2e9a3b"><td class="memTemplItemLeft" align="right" valign="top">Task *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#a9e954e52e77f521bd679ceedee2e9a3b">Job::ParallelFor</a> (const std::size_t start, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</td></tr>
 <tr class="memdesc:a9e954e52e77f521bd679ceedee2e9a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel for algorithm, splits the work up recursively splitting based on the <code>splitter</code> passed in.  <a href="namespace_job.html#a9e954e52e77f521bd679ceedee2e9a3b">More...</a><br /></td></tr>
 <tr class="separator:a9e954e52e77f521bd679ceedee2e9a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b466a5f1cf2cd500569cb8bc394a29"><td class="memTemplParams" colspan="2">template&lt;typename Splitter , typename Reducer &gt; </td></tr>
+<tr class="memitem:af3b466a5f1cf2cd500569cb8bc394a29"><td class="memTemplItemLeft" align="right" valign="top">Task *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#af3b466a5f1cf2cd500569cb8bc394a29">Job::ParallelReduce</a> (const std::size_t start, const std::size_t count, Splitter &amp;&amp;splitter, Reducer &amp;&amp;reduce, Task *parent=nullptr)</td></tr>
+<tr class="separator:af3b466a5f1cf2cd500569cb8bc394a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d0b26b28577004e29e759e45c2425e2"><td class="memTemplParams" colspan="2">template&lt;typename T , typename F , typename S &gt; </td></tr>
 <tr class="memitem:a9d0b26b28577004e29e759e45c2425e2"><td class="memTemplItemLeft" align="right" valign="top">Task *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#a9d0b26b28577004e29e759e45c2425e2">Job::ParallelFor</a> (T *const data, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</td></tr>
 <tr class="memdesc:a9d0b26b28577004e29e759e45c2425e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel for algorithm, splits the work up recursively splitting based on the <code>splitter</code> passed in. This version is a helper for array data.  <a href="namespace_job.html#a9d0b26b28577004e29e759e45c2425e2">More...</a><br /></td></tr>
@@ -293,19 +290,19 @@ Use 0 to indicate using the number of cores available on the system. </td></tr>
 <td class="fieldname">
 main_queue_size</td>
 <td class="fielddoc">
-Number of tasks in the job system's <code><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba186495f7da296bf880df3a22a492b378" title="Tasks in this queue will only be run by the main thread.">QueueType::MAIN</a></code> queue. (Must be non-zero power of two) </td></tr>
+Number of tasks in the job system's <code><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba186495f7da296bf880df3a22a492b378" title="Tasks in this queue will only be run by the main thread.">QueueType::MAIN</a></code> queue. (Must be power of two) </td></tr>
 <tr><td class="fieldtype">
 <a id="a65f68139b9fe13d51e749b62b85b5614" name="a65f68139b9fe13d51e749b62b85b5614"></a>uint16_t</td>
 <td class="fieldname">
 normal_queue_size</td>
 <td class="fielddoc">
-Number of tasks in each worker's <code><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba1e23852820b9154316c7c06e2b7ba051" title="Tasks in this queue will run on either the main or worker threads.">QueueType::NORMAL</a></code> queue. (Must be non-zero power of two) </td></tr>
+Number of tasks in each worker's <code><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba1e23852820b9154316c7c06e2b7ba051" title="Tasks in this queue will run on either the main or worker threads.">QueueType::NORMAL</a></code> queue. (Must be power of two) </td></tr>
 <tr><td class="fieldtype">
 <a id="ad7f499ac9f75090b562e4d30afa070ed" name="ad7f499ac9f75090b562e4d30afa070ed"></a>uint16_t</td>
 <td class="fieldname">
 worker_queue_size</td>
 <td class="fielddoc">
-Number of tasks in each worker's <code><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba531886e636f1aa36e0fc96d49f342613" title="Tasks in this queue will never run on the main thread.">QueueType::WORKER</a></code> queue. (Must be non-zero power of two) </td></tr>
+Number of tasks in each worker's <code><a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fba531886e636f1aa36e0fc96d49f342613" title="Tasks in this queue will never run on the main thread.">QueueType::WORKER</a></code> queue. (Must be power of two) </td></tr>
 <tr><td class="fieldtype">
 <a id="a0882adb15126b4fe2a94c21f744b6525" name="a0882adb15126b4fe2a94c21f744b6525"></a>uint64_t</td>
 <td class="fieldname">
@@ -356,7 +353,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_3456df1ae52d53fc831eb405b13e9d7d.html">concurrent</a></li><li class="navelem"><a class="el" href="job__api_8hpp.html">job_api.hpp</a></li>
-    <li class="footer">Generated on Fri May 31 2024 06:59:18 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Jul 17 2024 04:39:44 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

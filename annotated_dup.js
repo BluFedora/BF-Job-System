@@ -1,8 +1,6 @@
 var annotated_dup =
 [
     [ "Job", "namespace_job.html", [
-      [ "CountSplitter", "struct_job_1_1_count_splitter.html", "struct_job_1_1_count_splitter" ],
-      [ "DataSizeSplitter", "struct_job_1_1_data_size_splitter.html", "struct_job_1_1_data_size_splitter" ],
       [ "IndexIterator", "struct_job_1_1_index_iterator.html", "struct_job_1_1_index_iterator" ],
       [ "IndexRange", "struct_job_1_1_index_range.html", "struct_job_1_1_index_range" ],
       [ "InitializationLock", "namespace_job.html#struct_job_1_1_initialization_lock", "namespace_job_struct_job_1_1_initialization_lock_dup" ],
@@ -12,10 +10,9 @@ var annotated_dup =
       [ "JobSystemMemoryRequirements", "struct_job_1_1_job_system_memory_requirements.html", "struct_job_1_1_job_system_memory_requirements" ],
       [ "LockedQueue", "class_job_1_1_locked_queue.html", "class_job_1_1_locked_queue" ],
       [ "MPMCQueue", "class_job_1_1_m_p_m_c_queue.html", "class_job_1_1_m_p_m_c_queue" ],
+      [ "Splitter", "struct_job_1_1_splitter.html", "struct_job_1_1_splitter" ],
       [ "SPMCDeque", "class_job_1_1_s_p_m_c_deque.html", "class_job_1_1_s_p_m_c_deque" ],
       [ "SPSCQueue", "class_job_1_1_s_p_s_c_queue.html", "class_job_1_1_s_p_s_c_queue" ],
-      [ "StaticCountSplitter", "struct_job_1_1_static_count_splitter.html", "struct_job_1_1_static_count_splitter" ],
-      [ "StaticDataSizeSplitter", "struct_job_1_1_static_data_size_splitter.html", "struct_job_1_1_static_data_size_splitter" ],
       [ "Task", "struct_job_1_1_task.html", "struct_job_1_1_task" ],
       [ "TaskData", "namespace_job.html#struct_job_1_1_task_data", "namespace_job_struct_job_1_1_task_data_dup" ],
       [ "TaskFnStorage", "union_job_1_1_task_fn_storage.html", "union_job_1_1_task_fn_storage" ],
