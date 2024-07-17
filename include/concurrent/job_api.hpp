@@ -86,9 +86,9 @@ namespace Job
   struct JobSystemCreateOptions
   {
     std::uint16_t num_threads        = 0;     //!< Use 0 to indicate using the number of cores available on the system.
-    std::uint16_t main_queue_size    = 256;   //!< Number of tasks in the job system's `QueueType::MAIN` queue. (Must be non-zero power of two)
-    std::uint16_t normal_queue_size  = 1024;  //!< Number of tasks in each worker's `QueueType::NORMAL` queue. (Must be non-zero power of two)
-    std::uint16_t worker_queue_size  = 32;    //!< Number of tasks in each worker's `QueueType::WORKER` queue. (Must be non-zero power of two)
+    std::uint16_t main_queue_size    = 256;   //!< Number of tasks in the job system's `QueueType::MAIN` queue. (Must be power of two)
+    std::uint16_t normal_queue_size  = 1024;  //!< Number of tasks in each worker's `QueueType::NORMAL` queue. (Must be power of two)
+    std::uint16_t worker_queue_size  = 32;    //!< Number of tasks in each worker's `QueueType::WORKER` queue. (Must be power of two)
     std::uint64_t job_steal_rng_seed = 0u;    //!< The RNG for work queue stealing will be seeded with this value.
   };
 
@@ -229,25 +229,6 @@ namespace Job
    *   The queue you want the task to run on.
    */
   void TaskAddContinuation(Task* const self, Task* const continuation, const QueueType queue = QueueType::NORMAL) noexcept;
-
-  /*!
-   * @brief
-   *   Submits the task to the specified queue.
-   *
-   *   The Task is not required to have been created on the same thread that submits.
-   *
-   *   You may now wait on this task using 'WaitOnTask'.
-   *
-   * @param self
-   *   The task to submit.
-   *
-   * @param queue
-   *   The queue you want the task to run on.
-   *
-   * @return Task*
-   *   Returns the task passed in.
-   */
-  Task* TaskSubmit(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
 
   /*!
    * @brief
@@ -417,6 +398,25 @@ namespace Job
 
   /*!
    * @brief
+   *   Submits the task to the specified queue.
+   *
+   *   The Task is not required to have been created on the same thread that submits.
+   *
+   *   You may now wait on this task using 'WaitOnTask'.
+   *
+   * @param self
+   *   The task to submit.
+   *
+   * @param queue
+   *   The queue you want the task to run on.
+   *
+   * @return Task*
+   *   Returns the task passed in.
+   */
+  void TaskSubmit(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
+
+  /*!
+   * @brief
    *   Waits until the specified `task` is done executing.
    *   This function will block but do work while being blocked so there is no wasted time.
    *
@@ -507,16 +507,14 @@ namespace Job
 
   // Parallel Algorithms API
 
-  /*!
-   * @brief
-   *   Range of indices to iterator over.
-   */
   struct IndexIterator
   {
     std::size_t idx;
 
     IndexIterator(const std::size_t idx) :
-      idx{idx} {}
+      idx{idx}
+    {
+    }
 
     IndexIterator& operator++() { return ++idx, *this; }
     IndexIterator  operator++(int) { return IndexIterator{idx++}; }
@@ -525,6 +523,10 @@ namespace Job
     friend bool    operator!=(const IndexIterator& lhs, const IndexIterator& rhs) { return lhs.idx != rhs.idx; }
   };
 
+  /*!
+   * @brief
+   *   Range of indices to iterator over.
+   */
   struct IndexRange
   {
     std::size_t idx_bgn;
@@ -535,50 +537,53 @@ namespace Job
     IndexIterator end() const { return IndexIterator(idx_end); }
   };
 
-  template<std::size_t max_count>
-  struct StaticCountSplitter
+  struct Splitter
   {
-    static_assert(max_count > 0, "The 'max_count' must be at least 1.");
-
-    bool operator()(const std::size_t count) const { return count > max_count; }
-  };
-
-  struct CountSplitter
-  {
-    static CountSplitter EvenSplit(const std::size_t total_num_items, std::size_t num_items_per_thread = 1u)
+    /*!
+     * @brief
+     *   Splits work evenly across the threads depending on the number of workers.
+     *
+     *   Ex:
+     *     total_num_items       = 400
+     *     num_groups_per_thread = 2
+     *     num_threads           = 4
+     *
+     *    Leads to 8 groups of work each with 50 items.
+     *    If num_groups_per_thread was changed to 1 then you will get 4 groups of work each with 100 items.
+     *
+     * @param total_num_items
+     *   The total number of items being processed.
+     *
+     * @param num_groups_per_thread
+     *   The number of groups of items to be created per thread.
+     *
+     * @return
+     *   A splitter object for `Job::ParallelFor`.
+     */
+    static Splitter EvenSplit(const std::size_t total_num_items, std::size_t num_groups_per_thread = 1u)
     {
-      if (num_items_per_thread < 1u)
+      if (num_groups_per_thread < 1u)
       {
-        num_items_per_thread = 1u;
+        num_groups_per_thread = 1u;
       }
 
-      return CountSplitter{(total_num_items / num_items_per_thread) / NumWorkers()};
+      return Splitter{(total_num_items / num_groups_per_thread) / NumWorkers()};
     }
 
-    std::size_t max_count;
-
-    CountSplitter(std::size_t count) :
-      max_count{count}
+    static constexpr Splitter MaxItemsPerTask(const std::size_t max_items)
     {
+      return Splitter{max_items};
     }
 
-    bool operator()(const std::size_t count) const { return count > max_count; }
-  };
+    template<typename T>
+    static constexpr Splitter MaxDataSize(const std::size_t max_data_size)
+    {
+      return Splitter{max_data_size / sizeof(T)};
+    }
 
-  template<typename T, std::size_t max_size>
-  struct StaticDataSizeSplitter
-  {
-    static_assert(max_size >= sizeof(T), "The 'max_size' must be at least the size of a single object.");
+    std::size_t max_count = 0u;
 
-    bool operator()(const std::size_t count) const { return sizeof(T) * count > max_size; }
-  };
-
-  template<typename T>
-  struct DataSizeSplitter
-  {
-    std::size_t max_size;
-
-    bool operator()(const std::size_t count) const { return sizeof(T) * count > max_size; }
+    constexpr bool operator()(const std::size_t count) const { return count > max_count; }
   };
 
   /*!
@@ -624,19 +629,49 @@ namespace Job
          const std::size_t right_count   = count - left_count;
          const QueueType   parent_q_type = detail::taskQType(task);
 
-         if (left_count)
-         {
-           TaskSubmit(ParallelFor(start, left_count, splitter, fn, task), parent_q_type);
-         }
-
-         if (right_count)
-         {
-           TaskSubmit(ParallelFor(start + left_count, right_count, splitter, fn, task), parent_q_type);
-         }
+         TaskSubmit(ParallelFor(start, left_count, splitter, fn, task), parent_q_type);
+         TaskSubmit(ParallelFor(start + left_count, right_count, splitter, fn, task), parent_q_type);
        }
        else
        {
          fn(task, IndexRange{start, start + count});
+       }
+     },
+     parent);
+  }
+
+  template<typename Splitter, typename Reducer>
+  Task* ParallelReduce(const std::size_t start, const std::size_t count, Splitter&& splitter, Reducer&& reduce, Task* parent = nullptr)
+  {
+    return TaskMake(
+     [=, splitter = std::move(splitter), reduce = std::move(reduce)](Task* const task) {
+       // NOTE(SR):
+       //   Could also have a stride that increases each step.
+       //   This would be bad for Cuda GPU (Shared Memory Bank Conflict)
+       //   But good on CPU with better locality.
+       //   https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf
+
+       const QueueType parent_q_type = detail::taskQType(task);
+       std::size_t     count_left    = count;
+       while (count_left > 1)
+       {
+         const std::size_t stride = count_left / 2;
+
+         const auto ReduceRange = [stride, &reduce](Task* const sub_task, const IndexRange range) {
+           for (const std::size_t index : range)
+           {
+             reduce(sub_task, index, index + stride);
+           }
+         };
+
+         TaskSubmitAndWait(ParallelFor(start, stride, splitter, ReduceRange, nullptr), parent_q_type);
+
+         if ((count_left & 1) != 0)
+         {
+           reduce(task, start, start + count_left - 1);
+         }
+
+         count_left = stride;
        }
      },
      parent);

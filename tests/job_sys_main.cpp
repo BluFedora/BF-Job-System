@@ -65,18 +65,18 @@ TEST(JobSystemTests, JobCreationOverheadSerial)
     }
   });
 
-  WaitOnTask(TaskSubmit(root));
+  TaskSubmitAndWait(root);
 }
 
 // Tests the time it takes to creating empty jobs recursively split by the ParallelFor.
 TEST(JobSystemTests, JobCreationOverheadParallelFor)
 {
   Job::Task* const task = Job::ParallelFor(
-   0, k_NumJobsForTestingOverhead, Job::CountSplitter{0}, [](Job::Task* parent, const Job::IndexRange& index_range) {
+   0, k_NumJobsForTestingOverhead, Job::Splitter::MaxItemsPerTask(0), [](Job::Task* parent, const Job::IndexRange& index_range) {
      /* NO-OP */
    });
 
-  Job::WaitOnTask(Job::TaskSubmit(task));
+  TaskSubmitAndWait(task);
 }
 
 // Tests `parallel_for` making sure each index is hit once.
@@ -89,14 +89,14 @@ TEST(JobSystemTests, BasicParallelForRange)
   std::fill_n(example_data.get(), k_DataSize, 0);
 
   Job::Task* const task = Job::ParallelFor(
-   0, k_DataSize, Job::CountSplitter{k_DataSplit}, [&example_data](Job::Task*, const Job::IndexRange index_range) {
+   0, k_DataSize,  Job::Splitter::MaxItemsPerTask(k_DataSplit), [&example_data](Job::Task*, const Job::IndexRange index_range) {
      for (const std::size_t i : index_range)
      {
        ++example_data[i];
      }
    });
 
-  Job::WaitOnTask(Job::TaskSubmit(task));
+  TaskSubmitAndWait(task);
 
   for (int i = 0; i < k_DataSize; ++i)
   {
@@ -117,7 +117,7 @@ TEST(JobSystemTests, BasicParallelForArray)
   std::iota(example_data.get(), example_data.get() + k_DataSize, 0);
 
   Job::Task* const task = Job::ParallelFor(
-   example_data.get(), k_DataSize, Job::CountSplitter{k_DataSplit}, [multiplier](Job::Task*, int* data, std::size_t data_count) {
+   example_data.get(), k_DataSize, Job::Splitter::MaxItemsPerTask(k_DataSplit), [multiplier](Job::Task*, int* data, std::size_t data_count) {
      EXPECT_LE(data_count, k_DataSplit);
 
      for (std::size_t i = 0; i < data_count; ++i)
@@ -126,7 +126,7 @@ TEST(JobSystemTests, BasicParallelForArray)
      }
    });
 
-  Job::WaitOnTask(Job::TaskSubmit(task));
+  TaskSubmitAndWait(task);
 
   for (int i = 0; i < k_DataSize; ++i)
   {
@@ -157,7 +157,7 @@ TEST(JobSystemTests, BasicParallelInvoke)
      }
    });
 
-  Job::WaitOnTask(Job::TaskSubmit(task));
+  TaskSubmitAndWait(task);
 
   for (int i = 0; i < k_DataSize; ++i)
   {

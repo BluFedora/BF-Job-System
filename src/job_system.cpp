@@ -177,14 +177,14 @@ namespace Job
 
   struct ThreadLocalState
   {
-    SPMCDeque<TaskPtr>     normal_queue;
-    SPMCDeque<TaskPtr>     worker_queue;
-    TaskPool               task_allocator;
-    TaskHandle*            allocated_tasks;
-    TaskHandleType         num_allocated_tasks;
-    Job::ThreadLocalState* last_stolen_worker;
-    pcg_state_setseq_64    rng_state;
-    std::thread            thread_id;
+    SPMCDeque<TaskPtr>  normal_queue;
+    SPMCDeque<TaskPtr>  worker_queue;
+    TaskPool            task_allocator;
+    TaskHandle*         allocated_tasks;
+    TaskHandleType      num_allocated_tasks;
+    ThreadLocalState*   last_stolen_worker;
+    pcg_state_setseq_64 rng_state;
+    std::thread         thread_id;
   };
 
   struct InitializationLock
@@ -1014,7 +1014,28 @@ void Job::TaskAddContinuation(Task* const self, Task* const continuation, const 
   }
 }
 
-Task* Job::TaskSubmit(Task* const self, QueueType queue) noexcept
+void Job::TaskIncRef(Task* const task) noexcept
+{
+  const auto old_ref_count = task->ref_count.fetch_add(1, std::memory_order_relaxed);
+
+  JobAssert(old_ref_count >= std::int16_t(1) || task->q_type == k_InvalidQueueType, "First call to taskIncRef should not happen after the task has been submitted.");
+  (void)old_ref_count;
+}
+
+void Job::TaskDecRef(Task* const task) noexcept
+{
+  const auto old_ref_count = task->ref_count.fetch_sub(1, std::memory_order_relaxed);
+
+  JobAssert(old_ref_count >= 0, "taskDecRef: Called too many times.");
+  (void)old_ref_count;
+}
+
+bool Job::TaskIsDone(const Task* const task) noexcept
+{
+  return task->num_unfinished_tasks.load(std::memory_order_acquire) == -1;
+}
+
+void Job::TaskSubmit(Task* const self, QueueType queue) noexcept
 {
   JobAssert(self->q_type == k_InvalidQueueType, "A task cannot be submitted to a queue multiple times.");
 
@@ -1082,29 +1103,6 @@ Task* Job::TaskSubmit(Task* const self, QueueType queue) noexcept
       system::WakeUpOneWorker();
     }
   }
-
-  return self;
-}
-
-void Job::TaskIncRef(Task* const task) noexcept
-{
-  const auto old_ref_count = task->ref_count.fetch_add(1, std::memory_order_relaxed);
-
-  JobAssert(old_ref_count >= std::int16_t(1) || task->q_type == k_InvalidQueueType, "First call to taskIncRef should not happen after the task has been submitted.");
-  (void)old_ref_count;
-}
-
-void Job::TaskDecRef(Task* const task) noexcept
-{
-  const auto old_ref_count = task->ref_count.fetch_sub(1, std::memory_order_relaxed);
-
-  JobAssert(old_ref_count >= 0, "taskDecRef: Called too many times.");
-  (void)old_ref_count;
-}
-
-bool Job::TaskIsDone(const Task* const task) noexcept
-{
-  return task->num_unfinished_tasks.load(std::memory_order_acquire) == -1;
 }
 
 void Job::WaitOnTask(const Task* const task) noexcept
@@ -1126,7 +1124,8 @@ void Job::WaitOnTask(const Task* const task) noexcept
 
 void Job::TaskSubmitAndWait(Task* const self, const QueueType queue) noexcept
 {
-  WaitOnTask(TaskSubmit(self, queue));
+  TaskSubmit(self, queue);
+  WaitOnTask(self);
 }
 
 // Member Fn Definitions
