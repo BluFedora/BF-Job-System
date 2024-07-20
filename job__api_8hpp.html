@@ -235,9 +235,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a4f97b7424b855833a25294046caf3c3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a4f97b7424b855833a25294046caf3c3b">Job::YieldTimeSlice</a> () noexcept</td></tr>
 <tr class="memdesc:a4f97b7424b855833a25294046caf3c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asks the OS to yield this threads execution to another thread on the current cpu core.  <a href="namespace_job.html#a4f97b7424b855833a25294046caf3c3b">More...</a><br /></td></tr>
 <tr class="separator:a4f97b7424b855833a25294046caf3c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19246b27d729b8f0451b6a58a3121358"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
-<tr class="memitem:a19246b27d729b8f0451b6a58a3121358"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job_1_1detail.html#a19246b27d729b8f0451b6a58a3121358">Job::detail::taskLambdaWrapper</a> (Task *const task)</td></tr>
-<tr class="separator:a19246b27d729b8f0451b6a58a3121358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e954e52e77f521bd679ceedee2e9a3b"><td class="memTemplParams" colspan="2">template&lt;typename F , typename S &gt; </td></tr>
 <tr class="memitem:a9e954e52e77f521bd679ceedee2e9a3b"><td class="memTemplItemLeft" align="right" valign="top">Task *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_job.html#a9e954e52e77f521bd679ceedee2e9a3b">Job::ParallelFor</a> (const std::size_t start, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</td></tr>
 <tr class="memdesc:a9e954e52e77f521bd679ceedee2e9a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel for algorithm, splits the work up recursively splitting based on the <code>splitter</code> passed in.  <a href="namespace_job.html#a9e954e52e77f521bd679ceedee2e9a3b">More...</a><br /></td></tr>
@@ -256,8 +253,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >API for a multi-threading job system. </p>
-<dl class="section author"><dt>Author</dt><dd>Shareef Raheem (<a href="https://blufedora.github.io/">https://blufedora.github.io/</a>) </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2020-09-03</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Shareef Raheem (<a href="https://blufedora.github.io/">https://blufedora.github.io/</a>)</dd></dl>
 <p>References: [<a href="https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/">https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/</a>] [<a href="https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/">https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/</a>] [<a href="https://github.com/cdwfs/cds_job/blob/master/cds_job.h">https://github.com/cdwfs/cds_job/blob/master/cds_job.h</a>] [<a href="https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h">https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h</a>] [<a href="https://fabiensanglard.net/doom3_bfg/threading.php">https://fabiensanglard.net/doom3_bfg/threading.php</a>] [<a href="https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine">https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine</a>]</p>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020-2024 Shareef Abdoul-Raheem </dd></dl>
 
@@ -276,7 +272,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p >The runtime configuration for the <a class="el" href="namespace_job.html">Job</a> System. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00086">86</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00085">85</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -328,7 +324,7 @@ The RNG for work queue stealing will be seeded with this value. </td></tr>
 <p >If you store non trivial data remember to manually call it's destructor at the end of the task function.</p>
 <p >If you call 'TaskEmplaceData' or 'TaskSetData' and need to update the data once more be sure to destruct the previous contents correctly if the data stored in the buffer is non trivial. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00179">179</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00178">178</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -353,7 +349,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_3456df1ae52d53fc831eb405b13e9d7d.html">concurrent</a></li><li class="navelem"><a class="el" href="job__api_8hpp.html">job_api.hpp</a></li>
-    <li class="footer">Generated on Wed Jul 17 2024 04:39:44 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Jul 20 2024 08:53:23 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

@@ -50,7 +50,6 @@ var job__api_8hpp =
     [ "TaskSubmitAndWait", "job__api_8hpp.html#a21ff0cc938b7cd7efc74be4e7c82ed74", null ],
     [ "PauseProcessor", "job__api_8hpp.html#ad3555facf3b46ce9ac3a4a0ae845b35d", null ],
     [ "YieldTimeSlice", "job__api_8hpp.html#a4f97b7424b855833a25294046caf3c3b", null ],
-    [ "taskLambdaWrapper", "job__api_8hpp.html#a19246b27d729b8f0451b6a58a3121358", null ],
     [ "ParallelFor", "job__api_8hpp.html#a9e954e52e77f521bd679ceedee2e9a3b", null ],
     [ "ParallelReduce", "job__api_8hpp.html#af3b466a5f1cf2cd500569cb8bc394a29", null ],
     [ "ParallelFor", "job__api_8hpp.html#a9d0b26b28577004e29e759e45c2425e2", null ],

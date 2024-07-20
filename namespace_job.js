@@ -5,7 +5,6 @@ var namespace_job =
       [ "taskGetPrivateUserData", "namespace_job_1_1detail.html#a66102c88da40e2c6b008bc97259d0d39", null ],
       [ "taskReservePrivateUserData", "namespace_job_1_1detail.html#a5ed74505a8477781f8e252f6f05755ca", null ],
       [ "mainQueueTryRunTask", "namespace_job_1_1detail.html#a8209af0db62c504d004ec94bf3889442", null ],
-      [ "taskLambdaWrapper", "namespace_job_1_1detail.html#a19246b27d729b8f0451b6a58a3121358", null ],
       [ "assertHandler", "namespace_job_1_1detail.html#a8b5a2a4d52b357006e9a502363831998", null ]
     ] ],
     [ "IndexIterator", "struct_job_1_1_index_iterator.html", "struct_job_1_1_index_iterator" ],

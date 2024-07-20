@@ -12,5 +12,5 @@ var struct_job_1_1_task =
     [ "owning_worker", "struct_job_1_1_task.html#a8086b14d1aaca8dfc1934f68a5faf0de", null ],
     [ "q_type", "struct_job_1_1_task.html#a40f07d88edbde168f40a127417678479", null ],
     [ "user_data_start", "struct_job_1_1_task.html#ae5d9d9fbf5796c0a5d7f7bb920440eb6", null ],
-    [ "padding", "struct_job_1_1_task.html#aaaeb35dcc7d0c3afd01cb1d1c553eb9e", null ]
+    [ "user_data", "struct_job_1_1_task.html#ab11f82707d1ab7c0da517631f4186c2f", null ]
 ];
