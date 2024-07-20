@@ -46,7 +46,7 @@ var namespace_job =
       [ "FAILED_SIZE", "namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1", null ]
     ] ],
     [ "NumSystemThreads", "namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6", null ],
-    [ "Initialize", "namespace_job.html#a10e900d5d6bbe064a7197d291ef9a201", null ],
+    [ "Initialize", "namespace_job.html#a398a7fd0221839f321c00864238b9ab2", null ],
     [ "ProcessorArchitectureName", "namespace_job.html#a77a997446d916b36e7478c7627694a51", null ],
     [ "NumWorkers", "namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06", null ],
     [ "CurrentWorker", "namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b", null ],

@@ -92,6 +92,9 @@ $(document).ready(function(){initNavTree('job__system_8cpp.html',''); initResiza
   <div class="headertitle"><div class="title">job_system.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>API for a multi-threading job system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="job__api_8hpp_source.html">concurrent/job_api.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="job__assert_8hpp_source.html">concurrent/job_assert.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="job__queue_8hpp_source.html">concurrent/job_queue.hpp</a>&quot;</code><br />
@@ -177,7 +180,15 @@ Variables</h2></td></tr>
 <tr class="memitem:abfa74abcec62d6d1b3d06edec0cf3b0d"><td class="memItemLeft" align="right" valign="top">static thread_local <a class="el" href="namespace_job.html#struct_job_1_1_thread_local_state">Job::ThreadLocalState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="job__system_8cpp.html#abfa74abcec62d6d1b3d06edec0cf3b0d">g_CurrentWorker</a> = nullptr</td></tr>
 <tr class="separator:abfa74abcec62d6d1b3d06edec0cf3b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >API for a multi-threading job system. </p>
+<dl class="section author"><dt>Author</dt><dd>Shareef Rahem (<a href="https://blufedora.github.io/">https://blufedora.github.io/</a>) </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2020-09-03</dd></dl>
+<p>References: [<a href="https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/">https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/</a>] [<a href="https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/">https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/</a>] [<a href="https://github.com/cdwfs/cds_job/blob/master/cds_job.h">https://github.com/cdwfs/cds_job/blob/master/cds_job.h</a>] [<a href="https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h">https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h</a>] [<a href="https://fabiensanglard.net/doom3_bfg/threading.php">https://fabiensanglard.net/doom3_bfg/threading.php</a>] [<a href="https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine">https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine</a>]</p>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020-2024 Shareef Abdoul-Raheem </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="union_job_1_1_task_memory_block" id="union_job_1_1_task_memory_block"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#union_job_1_1_task_memory_block">&#9670;&nbsp;</a></span>Job::TaskMemoryBlock</h2>
 
@@ -517,7 +528,7 @@ num_available_jobs</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="job__system_8cpp.html">job_system.cpp</a></li>
-    <li class="footer">Generated on Sat Jul 20 2024 08:53:23 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Jul 20 2024 22:58:27 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
