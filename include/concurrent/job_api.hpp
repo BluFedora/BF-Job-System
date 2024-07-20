@@ -120,7 +120,7 @@ namespace Job
    * @return
    *   The `InitializationToken` can be used by other subsystem to verify that the Job System has been initialized.
    */
-  InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirementss = {}, void* const memory = nullptr) noexcept;
+  InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements = {}, void* const memory = nullptr) noexcept;
 
   /*!
    * @brief
@@ -408,9 +408,6 @@ namespace Job
    *
    * @param queue
    *   The queue you want the task to run on.
-   *
-   * @return Task*
-   *   Returns the task passed in.
    */
   void TaskSubmit(Task* const self, const QueueType queue = QueueType::NORMAL) noexcept;
 
