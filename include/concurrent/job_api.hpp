@@ -2,7 +2,6 @@
 /*!
  * @file   job_api.hpp
  * @author Shareef Raheem (https://blufedora.github.io/)
- * @date   2020-09-03
  * @brief
  *    API for a multi-threading job system.
  *
@@ -484,21 +483,16 @@ namespace Job
     TaskDataAs<T>(task)->~T();
   }
 
-  namespace detail
-  {
-    template<typename Closure>
-    static void taskLambdaWrapper(Task* const task)
-    {
-      Closure& function = *static_cast<Closure*>(detail::taskGetPrivateUserData(task, alignof(Closure)));
-      function(task);
-      function.~Closure();
-    }
-  }  // namespace detail
-
   template<typename Closure>
   Task* TaskMake(Closure&& function, Task* const parent)
   {
-    Task* const task         = TaskMake(&detail::taskLambdaWrapper<Closure>, parent);
+    Task* const task = TaskMake(
+     +[](Task* const task) -> void {
+       Closure& function = *static_cast<Closure*>(detail::taskGetPrivateUserData(task, alignof(Closure)));
+       function(task);
+       function.~Closure();
+     },
+     parent);
     void* const private_data = detail::taskReservePrivateUserData(task, sizeof(Closure), alignof(Closure));
     new (private_data) Closure(std::forward<Closure>(function));
 

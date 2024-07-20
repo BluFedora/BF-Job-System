@@ -117,7 +117,9 @@ namespace Job
   static_assert(sizeof(TaskPtr) == sizeof(std::uint16_t) * 2u, "Expected to be the size of two uint16's.");
   static_assert(sizeof(AtomicTaskPtr) == sizeof(TaskPtr) && AtomicTaskPtr::is_always_lock_free, "Expected to be lock-free so no extra data members should have been added.");
 
-  // NOTE(SR): So that 32bit and 64bit build have the same `Task` layout.
+  // NOTE(SR):
+  //   So that 32bit and 64bit build have the same `Task` layout.
+  //   Allows for the the user data Task::padding to always be 32byte aligned.
   union TaskFnStorage
   {
     TaskFn        fn;
@@ -145,16 +147,16 @@ namespace Job
 
     static constexpr std::size_t k_TaskPaddingDataSize = k_ExpectedTaskSize - k_SizeOfMembers;
 
-    TaskFnStorage fn_storage;                      //!< The function that will be run.
-    AtomicInt32   num_unfinished_tasks;            //!< The number of children tasks.
-    AtomicInt32   ref_count;                       //!< Keeps the task from being garbage collected.
-    TaskPtr       parent;                          //!< The parent task, can be null.
-    AtomicTaskPtr first_continuation;              //!< Head of linked list of tasks to be added on completion.
-    TaskPtr       next_continuation;               //!< Next element in the linked list of continuations.
-    WorkerID      owning_worker;                   //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
-    QueueType     q_type;                          //!< The queue type this task has been submitted to, initialized to k_InvalidQueueType.
-    std::uint8_t  user_data_start;                 //!< Offset into `padding` that can be used for user data.
-    Byte          padding[k_TaskPaddingDataSize];  //!< User data storage.
+    TaskFnStorage fn_storage;                        //!< The function that will be run.
+    AtomicInt32   num_unfinished_tasks;              //!< The number of children tasks.
+    AtomicInt32   ref_count;                         //!< Keeps the task from being garbage collected.
+    TaskPtr       parent;                            //!< The parent task, can be null.
+    AtomicTaskPtr first_continuation;                //!< Head of linked list of tasks to be added on completion.
+    TaskPtr       next_continuation;                 //!< Next element in the linked list of continuations.
+    WorkerID      owning_worker;                     //!< The worker this task has been created on, needed for `Task::toTaskPtr` and various assertions.
+    QueueType     q_type;                            //!< The queue type this task has been submitted to, initialized to k_InvalidQueueType.
+    std::uint8_t  user_data_start;                   //!< Offset into `padding` that can be used for user data.
+    Byte          user_data[k_TaskPaddingDataSize];  //!< User data storage.
 
     Task(WorkerID worker, TaskFn fn, TaskPtr parent) noexcept;
   };
@@ -986,8 +988,8 @@ Task* Job::TaskMake(const TaskFn function, Task* const parent) noexcept
 
 TaskData Job::TaskGetData(Task* const task, const std::size_t alignment) noexcept
 {
-  Byte* const       user_storage_start = static_cast<Byte*>(AlignPointer(task->padding + task->user_data_start, alignment));
-  const Byte* const user_storage_end   = std::end(task->padding);
+  Byte* const       user_storage_start = static_cast<Byte*>(AlignPointer(task->user_data + task->user_data_start, alignment));
+  const Byte* const user_storage_end   = std::end(task->user_data);
 
   if (user_storage_start <= user_storage_end)
   {
@@ -1140,7 +1142,7 @@ Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) noexcept :
   owning_worker{worker},
   q_type{k_InvalidQueueType}, /* Set to a valid value in 'Job::submitTask' */
   user_data_start{0},
-  padding{}
+  user_data{}
 {
 }
 
@@ -1183,18 +1185,18 @@ QueueType Job::detail::taskQType(const Task* const task) noexcept
 
 void* Job::detail::taskGetPrivateUserData(Task* const task, const std::size_t alignment) noexcept
 {
-  return AlignPointer(task->padding, alignment);
+  return AlignPointer(task->user_data, alignment);
 }
 
 void* Job::detail::taskReservePrivateUserData(Task* const task, const std::size_t num_bytes, const std::size_t alignment) noexcept
 {
-  const Byte* const user_storage_end        = std::end(task->padding);
-  Byte* const       requested_storage_start = static_cast<Byte*>(AlignPointer(task->padding, alignment));
+  const Byte* const user_storage_end        = std::end(task->user_data);
+  Byte* const       requested_storage_start = static_cast<Byte*>(AlignPointer(task->user_data, alignment));
   const Byte* const requested_storage_end   = requested_storage_start + num_bytes;
 
   JobAssert(requested_storage_end <= user_storage_end, "Cannot store object within the task's user storage. ");
 
-  task->user_data_start = static_cast<std::uint8_t>(requested_storage_end - task->padding);
+  task->user_data_start = static_cast<std::uint8_t>(requested_storage_end - task->user_data);
 
   return requested_storage_start;
 }
