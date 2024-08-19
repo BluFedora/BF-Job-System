@@ -1158,8 +1158,7 @@ Task::Task(WorkerID worker, TaskFn fn, TaskPtr parent) noexcept :
 #define NativePause() __asm__ __volatile__("yield")
 #endif
 #else
-// #error "Unsupported platform"
-#define NativePause std::this_thread::yield  // Implemnted w/ SwitchToThread on Win32.
+#define NativePause std::this_thread::yield
 #endif
 
 void Job::PauseProcessor() noexcept
