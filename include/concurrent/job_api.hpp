@@ -84,7 +84,8 @@ namespace Job
    */
   struct JobSystemCreateOptions
   {
-    std::uint16_t num_threads        = 0;     //!< Use 0 to indicate using the number of cores available on the system.
+    std::uint8_t  num_user_threads   = 0;     //!< The number of threads not owned by this system but wants access to the Job API (The thread must call Job::SetupUserThread).
+    std::uint8_t  num_threads        = 0;     //!< Use 0 to indicate using the number of cores available on the system.
     std::uint16_t main_queue_size    = 256;   //!< Number of tasks in the job system's `QueueType::MAIN` queue. (Must be power of two)
     std::uint16_t normal_queue_size  = 1024;  //!< Number of tasks in each worker's `QueueType::NORMAL` queue. (Must be power of two)
     std::uint16_t worker_queue_size  = 32;    //!< Number of tasks in each worker's `QueueType::WORKER` queue. (Must be power of two)
@@ -121,6 +122,18 @@ namespace Job
    *   The `InitializationToken` can be used by other subsystem to verify that the Job System has been initialized.
    */
   InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements = {}, void* const memory = nullptr) noexcept;
+
+  /*!
+   * @brief
+   *   Must be called in the callstack of the thread to be setup.
+   * 
+   *   Sets up the state needed to be able to use the job system from this thread.
+   *   The job system will not start up until all user threads have been setup.
+   *
+   * @warning
+   *   Must never be called by either a thread setup by this system or the main thread.
+   */
+  void SetupUserThread();
 
   /*!
    * @brief

@@ -200,15 +200,17 @@ namespace Job
   {
     // State that wont be changing during the system's runtime.
 
-    ThreadLocalState*  workers;
-    std::uint32_t      num_workers;
-    std::uint32_t      num_tasks_per_worker;
-    InitializationLock init_lock;
-    const char*        sys_arch_str;
-    std::size_t        system_alloc_size;
-    std::size_t        system_alloc_alignment;
-    bool               needs_delete;
-    std::atomic_bool   is_running;
+    ThreadLocalState*    workers;
+    std::uint32_t        num_workers;
+    std::uint32_t        num_owned_workers;
+    std::atomic_uint32_t num_user_threads_setup;
+    std::uint32_t        num_tasks_per_worker;
+    InitializationLock   init_lock;
+    const char*          sys_arch_str;
+    std::size_t          system_alloc_size;
+    std::size_t          system_alloc_alignment;
+    bool                 needs_delete;
+    std::atomic_bool     is_running;
 
     // Shared Mutable State
 
@@ -522,15 +524,14 @@ namespace
       }
     }
 
-    static void InitializeThread(Job::ThreadLocalState* const worker) noexcept
+    static Job::JobSystemContext* WorkerThreadSetup(Job::ThreadLocalState* const worker)
     {
-      worker->thread_id = std::thread([worker]() {
-        std::atomic_thread_fence(std::memory_order_acquire);
+      std::atomic_thread_fence(std::memory_order_acquire);
 
-        Job::JobSystemContext* const job_system = g_JobSystem;
+      Job::JobSystemContext* const job_system = g_JobSystem;
 
 #if IS_WINDOWS
-        const HANDLE handle = static_cast<HANDLE>(worker->thread_id.native_handle());
+      const HANDLE handle = GetCurrentThread();
 
 #if 0
           // Put each thread on to dedicated core
@@ -546,25 +547,35 @@ namespace
             // JobAssert(priority_result != 0, "Failed to set thread priority.");
           }
 #endif
+      // Name the thread
 
-        // Name the thread
+      const unsigned int thread_index = unsigned int(worker - job_system->workers);
 
-        const int threads_index = int(worker - job_system->workers);
+      char    thread_name[32]                    = u8"";
+      wchar_t thread_name_w[sizeof(thread_name)] = L"";
 
-        char      thread_name[32]                    = u8"";
-        wchar_t   thread_name_w[sizeof(thread_name)] = L"";
-        const int c_size                             = std::snprintf(thread_name, sizeof(thread_name), "JobSystem_%i", threads_index);
+      const char* const format = thread_index >= job_system->num_owned_workers ? "Job::User_%u" : "Job::Owned_%u";
 
-        std::mbstowcs(thread_name_w, thread_name, c_size);
+      const int c_size = std::snprintf(thread_name, sizeof(thread_name), format, thread_index);
 
-        const HRESULT hr = SetThreadDescription(handle, thread_name_w);
-        JobAssert(SUCCEEDED(hr), "Failed to set thread name.");
-        (void)hr;
+      std::mbstowcs(thread_name_w, thread_name, c_size);
+
+      const HRESULT hr = SetThreadDescription(handle, thread_name_w);
+      JobAssert(SUCCEEDED(hr), "Failed to set thread name.");
+      (void)hr;
 #endif
 
-        g_CurrentWorker = worker;
+      g_CurrentWorker = worker;
 
-        WaitForAllThreadsReady(job_system);
+      WaitForAllThreadsReady(job_system);
+
+      return job_system;
+    }
+
+    static void InitializeThread(Job::ThreadLocalState* const worker) noexcept
+    {
+      worker->thread_id = std::thread([worker]() {
+        Job::JobSystemContext* const job_system = WorkerThreadSetup(worker);
 
         while (job_system->is_running.load(std::memory_order_relaxed))
         {
@@ -684,7 +695,7 @@ namespace
   {
     static Job::WorkerID WorkerCount(const Job::JobSystemCreateOptions& options) noexcept
     {
-      return options.num_threads ? options.num_threads : Job::WorkerID(Job::NumSystemThreads());
+      return (options.num_threads ? options.num_threads : Job::WorkerID(Job::NumSystemThreads())) + options.num_user_threads;
     }
 
     static std::uint16_t NumTasksPerWorker(const Job::JobSystemCreateOptions& options) noexcept
@@ -744,6 +755,7 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   const JobSystemCreateOptions& options              = memory_requirements.options;
   const std::uint64_t           rng_seed             = options.job_steal_rng_seed;
   const WorkerID                num_threads          = config::WorkerCount(options);
+  const WorkerID                owned_threads        = num_threads - options.num_user_threads;
   const std::uint16_t           num_tasks_per_worker = config::NumTasksPerWorker(options);
   const std::uint32_t           total_num_tasks      = config::TotalNumTasks(num_threads, num_tasks_per_worker);
 
@@ -756,8 +768,10 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   Span<TaskHandle>       all_task_handles = LinearAlloc<TaskHandle>(alloc_ptr, total_num_tasks);
 
   job_system->main_queue.Initialize(SpanAlloc(&main_tasks_ptrs, options.main_queue_size), options.main_queue_size);
-  job_system->workers              = all_workers.ptr;
-  job_system->num_workers          = num_threads;
+  job_system->workers           = all_workers.ptr;
+  job_system->num_workers       = num_threads;
+  job_system->num_owned_workers = owned_threads;
+  job_system->num_user_threads_setup.store(0, std::memory_order_relaxed);
   job_system->num_tasks_per_worker = num_tasks_per_worker;
   job_system->sys_arch_str         = "Unknown Arch";
   job_system->num_available_jobs.store(0, std::memory_order_relaxed);
@@ -825,10 +839,9 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   g_CurrentWorker = main_thread_worker;
 
   std::atomic_thread_fence(std::memory_order_release);
-  for (std::uint64_t worker_index = 1; worker_index < num_threads; ++worker_index)
+  for (std::uint64_t worker_index = 1; worker_index < owned_threads; ++worker_index)
   {
-    ThreadLocalState* const worker = job_system->workers + worker_index;
-    worker::InitializeThread(worker);
+    worker::InitializeThread(job_system->workers + worker_index);
   }
 
   JobAssert(all_workers.num_elements == 0u, "All elements expected to be allocated out.");
@@ -837,7 +850,17 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   JobAssert(worker_task_ptrs.num_elements == 0u, "All elements expected to be allocated out.");
   JobAssert(all_task_handles.num_elements == 0u, "All elements expected to be allocated out.");
 
-  return Job::InitializationToken{num_threads};
+  return Job::InitializationToken{owned_threads};
+}
+
+void Job::SetupUserThread()
+{
+  Job::JobSystemContext* const job_system     = g_JobSystem;
+  const std::uint32_t          user_thread_id = job_system->num_owned_workers + job_system->num_user_threads_setup.fetch_add(1, std::memory_order_relaxed);
+
+  JobAssert(user_thread_id < job_system->num_workers, "Too many calls to `SetupUserThread`.");
+
+  worker::WorkerThreadSetup(job_system->workers + user_thread_id);
 }
 
 std::size_t Job::NumSystemThreads() noexcept
@@ -918,7 +941,7 @@ void Job::Shutdown() noexcept
   static_assert(std::is_trivially_destructible_v<TaskHandle>, "TaskHandle's destructor not called.");
 
   JobSystemContext* const job_system  = g_JobSystem;
-  const std::uint32_t     num_workers = job_system->num_workers;
+  const std::uint32_t     num_workers = job_system->num_owned_workers;
 
   job_system->is_running.store(false, std::memory_order_relaxed);
 
