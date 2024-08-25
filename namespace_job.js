@@ -47,6 +47,7 @@ var namespace_job =
     ] ],
     [ "NumSystemThreads", "namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6", null ],
     [ "Initialize", "namespace_job.html#a398a7fd0221839f321c00864238b9ab2", null ],
+    [ "SetupUserThread", "namespace_job.html#a9aab6d68cfe21248160a0c09f9ef8807", null ],
     [ "ProcessorArchitectureName", "namespace_job.html#a77a997446d916b36e7478c7627694a51", null ],
     [ "NumWorkers", "namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06", null ],
     [ "CurrentWorker", "namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b", null ],

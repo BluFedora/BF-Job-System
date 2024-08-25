@@ -2,6 +2,8 @@ var namespace_job_struct_job_1_1_job_system_context_dup =
 [
     [ "workers", "namespace_job.html#a7136616a9c9b73ef1f3ef9b28e75f76e", null ],
     [ "num_workers", "namespace_job.html#a8c3b1e96a4c0f2e3a90b75dd8255dc3b", null ],
+    [ "num_owned_workers", "namespace_job.html#a808a82ccc85b15a526ccd4f61c78c9c0", null ],
+    [ "num_user_threads_setup", "namespace_job.html#a3396012a3ef6794963935337f59b6549", null ],
     [ "num_tasks_per_worker", "namespace_job.html#a938eecb18a6a3d6262aec76547e296ca", null ],
     [ "init_lock", "namespace_job.html#a0d5db0ce93f3106774a05370d8bde73d", null ],
     [ "sys_arch_str", "namespace_job.html#a99e33c9b5b872813774ce73d839c23bd", null ],

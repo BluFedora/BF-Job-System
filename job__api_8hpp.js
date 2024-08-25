@@ -1,7 +1,8 @@
 var job__api_8hpp =
 [
     [ "Job::JobSystemCreateOptions", "namespace_job.html#struct_job_1_1_job_system_create_options", [
-      [ "num_threads", "namespace_job.html#ae66ffe1e31258baf98a4db395ed6bff4", null ],
+      [ "num_user_threads", "namespace_job.html#acecbb32a0825377b5d3d6fce2ec8fe61", null ],
+      [ "num_threads", "namespace_job.html#aeb8b880de236239bdcbfb5c42252bb02", null ],
       [ "main_queue_size", "namespace_job.html#aa03f5b7291117b5e37a2a7f3f20d26d1", null ],
       [ "normal_queue_size", "namespace_job.html#a65f68139b9fe13d51e749b62b85b5614", null ],
       [ "worker_queue_size", "namespace_job.html#ad7f499ac9f75090b562e4d30afa070ed", null ],
@@ -28,6 +29,7 @@ var job__api_8hpp =
     [ "mainQueueTryRunTask", "job__api_8hpp.html#a8209af0db62c504d004ec94bf3889442", null ],
     [ "NumSystemThreads", "job__api_8hpp.html#ada79d1288c5458f1451a414ec89d2ba6", null ],
     [ "Initialize", "job__api_8hpp.html#a398a7fd0221839f321c00864238b9ab2", null ],
+    [ "SetupUserThread", "job__api_8hpp.html#a9aab6d68cfe21248160a0c09f9ef8807", null ],
     [ "ProcessorArchitectureName", "job__api_8hpp.html#a77a997446d916b36e7478c7627694a51", null ],
     [ "NumWorkers", "job__api_8hpp.html#a5b606baa9964c9afd3e30294ccf7dc06", null ],
     [ "CurrentWorker", "job__api_8hpp.html#aaee5888463e3bb5cff3eff5f80d5265b", null ],
