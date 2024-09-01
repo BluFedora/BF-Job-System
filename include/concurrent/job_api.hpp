@@ -126,7 +126,7 @@ namespace Job
   /*!
    * @brief
    *   Must be called in the callstack of the thread to be setup.
-   * 
+   *
    *   Sets up the state needed to be able to use the job system from this thread.
    *   The job system will not start up until all user threads have been setup.
    *
@@ -166,6 +166,18 @@ namespace Job
    *   The current id of the current thread.
    */
   WorkerID CurrentWorker() noexcept;
+
+  /*!
+   * @brief
+   *   Allows for querying if we are currently executing in the main thread.
+   *
+   * @return
+   *   True if we are in the main thread, false otherwise.
+   *
+   * @warning
+   *   Must only be called from a thread registered with the job system.
+   */
+  bool IsMainThread() noexcept;
 
   /*!
    * @brief

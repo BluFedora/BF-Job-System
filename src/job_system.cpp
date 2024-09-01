@@ -931,6 +931,11 @@ WorkerID Job::CurrentWorker() noexcept
   return WorkerID(g_CurrentWorker - g_JobSystem->workers);
 }
 
+bool Job::IsMainThread() noexcept
+{
+  return worker::IsMainThread(g_CurrentWorker);
+}
+
 void Job::Shutdown() noexcept
 {
   JobAssert(g_JobSystem != nullptr, "Cannot shutdown when never initialized.");
