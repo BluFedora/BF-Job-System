@@ -175,6 +175,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aaee5888463e3bb5cff3eff5f80d5265b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_job.html#ac7727f146165ae76b95cc50196df236e">WorkerID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b">Job::CurrentWorker</a> () noexcept</td></tr>
 <tr class="memdesc:aaee5888463e3bb5cff3eff5f80d5265b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current id of the current thread. This function can be called by any thread concurrently.  <a href="namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b">More...</a><br /></td></tr>
 <tr class="separator:aaee5888463e3bb5cff3eff5f80d5265b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0695eb307a63108942e4e634cae11f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ad0695eb307a63108942e4e634cae11f2">Job::IsMainThread</a> () noexcept</td></tr>
+<tr class="memdesc:ad0695eb307a63108942e4e634cae11f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows for querying if we are currently executing in the main thread.  <a href="namespace_job.html#ad0695eb307a63108942e4e634cae11f2">More...</a><br /></td></tr>
+<tr class="separator:ad0695eb307a63108942e4e634cae11f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d923fa374392c284942ea7d8f90e466"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a9d923fa374392c284942ea7d8f90e466">Job::Shutdown</a> () noexcept</td></tr>
 <tr class="memdesc:a9d923fa374392c284942ea7d8f90e466"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initialize'.  <a href="namespace_job.html#a9d923fa374392c284942ea7d8f90e466">More...</a><br /></td></tr>
 <tr class="separator:a9d923fa374392c284942ea7d8f90e466"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -333,7 +336,7 @@ The RNG for work queue stealing will be seeded with this value. </td></tr>
 <p >If you store non trivial data remember to manually call it's destructor at the end of the task function.</p>
 <p >If you call 'TaskEmplaceData' or 'TaskSetData' and need to update the data once more be sure to destruct the previous contents correctly if the data stored in the buffer is non trivial. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00191">191</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00200">200</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -358,7 +361,7 @@ The size of the buffer. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_3456df1ae52d53fc831eb405b13e9d7d.html">concurrent</a></li><li class="navelem"><a class="el" href="job__api_8hpp.html">job_api.hpp</a></li>
-    <li class="footer">Generated on Sun Aug 25 2024 08:43:11 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 21:17:27 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

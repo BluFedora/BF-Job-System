@@ -33,6 +33,7 @@ var job__api_8hpp =
     [ "ProcessorArchitectureName", "job__api_8hpp.html#a77a997446d916b36e7478c7627694a51", null ],
     [ "NumWorkers", "job__api_8hpp.html#a5b606baa9964c9afd3e30294ccf7dc06", null ],
     [ "CurrentWorker", "job__api_8hpp.html#aaee5888463e3bb5cff3eff5f80d5265b", null ],
+    [ "IsMainThread", "job__api_8hpp.html#ad0695eb307a63108942e4e634cae11f2", null ],
     [ "Shutdown", "job__api_8hpp.html#a9d923fa374392c284942ea7d8f90e466", null ],
     [ "TaskMake", "job__api_8hpp.html#a6a5491cbbe785588f2671f74b5d24380", null ],
     [ "TaskGetData", "job__api_8hpp.html#a1786f2fd8c5c13f53d066bf4e029445c", null ],

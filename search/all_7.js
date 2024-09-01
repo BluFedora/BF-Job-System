@@ -14,5 +14,6 @@ var searchData=
   ['is_5frunning_11',['is_running',['../namespace_job.html#a93ec86776cd50eb50948754288be9f7b',1,'Job::JobSystemContext']]],
   ['isempty_12',['IsEmpty',['../class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a',1,'Job::SPSCQueue']]],
   ['isfull_13',['IsFull',['../class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f',1,'Job::SPSCQueue']]],
-  ['isnull_14',['isNull',['../struct_job_1_1_task_ptr.html#a3846e4547990f401f74a5d7c4f354ff9',1,'Job::TaskPtr']]]
+  ['ismainthread_14',['IsMainThread',['../namespace_job.html#ad0695eb307a63108942e4e634cae11f2',1,'Job']]],
+  ['isnull_15',['isNull',['../struct_job_1_1_task_ptr.html#a3846e4547990f401f74a5d7c4f354ff9',1,'Job::TaskPtr']]]
 ];
