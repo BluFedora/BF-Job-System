@@ -948,10 +948,13 @@ void Job::Shutdown() noexcept
   JobSystemContext* const job_system  = g_JobSystem;
   const std::uint32_t     num_workers = job_system->num_owned_workers;
 
-  // Incase all threads are not initialized by the time shutdown is alled.
+  // Incase all threads are not initialized by the time shutdown is called.
   while (job_system->is_running.load(std::memory_order_relaxed) != true) {}
 
-  job_system->is_running.store(false, std::memory_order_relaxed);
+  {
+    std::unique_lock<std::mutex> lock(job_system->worker_sleep_mutex);
+    job_system->is_running.store(false, std::memory_order_relaxed);
+  }
 
   // Allow one last update loop to allow them to end.
   system::WakeUpAllWorkers();

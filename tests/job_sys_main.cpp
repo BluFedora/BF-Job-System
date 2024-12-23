@@ -11,6 +11,32 @@
 #include <memory>   // unique_ptr
 #include <numeric>  // iota
 
+struct IndexIterator
+{
+  std::size_t idx;
+
+  IndexIterator(const std::size_t idx) :
+    idx{idx}
+  {
+  }
+
+  IndexIterator& operator++() { return ++idx, *this; }
+  IndexIterator  operator++(int) { return IndexIterator{idx++}; }
+  std::size_t    operator*() const { return idx; }
+  friend bool    operator==(const IndexIterator& lhs, const IndexIterator& rhs) { return lhs.idx == rhs.idx; }
+  friend bool    operator!=(const IndexIterator& lhs, const IndexIterator& rhs) { return lhs.idx != rhs.idx; }
+};
+
+struct IndexRange
+{
+  std::size_t idx_bgn;
+  std::size_t idx_end;
+
+  std::size_t   length() const { return idx_end - idx_bgn; }
+  IndexIterator begin() const { return IndexIterator(idx_bgn); }
+  IndexIterator end() const { return IndexIterator(idx_end); }
+};
+
 // static constexpr int k_NumJobsForTestingOverhead = 6500000;
 static constexpr int k_NumJobsForTestingOverhead = 6500;
 
@@ -72,7 +98,7 @@ TEST(JobSystemTests, JobCreationOverheadSerial)
 TEST(JobSystemTests, JobCreationOverheadParallelFor)
 {
   Job::Task* const task = Job::ParallelFor(
-   0, k_NumJobsForTestingOverhead, Job::Splitter::MaxItemsPerTask(0), [](Job::Task* parent, const Job::IndexRange& index_range) {
+   0, k_NumJobsForTestingOverhead, Job::Splitter::MaxItemsPerTask(0), [](Job::Task* parent, const std::size_t index) {
      /* NO-OP */
    });
 
@@ -89,11 +115,8 @@ TEST(JobSystemTests, BasicParallelForRange)
   std::fill_n(example_data.get(), k_DataSize, 0);
 
   Job::Task* const task = Job::ParallelFor(
-   0, k_DataSize,  Job::Splitter::MaxItemsPerTask(k_DataSplit), [&example_data](Job::Task*, const Job::IndexRange index_range) {
-     for (const std::size_t i : index_range)
-     {
-       ++example_data[i];
-     }
+   0, k_DataSize, Job::Splitter::MaxItemsPerTask(k_DataSplit), [&example_data](Job::Task*, const std::size_t i) {
+     ++example_data[i];
    });
 
   TaskSubmitAndWait(task);
@@ -145,13 +168,13 @@ TEST(JobSystemTests, BasicParallelInvoke)
   const auto task = Job::ParallelInvoke(
    nullptr,
    [&](Job::Task* task) {
-     for (const std::size_t i : Job::IndexRange{0, k_DataSize / 2})
+     for (const std::size_t i : IndexRange{0, k_DataSize / 2})
      {
        ++example_data[i];
      }
    },
    [&](Job::Task* task) {
-     for (const std::size_t i : Job::IndexRange{k_DataSize / 2, k_DataSize})
+     for (const std::size_t i : IndexRange{k_DataSize / 2, k_DataSize})
      {
        ++example_data[i];
      }

@@ -24,7 +24,7 @@
 
 #include <cstdint>  // sized integer types
 #include <new>      // placement new
-#include <utility>  // forward
+#include <utility>  // forward, move
 
 namespace Job
 {
@@ -523,36 +523,6 @@ namespace Job
 
   // Parallel Algorithms API
 
-  struct IndexIterator
-  {
-    std::size_t idx;
-
-    IndexIterator(const std::size_t idx) :
-      idx{idx}
-    {
-    }
-
-    IndexIterator& operator++() { return ++idx, *this; }
-    IndexIterator  operator++(int) { return IndexIterator{idx++}; }
-    std::size_t    operator*() const { return idx; }
-    friend bool    operator==(const IndexIterator& lhs, const IndexIterator& rhs) { return lhs.idx == rhs.idx; }
-    friend bool    operator!=(const IndexIterator& lhs, const IndexIterator& rhs) { return lhs.idx != rhs.idx; }
-  };
-
-  /*!
-   * @brief
-   *   Range of indices to iterator over.
-   */
-  struct IndexRange
-  {
-    std::size_t idx_bgn;
-    std::size_t idx_end;
-
-    std::size_t   length() const { return idx_end - idx_bgn; }
-    IndexIterator begin() const { return IndexIterator(idx_bgn); }
-    IndexIterator end() const { return IndexIterator(idx_end); }
-  };
-
   struct Splitter
   {
     /*!
@@ -611,7 +581,7 @@ namespace Job
    *
    * @tparam F
    *   Type of function object passed in.
-   *   Must be callable like: fn(Task* task, IndexRange index_range)
+   *   Must be callable like: fn(Task* task, std::size_t index_range)
    *
    * @tparam S
    *   Callable splitter, must be callable like: splitter(std::size_t count)
@@ -626,7 +596,7 @@ namespace Job
    *   Callable splitter, must be callable like: splitter(std::size_t count)
    *
    * @param fn
-   *   Function object must be callable like: fn(Task* task, IndexRange index_range)
+   *   Function object must be callable like: fn(Job::Task* const task, const std::size_t index)
    *
    * @param parent
    *   Parent task to add this task as a child of.
@@ -650,7 +620,10 @@ namespace Job
        }
        else
        {
-         fn(task, IndexRange{start, start + count});
+         for (std::size_t offset = 0u; offset < count; ++offset)
+         {
+           fn(task, start + offset);
+         }
        }
      },
      parent);
@@ -673,11 +646,8 @@ namespace Job
        {
          const std::size_t stride = count_left / 2;
 
-         const auto ReduceRange = [stride, &reduce](Task* const sub_task, const IndexRange range) {
-           for (const std::size_t index : range)
-           {
-             reduce(sub_task, index, index + stride);
-           }
+         const auto ReduceRange = [stride, &reduce](Task* const sub_task, const std::size_t index) {
+           reduce(sub_task, index, index + stride);
          };
 
          TaskSubmitAndWait(ParallelFor(start, stride, splitter, ReduceRange, nullptr), parent_q_type);
@@ -732,8 +702,8 @@ namespace Job
   Task* ParallelFor(T* const data, const std::size_t count, S&& splitter, F&& fn, Task* parent = nullptr)
   {
     return ParallelFor(
-     std::size_t(0), count, std::move(splitter), [data, fn = std::move(fn)](Task* const task, const IndexRange index_range) {
-       fn(task, data + index_range.idx_bgn, index_range.length());
+     std::size_t(0), count, std::move(splitter), [data, fn = std::move(fn)](Task* const task, const std::size_t index) {
+       fn(task, data + index);
      },
      parent);
   }
