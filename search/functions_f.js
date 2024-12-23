@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['waitontask_0',['WaitOnTask',['../namespace_job.html#a2961eee80e34c41deade7924657154b8',1,'Job']]],
-  ['writeelements_1',['WriteElements',['../class_job_1_1_m_p_m_c_queue.html#acfb9aea60c58e826703f4b1277f9c133',1,'Job::MPMCQueue']]]
+  ['_7empmcqueue_0',['~MPMCQueue',['../class_job_1_1_m_p_m_c_queue.html#a9a463be223784ec978dbcdaf9c7bbcd7',1,'Job::MPMCQueue']]],
+  ['_7espmcdeque_1',['~SPMCDeque',['../class_job_1_1_s_p_m_c_deque.html#a054fa589838d5acc8cfdfb8b4adb61ae',1,'Job::SPMCDeque']]],
+  ['_7espscqueue_2',['~SPSCQueue',['../class_job_1_1_s_p_s_c_queue.html#ad2f1c57b76eda6aefee32299d683685e',1,'Job::SPSCQueue']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['operator_28_29_0',['operator()',['../struct_job_1_1_splitter.html#ad260694f54439152534e5c59570b6eec',1,'Job::Splitter']]],
-  ['operator_2a_1',['operator*',['../struct_job_1_1_index_iterator.html#aed1763afba25b63394ac2940cb68a522',1,'Job::IndexIterator']]],
-  ['operator_2b_2b_2',['operator++',['../struct_job_1_1_index_iterator.html#ae6ffa6f7957ca341e093753d84ff1e54',1,'Job::IndexIterator::operator++()'],['../struct_job_1_1_index_iterator.html#a8c8d8a1e8af887e05876154d1bc5142d',1,'Job::IndexIterator::operator++(int)']]]
+  ['readelements_0',['ReadElements',['../class_job_1_1_m_p_m_c_queue.html#a23f13576483939716e7529244b965e22',1,'Job::MPMCQueue']]],
+  ['requestpoprange_1',['RequestPopRange',['../class_job_1_1_m_p_m_c_queue.html#a588a2d25a56622edde2f8c62560b4742',1,'Job::MPMCQueue']]],
+  ['requestwriterange_2',['RequestWriteRange',['../class_job_1_1_m_p_m_c_queue.html#acc4f7c38e831c5acabcc8f9ba15eab8b',1,'Job::MPMCQueue']]]
 ];

@@ -1,8 +1,6 @@
 var annotated_dup =
 [
     [ "Job", "namespace_job.html", [
-      [ "IndexIterator", "struct_job_1_1_index_iterator.html", "struct_job_1_1_index_iterator" ],
-      [ "IndexRange", "struct_job_1_1_index_range.html", "struct_job_1_1_index_range" ],
       [ "InitializationLock", "namespace_job.html#struct_job_1_1_initialization_lock", "namespace_job_struct_job_1_1_initialization_lock_dup" ],
       [ "InitializationToken", "struct_job_1_1_initialization_token.html", "struct_job_1_1_initialization_token" ],
       [ "JobSystemContext", "namespace_job.html#struct_job_1_1_job_system_context", "namespace_job_struct_job_1_1_job_system_context_dup" ],

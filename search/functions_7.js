@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['length_0',['length',['../struct_job_1_1_index_range.html#acfc03080318463313a0d911aa806cb9b',1,'Job::IndexRange']]]
+  ['numsystemthreads_0',['NumSystemThreads',['../namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6',1,'Job']]],
+  ['numworkers_1',['NumWorkers',['../namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06',1,'Job']]]
 ];

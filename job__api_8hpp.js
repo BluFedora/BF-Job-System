@@ -13,8 +13,6 @@ var job__api_8hpp =
       [ "ptr", "namespace_job.html#a206e9e451cca5c05ad02c69ad733d8f0", null ],
       [ "size", "namespace_job.html#a19841c4464efdc31fd3315982499ec87", null ]
     ] ],
-    [ "Job::IndexIterator", "struct_job_1_1_index_iterator.html", "struct_job_1_1_index_iterator" ],
-    [ "Job::IndexRange", "struct_job_1_1_index_range.html", "struct_job_1_1_index_range" ],
     [ "Job::Splitter", "struct_job_1_1_splitter.html", "struct_job_1_1_splitter" ],
     [ "WorkerID", "job__api_8hpp.html#ac7727f146165ae76b95cc50196df236e", null ],
     [ "TaskFn", "job__api_8hpp.html#a2a553c2727a284305ddbc9d746e58267", null ],

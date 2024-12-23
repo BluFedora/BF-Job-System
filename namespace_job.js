@@ -7,8 +7,6 @@ var namespace_job =
       [ "mainQueueTryRunTask", "namespace_job_1_1detail.html#a8209af0db62c504d004ec94bf3889442", null ],
       [ "assertHandler", "namespace_job_1_1detail.html#a8b5a2a4d52b357006e9a502363831998", null ]
     ] ],
-    [ "IndexIterator", "struct_job_1_1_index_iterator.html", "struct_job_1_1_index_iterator" ],
-    [ "IndexRange", "struct_job_1_1_index_range.html", "struct_job_1_1_index_range" ],
     [ "InitializationLock", "namespace_job.html#struct_job_1_1_initialization_lock", "namespace_job_struct_job_1_1_initialization_lock_dup" ],
     [ "InitializationToken", "struct_job_1_1_initialization_token.html", "struct_job_1_1_initialization_token" ],
     [ "JobSystemContext", "namespace_job.html#struct_job_1_1_job_system_context", "namespace_job_struct_job_1_1_job_system_context_dup" ],

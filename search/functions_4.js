@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['elementat_0',['ElementAt',['../class_job_1_1_s_p_s_c_queue.html#a378c23aa1e523f93cbf54e8ccb5fa4b9',1,'Job::SPSCQueue::ElementAt()'],['../class_job_1_1_s_p_m_c_deque.html#a0932b130e9a24dc8658ccd999f340282',1,'Job::SPMCDeque::ElementAt()']]],
-  ['elementat_1',['elementAt',['../class_job_1_1_locked_queue.html#ae4efc4a9644c8b5e7feb06c79e6a425a',1,'Job::LockedQueue']]],
-  ['end_2',['end',['../struct_job_1_1_index_range.html#a8aad61db7af9e9078ee7d01ead0ad407',1,'Job::IndexRange']]],
-  ['evensplit_3',['EvenSplit',['../struct_job_1_1_splitter.html#a297bfc4d3985133c0e11ac29841f408c',1,'Job::Splitter']]]
+  ['initializationtoken_0',['InitializationToken',['../struct_job_1_1_initialization_token.html#a7b08da2722b4894dd1520c08ade6ce7c',1,'Job::InitializationToken']]],
+  ['initialize_1',['Initialize',['../class_job_1_1_locked_queue.html#ad9869e002d057e91571a6e555f923ba5',1,'Job::LockedQueue::Initialize()'],['../class_job_1_1_s_p_s_c_queue.html#aed2d3cf1f234353f42046ef58c0f2685',1,'Job::SPSCQueue::Initialize()'],['../class_job_1_1_s_p_m_c_deque.html#aa89a78af9957be54a27ddd598b910561',1,'Job::SPMCDeque::Initialize()'],['../class_job_1_1_m_p_m_c_queue.html#af76f4f002159eee8c25c1564a88cbbab',1,'Job::MPMCQueue::Initialize()'],['../namespace_job.html#a398a7fd0221839f321c00864238b9ab2',1,'Job::Initialize()']]],
+  ['isempty_2',['IsEmpty',['../class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a',1,'Job::SPSCQueue']]],
+  ['isfull_3',['IsFull',['../class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f',1,'Job::SPSCQueue']]],
+  ['ismainthread_4',['IsMainThread',['../namespace_job.html#ad0695eb307a63108942e4e634cae11f2',1,'Job']]],
+  ['isnull_5',['isNull',['../struct_job_1_1_task_ptr.html#a3846e4547990f401f74a5d7c4f354ff9',1,'Job::TaskPtr']]]
 ];
