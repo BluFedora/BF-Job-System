@@ -162,7 +162,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class Job::SPSCQueue&lt; T &gt;</div>
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00110">110</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00112">112</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a8d2fb76bc41271275524971ebbc10b72" name="a8d2fb76bc41271275524971ebbc10b72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d2fb76bc41271275524971ebbc10b72">&#9670;&nbsp;</a></span>size_type</h2>
@@ -178,7 +178,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00113">113</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00115">115</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
 </div>
 </div>
@@ -196,7 +196,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00114">114</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00116">116</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
 </div>
 </div>
@@ -292,28 +292,28 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00144">144</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.store(0, std::memory_order_relaxed);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a> = 0;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.store(0, std::memory_order_relaxed);</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a> = 0;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3">m_Data</a>                = memory_backing;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666">m_Capacity</a>            = capacity;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>        = capacity - 1;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>((<a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666">m_Capacity</a> &amp; <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>) == 0, <span class="stringliteral">&quot;Capacity must be a power of 2.&quot;</span>);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }</div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a12119bcb7e11874979a994f473a8cceb"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">Job::SPSCQueue::m_ConsumerIndex</a></div><div class="ttdeci">atomic_size_type m_ConsumerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00126">job_queue.hpp:126</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a7091bfed41afcbb89b1ac087fdadabf3"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3">Job::SPSCQueue::m_Data</a></div><div class="ttdeci">T * m_Data</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00133">job_queue.hpp:133</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a9981099a8ade64c0fe9d6ad23bf40666"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666">Job::SPSCQueue::m_Capacity</a></div><div class="ttdeci">size_type m_Capacity</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00134">job_queue.hpp:134</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a9b7d6e8d8cf5d063d02ae699ad9c1b20"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">Job::SPSCQueue::m_CachedProducerIndex</a></div><div class="ttdeci">size_type m_CachedProducerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00128">job_queue.hpp:128</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_ab9e16e67ab9966438eba62c8582d93f4"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">Job::SPSCQueue::m_CachedConsumerIndex</a></div><div class="ttdeci">size_type m_CachedConsumerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00121">job_queue.hpp:121</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_ae547dacf56128e44d09b05e233673baf"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">Job::SPSCQueue::m_ProducerIndex</a></div><div class="ttdeci">atomic_size_type m_ProducerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00119">job_queue.hpp:119</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_af8ea3d3b989eaca872d9678763795eeb"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">Job::SPSCQueue::m_CapacityMask</a></div><div class="ttdeci">size_type m_CapacityMask</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00135">job_queue.hpp:135</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00146">146</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.store(0, std::memory_order_relaxed);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a> = 0;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.store(0, std::memory_order_relaxed);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a> = 0;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3">m_Data</a>                = memory_backing;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666">m_Capacity</a>            = capacity;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>        = capacity - 1;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>((<a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666">m_Capacity</a> &amp; <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>) == 0, <span class="stringliteral">&quot;Capacity must be a power of 2.&quot;</span>);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a12119bcb7e11874979a994f473a8cceb"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">Job::SPSCQueue::m_ConsumerIndex</a></div><div class="ttdeci">atomic_size_type m_ConsumerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00128">job_queue.hpp:128</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a7091bfed41afcbb89b1ac087fdadabf3"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3">Job::SPSCQueue::m_Data</a></div><div class="ttdeci">T * m_Data</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00135">job_queue.hpp:135</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a9981099a8ade64c0fe9d6ad23bf40666"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666">Job::SPSCQueue::m_Capacity</a></div><div class="ttdeci">size_type m_Capacity</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00136">job_queue.hpp:136</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a9b7d6e8d8cf5d063d02ae699ad9c1b20"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">Job::SPSCQueue::m_CachedProducerIndex</a></div><div class="ttdeci">size_type m_CachedProducerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00130">job_queue.hpp:130</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_ab9e16e67ab9966438eba62c8582d93f4"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">Job::SPSCQueue::m_CachedConsumerIndex</a></div><div class="ttdeci">size_type m_CachedConsumerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00123">job_queue.hpp:123</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_ae547dacf56128e44d09b05e233673baf"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">Job::SPSCQueue::m_ProducerIndex</a></div><div class="ttdeci">atomic_size_type m_ProducerIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00121">job_queue.hpp:121</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_af8ea3d3b989eaca872d9678763795eeb"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">Job::SPSCQueue::m_CapacityMask</a></div><div class="ttdeci">size_type m_CapacityMask</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00137">job_queue.hpp:137</a></div></div>
 <div class="ttc" id="ajob__assert_8hpp_html_a3c45a50fae3515f1fa7aa7def616e68f"><div class="ttname"><a href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a></div><div class="ttdeci">#define JobAssert(expr, msg)</div><div class="ttdef"><b>Definition:</b> <a href="job__assert_8hpp_source.html#l00027">job_assert.hpp:27</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>, <a class="el" href="job__queue_8hpp_source.html#l00121">Job::SPSCQueue&lt; T &gt;::m_CachedConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00128">Job::SPSCQueue&lt; T &gt;::m_CachedProducerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00134">Job::SPSCQueue&lt; T &gt;::m_Capacity</a>, <a class="el" href="job__queue_8hpp_source.html#l00135">Job::SPSCQueue&lt; T &gt;::m_CapacityMask</a>, <a class="el" href="job__queue_8hpp_source.html#l00126">Job::SPSCQueue&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00133">Job::SPSCQueue&lt; T &gt;::m_Data</a>, and <a class="el" href="job__queue_8hpp_source.html#l00119">Job::SPSCQueue&lt; T &gt;::m_ProducerIndex</a>.</p>
+<p class="reference">References <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>, <a class="el" href="job__queue_8hpp_source.html#l00123">Job::SPSCQueue&lt; T &gt;::m_CachedConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00130">Job::SPSCQueue&lt; T &gt;::m_CachedProducerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00136">Job::SPSCQueue&lt; T &gt;::m_Capacity</a>, <a class="el" href="job__queue_8hpp_source.html#l00137">Job::SPSCQueue&lt; T &gt;::m_CapacityMask</a>, <a class="el" href="job__queue_8hpp_source.html#l00128">Job::SPSCQueue&lt; T &gt;::m_ConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00135">Job::SPSCQueue&lt; T &gt;::m_Data</a>, and <a class="el" href="job__queue_8hpp_source.html#l00121">Job::SPSCQueue&lt; T &gt;::m_ProducerIndex</a>.</p>
 
 </div>
 </div>
@@ -343,13 +343,13 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00157">157</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    {</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#af4c54f2e992d14f675a91b588848ba35">PushLazy</a>([&amp;value](T* <span class="keyword">const</span> destination) { *destination = value; });</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_af4c54f2e992d14f675a91b588848ba35"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#af4c54f2e992d14f675a91b588848ba35">Job::SPSCQueue::PushLazy</a></div><div class="ttdeci">bool PushLazy(CallbackFn &amp;&amp;callback)</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00171">job_queue.hpp:171</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00159">159</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#af4c54f2e992d14f675a91b588848ba35">PushLazy</a>([&amp;value](T* <span class="keyword">const</span> destination) { *destination = value; });</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_af4c54f2e992d14f675a91b588848ba35"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#af4c54f2e992d14f675a91b588848ba35">Job::SPSCQueue::PushLazy</a></div><div class="ttdeci">bool PushLazy(CallbackFn &amp;&amp;callback)</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00173">job_queue.hpp:173</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00171">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00173">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
 
 </div>
 </div>
@@ -379,15 +379,15 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00162">162</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    {</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(out_value != <span class="keyword">nullptr</span>, <span class="stringliteral">&quot;`out_value` cannot be a nullptr.&quot;</span>);</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#abaa47b1458dacc953fa547ecfdd3b5d5">PopLazy</a>([out_value](T&amp;&amp; value) { *out_value = std::move(value); });</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    }</div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_abaa47b1458dacc953fa547ecfdd3b5d5"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#abaa47b1458dacc953fa547ecfdd3b5d5">Job::SPSCQueue::PopLazy</a></div><div class="ttdeci">bool PopLazy(CallbackFn &amp;&amp;callback)</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00191">job_queue.hpp:191</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00164">164</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      <a class="code hl_define" href="job__assert_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(out_value != <span class="keyword">nullptr</span>, <span class="stringliteral">&quot;`out_value` cannot be a nullptr.&quot;</span>);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#abaa47b1458dacc953fa547ecfdd3b5d5">PopLazy</a>([out_value](T&amp;&amp; value) { *out_value = std::move(value); });</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_abaa47b1458dacc953fa547ecfdd3b5d5"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#abaa47b1458dacc953fa547ecfdd3b5d5">Job::SPSCQueue::PopLazy</a></div><div class="ttdeci">bool PopLazy(CallbackFn &amp;&amp;callback)</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00193">job_queue.hpp:193</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>, and <a class="el" href="job__queue_8hpp_source.html#l00191">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>.</p>
+<p class="reference">References <a class="el" href="job__assert_8hpp_source.html#l00027">JobAssert</a>, and <a class="el" href="job__queue_8hpp_source.html#l00193">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>.</p>
 
 </div>
 </div>
@@ -419,31 +419,31 @@ template&lt;typename CallbackFn &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00171">171</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    {</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_s_c_queue.html#a8d2fb76bc41271275524971ebbc10b72">size_type</a> write_index = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.load(std::memory_order_relaxed);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f">IsFull</a>(write_index, <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a>))</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      {</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a> = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.load(std::memory_order_acquire);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f">IsFull</a>(write_index, <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a>))</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        {</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        }</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      }</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      callback(<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a378c23aa1e523f93cbf54e8ccb5fa4b9">ElementAt</a>(write_index));</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.store(write_index + 1, std::memory_order_release);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    }</div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a378c23aa1e523f93cbf54e8ccb5fa4b9"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a378c23aa1e523f93cbf54e8ccb5fa4b9">Job::SPSCQueue::ElementAt</a></div><div class="ttdeci">T * ElementAt(const size_type index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00223">job_queue.hpp:223</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a651fab8116dd82e4f159b69cbd8a2e0f"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f">Job::SPSCQueue::IsFull</a></div><div class="ttdeci">bool IsFull(const size_type head, const size_type tail) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00213">job_queue.hpp:213</a></div></div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a8d2fb76bc41271275524971ebbc10b72"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a8d2fb76bc41271275524971ebbc10b72">Job::SPSCQueue::size_type</a></div><div class="ttdeci">std::size_t size_type</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00113">job_queue.hpp:113</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00173">173</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_s_c_queue.html#a8d2fb76bc41271275524971ebbc10b72">size_type</a> write_index = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.load(std::memory_order_relaxed);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f">IsFull</a>(write_index, <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a>))</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a> = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.load(std::memory_order_acquire);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f">IsFull</a>(write_index, <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ab9e16e67ab9966438eba62c8582d93f4">m_CachedConsumerIndex</a>))</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        }</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      }</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>      callback(<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a378c23aa1e523f93cbf54e8ccb5fa4b9">ElementAt</a>(write_index));</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.store(write_index + 1, std::memory_order_release);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    }</div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a378c23aa1e523f93cbf54e8ccb5fa4b9"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a378c23aa1e523f93cbf54e8ccb5fa4b9">Job::SPSCQueue::ElementAt</a></div><div class="ttdeci">T * ElementAt(const size_type index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00225">job_queue.hpp:225</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a651fab8116dd82e4f159b69cbd8a2e0f"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f">Job::SPSCQueue::IsFull</a></div><div class="ttdeci">bool IsFull(const size_type head, const size_type tail) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00215">job_queue.hpp:215</a></div></div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_a8d2fb76bc41271275524971ebbc10b72"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#a8d2fb76bc41271275524971ebbc10b72">Job::SPSCQueue::size_type</a></div><div class="ttdeci">std::size_t size_type</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00115">job_queue.hpp:115</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00223">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00213">Job::SPSCQueue&lt; T &gt;::IsFull()</a>, <a class="el" href="job__queue_8hpp_source.html#l00121">Job::SPSCQueue&lt; T &gt;::m_CachedConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00126">Job::SPSCQueue&lt; T &gt;::m_ConsumerIndex</a>, and <a class="el" href="job__queue_8hpp_source.html#l00119">Job::SPSCQueue&lt; T &gt;::m_ProducerIndex</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00225">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00215">Job::SPSCQueue&lt; T &gt;::IsFull()</a>, <a class="el" href="job__queue_8hpp_source.html#l00123">Job::SPSCQueue&lt; T &gt;::m_CachedConsumerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00128">Job::SPSCQueue&lt; T &gt;::m_ConsumerIndex</a>, and <a class="el" href="job__queue_8hpp_source.html#l00121">Job::SPSCQueue&lt; T &gt;::m_ProducerIndex</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00157">Job::SPSCQueue&lt; T &gt;::Push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00159">Job::SPSCQueue&lt; T &gt;::Push()</a>.</p>
 
 </div>
 </div>
@@ -475,31 +475,31 @@ template&lt;typename CallbackFn &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00191">191</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_s_c_queue.html#a8d2fb76bc41271275524971ebbc10b72">size_type</a> read_index = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.load(std::memory_order_relaxed);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a">IsEmpty</a>(<a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a>, read_index))</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      {</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a> = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.load(std::memory_order_acquire);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a">IsEmpty</a>(<a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a>, read_index))</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        {</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        }</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      }</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      T* <span class="keyword">const</span> element = <a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a378c23aa1e523f93cbf54e8ccb5fa4b9">ElementAt</a>(read_index);</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      callback(std::move(*element));</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>      element-&gt;~T();</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.fetch_add(1, std::memory_order_release);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    }</div>
-<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_af8d53fc302ddcba10a01859f4f8f109a"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a">Job::SPSCQueue::IsEmpty</a></div><div class="ttdeci">static bool IsEmpty(const size_type head, const size_type tail) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00218">job_queue.hpp:218</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00193">193</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="class_job_1_1_s_p_s_c_queue.html#a8d2fb76bc41271275524971ebbc10b72">size_type</a> read_index = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.load(std::memory_order_relaxed);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a">IsEmpty</a>(<a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a>, read_index))</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a> = <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#ae547dacf56128e44d09b05e233673baf">m_ProducerIndex</a>.load(std::memory_order_acquire);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a">IsEmpty</a>(<a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a9b7d6e8d8cf5d063d02ae699ad9c1b20">m_CachedProducerIndex</a>, read_index))</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>      T* <span class="keyword">const</span> element = <a class="code hl_function" href="class_job_1_1_s_p_s_c_queue.html#a378c23aa1e523f93cbf54e8ccb5fa4b9">ElementAt</a>(read_index);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      callback(std::move(*element));</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      element-&gt;~T();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a12119bcb7e11874979a994f473a8cceb">m_ConsumerIndex</a>.fetch_add(1, std::memory_order_release);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    }</div>
+<div class="ttc" id="aclass_job_1_1_s_p_s_c_queue_html_af8d53fc302ddcba10a01859f4f8f109a"><div class="ttname"><a href="class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a">Job::SPSCQueue::IsEmpty</a></div><div class="ttdeci">static bool IsEmpty(const size_type head, const size_type tail) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00220">job_queue.hpp:220</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00223">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00218">Job::SPSCQueue&lt; T &gt;::IsEmpty()</a>, <a class="el" href="job__queue_8hpp_source.html#l00128">Job::SPSCQueue&lt; T &gt;::m_CachedProducerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00126">Job::SPSCQueue&lt; T &gt;::m_ConsumerIndex</a>, and <a class="el" href="job__queue_8hpp_source.html#l00119">Job::SPSCQueue&lt; T &gt;::m_ProducerIndex</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00225">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00220">Job::SPSCQueue&lt; T &gt;::IsEmpty()</a>, <a class="el" href="job__queue_8hpp_source.html#l00130">Job::SPSCQueue&lt; T &gt;::m_CachedProducerIndex</a>, <a class="el" href="job__queue_8hpp_source.html#l00128">Job::SPSCQueue&lt; T &gt;::m_ConsumerIndex</a>, and <a class="el" href="job__queue_8hpp_source.html#l00121">Job::SPSCQueue&lt; T &gt;::m_ProducerIndex</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00162">Job::SPSCQueue&lt; T &gt;::Pop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00164">Job::SPSCQueue&lt; T &gt;::Pop()</a>.</p>
 
 </div>
 </div>
@@ -539,14 +539,14 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00213">213</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    {</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      <span class="keywordflow">return</span> ((head + 1) &amp; <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>) == tail;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00215">215</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>      <span class="keywordflow">return</span> ((head + 1) &amp; <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>) == tail;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00135">Job::SPSCQueue&lt; T &gt;::m_CapacityMask</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00137">Job::SPSCQueue&lt; T &gt;::m_CapacityMask</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00171">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00173">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
 
 </div>
 </div>
@@ -586,12 +586,12 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00218">218</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    {</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keywordflow">return</span> head == tail;</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00220">220</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      <span class="keywordflow">return</span> head == tail;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00191">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00193">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>.</p>
 
 </div>
 </div>
@@ -621,14 +621,14 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00223">223</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    {</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3">m_Data</a> + (index &amp; <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>);</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00225">225</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3">m_Data</a> + (index &amp; <a class="code hl_variable" href="class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb">m_CapacityMask</a>);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00135">Job::SPSCQueue&lt; T &gt;::m_CapacityMask</a>, and <a class="el" href="job__queue_8hpp_source.html#l00133">Job::SPSCQueue&lt; T &gt;::m_Data</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00137">Job::SPSCQueue&lt; T &gt;::m_CapacityMask</a>, and <a class="el" href="job__queue_8hpp_source.html#l00135">Job::SPSCQueue&lt; T &gt;::m_Data</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00191">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00171">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00193">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00173">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
 
 </div>
 </div>
@@ -655,9 +655,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00119">119</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00121">121</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00144">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00191">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00171">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00146">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00193">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00173">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
 
 </div>
 </div>
@@ -683,7 +683,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00120">120</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00122">122</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
 </div>
 </div>
@@ -709,9 +709,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00121">121</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00123">123</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00144">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00171">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00146">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00173">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
 
 </div>
 </div>
@@ -737,7 +737,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00122">122</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00124">124</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
 </div>
 </div>
@@ -763,9 +763,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00126">126</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00128">128</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00144">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00191">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00171">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00146">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00193">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00173">Job::SPSCQueue&lt; T &gt;::PushLazy()</a>.</p>
 
 </div>
 </div>
@@ -791,7 +791,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00127">127</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00129">129</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
 </div>
 </div>
@@ -817,9 +817,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00128">128</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00130">130</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00144">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00191">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00146">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00193">Job::SPSCQueue&lt; T &gt;::PopLazy()</a>.</p>
 
 </div>
 </div>
@@ -845,7 +845,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00129">129</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00131">131</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
 </div>
 </div>
@@ -871,9 +871,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00133">133</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00135">135</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00223">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00144">Job::SPSCQueue&lt; T &gt;::Initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00225">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00146">Job::SPSCQueue&lt; T &gt;::Initialize()</a>.</p>
 
 </div>
 </div>
@@ -899,9 +899,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00134">134</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00136">136</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00144">Job::SPSCQueue&lt; T &gt;::Initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00146">Job::SPSCQueue&lt; T &gt;::Initialize()</a>.</p>
 
 </div>
 </div>
@@ -927,9 +927,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00135">135</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00137">137</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00223">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00144">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00213">Job::SPSCQueue&lt; T &gt;::IsFull()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00225">Job::SPSCQueue&lt; T &gt;::ElementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00146">Job::SPSCQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00215">Job::SPSCQueue&lt; T &gt;::IsFull()</a>.</p>
 
 </div>
 </div>
@@ -942,7 +942,7 @@ template&lt;typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_job.html">Job</a></li><li class="navelem"><a class="el" href="class_job_1_1_s_p_s_c_queue.html">SPSCQueue</a></li>
-    <li class="footer">Generated on Mon Dec 23 2024 05:02:43 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Feb 5 2025 02:42:39 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

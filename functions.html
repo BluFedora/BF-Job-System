@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>m_ConsumerPending&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#abd503991a2ca23cc47392933bb9092e0">Job::MPMCQueue</a></li>
 <li>m_Data&#160;:&#160;<a class="el" href="class_job_1_1_locked_queue.html#a184abe388df099a6c03417279045ea70">Job::LockedQueue&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#ae50f12fa1ace4799216ff0bced8f9ffe">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>m_Lock&#160;:&#160;<a class="el" href="class_job_1_1_locked_queue.html#a50761d935636b9d57e8002d4475c0065">Job::LockedQueue&lt; T &gt;</a></li>
-<li>m_Padding0&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#a01a0f2819be0e739c67f97e2451e2cce">Job::MPMCQueue</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#ae11940988b14a6da9de5cd81dc9823c1">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#a972a126b57b237e370136bb29b4ad4f6">Job::SPSCQueue&lt; T &gt;</a></li>
+<li>m_Padding0&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#a01a0f2819be0e739c67f97e2451e2cce">Job::MPMCQueue</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#ab1ed03c0ea38d7505d6ff1620d5adb07">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#a972a126b57b237e370136bb29b4ad4f6">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>m_Padding1&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#af65f30acc14d3fd395e66a8eb36acf6f">Job::MPMCQueue</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#a7449b92fc6cf9dcf91400357af181ad8">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>m_Padding2&#160;:&#160;<a class="el" href="class_job_1_1_s_p_s_c_queue.html#a4384d8618ddbab31d31e344b4e65bdc5">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>m_Padding3&#160;:&#160;<a class="el" href="class_job_1_1_s_p_s_c_queue.html#aa41e98b41c5f06a00862015b0b596029">Job::SPSCQueue&lt; T &gt;</a></li>
@@ -215,12 +215,14 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>pad&#160;:&#160;<a class="el" href="union_job_1_1_task_fn_storage.html#a0771c931b85622ba51961a4821454ccb">Job::TaskFnStorage</a></li>
 <li>parent&#160;:&#160;<a class="el" href="struct_job_1_1_task.html#ad8a9fae9c5a3c3f3a579b9bcba60c8ef">Job::Task</a></li>
-<li>Pop()&#160;:&#160;<a class="el" href="class_job_1_1_locked_queue.html#ae1724cc5a8be6d7e604c05f9f4730a2d">Job::LockedQueue&lt; T &gt;</a>, <a class="el" href="class_job_1_1_m_p_m_c_queue.html#aa2a8d0774bbf005c868a74d1c596aa43">Job::MPMCQueue</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#a6dfdd2299ff79d7d203d927de29059af">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#ae0e1e194b6c912cecc1ba0903d47a2a3">Job::SPSCQueue&lt; T &gt;</a></li>
+<li>Pop()&#160;:&#160;<a class="el" href="class_job_1_1_locked_queue.html#ae1724cc5a8be6d7e604c05f9f4730a2d">Job::LockedQueue&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#a6dfdd2299ff79d7d203d927de29059af">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#ae0e1e194b6c912cecc1ba0903d47a2a3">Job::SPSCQueue&lt; T &gt;</a></li>
+<li>PopExact()&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#a5db98d0f8e8c1783aed4bd7b7f2db10f">Job::MPMCQueue</a></li>
 <li>PopImpl()&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#a1566e399cad721917a62a9e9b3eddd6b">Job::MPMCQueue</a></li>
 <li>PopLazy()&#160;:&#160;<a class="el" href="class_job_1_1_s_p_s_c_queue.html#abaa47b1458dacc953fa547ecfdd3b5d5">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>PopUpTo()&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#a3d8d9b89cba9f59afebe1da694e1f43a">Job::MPMCQueue</a></li>
 <li>ptr&#160;:&#160;<a class="el" href="namespace_job.html#a206e9e451cca5c05ad02c69ad733d8f0">Job::TaskData</a></li>
-<li>Push()&#160;:&#160;<a class="el" href="class_job_1_1_locked_queue.html#adeed04ef8e969b07b93f98474487ec07">Job::LockedQueue&lt; T &gt;</a>, <a class="el" href="class_job_1_1_m_p_m_c_queue.html#afec74411e63d0df0c8fc303177c01eba">Job::MPMCQueue</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#a99b89f972f9200a61054a33f8fa229fe">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#a4cc812aa678de44f42cb4193f73bcd73">Job::SPSCQueue&lt; T &gt;</a></li>
+<li>Push()&#160;:&#160;<a class="el" href="class_job_1_1_locked_queue.html#adeed04ef8e969b07b93f98474487ec07">Job::LockedQueue&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_m_c_deque.html#a99b89f972f9200a61054a33f8fa229fe">Job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="class_job_1_1_s_p_s_c_queue.html#a4cc812aa678de44f42cb4193f73bcd73">Job::SPSCQueue&lt; T &gt;</a></li>
+<li>PushExact()&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#af8675a298ff0a386555507a404362daa">Job::MPMCQueue</a></li>
 <li>PushImpl()&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#af0a39028a41c0f95448b1f8b0aa8b33b">Job::MPMCQueue</a></li>
 <li>PushLazy()&#160;:&#160;<a class="el" href="class_job_1_1_s_p_s_c_queue.html#af4c54f2e992d14f675a91b588848ba35">Job::SPSCQueue&lt; T &gt;</a></li>
 <li>PushUpTo()&#160;:&#160;<a class="el" href="class_job_1_1_m_p_m_c_queue.html#a045cc929713f1a5506032266cccd7cb7">Job::MPMCQueue</a></li>
@@ -297,7 +299,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Dec 23 2024 05:02:43 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Feb 5 2025 02:42:39 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
