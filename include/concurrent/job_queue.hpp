@@ -5,7 +5,7 @@
  * @brief
  *   Concurrent Queue Implmementations for different situations.
  *
- * @copyright Copyright (c) 2024 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2024-2025 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef JOB_QUEUE_HPP
@@ -29,6 +29,8 @@
 namespace Job
 {
   static constexpr std::size_t k_FalseSharingPadSize = std::hardware_destructive_interference_size;
+
+#define Job_CacheAlign alignas(k_FalseSharingPadSize)
 
   template<typename T>
   class LockedQueue
@@ -116,23 +118,23 @@ namespace Job
    private:
     // Writer Thread
 
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ProducerIndex;
-    unsigned char m_Padding0[k_FalseSharingPadSize - sizeof(m_ProducerIndex)];
-    alignas(k_FalseSharingPadSize) size_type m_CachedConsumerIndex;
-    unsigned char m_Padding1[k_FalseSharingPadSize - sizeof(m_CachedConsumerIndex)];
+    Job_CacheAlign atomic_size_type m_ProducerIndex;
+    unsigned char                   m_Padding0[k_FalseSharingPadSize - sizeof(m_ProducerIndex)];
+    Job_CacheAlign size_type        m_CachedConsumerIndex;
+    unsigned char                   m_Padding1[k_FalseSharingPadSize - sizeof(m_CachedConsumerIndex)];
 
     // Reader Thread
 
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ConsumerIndex;
-    unsigned char m_Padding2[k_FalseSharingPadSize - sizeof(m_ConsumerIndex)];
-    alignas(k_FalseSharingPadSize) size_type m_CachedProducerIndex;
-    unsigned char m_Padding3[k_FalseSharingPadSize - sizeof(m_CachedProducerIndex)];
+    Job_CacheAlign atomic_size_type m_ConsumerIndex;
+    unsigned char                   m_Padding2[k_FalseSharingPadSize - sizeof(m_ConsumerIndex)];
+    Job_CacheAlign size_type        m_CachedProducerIndex;
+    unsigned char                   m_Padding3[k_FalseSharingPadSize - sizeof(m_CachedProducerIndex)];
 
     // Shared 'Immutable' State
 
-    alignas(k_FalseSharingPadSize) T* m_Data;
-    size_type m_Capacity;
-    size_type m_CapacityMask;
+    Job_CacheAlign T* m_Data;
+    size_type         m_Capacity;
+    size_type         m_CapacityMask;
 
     static_assert(atomic_size_type::is_always_lock_free, "Expected to be lockfree.");
 
@@ -248,15 +250,15 @@ namespace Job
     using atomic_size_type = std::atomic<size_type>;
 
    private:
-    atomic_size_type m_ProducerIndex;
-    atomic_size_type m_ConsumerIndex;
-    unsigned char    m_Padding0[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
+    Job_CacheAlign atomic_size_type m_ProducerIndex;
+    atomic_size_type                m_ConsumerIndex;
+    unsigned char                   m_Padding0[k_FalseSharingPadSize - sizeof(m_ProducerIndex) - sizeof(m_ConsumerIndex)];
 
     // Shared 'Immutable' State
 
-    alignas(k_FalseSharingPadSize) AtomicT* m_Data;
-    size_type m_Capacity;
-    size_type m_CapacityMask;
+    Job_CacheAlign AtomicT* m_Data;
+    size_type               m_Capacity;
+    size_type               m_CapacityMask;
 
    public:
     SPMCDeque()  = default;
@@ -388,14 +390,14 @@ namespace Job
     };
 
    private:
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ProducerPending;
-    atomic_size_type m_ProducerCommited;
-    unsigned char    m_Padding0[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
-    alignas(k_FalseSharingPadSize) atomic_size_type m_ConsumerPending;
-    atomic_size_type m_ConsumerCommited;
-    unsigned char    m_Padding1[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
-    alignas(k_FalseSharingPadSize) value_type* m_Queue;
-    size_type m_Capacity;
+    Job_CacheAlign atomic_size_type m_ProducerPending;
+    atomic_size_type                m_ProducerCommited;
+    unsigned char                   m_Padding0[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
+    Job_CacheAlign atomic_size_type m_ConsumerPending;
+    atomic_size_type                m_ConsumerCommited;
+    unsigned char                   m_Padding1[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
+    Job_CacheAlign value_type*      m_Queue;
+    size_type                       m_Capacity;
 
    public:
     MPMCQueue()  = default;
@@ -414,9 +416,8 @@ namespace Job
 
     //
 
-    bool Push(const value_type* elements, const size_type num_elements)
+    bool PushExact(const value_type* elements, const size_type num_elements)
     {
-      // JobAssert(num_elements > 0 && num_elements < m_Capacity, "Push(%zu) not in range [1, %zu).\n", std::size_t(num_elements), std::size_t(m_Capacity));
       return PushImpl<true>(elements, num_elements) != 0u;
     }
 
@@ -425,9 +426,8 @@ namespace Job
       return PushImpl<false>(elements, num_elements);
     }
 
-    bool Pop(value_type* out_elements, const size_type num_elements)
+    bool PopExact(value_type* out_elements, const size_type num_elements)
     {
-      // JobAssert(num_elements > 0 && num_elements < m_Capacity, "Pop(%zu) not in range [1, %zu).\n", std::size_t(num_elements), std::size_t(m_Capacity));
       return PopImpl<true>(out_elements, num_elements) != 0u;
     }
 
@@ -473,29 +473,23 @@ namespace Job
       old_head = m_ProducerPending.load(std::memory_order_relaxed);
       do
       {
-        const size_type tail                 = m_ConsumerCommited.load(std::memory_order_acquire);
-        const size_type capacity_left        = Distance(old_head, tail);
-        size_type       num_element_to_write = num_items;
+        const size_type tail = m_ConsumerCommited.load(std::memory_order_acquire);
 
+        size_type capacity_left = Distance(old_head, tail);
         if constexpr (allOrNothing)
         {
-          if (capacity_left <= num_items)
+          if (capacity_left < num_items)
           {
-            return false;
+            capacity_left = 0;
           }
         }
-        else
-        {
-          if (!capacity_left)
-          {
-            return false;
-          }
 
-          if (capacity_left < num_element_to_write)
-          {
-            num_element_to_write = capacity_left;
-          }
+        if (capacity_left == 0)
+        {
+          return false;
         }
+
+        const size_type num_element_to_write = capacity_left < num_items ? capacity_left : num_items;
 
         new_head = old_head + num_element_to_write;
 
@@ -513,32 +507,26 @@ namespace Job
       old_tail = m_ConsumerPending.load(std::memory_order_relaxed);
       do
       {
-        const size_type head                = m_ProducerCommited.load(std::memory_order_acquire);
-        const size_type distance            = Distance(head, old_tail);
-        const size_t    capacity_left       = (m_Capacity - distance);
-        size_type       num_element_to_read = num_items;
+        const size_type head     = m_ProducerCommited.load(std::memory_order_acquire);
+        const size_type distance = Distance(head, old_tail);
 
+        size_t capacity_left = (m_Capacity - distance);
         if constexpr (allOrNothing)
         {
           if (capacity_left < num_items)
           {
-            return false;
+            capacity_left = 0;
           }
         }
-        else
+
+        if (!capacity_left)
         {
-          if (!capacity_left)
-          {
-            return false;
-          }
-
-          if (capacity_left < num_element_to_read)
-          {
-            num_element_to_read = capacity_left;
-          }
+          return false;
         }
 
-        new_tail = old_tail + num_items;
+        const size_type num_element_to_read = capacity_left < num_items ? capacity_left : num_items;
+
+        new_tail = old_tail + num_element_to_read;
 
       } while (!m_ConsumerPending.compare_exchange_weak(old_tail, new_tail, std::memory_order_relaxed, std::memory_order_relaxed));
 
@@ -592,6 +580,9 @@ namespace Job
       return (b > a) ? (b - a) : m_Capacity - a + b;
     }
   };
+
+#undef Job_CacheAlign
+
 }  // namespace Job
 
 #endif  // JOB_QUEUE_HPP
@@ -600,7 +591,7 @@ namespace Job
 /*
   MIT License
 
-  Copyright (c) 2024 Shareef Abdoul-Raheem
+  Copyright (c) 2024-2025 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
