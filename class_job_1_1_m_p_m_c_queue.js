@@ -29,5 +29,6 @@ var class_job_1_1_m_p_m_c_queue =
     [ "m_ConsumerCommited", "class_job_1_1_m_p_m_c_queue.html#a9132a552d8a01bbd531f7183a32169c6", null ],
     [ "m_Padding1", "class_job_1_1_m_p_m_c_queue.html#af65f30acc14d3fd395e66a8eb36acf6f", null ],
     [ "m_Queue", "class_job_1_1_m_p_m_c_queue.html#ace7f89bc06b0c0479f92cb5c93d06964", null ],
-    [ "m_Capacity", "class_job_1_1_m_p_m_c_queue.html#a413162ffce3f9d79d97620ae4cbfc85a", null ]
+    [ "m_Capacity", "class_job_1_1_m_p_m_c_queue.html#a413162ffce3f9d79d97620ae4cbfc85a", null ],
+    [ "m_Padding2", "class_job_1_1_m_p_m_c_queue.html#a6cff552200999f186de0eaf32cb87c31", null ]
 ];

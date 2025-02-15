@@ -22,5 +22,6 @@ var class_job_1_1_s_p_s_c_queue =
     [ "m_Padding3", "class_job_1_1_s_p_s_c_queue.html#aa41e98b41c5f06a00862015b0b596029", null ],
     [ "m_Data", "class_job_1_1_s_p_s_c_queue.html#a7091bfed41afcbb89b1ac087fdadabf3", null ],
     [ "m_Capacity", "class_job_1_1_s_p_s_c_queue.html#a9981099a8ade64c0fe9d6ad23bf40666", null ],
-    [ "m_CapacityMask", "class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb", null ]
+    [ "m_CapacityMask", "class_job_1_1_s_p_s_c_queue.html#af8ea3d3b989eaca872d9678763795eeb", null ],
+    [ "m_Padding4", "class_job_1_1_s_p_s_c_queue.html#a04e3c091ca7f2bcd096a26c737c16308", null ]
 ];
