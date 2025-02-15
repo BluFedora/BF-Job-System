@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.8)
 project(BF_Job VERSION 0.0.1 DESCRIPTION "Multithreaded Job System Sub Project of the Engine.")
 
 add_library(
-  BF_Job
+  LibFoundation_Job
   STATIC
     # Public Headers
     "include/concurrent/job_api.hpp"
@@ -24,7 +24,7 @@ add_library(
 )
 
 target_include_directories(
-  BF_Job
+  LibFoundation_Job
   PUBLIC
     "include"
   PRIVATE
@@ -32,14 +32,14 @@ target_include_directories(
 )
 
 # $<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>
-target_compile_options(BF_Job 
+target_compile_options(LibFoundation_Job 
   PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4> # /WX
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic> # -Werror
 )
 
 set_target_properties(
-  BF_Job
+  LibFoundation_Job
   PROPERTIES
     FOLDER                   "BluFedora/Foundation"
     CXX_STANDARD             17
@@ -49,7 +49,7 @@ set_target_properties(
 )
 
 target_compile_features(
-  BF_Job
+  LibFoundation_Job
   PUBLIC 
     cxx_std_17
 )
@@ -76,7 +76,7 @@ add_executable(
 target_link_libraries(
   BFJobTesting
   PRIVATE
-    BF_Job
+    LibFoundation_Job
     GTest::gtest_main
 )
 

@@ -5,6 +5,9 @@
  * @brief
  *   Concurrent Queue Implmementations for different situations.
  *
+ *   Some Interesting Links:
+ *     - [A lock-free, concurrent, generic queue in 32 bits](https://nullprogram.com/blog/2022/05/14/)
+ *
  * @copyright Copyright (c) 2024-2025 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
@@ -19,12 +22,8 @@
 #include <cstddef>    // size_t
 #include <iterator>   // make_move_iterator
 #include <mutex>      // mutex
-#include <new>        // hardware_destructive_interference_size
+#include <new>        // hardware_destructive_interference_size, operator new
 #include <utility>    // move
-
-// Some Interesting Links:
-//   - [A lock-free, concurrent, generic queue in 32 bits](https://nullprogram.com/blog/2022/05/14/)
-//
 
 namespace Job
 {
@@ -135,6 +134,7 @@ namespace Job
     Job_CacheAlign T* m_Data;
     size_type         m_Capacity;
     size_type         m_CapacityMask;
+    unsigned char     m_Padding4[k_FalseSharingPadSize - sizeof(m_Data) - sizeof(m_Capacity) - sizeof(m_CapacityMask)];
 
     static_assert(atomic_size_type::is_always_lock_free, "Expected to be lockfree.");
 
@@ -158,7 +158,7 @@ namespace Job
 
     bool Push(const T& value)
     {
-      return PushLazy([&value](T* const destination) { *destination = value; });
+      return PushLazy([&value](T* const destination) { ::new (destination) T(value); });
     }
 
     bool Pop(T* const out_value)
@@ -398,6 +398,7 @@ namespace Job
     unsigned char                   m_Padding1[k_FalseSharingPadSize - sizeof(atomic_size_type) * 2];
     Job_CacheAlign value_type*      m_Queue;
     size_type                       m_Capacity;
+    unsigned char                   m_Padding2[k_FalseSharingPadSize - sizeof(m_Queue) - sizeof(m_Capacity)];
 
    public:
     MPMCQueue()  = default;
@@ -582,7 +583,6 @@ namespace Job
   };
 
 #undef Job_CacheAlign
-
 }  // namespace Job
 
 #endif  // JOB_QUEUE_HPP
