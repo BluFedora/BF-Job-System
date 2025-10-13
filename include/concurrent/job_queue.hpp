@@ -142,7 +142,6 @@ namespace Job
     SPSCQueue()  = default;
     ~SPSCQueue() = default;
 
-    // NOTE(SR): Not thread safe.
     void Initialize(T* const memory_backing, const size_type capacity) noexcept
     {
       m_ProducerIndex.store(0, std::memory_order_relaxed);
@@ -206,7 +205,7 @@ namespace Job
       T* const element = ElementAt(read_index);
       callback(std::move(*element));
       element->~T();
-      m_ConsumerIndex.fetch_add(1, std::memory_order_release);
+      m_ConsumerIndex.store(read_index + 1, std::memory_order_release);
 
       return true;
     }
@@ -264,7 +263,6 @@ namespace Job
     SPMCDeque()  = default;
     ~SPMCDeque() = default;
 
-    // NOTE(SR): Not thread safe.
     void Initialize(AtomicT* const memory_backing, const size_type capacity) noexcept
     {
       m_ProducerIndex = 0;
@@ -404,7 +402,6 @@ namespace Job
     MPMCQueue()  = default;
     ~MPMCQueue() = default;
 
-    // NOTE(SR): Not thread safe.
     void Initialize(value_type* const memory_backing, const size_type capacity) noexcept
     {
       m_ProducerPending.store(0, std::memory_order_relaxed);
