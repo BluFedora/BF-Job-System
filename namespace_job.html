@@ -1916,7 +1916,7 @@ template&lt;typename Closure &gt; </div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>     },</div>
 <div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>     parent);</div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>    <span class="keywordtype">void</span>* <span class="keyword">const</span> private_data = <a class="code hl_function" href="namespace_job_1_1detail.html#a5ed74505a8477781f8e252f6f05755ca">detail::taskReservePrivateUserData</a>(<a class="code hl_namespace" href="namespacetask.html">task</a>, <span class="keyword">sizeof</span>(Closure), <span class="keyword">alignof</span>(Closure));</div>
-<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keyword">new</span> (private_data) Closure(std::forward&lt;Closure&gt;(<span class="keyword">function</span>));</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    ::new (private_data) Closure(std::forward&lt;Closure&gt;(<span class="keyword">function</span>));</div>
 <div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span> </div>
 <div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>    <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespacetask.html">task</a>;</div>
 <div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>  }</div>
@@ -2923,7 +2923,7 @@ template&lt;typename... F&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_job.html">Job</a></li>
-    <li class="footer">Generated on Mon Oct 13 2025 05:22:27 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Dec 3 2025 02:36:05 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
