@@ -516,7 +516,7 @@ namespace Job
      },
      parent);
     void* const private_data = detail::taskReservePrivateUserData(task, sizeof(Closure), alignof(Closure));
-    new (private_data) Closure(std::forward<Closure>(function));
+    ::new (private_data) Closure(std::forward<Closure>(function));
 
     return task;
   }
