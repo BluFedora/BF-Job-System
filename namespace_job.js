@@ -8,7 +8,6 @@ var namespace_job =
       [ "assertHandler", "namespace_job_1_1detail.html#a8b5a2a4d52b357006e9a502363831998", null ]
     ] ],
     [ "InitializationLock", "namespace_job.html#struct_job_1_1_initialization_lock", "namespace_job_struct_job_1_1_initialization_lock_dup" ],
-    [ "InitializationToken", "struct_job_1_1_initialization_token.html", "struct_job_1_1_initialization_token" ],
     [ "JobSystemContext", "namespace_job.html#struct_job_1_1_job_system_context", "namespace_job_struct_job_1_1_job_system_context_dup" ],
     [ "JobSystemCreateOptions", "namespace_job.html#struct_job_1_1_job_system_create_options", "namespace_job_struct_job_1_1_job_system_create_options_dup" ],
     [ "JobSystemMemoryRequirements", "struct_job_1_1_job_system_memory_requirements.html", "struct_job_1_1_job_system_memory_requirements" ],
@@ -44,7 +43,7 @@ var namespace_job =
       [ "FAILED_SIZE", "namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53abc99178083549fb2e0f99f59fea3a2b1", null ]
     ] ],
     [ "NumSystemThreads", "namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6", null ],
-    [ "Initialize", "namespace_job.html#a398a7fd0221839f321c00864238b9ab2", null ],
+    [ "Initialize", "namespace_job.html#adb8dbad83ee67a506f9c9e85784f85fa", null ],
     [ "SetupUserThread", "namespace_job.html#a9aab6d68cfe21248160a0c09f9ef8807", null ],
     [ "ProcessorArchitectureName", "namespace_job.html#a77a997446d916b36e7478c7627694a51", null ],
     [ "NumWorkers", "namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06", null ],

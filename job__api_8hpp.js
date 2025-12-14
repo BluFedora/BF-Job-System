@@ -26,7 +26,7 @@ var job__api_8hpp =
     [ "taskReservePrivateUserData", "job__api_8hpp.html#a5ed74505a8477781f8e252f6f05755ca", null ],
     [ "mainQueueTryRunTask", "job__api_8hpp.html#a8209af0db62c504d004ec94bf3889442", null ],
     [ "NumSystemThreads", "job__api_8hpp.html#ada79d1288c5458f1451a414ec89d2ba6", null ],
-    [ "Initialize", "job__api_8hpp.html#a398a7fd0221839f321c00864238b9ab2", null ],
+    [ "Initialize", "job__api_8hpp.html#adb8dbad83ee67a506f9c9e85784f85fa", null ],
     [ "SetupUserThread", "job__api_8hpp.html#a9aab6d68cfe21248160a0c09f9ef8807", null ],
     [ "ProcessorArchitectureName", "job__api_8hpp.html#a77a997446d916b36e7478c7627694a51", null ],
     [ "NumWorkers", "job__api_8hpp.html#a5b606baa9964c9afd3e30294ccf7dc06", null ],

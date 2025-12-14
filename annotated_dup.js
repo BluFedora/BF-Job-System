@@ -2,7 +2,6 @@ var annotated_dup =
 [
     [ "Job", "namespace_job.html", [
       [ "InitializationLock", "namespace_job.html#struct_job_1_1_initialization_lock", "namespace_job_struct_job_1_1_initialization_lock_dup" ],
-      [ "InitializationToken", "struct_job_1_1_initialization_token.html", "struct_job_1_1_initialization_token" ],
       [ "JobSystemContext", "namespace_job.html#struct_job_1_1_job_system_context", "namespace_job_struct_job_1_1_job_system_context_dup" ],
       [ "JobSystemCreateOptions", "namespace_job.html#struct_job_1_1_job_system_create_options", "namespace_job_struct_job_1_1_job_system_create_options_dup" ],
       [ "JobSystemMemoryRequirements", "struct_job_1_1_job_system_memory_requirements.html", "struct_job_1_1_job_system_memory_requirements" ],

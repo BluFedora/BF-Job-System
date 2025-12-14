@@ -15,6 +15,5 @@ var searchData=
   ['num_5fuser_5fthreads_12',['num_user_threads',['../namespace_job.html#acecbb32a0825377b5d3d6fce2ec8fe61',1,'Job::JobSystemCreateOptions']]],
   ['num_5fuser_5fthreads_5fsetup_13',['num_user_threads_setup',['../namespace_job.html#a3396012a3ef6794963935337f59b6549',1,'Job::JobSystemContext']]],
   ['num_5fworkers_14',['num_workers',['../namespace_job.html#a8c3b1e96a4c0f2e3a90b75dd8255dc3b',1,'Job::JobSystemContext']]],
-  ['num_5fworkers_5fcreated_15',['num_workers_created',['../struct_job_1_1_initialization_token.html#ae85fc99a2df3d4ca02296c5906d19188',1,'Job::InitializationToken']]],
-  ['num_5fworkers_5fready_16',['num_workers_ready',['../namespace_job.html#aa5e8e433ba17496dcee1ab1c057ee2b9',1,'Job::InitializationLock']]]
+  ['num_5fworkers_5fready_15',['num_workers_ready',['../namespace_job.html#aa5e8e433ba17496dcee1ab1c057ee2b9',1,'Job::InitializationLock']]]
 ];
