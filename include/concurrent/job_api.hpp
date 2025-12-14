@@ -13,14 +13,13 @@
  *      [https://fabiensanglard.net/doom3_bfg/threading.php]
  *      [https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine]
  *
- * @copyright Copyright (c) 2020-2024 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2025 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef JOB_API_HPP
 #define JOB_API_HPP
 
-#include "job_assert.hpp"      // JobAssert
-#include "job_init_token.hpp"  // InitializationToken
+#include "job_assert.hpp"  // JobAssert
 
 #include <cstdint>  // sized integer types
 #include <new>      // placement new
@@ -98,9 +97,9 @@ namespace Job
    */
   struct JobSystemMemoryRequirements
   {
-    const JobSystemCreateOptions options;    //!< The options used to create the memory requirements.
-    std::size_t                  byte_size;  //!< The number of bytes the job system needed.
-    std::size_t                  alignment;  //!< The base alignment the pointer should be.
+    JobSystemCreateOptions options;    //!< The options used to create the memory requirements.
+    std::size_t            byte_size;  //!< The number of bytes the job system needed.
+    std::size_t            alignment;  //!< The base alignment the pointer should be.
 
     JobSystemMemoryRequirements(const JobSystemCreateOptions& options = {}) noexcept;
   };
@@ -121,7 +120,7 @@ namespace Job
    * @return
    *   The `InitializationToken` can be used by other subsystem to verify that the Job System has been initialized.
    */
-  InitializationToken Initialize(const JobSystemMemoryRequirements& memory_requirements = {}, void* const memory = nullptr) noexcept;
+  void Initialize(const JobSystemMemoryRequirements& memory_requirements = {}, void* const memory = nullptr) noexcept;
 
   /*!
    * @brief
@@ -743,7 +742,7 @@ namespace Job
 /*
   MIT License
 
-  Copyright (c) 2020-2024 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2025 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

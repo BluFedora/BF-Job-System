@@ -14,7 +14,7 @@
  *      [https://fabiensanglard.net/doom3_bfg/threading.php]
  *      [https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine]
  *
- * @copyright Copyright (c) 2020-2024 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2020-2025 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #include "concurrent/job_api.hpp"
@@ -664,7 +664,7 @@ namespace
 
     T* const result = span->ptr;
 
-    span->ptr += num_elements;
+    span->ptr          += num_elements;
     span->num_elements -= num_elements;
 
     return result;
@@ -738,7 +738,7 @@ Job::JobSystemMemoryRequirements::JobSystemMemoryRequirements(const JobSystemCre
   MemoryRequirementsPush<TaskHandle>(this, total_num_tasks);
 }
 
-Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements& memory_requirements, void* memory) noexcept
+void Job::Initialize(const Job::JobSystemMemoryRequirements& memory_requirements, void* memory) noexcept
 {
   JobAssert(g_JobSystem == nullptr, "Already initialized.");
 
@@ -849,8 +849,6 @@ Job::InitializationToken Job::Initialize(const Job::JobSystemMemoryRequirements&
   JobAssert(main_tasks_ptrs.num_elements == 0u, "All elements expected to be allocated out.");
   JobAssert(worker_task_ptrs.num_elements == 0u, "All elements expected to be allocated out.");
   JobAssert(all_task_handles.num_elements == 0u, "All elements expected to be allocated out.");
-
-  return Job::InitializationToken{owned_threads};
 }
 
 void Job::SetupUserThread()
@@ -1273,7 +1271,7 @@ bool Job::detail::mainQueueTryRunTask(void) noexcept
 /*
   MIT License
 
-  Copyright (c) 2020-2024 Shareef Abdoul-Raheem
+  Copyright (c) 2020-2025 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

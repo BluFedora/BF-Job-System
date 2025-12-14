@@ -5,7 +5,7 @@
  * @brief
  *   Assertion macro for this library.
  *
- * @copyright Copyright (c) 2024 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2024-2025 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef JOB_ASSERT_HPP
@@ -35,7 +35,7 @@ namespace Job
 /*
   MIT License
 
-  Copyright (c) 2024 Shareef Abdoul-Raheem
+  Copyright (c) 2024-2025 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
