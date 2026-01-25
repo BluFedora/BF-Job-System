@@ -116,9 +116,6 @@ namespace Job
    * @param memory
    *   Must be `memory_requirements.byte_size` in size and with alignment `memory_requirements.alignment`.
    *   If nullptr then the system heap will be used.
-   *
-   * @return
-   *   The `InitializationToken` can be used by other subsystem to verify that the Job System has been initialized.
    */
   void Initialize(const JobSystemMemoryRequirements& memory_requirements = {}, void* const memory = nullptr) noexcept;
 
