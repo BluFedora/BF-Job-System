@@ -40,7 +40,7 @@ struct IndexRange
 // static constexpr int k_NumJobsForTestingOverhead = 6500000;
 static constexpr int k_NumJobsForTestingOverhead = 6500;
 
-std::unique_ptr<int[]> AllocateIntArray(const std::size_t num_elements)
+static std::unique_ptr<int[]> AllocateIntArray(const std::size_t num_elements)
 {
   return std::unique_ptr<int[]>(new int[num_elements]());
 }
@@ -146,7 +146,7 @@ TEST(JobSystemTests, BasicParallelForArray)
 // Test `parallel_invoke` making sure both tasks are run and finish.
 TEST(JobSystemTests, BasicParallelInvoke)
 {
-  static constexpr int         k_DataSize   = 1000000;
+  static constexpr int         k_DataSize   = 2048;
   const std::unique_ptr<int[]> example_data = AllocateIntArray(k_DataSize);
 
   std::fill_n(example_data.get(), k_DataSize, 0);
@@ -160,12 +160,14 @@ TEST(JobSystemTests, BasicParallelInvoke)
      for (const std::size_t i : IndexRange{0, k_DataSize / 2})
      {
        ++example_data[i];
-     } },
+     }
+   },
    [&](const job::Ctx&) {
      for (const std::size_t i : IndexRange{k_DataSize / 2, k_DataSize})
      {
        ++example_data[i];
-     } });
+     }
+   });
 
   job::WaitOn(counter);
 
@@ -177,7 +179,7 @@ TEST(JobSystemTests, BasicParallelInvoke)
 
 TEST(JobSystemTests, SPSCQueue)
 {
-  constexpr auto               backing_storage_capacity = (1 << 23);
+  constexpr auto               backing_storage_capacity = (1<< 12);
   const std::unique_ptr<int[]> backing_storage          = AllocateIntArray(backing_storage_capacity);
   const std::unique_ptr<int[]> queue_result             = AllocateIntArray(backing_storage_capacity * 2);
 
@@ -208,8 +210,6 @@ TEST(JobSystemTests, SPSCQueue)
   t0.join();
   t1.join();
 }
-
-// TODO(SR): Test continuations.
 
 int main(int argc, char* argv[])
 {

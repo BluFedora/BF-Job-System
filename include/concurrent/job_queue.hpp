@@ -8,7 +8,7 @@
  *   Some Interesting Links:
  *     - [A lock-free, concurrent, generic queue in 32 bits](https://nullprogram.com/blog/2022/05/14/)
  *
- * @copyright Copyright (c) 2024-2025 Shareef Abdoul-Raheem
+ * @copyright Copyright (c) 2024-2026 Shareef Abdoul-Raheem
  */
 /******************************************************************************/
 #ifndef JOB_QUEUE_HPP
@@ -27,8 +27,6 @@
 namespace job
 {
   static constexpr std::size_t k_FalseSharingPadSize = std::hardware_destructive_interference_size;
-
-#define Job_CacheAlign alignas(k_FalseSharingPadSize)
 
   template<typename T>
   class LockedQueue
@@ -102,6 +100,8 @@ namespace job
     }
   };
 
+#define Job_CacheAlign alignas(k_FalseSharingPadSize)
+
   // [https://www.youtube.com/watch?v=K3P_Lmq6pw0]
   //
   // Single Producer, Single Consumer Lockfree Queue
@@ -166,7 +166,6 @@ namespace job
       return PopLazy([out_value](T&& value) { *out_value = std::move(value); });
     }
 
-    // Memory passed into `callback` is uninitialized, must be placement new'ed into.
     template<typename CallbackFn>
     bool PushLazy(CallbackFn&& callback)
     {
@@ -579,7 +578,7 @@ namespace job
   };
 
 #undef Job_CacheAlign
-}  // namespace Job
+}
 
 #endif  // JOB_QUEUE_HPP
 
@@ -587,7 +586,7 @@ namespace job
 /*
   MIT License
 
-  Copyright (c) 2024-2025 Shareef Abdoul-Raheem
+  Copyright (c) 2024-2026 Shareef Abdoul-Raheem
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

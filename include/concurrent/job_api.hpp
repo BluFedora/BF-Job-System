@@ -38,6 +38,13 @@ namespace job
 {
   using WorkerID = std::uint16_t;  //!< The id type of each worker thread.
 
+  /*!
+   * @brief
+   *   The only syncronization mechanism.
+   *   Allows you to wait on tasks you asssociated with this counter.
+   *
+   * @see job::WaitOn
+   */
   struct Counter
   {
     std::atomic_uint64_t unfinished_tasks = 0u;
@@ -62,7 +69,7 @@ namespace job
 
   /*!
    * @brief
-   *   Makes some system calls to grab the number threads / processors on the device.
+   *   Makes system calls to grab the number threads / processors on the device.
    *   This function can be called by any thread concurrently.
    *
    *   Can be called even if the job system has not been initialized.
@@ -72,8 +79,6 @@ namespace job
    */
   std::size_t NumSystemThreads() noexcept;
 
-  // Main System API
-
   /*!
    * @brief
    *   The runtime configuration for the Job System.
@@ -82,7 +87,7 @@ namespace job
   {
     std::uint16_t num_threads        = 0;     //!< Use 0 to indicate using the number of cores available on the system.
     std::uint16_t normal_queue_size  = 1024;  //!< Number of tasks in each worker's `QueueType::Default` queue. (Must be power of two)
-    std::uint16_t worker_queue_size  = 32;    //!< Number of tasks in each worker's `QueueType::WorkerOnly` queue. (Must be power of two)
+    std::uint16_t worker_queue_size  = 512;   //!< Number of tasks in each worker's `QueueType::WorkerOnly` queue. (Must be power of two)
     std::uint64_t job_steal_rng_seed = 0u;    //!< The RNG for work queue stealing will be seeded with this value.
   };
 
@@ -170,7 +175,7 @@ namespace job
 
   /*!
    * @brief
-   *   Pushes a task onto the queue.
+   *   Main API entrypoint, Pushes a task onto the queue.
    *
    * @tparam Closure
    *   Callable Type with `void Closure(const job::Ctx& ctx);`.
@@ -190,7 +195,7 @@ namespace job
    * @warning If the no free tasks are avaiable from the pool the task will run inline of this thread regardles of the \p queue mode.
    */
   template<typename Closure>
-  void Dispatch(const char* const name, Counter* const counter, Closure&& Callback, const QueueMode queue = QueueMode::Default) noexcept;
+  void Dispatch(const char* const name, Counter* const counter, const Closure& Callback, const QueueMode queue = QueueMode::Default) noexcept;
 
   /*!
    * @brief
@@ -240,7 +245,7 @@ namespace job
   }
 
   template<typename Closure>
-  void Dispatch(const char* const name, Counter* const counter, Closure&& Callback, const QueueMode queue) noexcept
+  void Dispatch(const char* const name, Counter* const counter, const Closure& Callback, const QueueMode queue) noexcept
   {
     const internal::JobFn ErasedCallback = +[](const internal::PrivateCtx& ctx) -> void {
       Closure* const typed_callback = static_cast<Closure*>(ctx.user_data);
@@ -418,7 +423,8 @@ namespace job
         }
 
         count_left = stride;
-      } };
+      }
+    };
 
     job::Dispatch(name, counter, ParallelReduce_Impl, queue);
   }
