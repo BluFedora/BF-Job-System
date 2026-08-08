@@ -92,11 +92,7 @@ $(document).ready(function(){initNavTree('job__system_8cpp.html',''); initResiza
   <div class="headertitle"><div class="title">job_system.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>API for a multi-threading job system.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="job__api_8hpp_source.html">concurrent/job_api.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="job__assert_8hpp_source.html">concurrent/job_assert.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="job__queue_8hpp_source.html">concurrent/job_queue.hpp</a>&quot;</code><br />
 <code>#include &quot;pcg_basic.h&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
@@ -111,26 +107,24 @@ $(document).ready(function(){initNavTree('job__system_8cpp.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_task_ptr.html">Job::TaskPtr</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjob_1_1_task_ptr.html">job::TaskPtr</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union_job_1_1_task_fn_storage.html">Job::TaskFnStorage</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjob_1_1_task.html">job::Task</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_job_1_1_task.html">Job::Task</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:union_job_1_1_task_memory_block"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#union_job_1_1_task_memory_block">Job::TaskMemoryBlock</a></td></tr>
-<tr class="separator:union_job_1_1_task_memory_block"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_job_1_1_task_pool"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#struct_job_1_1_task_pool">Job::TaskPool</a></td></tr>
-<tr class="separator:struct_job_1_1_task_pool"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_job_1_1_thread_local_state"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#struct_job_1_1_thread_local_state">Job::ThreadLocalState</a></td></tr>
-<tr class="separator:struct_job_1_1_thread_local_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_job_1_1_initialization_lock"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#struct_job_1_1_initialization_lock">Job::InitializationLock</a></td></tr>
-<tr class="separator:struct_job_1_1_initialization_lock"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_job_1_1_job_system_context"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#struct_job_1_1_job_system_context">Job::JobSystemContext</a></td></tr>
-<tr class="separator:struct_job_1_1_job_system_context"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:unionjob_1_1_task_memory_block"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#unionjob_1_1_task_memory_block">job::TaskMemoryBlock</a></td></tr>
+<tr class="separator:unionjob_1_1_task_memory_block"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structjob_1_1_task_pool"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#structjob_1_1_task_pool">job::TaskPool</a></td></tr>
+<tr class="separator:structjob_1_1_task_pool"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structjob_1_1_thread_local_state"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">job::ThreadLocalState</a></td></tr>
+<tr class="separator:structjob_1_1_thread_local_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structjob_1_1_initialization_lock"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#structjob_1_1_initialization_lock">job::InitializationLock</a></td></tr>
+<tr class="separator:structjob_1_1_initialization_lock"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structjob_1_1_job_system_context"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#structjob_1_1_job_system_context">job::JobSystemContext</a></td></tr>
+<tr class="separator:structjob_1_1_job_system_context"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespace_job"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html">Job</a></td></tr>
+<tr class="memitem:namespacejob"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html">job</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacesystem"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesystem.html">system</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,99 +144,89 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a66b4ae2d934892bb03f311c31506476e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a66b4ae2d934892bb03f311c31506476e">Job::TaskHandle</a> = std::uint16_t</td></tr>
-<tr class="separator:a66b4ae2d934892bb03f311c31506476e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5130f87f126f7ce70872c29687c0ccd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#af5130f87f126f7ce70872c29687c0ccd">Job::TaskHandleType</a> = <a class="el" href="namespace_job.html#a66b4ae2d934892bb03f311c31506476e">TaskHandle</a></td></tr>
-<tr class="separator:af5130f87f126f7ce70872c29687c0ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbbdb7aa147fca8ee364bf7e2d5e53d8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#adbbdb7aa147fca8ee364bf7e2d5e53d8">Job::AtomicTaskHandleType</a> = std::atomic&lt; <a class="el" href="namespace_job.html#a66b4ae2d934892bb03f311c31506476e">TaskHandle</a> &gt;</td></tr>
-<tr class="separator:adbbdb7aa147fca8ee364bf7e2d5e53d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef42ab2f4880b98a40cf86e5541503e0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#aef42ab2f4880b98a40cf86e5541503e0">Job::WorkerIDType</a> = <a class="el" href="namespace_job.html#ac7727f146165ae76b95cc50196df236e">WorkerID</a></td></tr>
-<tr class="separator:aef42ab2f4880b98a40cf86e5541503e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b005d277912bb3695b8b53b19341a53"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a2b005d277912bb3695b8b53b19341a53">Job::AtomicInt32</a> = std::atomic_int32_t</td></tr>
-<tr class="separator:a2b005d277912bb3695b8b53b19341a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae159e934d8d1f329f729f24874234d40"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#ae159e934d8d1f329f729f24874234d40">Job::Byte</a> = unsigned char</td></tr>
-<tr class="separator:ae159e934d8d1f329f729f24874234d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a051e674ab31e8b9946de4990f3b4288b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a051e674ab31e8b9946de4990f3b4288b">Job::AtomicTaskPtr</a> = std::atomic&lt; <a class="el" href="struct_job_1_1_task_ptr.html">TaskPtr</a> &gt;</td></tr>
-<tr class="separator:a051e674ab31e8b9946de4990f3b4288b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f84df6ce72c5e2c12d73f9aeda93b5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#ae6f84df6ce72c5e2c12d73f9aeda93b5">job::TaskHandle</a> = std::uint16_t</td></tr>
+<tr class="separator:ae6f84df6ce72c5e2c12d73f9aeda93b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a1a63555e5452f703cb3277b93a72d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#a60a1a63555e5452f703cb3277b93a72d">job::TaskHandleType</a> = TaskHandle</td></tr>
+<tr class="separator:a60a1a63555e5452f703cb3277b93a72d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a657b6393569d5bb88c8545ae0d80c229"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#a657b6393569d5bb88c8545ae0d80c229">job::AtomicTaskHandleType</a> = std::atomic&lt; TaskHandle &gt;</td></tr>
+<tr class="separator:a657b6393569d5bb88c8545ae0d80c229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdde51f0f6d48f3d7d9e76d01c44ce5f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#acdde51f0f6d48f3d7d9e76d01c44ce5f">job::WorkerIDType</a> = WorkerID</td></tr>
+<tr class="separator:acdde51f0f6d48f3d7d9e76d01c44ce5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5c81575dbc18b089122cf4453d8cfcd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#ab5c81575dbc18b089122cf4453d8cfcd">job::AtomicInt32</a> = std::atomic_int32_t</td></tr>
+<tr class="separator:ab5c81575dbc18b089122cf4453d8cfcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1cbfdb4aa447b83c9b660e04de547ac"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#ad1cbfdb4aa447b83c9b660e04de547ac">job::Byte</a> = unsigned char</td></tr>
+<tr class="separator:ad1cbfdb4aa447b83c9b660e04de547ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a251ce3237809df3b8db5845340266ca8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#a251ce3237809df3b8db5845340266ca8">job::AtomicTaskPtr</a> = std::atomic&lt; <a class="el" href="structjob_1_1_task_ptr.html">job::TaskPtr</a> &gt;</td></tr>
+<tr class="separator:a251ce3237809df3b8db5845340266ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aef3303347f87a62f73106bf96a855e22"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#aef3303347f87a62f73106bf96a855e22">Job::k_CachelineSize</a> = 64u</td></tr>
-<tr class="separator:aef3303347f87a62f73106bf96a855e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa141d8407e498c708be9a947805b6853"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#aa141d8407e498c708be9a947805b6853">Job::k_ExpectedTaskSize</a> = std::max(std::size_t(128u), k_CachelineSize)</td></tr>
-<tr class="separator:aa141d8407e498c708be9a947805b6853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb6be9ba0f23d0e66306290cd06d6089"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">QueueType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#abb6be9ba0f23d0e66306290cd06d6089">Job::k_InvalidQueueType</a> = <a class="el" href="namespace_job.html#a686f6798e9f499e832cb9f125f0db5fb">QueueType</a>(int(QueueType::WORKER) + 1)</td></tr>
-<tr class="separator:abb6be9ba0f23d0e66306290cd06d6089"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bb56989a0a31d03a041c40e8ac99cc7"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="namespace_job.html#a66b4ae2d934892bb03f311c31506476e">TaskHandle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_job.html#a4bb56989a0a31d03a041c40e8ac99cc7">Job::NullTaskHandle</a> = std::numeric_limits&lt;<a class="el" href="namespace_job.html#a66b4ae2d934892bb03f311c31506476e">TaskHandle</a>&gt;::max()</td></tr>
-<tr class="separator:a4bb56989a0a31d03a041c40e8ac99cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb9d4821deb09320023a531d1cb87f58"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_job.html#struct_job_1_1_job_system_context">Job::JobSystemContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="job__system_8cpp.html#afb9d4821deb09320023a531d1cb87f58">g_JobSystem</a> = nullptr</td></tr>
-<tr class="separator:afb9d4821deb09320023a531d1cb87f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfa74abcec62d6d1b3d06edec0cf3b0d"><td class="memItemLeft" align="right" valign="top">static thread_local <a class="el" href="namespace_job.html#struct_job_1_1_thread_local_state">Job::ThreadLocalState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="job__system_8cpp.html#abfa74abcec62d6d1b3d06edec0cf3b0d">g_CurrentWorker</a> = nullptr</td></tr>
-<tr class="separator:abfa74abcec62d6d1b3d06edec0cf3b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e2527e09a00692e0e862f89a5dbdf41"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#a2e2527e09a00692e0e862f89a5dbdf41">job::k_CachelineSize</a> = 64u</td></tr>
+<tr class="separator:a2e2527e09a00692e0e862f89a5dbdf41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5648248c80793f10399a670bb37e93b"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#ae5648248c80793f10399a670bb37e93b">job::k_ExpectedTaskSize</a> = std::max(std::size_t(128u), k_CachelineSize)</td></tr>
+<tr class="separator:ae5648248c80793f10399a670bb37e93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1442a78a218a605452140b358eeba80"><td class="memItemLeft" align="right" valign="top">static constexpr TaskHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#ac1442a78a218a605452140b358eeba80">job::NullTaskHandle</a> = std::numeric_limits&lt;TaskHandle&gt;::max()</td></tr>
+<tr class="separator:ac1442a78a218a605452140b358eeba80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf9188028f95dbc4757c97bbe2bddfc0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacejob.html#structjob_1_1_job_system_context">job::JobSystemContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="job__system_8cpp.html#acf9188028f95dbc4757c97bbe2bddfc0">g_JobSystem</a> = nullptr</td></tr>
+<tr class="separator:acf9188028f95dbc4757c97bbe2bddfc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e421b0dce2eab1e3b9f6bc928e88058"><td class="memItemLeft" align="right" valign="top">static thread_local <a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">job::ThreadLocalState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="job__system_8cpp.html#a7e421b0dce2eab1e3b9f6bc928e88058">g_CurrentWorker</a> = nullptr</td></tr>
+<tr class="separator:a7e421b0dce2eab1e3b9f6bc928e88058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >API for a multi-threading job system. </p>
-<dl class="section author"><dt>Author</dt><dd>Shareef Rahem (<a href="https://blufedora.github.io/">https://blufedora.github.io/</a>) </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2020-09-03</dd></dl>
-<p>References: [<a href="https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/">https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/</a>] [<a href="https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/">https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/</a>] [<a href="https://github.com/cdwfs/cds_job/blob/master/cds_job.h">https://github.com/cdwfs/cds_job/blob/master/cds_job.h</a>] [<a href="https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h">https://github.com/cyshi/logbook/blob/master/src/common/work_stealing_queue.h</a>] [<a href="https://fabiensanglard.net/doom3_bfg/threading.php">https://fabiensanglard.net/doom3_bfg/threading.php</a>] [<a href="https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine">https://gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine</a>]</p>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020-2025 Shareef Abdoul-Raheem </dd></dl>
-
-<p class="definition">Definition in file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
-</div><hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="union_job_1_1_task_memory_block" id="union_job_1_1_task_memory_block"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#union_job_1_1_task_memory_block">&#9670;&nbsp;</a></span>Job::TaskMemoryBlock</h2>
+<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="unionjob_1_1_task_memory_block" id="unionjob_1_1_task_memory_block"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#unionjob_1_1_task_memory_block">&#9670;&nbsp;</a></span>job::TaskMemoryBlock</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">union Job::TaskMemoryBlock</td>
+          <td class="memname">union job::TaskMemoryBlock</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00167">167</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00153">153</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a3f738fb139edbd8b37aa827b7ef40a2f" name="a3f738fb139edbd8b37aa827b7ef40a2f"></a><a class="el" href="namespace_job.html#union_job_1_1_task_memory_block">TaskMemoryBlock</a> *</td>
+<a id="a8cf0b30dbf7ad10fbb3b6414d7223640" name="a8cf0b30dbf7ad10fbb3b6414d7223640"></a><a class="el" href="namespacejob.html#unionjob_1_1_task_memory_block">TaskMemoryBlock</a> *</td>
 <td class="fieldname">
 next</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a997127b0be46e34cd4b5a0e8ec41637f" name="a997127b0be46e34cd4b5a0e8ec41637f"></a>unsigned char</td>
+<a id="a53e77a9e912d21a3f906277ebdba1dbb" name="a53e77a9e912d21a3f906277ebdba1dbb"></a>unsigned char</td>
 <td class="fieldname">
-storage[sizeof(<a class="el" href="struct_job_1_1_task.html">Task</a>)]</td>
+storage[sizeof(<a class="el" href="structjob_1_1_task.html">Task</a>)]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
 
 </div>
 </div>
-<a name="struct_job_1_1_task_pool" id="struct_job_1_1_task_pool"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_job_1_1_task_pool">&#9670;&nbsp;</a></span>Job::TaskPool</h2>
+<a name="structjob_1_1_task_pool" id="structjob_1_1_task_pool"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structjob_1_1_task_pool">&#9670;&nbsp;</a></span>job::TaskPool</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct Job::TaskPool</td>
+          <td class="memname">struct job::TaskPool</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00174">174</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00160">160</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="ad78b67acabbfeffa4fa359033f9e283e" name="ad78b67acabbfeffa4fa359033f9e283e"></a><a class="el" href="namespace_job.html#union_job_1_1_task_memory_block">TaskMemoryBlock</a> *</td>
+<a id="a89aea7d990a986b8b4d49e13ead779db" name="a89aea7d990a986b8b4d49e13ead779db"></a><a class="el" href="namespacejob.html#unionjob_1_1_task_memory_block">TaskMemoryBlock</a> *</td>
 <td class="fieldname">
 memory</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a3eaa44dbda014534b66e81de453c2750" name="a3eaa44dbda014534b66e81de453c2750"></a><a class="el" href="namespace_job.html#union_job_1_1_task_memory_block">TaskMemoryBlock</a> *</td>
+<a id="a8e9745b93c055db1a04e82026f4d1980" name="a8e9745b93c055db1a04e82026f4d1980"></a><a class="el" href="namespacejob.html#unionjob_1_1_task_memory_block">TaskMemoryBlock</a> *</td>
 <td class="fieldname">
 freelist</td>
 <td class="fielddoc">
@@ -251,65 +235,65 @@ freelist</td>
 
 </div>
 </div>
-<a name="struct_job_1_1_thread_local_state" id="struct_job_1_1_thread_local_state"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_job_1_1_thread_local_state">&#9670;&nbsp;</a></span>Job::ThreadLocalState</h2>
+<a name="structjob_1_1_thread_local_state" id="structjob_1_1_thread_local_state"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structjob_1_1_thread_local_state">&#9670;&nbsp;</a></span>job::ThreadLocalState</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct Job::ThreadLocalState</td>
+          <td class="memname">struct job::ThreadLocalState</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00180">180</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00166">166</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a6d438e37fa2b50e1317c0a1c3940d725" name="a6d438e37fa2b50e1317c0a1c3940d725"></a><a class="el" href="class_job_1_1_s_p_m_c_deque.html">SPMCDeque</a>&lt; <a class="el" href="struct_job_1_1_task_ptr.html">TaskPtr</a> &gt;</td>
+<a id="a6eb67b24feeeecd74f2ecfcda5d45e30" name="a6eb67b24feeeecd74f2ecfcda5d45e30"></a><a class="el" href="classjob_1_1_s_p_m_c_deque.html">SPMCDeque</a>&lt; <a class="el" href="structjob_1_1_task_ptr.html">TaskPtr</a> &gt;</td>
 <td class="fieldname">
 normal_queue</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a1e192ea5b6078206abfaee90b2113cda" name="a1e192ea5b6078206abfaee90b2113cda"></a><a class="el" href="class_job_1_1_s_p_m_c_deque.html">SPMCDeque</a>&lt; <a class="el" href="struct_job_1_1_task_ptr.html">TaskPtr</a> &gt;</td>
+<a id="a419d840f4881c5c17a34e194e208cfc1" name="a419d840f4881c5c17a34e194e208cfc1"></a><a class="el" href="classjob_1_1_s_p_m_c_deque.html">SPMCDeque</a>&lt; <a class="el" href="structjob_1_1_task_ptr.html">TaskPtr</a> &gt;</td>
 <td class="fieldname">
 worker_queue</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a9d4f4ef4764274265de7c74e12ab906e" name="a9d4f4ef4764274265de7c74e12ab906e"></a><a class="el" href="namespace_job.html#struct_job_1_1_task_pool">TaskPool</a></td>
+<a id="abace9a94dbf67f36aa76b6b7b86267ea" name="abace9a94dbf67f36aa76b6b7b86267ea"></a><a class="el" href="namespacejob.html#structjob_1_1_task_pool">TaskPool</a></td>
 <td class="fieldname">
 task_allocator</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="abde4d73b7c8c689c4268bf3851468ab0" name="abde4d73b7c8c689c4268bf3851468ab0"></a><a class="el" href="namespace_job.html#a66b4ae2d934892bb03f311c31506476e">TaskHandle</a> *</td>
+<a id="ad958662c695fa9fe139d64d0c631eeee" name="ad958662c695fa9fe139d64d0c631eeee"></a><a class="el" href="namespacejob.html#ae6f84df6ce72c5e2c12d73f9aeda93b5">TaskHandle</a> *</td>
 <td class="fieldname">
 allocated_tasks</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a69022452a94cf0826b6d41fd937a6a6e" name="a69022452a94cf0826b6d41fd937a6a6e"></a><a class="el" href="namespace_job.html#af5130f87f126f7ce70872c29687c0ccd">TaskHandleType</a></td>
+<a id="a94660044d39a3982e0355b74890aeb9f" name="a94660044d39a3982e0355b74890aeb9f"></a><a class="el" href="namespacejob.html#a60a1a63555e5452f703cb3277b93a72d">TaskHandleType</a></td>
 <td class="fieldname">
 num_allocated_tasks</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a65f3e1f40942041a43ea77df9b05afec" name="a65f3e1f40942041a43ea77df9b05afec"></a><a class="el" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a> *</td>
+<a id="aebb55732b4dae2c798df5e16e0266721" name="aebb55732b4dae2c798df5e16e0266721"></a><a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">ThreadLocalState</a> *</td>
 <td class="fieldname">
 last_stolen_worker</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a6c665b2e0616e1c9a1baeb2e0ec42704" name="a6c665b2e0616e1c9a1baeb2e0ec42704"></a>pcg_state_setseq_64</td>
+<a id="ad7cf84cffac655aac4987d5508a7ef22" name="ad7cf84cffac655aac4987d5508a7ef22"></a>pcg_state_setseq_64</td>
 <td class="fieldname">
 rng_state</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a1c97516f3a6726b0ba43791fcbe341fc" name="a1c97516f3a6726b0ba43791fcbe341fc"></a>thread</td>
+<a id="af6ef6202e282d2ce885e0af1f84f48b1" name="af6ef6202e282d2ce885e0af1f84f48b1"></a>thread</td>
 <td class="fieldname">
 thread_id</td>
 <td class="fielddoc">
@@ -318,35 +302,35 @@ thread_id</td>
 
 </div>
 </div>
-<a name="struct_job_1_1_initialization_lock" id="struct_job_1_1_initialization_lock"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_job_1_1_initialization_lock">&#9670;&nbsp;</a></span>Job::InitializationLock</h2>
+<a name="structjob_1_1_initialization_lock" id="structjob_1_1_initialization_lock"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structjob_1_1_initialization_lock">&#9670;&nbsp;</a></span>job::InitializationLock</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct Job::InitializationLock</td>
+          <td class="memname">struct job::InitializationLock</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00192">192</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00178">178</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="af387d34b32af61c8e087ea987605f220" name="af387d34b32af61c8e087ea987605f220"></a>mutex</td>
+<a id="a99a6b698e961b9739f97245ecdfeb79d" name="a99a6b698e961b9739f97245ecdfeb79d"></a>mutex</td>
 <td class="fieldname">
 init_mutex</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aea7eded61e2238418bb232de730caf53" name="aea7eded61e2238418bb232de730caf53"></a>condition_variable</td>
+<a id="ae2324149d8110eaea5958099b3341a7b" name="ae2324149d8110eaea5958099b3341a7b"></a>condition_variable</td>
 <td class="fieldname">
 init_cv</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aa5e8e433ba17496dcee1ab1c057ee2b9" name="aa5e8e433ba17496dcee1ab1c057ee2b9"></a>atomic_uint32_t</td>
+<a id="ab17a1094429d8e4b2311e83140e05f13" name="ab17a1094429d8e4b2311e83140e05f13"></a>atomic_uint32_t</td>
 <td class="fieldname">
 num_workers_ready</td>
 <td class="fielddoc">
@@ -355,107 +339,95 @@ num_workers_ready</td>
 
 </div>
 </div>
-<a name="struct_job_1_1_job_system_context" id="struct_job_1_1_job_system_context"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_job_1_1_job_system_context">&#9670;&nbsp;</a></span>Job::JobSystemContext</h2>
+<a name="structjob_1_1_job_system_context" id="structjob_1_1_job_system_context"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structjob_1_1_job_system_context">&#9670;&nbsp;</a></span>job::JobSystemContext</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct Job::JobSystemContext</td>
+          <td class="memname">struct job::JobSystemContext</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00199">199</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00185">185</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a7136616a9c9b73ef1f3ef9b28e75f76e" name="a7136616a9c9b73ef1f3ef9b28e75f76e"></a><a class="el" href="namespace_job.html#struct_job_1_1_thread_local_state">ThreadLocalState</a> *</td>
+<a id="a3c48c9e6c8e94bf74c4c6ee8a144a2ac" name="a3c48c9e6c8e94bf74c4c6ee8a144a2ac"></a><a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">ThreadLocalState</a> *</td>
 <td class="fieldname">
 workers</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a8c3b1e96a4c0f2e3a90b75dd8255dc3b" name="a8c3b1e96a4c0f2e3a90b75dd8255dc3b"></a>uint32_t</td>
+<a id="ad99146cdeb02f60863f651fbe51a3275" name="ad99146cdeb02f60863f651fbe51a3275"></a>uint32_t</td>
 <td class="fieldname">
 num_workers</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a808a82ccc85b15a526ccd4f61c78c9c0" name="a808a82ccc85b15a526ccd4f61c78c9c0"></a>uint32_t</td>
-<td class="fieldname">
-num_owned_workers</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a3396012a3ef6794963935337f59b6549" name="a3396012a3ef6794963935337f59b6549"></a>atomic_uint32_t</td>
+<a id="ad830cc90309e0619ea71ac583058f42a" name="ad830cc90309e0619ea71ac583058f42a"></a>atomic_uint32_t</td>
 <td class="fieldname">
 num_user_threads_setup</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a938eecb18a6a3d6262aec76547e296ca" name="a938eecb18a6a3d6262aec76547e296ca"></a>uint32_t</td>
+<a id="a98fd212d7fbfb37b0ebbf2baa15eb08f" name="a98fd212d7fbfb37b0ebbf2baa15eb08f"></a>uint32_t</td>
 <td class="fieldname">
 num_tasks_per_worker</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a0d5db0ce93f3106774a05370d8bde73d" name="a0d5db0ce93f3106774a05370d8bde73d"></a><a class="el" href="namespace_job.html#struct_job_1_1_initialization_lock">InitializationLock</a></td>
+<a id="a35d4e5208fa0bea06993cf9ab3fb37e7" name="a35d4e5208fa0bea06993cf9ab3fb37e7"></a><a class="el" href="namespacejob.html#structjob_1_1_initialization_lock">InitializationLock</a></td>
 <td class="fieldname">
 init_lock</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a99e33c9b5b872813774ce73d839c23bd" name="a99e33c9b5b872813774ce73d839c23bd"></a>const char *</td>
+<a id="a039173530b335cfc5daee64e7ac6b3d7" name="a039173530b335cfc5daee64e7ac6b3d7"></a>const char *</td>
 <td class="fieldname">
 sys_arch_str</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ac0ea66f39f501ceaded0e28236773fe2" name="ac0ea66f39f501ceaded0e28236773fe2"></a>size_t</td>
+<a id="ae45fa3542b2a028e5f0a7d8d8ce62563" name="ae45fa3542b2a028e5f0a7d8d8ce62563"></a>size_t</td>
 <td class="fieldname">
 system_alloc_size</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aa640462a9e9997538a13538d1f63d026" name="aa640462a9e9997538a13538d1f63d026"></a>size_t</td>
+<a id="ac056e4bcad3b40f2f6ce2d31223a9b71" name="ac056e4bcad3b40f2f6ce2d31223a9b71"></a>size_t</td>
 <td class="fieldname">
 system_alloc_alignment</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a6ed368a7c87ea03926bf80cfa2e47709" name="a6ed368a7c87ea03926bf80cfa2e47709"></a>bool</td>
+<a id="a8b8546bc05dced4dc9cc76e080a47c26" name="a8b8546bc05dced4dc9cc76e080a47c26"></a>bool</td>
 <td class="fieldname">
 needs_delete</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a93ec86776cd50eb50948754288be9f7b" name="a93ec86776cd50eb50948754288be9f7b"></a>atomic_bool</td>
+<a id="a19030991a9f5a2bdf078724c99359ce0" name="a19030991a9f5a2bdf078724c99359ce0"></a>atomic_bool</td>
 <td class="fieldname">
 is_running</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a049da5bae449544c7b17c3aceeee3a79" name="a049da5bae449544c7b17c3aceeee3a79"></a><a class="el" href="class_job_1_1_locked_queue.html">LockedQueue</a>&lt; <a class="el" href="struct_job_1_1_task_ptr.html">TaskPtr</a> &gt;</td>
-<td class="fieldname">
-main_queue</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="aab625f8e152ac7b501029f59f6ed4064" name="aab625f8e152ac7b501029f59f6ed4064"></a>mutex</td>
+<a id="a1f5799771d4c30ff84c992c9a4313d48" name="a1f5799771d4c30ff84c992c9a4313d48"></a>mutex</td>
 <td class="fieldname">
 worker_sleep_mutex</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a26844370c934a2287a6066b3e5889d98" name="a26844370c934a2287a6066b3e5889d98"></a>condition_variable</td>
+<a id="a2c8ee7099752a85b43a7de60caad9578" name="a2c8ee7099752a85b43a7de60caad9578"></a>condition_variable</td>
 <td class="fieldname">
 worker_sleep_cv</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a9be19abdc70fad2d52894a42575fe0e6" name="a9be19abdc70fad2d52894a42575fe0e6"></a>atomic_uint32_t</td>
+<a id="afb64b23e048e589221a31a3d2ed48205" name="afb64b23e048e589221a31a3d2ed48205"></a>atomic_uint32_t</td>
 <td class="fieldname">
 num_available_jobs</td>
 <td class="fielddoc">
@@ -477,13 +449,13 @@ num_available_jobs</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01193">1193</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l01053">1053</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="afb9d4821deb09320023a531d1cb87f58" name="afb9d4821deb09320023a531d1cb87f58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb9d4821deb09320023a531d1cb87f58">&#9670;&nbsp;</a></span>g_JobSystem</h2>
+<a id="acf9188028f95dbc4757c97bbe2bddfc0" name="acf9188028f95dbc4757c97bbe2bddfc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf9188028f95dbc4757c97bbe2bddfc0">&#9670;&nbsp;</a></span>g_JobSystem</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -492,7 +464,7 @@ num_available_jobs</td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_job.html#struct_job_1_1_job_system_context">Job::JobSystemContext</a>* g_JobSystem = nullptr</td>
+          <td class="memname"><a class="el" href="namespacejob.html#structjob_1_1_job_system_context">job::JobSystemContext</a>* g_JobSystem = nullptr</td>
         </tr>
       </table>
   </td>
@@ -502,14 +474,14 @@ num_available_jobs</td>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00226">226</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00210">210</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00926">Job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00741">Job::Initialize()</a>, <a class="el" href="job__system_8cpp_source.html#l01235">Job::detail::mainQueueTryRunTask()</a>, <a class="el" href="job__system_8cpp_source.html#l00916">Job::NumWorkers()</a>, <a class="el" href="job__system_8cpp_source.html#l00921">Job::ProcessorArchitectureName()</a>, <a class="el" href="job__system_8cpp_source.html#l00854">Job::SetupUserThread()</a>, <a class="el" href="job__system_8cpp_source.html#l00937">Job::Shutdown()</a>, <a class="el" href="job__system_8cpp_source.html#l00984">Job::TaskMake()</a>, and <a class="el" href="job__system_8cpp_source.html#l01072">Job::TaskSubmit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00857">job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00931">job::internal::DispatchImpl()</a>, <a class="el" href="job__system_8cpp_source.html#l00687">job::Initialize()</a>, <a class="el" href="job__system_8cpp_source.html#l00847">job::NumWorkers()</a>, <a class="el" href="job__system_8cpp_source.html#l00852">job::ProcessorArchitectureName()</a>, and <a class="el" href="job__system_8cpp_source.html#l00868">job::Shutdown()</a>.</p>
 
 </div>
 </div>
-<a id="abfa74abcec62d6d1b3d06edec0cf3b0d" name="abfa74abcec62d6d1b3d06edec0cf3b0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfa74abcec62d6d1b3d06edec0cf3b0d">&#9670;&nbsp;</a></span>g_CurrentWorker</h2>
+<a id="a7e421b0dce2eab1e3b9f6bc928e88058" name="a7e421b0dce2eab1e3b9f6bc928e88058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e421b0dce2eab1e3b9f6bc928e88058">&#9670;&nbsp;</a></span>g_CurrentWorker</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -518,7 +490,7 @@ num_available_jobs</td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">thread_local <a class="el" href="namespace_job.html#struct_job_1_1_thread_local_state">Job::ThreadLocalState</a>* g_CurrentWorker = nullptr</td>
+          <td class="memname">thread_local <a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">job::ThreadLocalState</a>* g_CurrentWorker = nullptr</td>
         </tr>
       </table>
   </td>
@@ -528,9 +500,9 @@ num_available_jobs</td>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00227">227</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00211">211</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00926">Job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00741">Job::Initialize()</a>, <a class="el" href="job__system_8cpp_source.html#l00932">Job::IsMainThread()</a>, and <a class="el" href="job__system_8cpp_source.html#l00937">Job::Shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00857">job::CurrentWorker()</a>, <a class="el" href="job__system_8cpp_source.html#l00687">job::Initialize()</a>, <a class="el" href="job__system_8cpp_source.html#l00863">job::IsMainThread()</a>, and <a class="el" href="job__system_8cpp_source.html#l00868">job::Shutdown()</a>.</p>
 
 </div>
 </div>
@@ -540,7 +512,7 @@ num_available_jobs</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="job__system_8cpp.html">job_system.cpp</a></li>
-    <li class="footer">Generated on Sun Jan 25 2026 03:20:29 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Aug 8 2026 09:35:07 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

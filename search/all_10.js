@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['readelements_0',['ReadElements',['../class_job_1_1_m_p_m_c_queue.html#a23f13576483939716e7529244b965e22',1,'Job::MPMCQueue']]],
+  ['readelements_0',['ReadElements',['../classjob_1_1_m_p_m_c_queue.html#a5e7103efd202881b5d5153014d060004',1,'job::MPMCQueue']]],
   ['readme_2emd_1',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
-  ['ref_5fcount_2',['ref_count',['../struct_job_1_1_task.html#a0f63701510e262aba99186f9b39203de',1,'Job::Task']]],
-  ['requestpoprange_3',['RequestPopRange',['../class_job_1_1_m_p_m_c_queue.html#a588a2d25a56622edde2f8c62560b4742',1,'Job::MPMCQueue']]],
-  ['requestwriterange_4',['RequestWriteRange',['../class_job_1_1_m_p_m_c_queue.html#acc4f7c38e831c5acabcc8f9ba15eab8b',1,'Job::MPMCQueue']]],
-  ['rng_5fstate_5',['rng_state',['../namespace_job.html#a6c665b2e0616e1c9a1baeb2e0ec42704',1,'Job::ThreadLocalState']]]
+  ['requestpoprange_2',['RequestPopRange',['../classjob_1_1_m_p_m_c_queue.html#a4714bc597a504c1c5fcf433a806addd8',1,'job::MPMCQueue']]],
+  ['requestwriterange_3',['RequestWriteRange',['../classjob_1_1_m_p_m_c_queue.html#ae97e76320028c7bc68452e85aaff640d',1,'job::MPMCQueue']]],
+  ['rng_5fstate_4',['rng_state',['../namespacejob.html#ad7cf84cffac655aac4987d5508a7ef22',1,'job::ThreadLocalState']]]
 ];

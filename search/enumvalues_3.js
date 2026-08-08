@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['success_0',['SUCCESS',['../namespace_job.html#af06568a1c2e63b5742b0569cd9afbb53ad0749aaba8b833466dfcbb0428e4f89c',1,'Job']]]
+  ['workeronly_0',['WorkerOnly',['../namespacejob.html#a7286afe35dd23f7132bfb1c386b0de2eacc49abc9fab1eeaf130f971ca5727b0a',1,'job']]]
 ];

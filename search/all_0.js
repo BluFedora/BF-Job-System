@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['alignment_0',['alignment',['../struct_job_1_1_job_system_memory_requirements.html#a4176dfb73f1ddef41eee28f2e8a3ef78',1,'Job::JobSystemMemoryRequirements']]],
-  ['allocated_5ftasks_1',['allocated_tasks',['../namespace_job.html#abde4d73b7c8c689c4268bf3851468ab0',1,'Job::ThreadLocalState']]],
-  ['asserthandler_2',['assertHandler',['../namespace_job_1_1detail.html#a8b5a2a4d52b357006e9a502363831998',1,'Job::detail']]],
-  ['atomic_5fsize_5ftype_3',['atomic_size_type',['../class_job_1_1_s_p_s_c_queue.html#a0a437ebf9d49c302ef415118263736cf',1,'Job::SPSCQueue::atomic_size_type()'],['../class_job_1_1_s_p_m_c_deque.html#ad693529ac9c88aa87541deaba054996a',1,'Job::SPMCDeque::atomic_size_type()'],['../class_job_1_1_m_p_m_c_queue.html#a60d31f02cd56985b16b281c11d3a371a',1,'Job::MPMCQueue::atomic_size_type()']]],
-  ['atomicint32_4',['AtomicInt32',['../namespace_job.html#a2b005d277912bb3695b8b53b19341a53',1,'Job']]],
-  ['atomict_5',['AtomicT',['../class_job_1_1_s_p_m_c_deque.html#a95281e20ae8eb6c278e412e1f0f5925c',1,'Job::SPMCDeque']]],
-  ['atomictaskhandletype_6',['AtomicTaskHandleType',['../namespace_job.html#adbbdb7aa147fca8ee364bf7e2d5e53d8',1,'Job']]],
-  ['atomictaskptr_7',['AtomicTaskPtr',['../namespace_job.html#a051e674ab31e8b9946de4990f3b4288b',1,'Job']]]
+  ['alignment_0',['alignment',['../structjob_1_1_job_system_memory_requirements.html#a73f35c031fa0334e000f73e10e3582fb',1,'job::JobSystemMemoryRequirements']]],
+  ['allocated_5ftasks_1',['allocated_tasks',['../namespacejob.html#ad958662c695fa9fe139d64d0c631eeee',1,'job::ThreadLocalState']]],
+  ['asserthandler_2',['AssertHandler',['../namespacejob_1_1internal.html#a7b1fa5ca6b87607f01dc06a0f498c6b2',1,'job::internal']]],
+  ['atomic_5fsize_5ftype_3',['atomic_size_type',['../classjob_1_1_s_p_s_c_queue.html#a8033c4cb1efda0e819b4a53a307daa7d',1,'job::SPSCQueue::atomic_size_type()'],['../classjob_1_1_s_p_m_c_deque.html#a571cce642e9f27441ec128f4601504b5',1,'job::SPMCDeque::atomic_size_type()'],['../classjob_1_1_m_p_m_c_queue.html#a120ce8caad555bad12082d0b2c7d50dd',1,'job::MPMCQueue::atomic_size_type()']]],
+  ['atomicint32_4',['AtomicInt32',['../namespacejob.html#ab5c81575dbc18b089122cf4453d8cfcd',1,'job']]],
+  ['atomict_5',['AtomicT',['../classjob_1_1_s_p_m_c_deque.html#a03f8ea7f1f451f665c3c30222847d7da',1,'job::SPMCDeque']]],
+  ['atomictaskhandletype_6',['AtomicTaskHandleType',['../namespacejob.html#a657b6393569d5bb88c8545ae0d80c229',1,'job']]],
+  ['atomictaskptr_7',['AtomicTaskPtr',['../namespacejob.html#a251ce3237809df3b8db5845340266ca8',1,'job']]]
 ];

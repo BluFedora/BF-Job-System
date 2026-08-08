@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['numsystemthreads_0',['NumSystemThreads',['../namespace_job.html#ada79d1288c5458f1451a414ec89d2ba6',1,'Job']]],
-  ['numworkers_1',['NumWorkers',['../namespace_job.html#a5b606baa9964c9afd3e30294ccf7dc06',1,'Job']]]
+  ['numsystemthreads_0',['NumSystemThreads',['../namespacejob.html#ae8a8079c3237722a7233c33d6ad59c78',1,'job']]],
+  ['numworkers_1',['NumWorkers',['../namespacejob.html#aa3c6f45af63a7bcaf906cb07f4a6340f',1,'job']]]
 ];

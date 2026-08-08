@@ -1,14 +1,15 @@
 var searchData=
 [
-  ['indexrange_0',['IndexRange',['../class_job_1_1_m_p_m_c_queue.html#struct_job_1_1_m_p_m_c_queue_1_1_index_range',1,'Job::MPMCQueue']]],
-  ['init_5fcv_1',['init_cv',['../namespace_job.html#aea7eded61e2238418bb232de730caf53',1,'Job::InitializationLock']]],
-  ['init_5flock_2',['init_lock',['../namespace_job.html#a0d5db0ce93f3106774a05370d8bde73d',1,'Job::JobSystemContext']]],
-  ['init_5fmutex_3',['init_mutex',['../namespace_job.html#af387d34b32af61c8e087ea987605f220',1,'Job::InitializationLock']]],
-  ['initializationlock_4',['InitializationLock',['../namespace_job.html#struct_job_1_1_initialization_lock',1,'Job']]],
-  ['initialize_5',['Initialize',['../class_job_1_1_locked_queue.html#ad9869e002d057e91571a6e555f923ba5',1,'Job::LockedQueue::Initialize()'],['../class_job_1_1_s_p_s_c_queue.html#aed2d3cf1f234353f42046ef58c0f2685',1,'Job::SPSCQueue::Initialize()'],['../class_job_1_1_s_p_m_c_deque.html#aa89a78af9957be54a27ddd598b910561',1,'Job::SPMCDeque::Initialize()'],['../class_job_1_1_m_p_m_c_queue.html#af76f4f002159eee8c25c1564a88cbbab',1,'Job::MPMCQueue::Initialize()'],['../namespace_job.html#adb8dbad83ee67a506f9c9e85784f85fa',1,'Job::Initialize()']]],
-  ['is_5frunning_6',['is_running',['../namespace_job.html#a93ec86776cd50eb50948754288be9f7b',1,'Job::JobSystemContext']]],
-  ['isempty_7',['IsEmpty',['../class_job_1_1_s_p_s_c_queue.html#af8d53fc302ddcba10a01859f4f8f109a',1,'Job::SPSCQueue']]],
-  ['isfull_8',['IsFull',['../class_job_1_1_s_p_s_c_queue.html#a651fab8116dd82e4f159b69cbd8a2e0f',1,'Job::SPSCQueue']]],
-  ['ismainthread_9',['IsMainThread',['../namespace_job.html#ad0695eb307a63108942e4e634cae11f2',1,'Job']]],
-  ['isnull_10',['isNull',['../struct_job_1_1_task_ptr.html#a3846e4547990f401f74a5d7c4f354ff9',1,'Job::TaskPtr']]]
+  ['indexrange_0',['IndexRange',['../classjob_1_1_m_p_m_c_queue.html#structjob_1_1_m_p_m_c_queue_1_1_index_range',1,'job::MPMCQueue']]],
+  ['init_5fcv_1',['init_cv',['../namespacejob.html#ae2324149d8110eaea5958099b3341a7b',1,'job::InitializationLock']]],
+  ['init_5flock_2',['init_lock',['../namespacejob.html#a35d4e5208fa0bea06993cf9ab3fb37e7',1,'job::JobSystemContext']]],
+  ['init_5fmutex_3',['init_mutex',['../namespacejob.html#a99a6b698e961b9739f97245ecdfeb79d',1,'job::InitializationLock']]],
+  ['initializationlock_4',['InitializationLock',['../namespacejob.html#structjob_1_1_initialization_lock',1,'job']]],
+  ['initialize_5',['Initialize',['../classjob_1_1_locked_queue.html#ae253f31a0ba9ce28875d3f10251e1459',1,'job::LockedQueue::Initialize()'],['../classjob_1_1_s_p_s_c_queue.html#aa5d12dfc64be4739df4b7751e96613f7',1,'job::SPSCQueue::Initialize()'],['../classjob_1_1_s_p_m_c_deque.html#a305a049d946f0fd91e3decaa5c92b7dd',1,'job::SPMCDeque::Initialize()'],['../classjob_1_1_m_p_m_c_queue.html#a9815799a6bec6b094ff32defcd1cbdef',1,'job::MPMCQueue::Initialize()'],['../namespacejob.html#ac4e6d679a962790050a4b9fd4bddd4a4',1,'job::Initialize()']]],
+  ['is_5ffinished_6',['is_finished',['../structjob_1_1_task.html#a98e8fe1e427c0f7ce0d45760f05a3589',1,'job::Task']]],
+  ['is_5frunning_7',['is_running',['../namespacejob.html#a19030991a9f5a2bdf078724c99359ce0',1,'job::JobSystemContext']]],
+  ['isempty_8',['IsEmpty',['../classjob_1_1_s_p_s_c_queue.html#acc38865c37e54460392544737bc3b938',1,'job::SPSCQueue']]],
+  ['isfull_9',['IsFull',['../classjob_1_1_s_p_s_c_queue.html#a5b1167a7327a0bb49fb08456e24e1b44',1,'job::SPSCQueue']]],
+  ['ismainthread_10',['IsMainThread',['../namespacejob.html#a50f2aa34cf52582595625daac233c2f9',1,'job']]],
+  ['isnull_11',['isNull',['../structjob_1_1_task_ptr.html#aed764cf79f1a4402500c511f090e9cf9',1,'job::TaskPtr']]]
 ];

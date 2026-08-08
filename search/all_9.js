@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['k_5fcachelinesize_0',['k_CachelineSize',['../namespace_job.html#aef3303347f87a62f73106bf96a855e22',1,'Job']]],
-  ['k_5fexpectedtasksize_1',['k_ExpectedTaskSize',['../namespace_job.html#aa141d8407e498c708be9a947805b6853',1,'Job']]],
-  ['k_5ffalsesharingpadsize_2',['k_FalseSharingPadSize',['../namespace_job.html#a935d39b02b2713291aed58d9c1135fcc',1,'Job']]],
-  ['k_5finvalidqueuetype_3',['k_InvalidQueueType',['../namespace_job.html#abb6be9ba0f23d0e66306290cd06d6089',1,'Job']]],
-  ['k_5fsizeofmembers_4',['k_SizeOfMembers',['../struct_job_1_1_task.html#af90f74d68492b9249e354dbc81ce0571',1,'Job::Task']]],
-  ['k_5ftaskpaddingdatasize_5',['k_TaskPaddingDataSize',['../struct_job_1_1_task.html#a3caeaacc3eddaa74d01a09183597f788',1,'Job::Task']]]
+  ['k_5fcachelinesize_0',['k_CachelineSize',['../namespacejob.html#a2e2527e09a00692e0e862f89a5dbdf41',1,'job']]],
+  ['k_5fexpectedtasksize_1',['k_ExpectedTaskSize',['../namespacejob.html#ae5648248c80793f10399a670bb37e93b',1,'job']]],
+  ['k_5ffalsesharingpadsize_2',['k_FalseSharingPadSize',['../namespacejob.html#a047ab6643cc5c62d4cda91b95435c3d7',1,'job']]],
+  ['k_5fsizeofmembers_3',['k_SizeOfMembers',['../structjob_1_1_task.html#a23fb97e676c0d9e830bcc250927b4c7e',1,'job::Task']]],
+  ['k_5ftaskpaddingdatasize_4',['k_TaskPaddingDataSize',['../structjob_1_1_task.html#afd3f27d8d8a0cd910cc666a920971cd5',1,'job::Task']]]
 ];

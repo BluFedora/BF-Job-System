@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['init_5fcv_0',['init_cv',['../namespace_job.html#aea7eded61e2238418bb232de730caf53',1,'Job::InitializationLock']]],
-  ['init_5flock_1',['init_lock',['../namespace_job.html#a0d5db0ce93f3106774a05370d8bde73d',1,'Job::JobSystemContext']]],
-  ['init_5fmutex_2',['init_mutex',['../namespace_job.html#af387d34b32af61c8e087ea987605f220',1,'Job::InitializationLock']]],
-  ['is_5frunning_3',['is_running',['../namespace_job.html#a93ec86776cd50eb50948754288be9f7b',1,'Job::JobSystemContext']]]
+  ['g_5fcurrentworker_0',['g_CurrentWorker',['../job__system_8cpp.html#a7e421b0dce2eab1e3b9f6bc928e88058',1,'job_system.cpp']]],
+  ['g_5fjobsystem_1',['g_JobSystem',['../job__system_8cpp.html#acf9188028f95dbc4757c97bbe2bddfc0',1,'job_system.cpp']]]
 ];

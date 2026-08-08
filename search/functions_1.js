@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['commit_0',['Commit',['../class_job_1_1_m_p_m_c_queue.html#a049f8033cac0356ed23a8765c69d5a2a',1,'Job::MPMCQueue']]],
-  ['currentworker_1',['CurrentWorker',['../namespace_job.html#aaee5888463e3bb5cff3eff5f80d5265b',1,'Job']]]
+  ['commit_0',['Commit',['../classjob_1_1_m_p_m_c_queue.html#aa036eb0138055d2d9f999fc08b83b2c5',1,'job::MPMCQueue']]],
+  ['currentworker_1',['CurrentWorker',['../namespacejob.html#a8b2ac7022e78426db88440ef85959c16',1,'job']]]
 ];

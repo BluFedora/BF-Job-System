@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../class_job_1_1_m_p_m_c_queue.html#a90ca30e17ca8c69643393bc39ccaec75',1,'Job::MPMCQueue']]]
+  ['taskhandle_0',['TaskHandle',['../namespacejob.html#ae6f84df6ce72c5e2c12d73f9aeda93b5',1,'job']]],
+  ['taskhandletype_1',['TaskHandleType',['../namespacejob.html#a60a1a63555e5452f703cb3277b93a72d',1,'job']]]
 ];

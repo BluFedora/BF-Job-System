@@ -83,7 +83,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">BluFedora <a class="el" href="namespace_job.html">Job</a> System Library </div></div>
+  <div class="headertitle"><div class="title">BluFedora Job System Library </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_README"></a> This is a C++17 library for handling of Tasks / Jobs in a multi-threaded environment.</p>
@@ -110,7 +110,7 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main()</div>
 <div class="line">{</div>
-<div class="line">   <a class="code hl_function" href="namespace_job.html#adb8dbad83ee67a506f9c9e85784f85fa">Job::Initialize</a>(Job::MemRequirementsForConfig({}));</div>
+<div class="line">   <a class="code hl_function" href="namespacejob.html#ac4e6d679a962790050a4b9fd4bddd4a4">job::Initialize</a>(job::MemRequirementsForConfig({}));</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Initialize Dummy Data</span></div>
 <div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; k_DataSize; ++i)</div>
@@ -121,10 +121,10 @@ Examples</h1>
 <div class="line">  std::printf(<span class="stringliteral">&quot;Before:\n&quot;</span>);</div>
 <div class="line">  printFirst20Items();</div>
 <div class="line"> </div>
-<div class="line">  <span class="keyword">auto</span>* t = <a class="code hl_function" href="namespace_job.html#a9e954e52e77f521bd679ceedee2e9a3b">Job::ParallelFor</a>(</div>
+<div class="line">  <span class="keyword">auto</span>* t = <a class="code hl_function" href="namespacejob.html#a6dc218ab610a7e1cd641a4b099332a76">job::ParallelFor</a>(</div>
 <div class="line">   s_ExampleData, </div>
 <div class="line">   k_DataSize, </div>
-<div class="line">   Job::CountSplitter{6}, </div>
+<div class="line">   job::CountSplitter{6}, </div>
 <div class="line">   [](<span class="keywordtype">int</span>* data, std::size_t data_size) {</div>
 <div class="line">     <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; data_size; ++i)</div>
 <div class="line">     {</div>
@@ -132,9 +132,9 @@ Examples</h1>
 <div class="line">     }</div>
 <div class="line">   });</div>
 <div class="line"> </div>
-<div class="line">  <a class="code hl_function" href="namespace_job.html#ae3e34b8468f9b731c3a56b6848587f4d">Job::TaskSubmit</a>(t);</div>
+<div class="line">  job::TaskSubmit(t);</div>
 <div class="line"> </div>
-<div class="line">  <a class="code hl_function" href="namespace_job.html#a2961eee80e34c41deade7924657154b8">Job::WaitOnTask</a>(t);</div>
+<div class="line">  job::WaitOnTask(t);</div>
 <div class="line"> </div>
 <div class="line">  std::printf(<span class="stringliteral">&quot;After:\n&quot;</span>);</div>
 <div class="line">  printFirst20Items();</div>
@@ -145,21 +145,19 @@ Examples</h1>
 <div class="line">    assert(s_ExampleData[i] == i * 5);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">  <a class="code hl_function" href="namespace_job.html#a9d923fa374392c284942ea7d8f90e466">Job::Shutdown</a>();</div>
+<div class="line">  <a class="code hl_function" href="namespacejob.html#a22edfe82e2736badfa6d38d84148e0cc">job::Shutdown</a>();</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 <div class="ttc" id="ajob__api_8hpp_html"><div class="ttname"><a href="job__api_8hpp.html">job_api.hpp</a></div><div class="ttdoc">API for a multi-threading job system.</div></div>
-<div class="ttc" id="anamespace_job_html_a2961eee80e34c41deade7924657154b8"><div class="ttname"><a href="namespace_job.html#a2961eee80e34c41deade7924657154b8">Job::WaitOnTask</a></div><div class="ttdeci">void WaitOnTask(const Task *const task) noexcept</div><div class="ttdoc">Waits until the specified task is done executing. This function will block but do work while being bl...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01142">job_system.cpp:1142</a></div></div>
-<div class="ttc" id="anamespace_job_html_a9d923fa374392c284942ea7d8f90e466"><div class="ttname"><a href="namespace_job.html#a9d923fa374392c284942ea7d8f90e466">Job::Shutdown</a></div><div class="ttdeci">void Shutdown() noexcept</div><div class="ttdoc">This will deallocate any memory used by the system and shutdown any threads created by 'bfJob::initia...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00937">job_system.cpp:937</a></div></div>
-<div class="ttc" id="anamespace_job_html_a9e954e52e77f521bd679ceedee2e9a3b"><div class="ttname"><a href="namespace_job.html#a9e954e52e77f521bd679ceedee2e9a3b">Job::ParallelFor</a></div><div class="ttdeci">Task * ParallelFor(const std::size_t start, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, Task *parent=nullptr)</div><div class="ttdoc">Parallel for algorithm, splits the work up recursively splitting based on the splitter passed in.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00604">job_api.hpp:604</a></div></div>
-<div class="ttc" id="anamespace_job_html_adb8dbad83ee67a506f9c9e85784f85fa"><div class="ttname"><a href="namespace_job.html#adb8dbad83ee67a506f9c9e85784f85fa">Job::Initialize</a></div><div class="ttdeci">void Initialize(const JobSystemMemoryRequirements &amp;memory_requirements={}, void *const memory=nullptr) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'Job::Initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00741">job_system.cpp:741</a></div></div>
-<div class="ttc" id="anamespace_job_html_ae3e34b8468f9b731c3a56b6848587f4d"><div class="ttname"><a href="namespace_job.html#ae3e34b8468f9b731c3a56b6848587f4d">Job::TaskSubmit</a></div><div class="ttdeci">void TaskSubmit(Task *const self, const QueueType queue=QueueType::NORMAL) noexcept</div><div class="ttdoc">Submits the task to the specified queue.</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l01072">job_system.cpp:1072</a></div></div>
+<div class="ttc" id="anamespacejob_html_a22edfe82e2736badfa6d38d84148e0cc"><div class="ttname"><a href="namespacejob.html#a22edfe82e2736badfa6d38d84148e0cc">job::Shutdown</a></div><div class="ttdeci">void Shutdown() noexcept</div><div class="ttdoc">This will deallocate any memory used by the system and shutdown any threads created by 'bfjob::initia...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00868">job_system.cpp:868</a></div></div>
+<div class="ttc" id="anamespacejob_html_a6dc218ab610a7e1cd641a4b099332a76"><div class="ttname"><a href="namespacejob.html#a6dc218ab610a7e1cd641a4b099332a76">job::ParallelFor</a></div><div class="ttdeci">void ParallelFor(const char *const name, Counter *const counter, const std::size_t start, const std::size_t count, S &amp;&amp;splitter, F &amp;&amp;fn, const QueueMode queue=QueueMode::Default)</div><div class="ttdoc">Parallel for algorithm, splits the work up recursively splitting based on the splitter passed in.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00342">job_api.hpp:342</a></div></div>
+<div class="ttc" id="anamespacejob_html_ac4e6d679a962790050a4b9fd4bddd4a4"><div class="ttname"><a href="namespacejob.html#ac4e6d679a962790050a4b9fd4bddd4a4">job::Initialize</a></div><div class="ttdeci">void Initialize(const JobSystemMemoryRequirements &amp;memory_requirements={}, void *const memory=nullptr) noexcept</div><div class="ttdoc">Sets up the Job system and creates all the worker threads. The thread that calls 'job::Initialize' is...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00687">job_system.cpp:687</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
 Architecture</h1>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Task</h2>
-<p >A <code>Task</code> is a single unit of work that can be scheduled by the <a class="el" href="namespace_job.html">Job</a> System. Each <code>Task</code> has a total sizeof of 128bytes (2 * hardware interference size) with some of the bytes taken by essential bookkeeping date then the rest used for user storage.</p>
+<p >A <code>Task</code> is a single unit of work that can be scheduled by the Job System. Each <code>Task</code> has a total sizeof of 128bytes (2 * hardware interference size) with some of the bytes taken by essential bookkeeping date then the rest used for user storage.</p>
 <p >A <code>Task</code>s can be added as a child of another task, this means that when you wait on the parent <code>Task</code> then it will wait for all child <code>Task</code>s as well.</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Queues</h2>
@@ -181,7 +179,7 @@ Dependencies</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Jan 25 2026 03:20:29 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Aug 8 2026 09:35:07 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

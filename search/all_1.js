@@ -1,6 +1,6 @@
 var searchData=
 [
   ['blufedora_20job_20system_20library_0',['BluFedora Job System Library',['../index.html',1,'']]],
-  ['byte_1',['Byte',['../namespace_job.html#ae159e934d8d1f329f729f24874234d40',1,'Job']]],
-  ['byte_5fsize_2',['byte_size',['../struct_job_1_1_job_system_memory_requirements.html#ac8d9a46abe68344e8cc1cb30cf57850d',1,'Job::JobSystemMemoryRequirements']]]
+  ['byte_1',['Byte',['../namespacejob.html#ad1cbfdb4aa447b83c9b660e04de547ac',1,'job']]],
+  ['byte_5fsize_2',['byte_size',['../structjob_1_1_job_system_memory_requirements.html#a0ae8425a48f140d42b0d7e22eb7bb26c',1,'job::JobSystemMemoryRequirements']]]
 ];

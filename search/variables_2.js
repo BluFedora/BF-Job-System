@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['end_0',['end',['../class_job_1_1_m_p_m_c_queue.html#a6f0a6bf87e697acc97b915995d0c836a',1,'Job::MPMCQueue::IndexRange']]]
+  ['counter_0',['counter',['../structjob_1_1_task.html#a2950ba9a7cae980457703ee7012360a9',1,'job::Task']]],
+  ['current_5fworker_1',['current_worker',['../structjob_1_1_ctx.html#aafd36938d554713c5d6c0ac4aed0355d',1,'job::Ctx']]]
 ];

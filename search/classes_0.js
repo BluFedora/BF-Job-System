@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['indexrange_0',['IndexRange',['../class_job_1_1_m_p_m_c_queue.html#struct_job_1_1_m_p_m_c_queue_1_1_index_range',1,'Job::MPMCQueue']]],
-  ['initializationlock_1',['InitializationLock',['../namespace_job.html#struct_job_1_1_initialization_lock',1,'Job']]]
+  ['counter_0',['Counter',['../namespacejob.html#structjob_1_1_counter',1,'job']]],
+  ['ctx_1',['Ctx',['../structjob_1_1_ctx.html',1,'job']]]
 ];

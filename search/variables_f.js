@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['size_0',['size',['../namespace_job.html#a19841c4464efdc31fd3315982499ec87',1,'Job::TaskData']]],
-  ['start_1',['start',['../class_job_1_1_m_p_m_c_queue.html#ade0efdc872cf5c395f452d9542d021e6',1,'Job::MPMCQueue::IndexRange']]],
-  ['storage_2',['storage',['../namespace_job.html#a997127b0be46e34cd4b5a0e8ec41637f',1,'Job::TaskMemoryBlock']]],
-  ['sys_5farch_5fstr_3',['sys_arch_str',['../namespace_job.html#a99e33c9b5b872813774ce73d839c23bd',1,'Job::JobSystemContext']]],
-  ['system_5falloc_5falignment_4',['system_alloc_alignment',['../namespace_job.html#aa640462a9e9997538a13538d1f63d026',1,'Job::JobSystemContext']]],
-  ['system_5falloc_5fsize_5',['system_alloc_size',['../namespace_job.html#ac0ea66f39f501ceaded0e28236773fe2',1,'Job::JobSystemContext']]]
+  ['task_5fallocator_0',['task_allocator',['../namespacejob.html#abace9a94dbf67f36aa76b6b7b86267ea',1,'job::ThreadLocalState']]],
+  ['task_5fcounter_1',['task_counter',['../structjob_1_1_ctx.html#ac3419f5918bccf00b1f431b8f9f1c60c',1,'job::Ctx']]],
+  ['task_5findex_2',['task_index',['../structjob_1_1_task_ptr.html#a5896d5592317b87df9c4956a058ef451',1,'job::TaskPtr']]],
+  ['task_5fname_3',['task_name',['../structjob_1_1_ctx.html#acb0c1e893fc5f7917da46e0abeddfa54',1,'job::Ctx']]],
+  ['thread_5fid_4',['thread_id',['../namespacejob.html#af6ef6202e282d2ce885e0af1f84f48b1',1,'job::ThreadLocalState']]]
 ];

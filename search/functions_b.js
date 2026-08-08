@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['setupuserthread_0',['SetupUserThread',['../namespace_job.html#a9aab6d68cfe21248160a0c09f9ef8807',1,'Job']]],
-  ['shutdown_1',['Shutdown',['../namespace_job.html#a9d923fa374392c284942ea7d8f90e466',1,'Job']]],
-  ['spmcdeque_2',['SPMCDeque',['../class_job_1_1_s_p_m_c_deque.html#ab9d29b5197931a30b6330583746d990d',1,'Job::SPMCDeque']]],
-  ['spscqueue_3',['SPSCQueue',['../class_job_1_1_s_p_s_c_queue.html#a8badea3338d565020cd5dff8579bb9df',1,'Job::SPSCQueue']]],
-  ['steal_4',['Steal',['../class_job_1_1_s_p_m_c_deque.html#aae298492f002c55e492aa8c62f99b5c9',1,'Job::SPMCDeque']]]
+  ['shutdown_0',['Shutdown',['../namespacejob.html#a22edfe82e2736badfa6d38d84148e0cc',1,'job']]],
+  ['spmcdeque_1',['SPMCDeque',['../classjob_1_1_s_p_m_c_deque.html#a6b203d386f43f19aa25ff5409f73f9dd',1,'job::SPMCDeque']]],
+  ['spscqueue_2',['SPSCQueue',['../classjob_1_1_s_p_s_c_queue.html#a6ea7fa776fdb751251a4559d1eb1937f',1,'job::SPSCQueue']]],
+  ['steal_3',['Steal',['../classjob_1_1_s_p_m_c_deque.html#ab7f1e5410e985794aad3819f5e9fae19',1,'job::SPMCDeque']]]
 ];

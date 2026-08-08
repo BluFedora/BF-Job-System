@@ -1,58 +1,41 @@
 var job__api_8hpp =
 [
-    [ "Job::JobSystemCreateOptions", "namespace_job.html#struct_job_1_1_job_system_create_options", [
-      [ "num_user_threads", "namespace_job.html#acecbb32a0825377b5d3d6fce2ec8fe61", null ],
-      [ "num_threads", "namespace_job.html#aeb8b880de236239bdcbfb5c42252bb02", null ],
-      [ "main_queue_size", "namespace_job.html#aa03f5b7291117b5e37a2a7f3f20d26d1", null ],
-      [ "normal_queue_size", "namespace_job.html#a65f68139b9fe13d51e749b62b85b5614", null ],
-      [ "worker_queue_size", "namespace_job.html#ad7f499ac9f75090b562e4d30afa070ed", null ],
-      [ "job_steal_rng_seed", "namespace_job.html#a0882adb15126b4fe2a94c21f744b6525", null ]
+    [ "job::Counter", "namespacejob.html#structjob_1_1_counter", [
+      [ "unfinished_tasks", "namespacejob.html#a7ce3be83e160898cf1698726ec21c486", null ]
     ] ],
-    [ "Job::JobSystemMemoryRequirements", "struct_job_1_1_job_system_memory_requirements.html", "struct_job_1_1_job_system_memory_requirements" ],
-    [ "Job::TaskData", "namespace_job.html#struct_job_1_1_task_data", [
-      [ "ptr", "namespace_job.html#a206e9e451cca5c05ad02c69ad733d8f0", null ],
-      [ "size", "namespace_job.html#a19841c4464efdc31fd3315982499ec87", null ]
+    [ "job::Ctx", "structjob_1_1_ctx.html", "structjob_1_1_ctx" ],
+    [ "job::JobSystemCreateOptions", "namespacejob.html#structjob_1_1_job_system_create_options", [
+      [ "num_threads", "namespacejob.html#aa967d1fb929e92ddc7b980e4ea739d00", null ],
+      [ "normal_queue_size", "namespacejob.html#ae78194598b88a2134aef75db448867c5", null ],
+      [ "worker_queue_size", "namespacejob.html#a6eca665f5105da7df7a5df65744745b1", null ],
+      [ "job_steal_rng_seed", "namespacejob.html#a580f89c266ab35706c0a4533faacb52f", null ]
     ] ],
-    [ "Job::Splitter", "struct_job_1_1_splitter.html", "struct_job_1_1_splitter" ],
-    [ "WorkerID", "job__api_8hpp.html#ac7727f146165ae76b95cc50196df236e", null ],
-    [ "TaskFn", "job__api_8hpp.html#a2a553c2727a284305ddbc9d746e58267", null ],
-    [ "QueueType", "job__api_8hpp.html#a686f6798e9f499e832cb9f125f0db5fb", [
-      [ "NORMAL", "job__api_8hpp.html#a686f6798e9f499e832cb9f125f0db5fba1e23852820b9154316c7c06e2b7ba051", null ],
-      [ "MAIN", "job__api_8hpp.html#a686f6798e9f499e832cb9f125f0db5fba186495f7da296bf880df3a22a492b378", null ],
-      [ "WORKER", "job__api_8hpp.html#a686f6798e9f499e832cb9f125f0db5fba531886e636f1aa36e0fc96d49f342613", null ]
+    [ "job::JobSystemMemoryRequirements", "structjob_1_1_job_system_memory_requirements.html", "structjob_1_1_job_system_memory_requirements" ],
+    [ "job::internal::PrivateCtx", "structjob_1_1internal_1_1_private_ctx.html", "structjob_1_1internal_1_1_private_ctx" ],
+    [ "job::Splitter", "structjob_1_1_splitter.html", "structjob_1_1_splitter" ],
+    [ "JOB_SYS_ASSERTIONS", "job__api_8hpp.html#ad60ea283ef2d228cc1e0c4c1456f6f74", null ],
+    [ "JobAssert", "job__api_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f", null ],
+    [ "WorkerID", "job__api_8hpp.html#a7e0410c89babce3ce9dd3382f7867b15", null ],
+    [ "JobFn", "job__api_8hpp.html#a1ebb6eb7637623815affc7ea22b69a6c", null ],
+    [ "QueueMode", "job__api_8hpp.html#a7286afe35dd23f7132bfb1c386b0de2e", [
+      [ "Default", "job__api_8hpp.html#a7286afe35dd23f7132bfb1c386b0de2ea7a1920d61156abc05a60135aefe8bc67", null ],
+      [ "WorkerOnly", "job__api_8hpp.html#a7286afe35dd23f7132bfb1c386b0de2eacc49abc9fab1eeaf130f971ca5727b0a", null ]
     ] ],
-    [ "taskQType", "job__api_8hpp.html#a725721f202ed179f6a4177b33f205666", null ],
-    [ "taskGetPrivateUserData", "job__api_8hpp.html#a66102c88da40e2c6b008bc97259d0d39", null ],
-    [ "taskReservePrivateUserData", "job__api_8hpp.html#a5ed74505a8477781f8e252f6f05755ca", null ],
-    [ "mainQueueTryRunTask", "job__api_8hpp.html#a8209af0db62c504d004ec94bf3889442", null ],
-    [ "NumSystemThreads", "job__api_8hpp.html#ada79d1288c5458f1451a414ec89d2ba6", null ],
-    [ "Initialize", "job__api_8hpp.html#adb8dbad83ee67a506f9c9e85784f85fa", null ],
-    [ "SetupUserThread", "job__api_8hpp.html#a9aab6d68cfe21248160a0c09f9ef8807", null ],
-    [ "ProcessorArchitectureName", "job__api_8hpp.html#a77a997446d916b36e7478c7627694a51", null ],
-    [ "NumWorkers", "job__api_8hpp.html#a5b606baa9964c9afd3e30294ccf7dc06", null ],
-    [ "CurrentWorker", "job__api_8hpp.html#aaee5888463e3bb5cff3eff5f80d5265b", null ],
-    [ "IsMainThread", "job__api_8hpp.html#ad0695eb307a63108942e4e634cae11f2", null ],
-    [ "Shutdown", "job__api_8hpp.html#a9d923fa374392c284942ea7d8f90e466", null ],
-    [ "TaskMake", "job__api_8hpp.html#a6a5491cbbe785588f2671f74b5d24380", null ],
-    [ "TaskGetData", "job__api_8hpp.html#a1786f2fd8c5c13f53d066bf4e029445c", null ],
-    [ "TaskAddContinuation", "job__api_8hpp.html#a381064dc945c407e9c80bf1685dd3ee7", null ],
-    [ "TaskDataAs", "job__api_8hpp.html#a2b5a16b048e98b8a71dfc778d2c8f564", null ],
-    [ "TaskEmplaceData", "job__api_8hpp.html#aab93a1aea2b502fd2657cc30d0540e68", null ],
-    [ "TaskSetData", "job__api_8hpp.html#a7ba53682d46eec5bdeab726d5648a2ce", null ],
-    [ "TaskDestructData", "job__api_8hpp.html#aeb32793271df92bd2ed13f1a6455f592", null ],
-    [ "TaskMake", "job__api_8hpp.html#a76170415e85eea5113a606a878a7dcf9", null ],
-    [ "TaskIncRef", "job__api_8hpp.html#ab933882d5d7f7e4ba7c0fd63e2966f11", null ],
-    [ "TaskDecRef", "job__api_8hpp.html#ad9be65ab1c2925023348fbdfcbf9fe0d", null ],
-    [ "TaskIsDone", "job__api_8hpp.html#afa9f7e7a737f1babc1345e4ceaf64e79", null ],
-    [ "TickMainQueue", "job__api_8hpp.html#ada20ebf3082f8aea7b75afc210d7621b", null ],
-    [ "TickMainQueue", "job__api_8hpp.html#a0f5c158177872f256a96aba479a04b0f", null ],
-    [ "TaskSubmit", "job__api_8hpp.html#ae3e34b8468f9b731c3a56b6848587f4d", null ],
-    [ "WaitOnTask", "job__api_8hpp.html#a2961eee80e34c41deade7924657154b8", null ],
-    [ "TaskSubmitAndWait", "job__api_8hpp.html#a21ff0cc938b7cd7efc74be4e7c82ed74", null ],
-    [ "PauseProcessor", "job__api_8hpp.html#ad3555facf3b46ce9ac3a4a0ae845b35d", null ],
-    [ "YieldTimeSlice", "job__api_8hpp.html#a4f97b7424b855833a25294046caf3c3b", null ],
-    [ "ParallelFor", "job__api_8hpp.html#a9e954e52e77f521bd679ceedee2e9a3b", null ],
-    [ "ParallelReduce", "job__api_8hpp.html#af3b466a5f1cf2cd500569cb8bc394a29", null ],
-    [ "ParallelFor", "job__api_8hpp.html#a9d0b26b28577004e29e759e45c2425e2", null ],
-    [ "ParallelInvoke", "job__api_8hpp.html#a4be4134569de0124394d50c8407ea70e", null ]
+    [ "NumSystemThreads", "job__api_8hpp.html#ae8a8079c3237722a7233c33d6ad59c78", null ],
+    [ "Initialize", "job__api_8hpp.html#ac4e6d679a962790050a4b9fd4bddd4a4", null ],
+    [ "ProcessorArchitectureName", "job__api_8hpp.html#a93c999b2ef9ecec8b6f9da94127a5c3c", null ],
+    [ "NumWorkers", "job__api_8hpp.html#aa3c6f45af63a7bcaf906cb07f4a6340f", null ],
+    [ "CurrentWorker", "job__api_8hpp.html#a8b2ac7022e78426db88440ef85959c16", null ],
+    [ "IsMainThread", "job__api_8hpp.html#a50f2aa34cf52582595625daac233c2f9", null ],
+    [ "Shutdown", "job__api_8hpp.html#a22edfe82e2736badfa6d38d84148e0cc", null ],
+    [ "Dispatch", "job__api_8hpp.html#a551f8784d39518bf93ace62c6e97acd6", null ],
+    [ "WaitOn", "job__api_8hpp.html#a1ef6741991fb4cbb304e07fbc7648b9c", null ],
+    [ "PauseProcessor", "job__api_8hpp.html#abeac822e3db0f21328cecb8410d5699a", null ],
+    [ "YieldTimeSlice", "job__api_8hpp.html#afba2a17a05a008ce8d3ca39b21b30108", null ],
+    [ "AssertHandler", "job__api_8hpp.html#a7b1fa5ca6b87607f01dc06a0f498c6b2", null ],
+    [ "DispatchImpl", "job__api_8hpp.html#ae75f0453ab86b6bbb50d96f7804c948f", null ],
+    [ "ParallelFor", "job__api_8hpp.html#a6dc218ab610a7e1cd641a4b099332a76", null ],
+    [ "ParallelFor", "job__api_8hpp.html#aa1db408f8713bc7078a6152f8d5b1502", null ],
+    [ "ParallelInvoke", "job__api_8hpp.html#a0f639c96f3bc6dc01afd6603d24c50d0", null ],
+    [ "ParallelReduce", "job__api_8hpp.html#a380eb5c7f76503f2975632c8d46f9337", null ]
 ];

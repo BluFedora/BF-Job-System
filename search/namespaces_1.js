@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['detail_0',['detail',['../namespace_job_1_1detail.html',1,'Job']]],
-  ['job_1',['Job',['../namespace_job.html',1,'']]]
+  ['internal_0',['internal',['../namespacejob_1_1internal.html',1,'job']]],
+  ['job_1',['job',['../namespacejob.html',1,'']]]
 ];
