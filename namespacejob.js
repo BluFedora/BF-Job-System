@@ -41,7 +41,7 @@ var namespacejob =
     [ "CurrentWorker", "namespacejob.html#a8b2ac7022e78426db88440ef85959c16", null ],
     [ "IsMainThread", "namespacejob.html#a50f2aa34cf52582595625daac233c2f9", null ],
     [ "Shutdown", "namespacejob.html#a22edfe82e2736badfa6d38d84148e0cc", null ],
-    [ "Dispatch", "namespacejob.html#a551f8784d39518bf93ace62c6e97acd6", null ],
+    [ "Dispatch", "namespacejob.html#a7488e2835065deb306a4a8e82e80b9dc", null ],
     [ "WaitOn", "namespacejob.html#a1ef6741991fb4cbb304e07fbc7648b9c", null ],
     [ "PauseProcessor", "namespacejob.html#abeac822e3db0f21328cecb8410d5699a", null ],
     [ "YieldTimeSlice", "namespacejob.html#afba2a17a05a008ce8d3ca39b21b30108", null ],

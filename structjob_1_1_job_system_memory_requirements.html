@@ -116,7 +116,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >The memory requirements for a given configuration <code><a class="el" href="namespacejob.html#structjob_1_1_job_system_create_options" title="The runtime configuration for the Job System.">JobSystemCreateOptions</a></code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00093">93</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00098">98</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2f4368cd7c58c3d6bda69ce050c37164" name="a2f4368cd7c58c3d6bda69ce050c37164"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f4368cd7c58c3d6bda69ce050c37164">&#9670;&nbsp;</a></span>JobSystemMemoryRequirements()</h2>
@@ -162,12 +162,12 @@ Public Attributes</h2></td></tr>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>  MemoryRequirementsPush&lt;TaskHandle&gt;(<span class="keyword">this</span>, total_num_tasks);</div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>}</div>
 <div class="ttc" id="ajob__api_8hpp_html_a3c45a50fae3515f1fa7aa7def616e68f"><div class="ttname"><a href="job__api_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a></div><div class="ttdeci">#define JobAssert(expr, msg)</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00032">job_api.hpp:32</a></div></div>
-<div class="ttc" id="anamespacejob_html_a6eca665f5105da7df7a5df65744745b1"><div class="ttname"><a href="namespacejob.html#a6eca665f5105da7df7a5df65744745b1">job::JobSystemCreateOptions::worker_queue_size</a></div><div class="ttdeci">std::uint16_t worker_queue_size</div><div class="ttdoc">Number of tasks in each worker's QueueType::WorkerOnly queue. (Must be power of two)</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00085">job_api.hpp:85</a></div></div>
+<div class="ttc" id="anamespacejob_html_a6eca665f5105da7df7a5df65744745b1"><div class="ttname"><a href="namespacejob.html#a6eca665f5105da7df7a5df65744745b1">job::JobSystemCreateOptions::worker_queue_size</a></div><div class="ttdeci">std::uint16_t worker_queue_size</div><div class="ttdoc">Number of tasks in each worker's QueueType::WorkerOnly queue. (Must be power of two)</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00090">job_api.hpp:90</a></div></div>
 <div class="ttc" id="anamespacejob_html_a7e0410c89babce3ce9dd3382f7867b15"><div class="ttname"><a href="namespacejob.html#a7e0410c89babce3ce9dd3382f7867b15">job::WorkerID</a></div><div class="ttdeci">std::uint16_t WorkerID</div><div class="ttdoc">The id type of each worker thread.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00039">job_api.hpp:39</a></div></div>
-<div class="ttc" id="anamespacejob_html_ae78194598b88a2134aef75db448867c5"><div class="ttname"><a href="namespacejob.html#ae78194598b88a2134aef75db448867c5">job::JobSystemCreateOptions::normal_queue_size</a></div><div class="ttdeci">std::uint16_t normal_queue_size</div><div class="ttdoc">Number of tasks in each worker's QueueType::Default queue. (Must be power of two)</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00084">job_api.hpp:84</a></div></div>
-<div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a0ae8425a48f140d42b0d7e22eb7bb26c"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a0ae8425a48f140d42b0d7e22eb7bb26c">job::JobSystemMemoryRequirements::byte_size</a></div><div class="ttdeci">std::size_t byte_size</div><div class="ttdoc">The number of bytes the job system needed.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00096">job_api.hpp:96</a></div></div>
-<div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a73f35c031fa0334e000f73e10e3582fb"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a73f35c031fa0334e000f73e10e3582fb">job::JobSystemMemoryRequirements::alignment</a></div><div class="ttdeci">std::size_t alignment</div><div class="ttdoc">The base alignment the pointer should be.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00097">job_api.hpp:97</a></div></div>
-<div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a7ea72f8634a816e5004aa50bc632a704"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a7ea72f8634a816e5004aa50bc632a704">job::JobSystemMemoryRequirements::options</a></div><div class="ttdeci">JobSystemCreateOptions options</div><div class="ttdoc">The options used to create the memory requirements.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00095">job_api.hpp:95</a></div></div>
+<div class="ttc" id="anamespacejob_html_ae78194598b88a2134aef75db448867c5"><div class="ttname"><a href="namespacejob.html#ae78194598b88a2134aef75db448867c5">job::JobSystemCreateOptions::normal_queue_size</a></div><div class="ttdeci">std::uint16_t normal_queue_size</div><div class="ttdoc">Number of tasks in each worker's QueueType::Default queue. (Must be power of two)</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00089">job_api.hpp:89</a></div></div>
+<div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a0ae8425a48f140d42b0d7e22eb7bb26c"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a0ae8425a48f140d42b0d7e22eb7bb26c">job::JobSystemMemoryRequirements::byte_size</a></div><div class="ttdeci">std::size_t byte_size</div><div class="ttdoc">The number of bytes the job system needed.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00101">job_api.hpp:101</a></div></div>
+<div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a73f35c031fa0334e000f73e10e3582fb"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a73f35c031fa0334e000f73e10e3582fb">job::JobSystemMemoryRequirements::alignment</a></div><div class="ttdeci">std::size_t alignment</div><div class="ttdoc">The base alignment the pointer should be.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00102">job_api.hpp:102</a></div></div>
+<div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a7ea72f8634a816e5004aa50bc632a704"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a7ea72f8634a816e5004aa50bc632a704">job::JobSystemMemoryRequirements::options</a></div><div class="ttdeci">JobSystemCreateOptions options</div><div class="ttdoc">The options used to create the memory requirements.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00100">job_api.hpp:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -186,7 +186,7 @@ Public Attributes</h2></td></tr>
 
 <p>The options used to create the memory requirements. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00095">95</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00100">100</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 
 </div>
 </div>
@@ -204,7 +204,7 @@ Public Attributes</h2></td></tr>
 
 <p>The number of bytes the job system needed. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00096">96</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00101">101</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 
 </div>
 </div>
@@ -222,7 +222,7 @@ Public Attributes</h2></td></tr>
 
 <p>The base alignment the pointer should be. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00097">97</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00102">102</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +236,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacejob.html">job</a></li><li class="navelem"><a class="el" href="structjob_1_1_job_system_memory_requirements.html">JobSystemMemoryRequirements</a></li>
-    <li class="footer">Generated on Sat Aug 8 2026 09:35:07 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Aug 8 2026 23:38:53 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

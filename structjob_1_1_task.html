@@ -190,7 +190,7 @@ Static Public Attributes</h2></td></tr>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    {</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <a class="code hl_variable" href="structjob_1_1_task.html#a2950ba9a7cae980457703ee7012360a9">counter</a>-&gt;<a class="code hl_variable" href="namespacejob.html#a7ce3be83e160898cf1698726ec21c486">unfinished_tasks</a>.fetch_add(1u, std::memory_order_release);</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
-<div class="ttc" id="anamespacejob_html_a7ce3be83e160898cf1698726ec21c486"><div class="ttname"><a href="namespacejob.html#a7ce3be83e160898cf1698726ec21c486">job::Counter::unfinished_tasks</a></div><div class="ttdeci">std::atomic_uint64_t unfinished_tasks</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00043">job_api.hpp:43</a></div></div>
+<div class="ttc" id="anamespacejob_html_a7ce3be83e160898cf1698726ec21c486"><div class="ttname"><a href="namespacejob.html#a7ce3be83e160898cf1698726ec21c486">job::Counter::unfinished_tasks</a></div><div class="ttdeci">std::atomic_uint64_t unfinished_tasks</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00050">job_api.hpp:50</a></div></div>
 <div class="ttc" id="anamespaceworker_html"><div class="ttname"><a href="namespaceworker.html">worker</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00368">job_system.cpp:369</a></div></div>
 <div class="ttc" id="astructjob_1_1_task_html_a04811db974283cbfd714af25b371d438"><div class="ttname"><a href="structjob_1_1_task.html#a04811db974283cbfd714af25b371d438">job::Task::userdata_align</a></div><div class="ttdeci">std::uint8_t userdata_align</div><div class="ttdoc">Alignment offset needed by userdata.</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00132">job_system.cpp:132</a></div></div>
 <div class="ttc" id="astructjob_1_1_task_html_a2950ba9a7cae980457703ee7012360a9"><div class="ttname"><a href="structjob_1_1_task.html#a2950ba9a7cae980457703ee7012360a9">job::Task::counter</a></div><div class="ttdeci">job::Counter * counter</div><div class="ttdoc">The counter to be decremented.</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00130">job_system.cpp:130</a></div></div>
@@ -229,9 +229,9 @@ Static Public Attributes</h2></td></tr>
 <div class="line">     <span class="keyword">sizeof</span>(std::uint8_t) +</div>
 <div class="line">     <span class="keyword">sizeof</span>(std::atomic_bool) +</div>
 <div class="line">     <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="namespacejob.html#a7e0410c89babce3ce9dd3382f7867b15">WorkerID</a>)</div>
-<div class="ttc" id="anamespacejob_1_1internal_html_a1ebb6eb7637623815affc7ea22b69a6c"><div class="ttname"><a href="namespacejob_1_1internal.html#a1ebb6eb7637623815affc7ea22b69a6c">job::internal::JobFn</a></div><div class="ttdeci">void(*)(const PrivateCtx &amp;ctx) JobFn</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00226">job_api.hpp:226</a></div></div>
+<div class="ttc" id="anamespacejob_1_1internal_html_a1ebb6eb7637623815affc7ea22b69a6c"><div class="ttname"><a href="namespacejob_1_1internal.html#a1ebb6eb7637623815affc7ea22b69a6c">job::internal::JobFn</a></div><div class="ttdeci">void(*)(const PrivateCtx &amp;ctx) JobFn</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00231">job_api.hpp:231</a></div></div>
 <div class="ttc" id="anamespacejob_html_a7e0410c89babce3ce9dd3382f7867b15"><div class="ttname"><a href="namespacejob.html#a7e0410c89babce3ce9dd3382f7867b15">job::WorkerID</a></div><div class="ttdeci">std::uint16_t WorkerID</div><div class="ttdoc">The id type of each worker thread.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00039">job_api.hpp:39</a></div></div>
-<div class="ttc" id="anamespacejob_html_structjob_1_1_counter"><div class="ttname"><a href="namespacejob.html#structjob_1_1_counter">job::Counter</a></div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00041">job_api.hpp:42</a></div></div>
+<div class="ttc" id="anamespacejob_html_structjob_1_1_counter"><div class="ttname"><a href="namespacejob.html#structjob_1_1_counter">job::Counter</a></div><div class="ttdoc">The only syncronization mechanism. Allows you to wait on tasks you asssociated with this counter.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00048">job_api.hpp:49</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="job__system_8cpp_source.html#l00119">119</a> of file <a class="el" href="job__system_8cpp_source.html">job_system.cpp</a>.</p>
 
@@ -396,7 +396,7 @@ Static Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacejob.html">job</a></li><li class="navelem"><a class="el" href="structjob_1_1_task.html">Task</a></li>
-    <li class="footer">Generated on Sat Aug 8 2026 09:35:07 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Aug 8 2026 23:38:53 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

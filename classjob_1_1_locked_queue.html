@@ -134,7 +134,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class job::LockedQueue&lt; T &gt;</div>
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00034">34</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00032">32</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a79822036de9432fcda4ed25f65f5dfc9" name="a79822036de9432fcda4ed25f65f5dfc9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79822036de9432fcda4ed25f65f5dfc9">&#9670;&nbsp;</a></span>size_type</h2>
@@ -150,7 +150,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00037">37</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00035">35</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
 </div>
 </div>
@@ -191,24 +191,24 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00048">48</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a154008b81683a56d69281faedffc1985">m_Data</a>         = memory_backing;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">m_Capacity</a>     = capacity;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">m_CapacityMask</a> = capacity - 1;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">m_WriteIndex</a>   = 0u;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>         = 0u;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <a class="code hl_define" href="job__api_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>((<a class="code hl_variable" href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">m_Capacity</a> &amp; <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">m_CapacityMask</a>) == 0, <span class="stringliteral">&quot;Capacity must be a power of 2.&quot;</span>);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_a051665f5e1fdba33bd266c5a45cef70b"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">job::LockedQueue::m_Size</a></div><div class="ttdeci">size_type m_Size</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00045">job_queue.hpp:45</a></div></div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_a0dd39185cbd85983ce12d13a7b6f1205"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">job::LockedQueue::m_CapacityMask</a></div><div class="ttdeci">size_type m_CapacityMask</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00043">job_queue.hpp:43</a></div></div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_a154008b81683a56d69281faedffc1985"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a154008b81683a56d69281faedffc1985">job::LockedQueue::m_Data</a></div><div class="ttdeci">T * m_Data</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00041">job_queue.hpp:41</a></div></div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_abff30029ce634e4f4fa42c9ac5769b22"><div class="ttname"><a href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">job::LockedQueue::m_Capacity</a></div><div class="ttdeci">size_type m_Capacity</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00042">job_queue.hpp:42</a></div></div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_ae200da8b30c0a5b990ad3dbc8711b2de"><div class="ttname"><a href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">job::LockedQueue::m_WriteIndex</a></div><div class="ttdeci">size_type m_WriteIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00044">job_queue.hpp:44</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00046">46</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a154008b81683a56d69281faedffc1985">m_Data</a>         = memory_backing;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">m_Capacity</a>     = capacity;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">m_CapacityMask</a> = capacity - 1;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">m_WriteIndex</a>   = 0u;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>         = 0u;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <a class="code hl_define" href="job__api_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>((<a class="code hl_variable" href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">m_Capacity</a> &amp; <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">m_CapacityMask</a>) == 0, <span class="stringliteral">&quot;Capacity must be a power of 2.&quot;</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_a051665f5e1fdba33bd266c5a45cef70b"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">job::LockedQueue::m_Size</a></div><div class="ttdeci">size_type m_Size</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00043">job_queue.hpp:43</a></div></div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_a0dd39185cbd85983ce12d13a7b6f1205"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">job::LockedQueue::m_CapacityMask</a></div><div class="ttdeci">size_type m_CapacityMask</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00041">job_queue.hpp:41</a></div></div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_a154008b81683a56d69281faedffc1985"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a154008b81683a56d69281faedffc1985">job::LockedQueue::m_Data</a></div><div class="ttdeci">T * m_Data</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00039">job_queue.hpp:39</a></div></div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_abff30029ce634e4f4fa42c9ac5769b22"><div class="ttname"><a href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">job::LockedQueue::m_Capacity</a></div><div class="ttdeci">size_type m_Capacity</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00040">job_queue.hpp:40</a></div></div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_ae200da8b30c0a5b990ad3dbc8711b2de"><div class="ttname"><a href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">job::LockedQueue::m_WriteIndex</a></div><div class="ttdeci">size_type m_WriteIndex</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00042">job_queue.hpp:42</a></div></div>
 <div class="ttc" id="ajob__api_8hpp_html_a3c45a50fae3515f1fa7aa7def616e68f"><div class="ttname"><a href="job__api_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a></div><div class="ttdeci">#define JobAssert(expr, msg)</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00032">job_api.hpp:32</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__queue_8hpp_source.html#l00042">job::LockedQueue&lt; T &gt;::m_Capacity</a>, <a class="el" href="job__queue_8hpp_source.html#l00043">job::LockedQueue&lt; T &gt;::m_CapacityMask</a>, <a class="el" href="job__queue_8hpp_source.html#l00041">job::LockedQueue&lt; T &gt;::m_Data</a>, <a class="el" href="job__queue_8hpp_source.html#l00045">job::LockedQueue&lt; T &gt;::m_Size</a>, and <a class="el" href="job__queue_8hpp_source.html#l00044">job::LockedQueue&lt; T &gt;::m_WriteIndex</a>.</p>
+<p class="reference">References <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__queue_8hpp_source.html#l00040">job::LockedQueue&lt; T &gt;::m_Capacity</a>, <a class="el" href="job__queue_8hpp_source.html#l00041">job::LockedQueue&lt; T &gt;::m_CapacityMask</a>, <a class="el" href="job__queue_8hpp_source.html#l00039">job::LockedQueue&lt; T &gt;::m_Data</a>, <a class="el" href="job__queue_8hpp_source.html#l00043">job::LockedQueue&lt; T &gt;::m_Size</a>, and <a class="el" href="job__queue_8hpp_source.html#l00042">job::LockedQueue&lt; T &gt;::m_WriteIndex</a>.</p>
 
 </div>
 </div>
@@ -238,25 +238,25 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00059">59</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a909ca918e7f1688774ec7b9edb4781b9">m_Lock</a>);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      (void)guard;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a> == <a class="code hl_variable" href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">m_Capacity</a>)</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      }</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      *<a class="code hl_function" href="classjob_1_1_locked_queue.html#a46e255397d4d518d7010729c52d50d4d">elementAt</a>(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">m_WriteIndex</a>++) = value;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      ++<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_a46e255397d4d518d7010729c52d50d4d"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a46e255397d4d518d7010729c52d50d4d">job::LockedQueue::elementAt</a></div><div class="ttdeci">T * elementAt(const size_type raw_index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00099">job_queue.hpp:99</a></div></div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_a909ca918e7f1688774ec7b9edb4781b9"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a909ca918e7f1688774ec7b9edb4781b9">job::LockedQueue::m_Lock</a></div><div class="ttdeci">std::mutex m_Lock</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00040">job_queue.hpp:40</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00057">57</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a909ca918e7f1688774ec7b9edb4781b9">m_Lock</a>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      (void)guard;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a> == <a class="code hl_variable" href="classjob_1_1_locked_queue.html#abff30029ce634e4f4fa42c9ac5769b22">m_Capacity</a>)</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      *<a class="code hl_function" href="classjob_1_1_locked_queue.html#a46e255397d4d518d7010729c52d50d4d">elementAt</a>(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">m_WriteIndex</a>++) = value;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      ++<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_a46e255397d4d518d7010729c52d50d4d"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a46e255397d4d518d7010729c52d50d4d">job::LockedQueue::elementAt</a></div><div class="ttdeci">T * elementAt(const size_type raw_index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00097">job_queue.hpp:97</a></div></div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_a909ca918e7f1688774ec7b9edb4781b9"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a909ca918e7f1688774ec7b9edb4781b9">job::LockedQueue::m_Lock</a></div><div class="ttdeci">std::mutex m_Lock</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00038">job_queue.hpp:38</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00099">job::LockedQueue&lt; T &gt;::elementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00042">job::LockedQueue&lt; T &gt;::m_Capacity</a>, <a class="el" href="job__queue_8hpp_source.html#l00040">job::LockedQueue&lt; T &gt;::m_Lock</a>, <a class="el" href="job__queue_8hpp_source.html#l00045">job::LockedQueue&lt; T &gt;::m_Size</a>, and <a class="el" href="job__queue_8hpp_source.html#l00044">job::LockedQueue&lt; T &gt;::m_WriteIndex</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00097">job::LockedQueue&lt; T &gt;::elementAt()</a>, <a class="el" href="job__queue_8hpp_source.html#l00040">job::LockedQueue&lt; T &gt;::m_Capacity</a>, <a class="el" href="job__queue_8hpp_source.html#l00038">job::LockedQueue&lt; T &gt;::m_Lock</a>, <a class="el" href="job__queue_8hpp_source.html#l00043">job::LockedQueue&lt; T &gt;::m_Size</a>, and <a class="el" href="job__queue_8hpp_source.html#l00042">job::LockedQueue&lt; T &gt;::m_WriteIndex</a>.</p>
 
 </div>
 </div>
@@ -286,25 +286,25 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00075">75</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <a class="code hl_define" href="job__api_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(out_value != <span class="keyword">nullptr</span>, <span class="stringliteral">&quot;`out_value` cannot be a nullptr.&quot;</span>);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a909ca918e7f1688774ec7b9edb4781b9">m_Lock</a>);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      (void)guard;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a> == 0u)</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      *out_value = *<a class="code hl_function" href="classjob_1_1_locked_queue.html#a46e255397d4d518d7010729c52d50d4d">elementAt</a>(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">m_WriteIndex</a> - <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      --<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00073">73</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <a class="code hl_define" href="job__api_8hpp.html#a3c45a50fae3515f1fa7aa7def616e68f">JobAssert</a>(out_value != <span class="keyword">nullptr</span>, <span class="stringliteral">&quot;`out_value` cannot be a nullptr.&quot;</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a909ca918e7f1688774ec7b9edb4781b9">m_Lock</a>);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      (void)guard;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a> == 0u)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      *out_value = *<a class="code hl_function" href="classjob_1_1_locked_queue.html#a46e255397d4d518d7010729c52d50d4d">elementAt</a>(<a class="code hl_variable" href="classjob_1_1_locked_queue.html#ae200da8b30c0a5b990ad3dbc8711b2de">m_WriteIndex</a> - <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      --<a class="code hl_variable" href="classjob_1_1_locked_queue.html#a051665f5e1fdba33bd266c5a45cef70b">m_Size</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00099">job::LockedQueue&lt; T &gt;::elementAt()</a>, <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__queue_8hpp_source.html#l00040">job::LockedQueue&lt; T &gt;::m_Lock</a>, <a class="el" href="job__queue_8hpp_source.html#l00045">job::LockedQueue&lt; T &gt;::m_Size</a>, and <a class="el" href="job__queue_8hpp_source.html#l00044">job::LockedQueue&lt; T &gt;::m_WriteIndex</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00097">job::LockedQueue&lt; T &gt;::elementAt()</a>, <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__queue_8hpp_source.html#l00038">job::LockedQueue&lt; T &gt;::m_Lock</a>, <a class="el" href="job__queue_8hpp_source.html#l00043">job::LockedQueue&lt; T &gt;::m_Size</a>, and <a class="el" href="job__queue_8hpp_source.html#l00042">job::LockedQueue&lt; T &gt;::m_WriteIndex</a>.</p>
 
 </div>
 </div>
@@ -334,14 +334,14 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00094">94</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      <span class="keywordflow">return</span> raw_index &amp; <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">m_CapacityMask</a>;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00092">92</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keywordflow">return</span> raw_index &amp; <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a0dd39185cbd85983ce12d13a7b6f1205">m_CapacityMask</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00043">job::LockedQueue&lt; T &gt;::m_CapacityMask</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00041">job::LockedQueue&lt; T &gt;::m_CapacityMask</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00099">job::LockedQueue&lt; T &gt;::elementAt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00097">job::LockedQueue&lt; T &gt;::elementAt()</a>.</p>
 
 </div>
 </div>
@@ -371,15 +371,15 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00099">99</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a154008b81683a56d69281faedffc1985">m_Data</a> + <a class="code hl_function" href="classjob_1_1_locked_queue.html#a5a56b689ddeec2f338f07fa6def31a37">mask</a>(raw_index);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
-<div class="ttc" id="aclassjob_1_1_locked_queue_html_a5a56b689ddeec2f338f07fa6def31a37"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a5a56b689ddeec2f338f07fa6def31a37">job::LockedQueue::mask</a></div><div class="ttdeci">size_type mask(const size_type raw_index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00094">job_queue.hpp:94</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00097">97</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classjob_1_1_locked_queue.html#a154008b81683a56d69281faedffc1985">m_Data</a> + <a class="code hl_function" href="classjob_1_1_locked_queue.html#a5a56b689ddeec2f338f07fa6def31a37">mask</a>(raw_index);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="ttc" id="aclassjob_1_1_locked_queue_html_a5a56b689ddeec2f338f07fa6def31a37"><div class="ttname"><a href="classjob_1_1_locked_queue.html#a5a56b689ddeec2f338f07fa6def31a37">job::LockedQueue::mask</a></div><div class="ttdeci">size_type mask(const size_type raw_index) const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="job__queue_8hpp_source.html#l00092">job_queue.hpp:92</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00041">job::LockedQueue&lt; T &gt;::m_Data</a>, and <a class="el" href="job__queue_8hpp_source.html#l00094">job::LockedQueue&lt; T &gt;::mask()</a>.</p>
+<p class="reference">References <a class="el" href="job__queue_8hpp_source.html#l00039">job::LockedQueue&lt; T &gt;::m_Data</a>, and <a class="el" href="job__queue_8hpp_source.html#l00092">job::LockedQueue&lt; T &gt;::mask()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00075">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00059">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00073">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00057">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
 
 </div>
 </div>
@@ -406,9 +406,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00040">40</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00038">38</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00075">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00059">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00073">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00057">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
 
 </div>
 </div>
@@ -434,9 +434,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00041">41</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00039">39</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00099">job::LockedQueue&lt; T &gt;::elementAt()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00048">job::LockedQueue&lt; T &gt;::Initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00097">job::LockedQueue&lt; T &gt;::elementAt()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00046">job::LockedQueue&lt; T &gt;::Initialize()</a>.</p>
 
 </div>
 </div>
@@ -462,9 +462,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00042">42</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00040">40</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00048">job::LockedQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00059">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00046">job::LockedQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00057">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
 
 </div>
 </div>
@@ -490,9 +490,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00043">43</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00041">41</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00048">job::LockedQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00094">job::LockedQueue&lt; T &gt;::mask()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00046">job::LockedQueue&lt; T &gt;::Initialize()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00092">job::LockedQueue&lt; T &gt;::mask()</a>.</p>
 
 </div>
 </div>
@@ -518,9 +518,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00044">44</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00042">42</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00048">job::LockedQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00075">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00059">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00046">job::LockedQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00073">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00057">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
 
 </div>
 </div>
@@ -546,9 +546,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00045">45</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__queue_8hpp_source.html#l00043">43</a> of file <a class="el" href="job__queue_8hpp_source.html">job_queue.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00048">job::LockedQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00075">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00059">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__queue_8hpp_source.html#l00046">job::LockedQueue&lt; T &gt;::Initialize()</a>, <a class="el" href="job__queue_8hpp_source.html#l00073">job::LockedQueue&lt; T &gt;::Pop()</a>, and <a class="el" href="job__queue_8hpp_source.html#l00057">job::LockedQueue&lt; T &gt;::Push()</a>.</p>
 
 </div>
 </div>
@@ -561,7 +561,7 @@ template&lt;typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacejob.html">job</a></li><li class="navelem"><a class="el" href="classjob_1_1_locked_queue.html">LockedQueue</a></li>
-    <li class="footer">Generated on Sat Aug 8 2026 09:35:07 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Aug 8 2026 23:38:53 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

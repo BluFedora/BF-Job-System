@@ -106,6 +106,7 @@ $(document).ready(function(){initNavTree('job__api_8hpp.html',''); initResizable
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:structjob_1_1_counter"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#structjob_1_1_counter">job::Counter</a></td></tr>
+<tr class="memdesc:structjob_1_1_counter"><td class="mdescLeft">&#160;</td><td class="mdescRight">The only syncronization mechanism. Allows you to wait on tasks you asssociated with this counter.  <a href="namespacejob.html#structjob_1_1_counter">More...</a><br /></td></tr>
 <tr class="separator:structjob_1_1_counter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjob_1_1_ctx.html">job::Ctx</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,7 +155,7 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae8a8079c3237722a7233c33d6ad59c78"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#ae8a8079c3237722a7233c33d6ad59c78">job::NumSystemThreads</a> () noexcept</td></tr>
-<tr class="memdesc:ae8a8079c3237722a7233c33d6ad59c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes some system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespacejob.html#ae8a8079c3237722a7233c33d6ad59c78">More...</a><br /></td></tr>
+<tr class="memdesc:ae8a8079c3237722a7233c33d6ad59c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes system calls to grab the number threads / processors on the device. This function can be called by any thread concurrently.  <a href="namespacejob.html#ae8a8079c3237722a7233c33d6ad59c78">More...</a><br /></td></tr>
 <tr class="separator:ae8a8079c3237722a7233c33d6ad59c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4e6d679a962790050a4b9fd4bddd4a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#ac4e6d679a962790050a4b9fd4bddd4a4">job::Initialize</a> (const JobSystemMemoryRequirements &amp;memory_requirements={}, void *const memory=nullptr) noexcept</td></tr>
 <tr class="memdesc:ac4e6d679a962790050a4b9fd4bddd4a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the Job system and creates all the worker threads. The thread that calls '<a class="el" href="namespacejob.html#ac4e6d679a962790050a4b9fd4bddd4a4" title="Sets up the Job system and creates all the worker threads. The thread that calls &#39;job::Initialize&#39; is...">job::Initialize</a>' is considered the main thread.  <a href="namespacejob.html#ac4e6d679a962790050a4b9fd4bddd4a4">More...</a><br /></td></tr>
@@ -174,10 +175,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a22edfe82e2736badfa6d38d84148e0cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#a22edfe82e2736badfa6d38d84148e0cc">job::Shutdown</a> () noexcept</td></tr>
 <tr class="memdesc:a22edfe82e2736badfa6d38d84148e0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will deallocate any memory used by the system and shutdown any threads created by 'bfjob::initialize'.  <a href="namespacejob.html#a22edfe82e2736badfa6d38d84148e0cc">More...</a><br /></td></tr>
 <tr class="separator:a22edfe82e2736badfa6d38d84148e0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a551f8784d39518bf93ace62c6e97acd6"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
-<tr class="memitem:a551f8784d39518bf93ace62c6e97acd6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacejob.html#a551f8784d39518bf93ace62c6e97acd6">job::Dispatch</a> (const char *const name, Counter *const counter, Closure &amp;&amp;Callback, const QueueMode queue=QueueMode::Default) noexcept</td></tr>
-<tr class="memdesc:a551f8784d39518bf93ace62c6e97acd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes a task onto the queue.  <a href="namespacejob.html#a551f8784d39518bf93ace62c6e97acd6">More...</a><br /></td></tr>
-<tr class="separator:a551f8784d39518bf93ace62c6e97acd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7488e2835065deb306a4a8e82e80b9dc"><td class="memTemplParams" colspan="2">template&lt;typename Closure &gt; </td></tr>
+<tr class="memitem:a7488e2835065deb306a4a8e82e80b9dc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacejob.html#a7488e2835065deb306a4a8e82e80b9dc">job::Dispatch</a> (const char *const name, Counter *const counter, const Closure &amp;Callback, const QueueMode queue=QueueMode::Default) noexcept</td></tr>
+<tr class="memdesc:a7488e2835065deb306a4a8e82e80b9dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main API entrypoint, Pushes a task onto the queue.  <a href="namespacejob.html#a7488e2835065deb306a4a8e82e80b9dc">More...</a><br /></td></tr>
+<tr class="separator:a7488e2835065deb306a4a8e82e80b9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ef6741991fb4cbb304e07fbc7648b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejob.html#a1ef6741991fb4cbb304e07fbc7648b9c">job::WaitOn</a> (const Counter &amp;counter) noexcept</td></tr>
 <tr class="memdesc:a1ef6741991fb4cbb304e07fbc7648b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks until all tasks associated with <code>counter</code> are done while This function will block but do work while being blocked.  <a href="namespacejob.html#a1ef6741991fb4cbb304e07fbc7648b9c">More...</a><br /></td></tr>
 <tr class="separator:a1ef6741991fb4cbb304e07fbc7648b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,8 +226,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00041">41</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<div class="textblock"><p >The only syncronization mechanism. Allows you to wait on tasks you asssociated with this counter. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacejob.html#a1ef6741991fb4cbb304e07fbc7648b9c" title="Blocks until all tasks associated with counter are done while This function will block but do work wh...">job::WaitOn</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00048">48</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -252,7 +255,7 @@ unfinished_tasks</td>
 </div><div class="memdoc">
 <div class="textblock"><p >The runtime configuration for the Job System. </p>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00081">81</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00086">86</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -338,7 +341,7 @@ The RNG for work queue stealing will be seeded with this value. </td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_3456df1ae52d53fc831eb405b13e9d7d.html">concurrent</a></li><li class="navelem"><a class="el" href="job__api_8hpp.html">job_api.hpp</a></li>
-    <li class="footer">Generated on Sat Aug 8 2026 09:35:07 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Sat Aug 8 2026 23:38:53 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
