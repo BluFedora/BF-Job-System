@@ -14,8 +14,7 @@
 #ifndef JOB_QUEUE_HPP
 #define JOB_QUEUE_HPP
 
-#include "job_api.hpp"     // PauseProcessor
-#include "job_assert.hpp"  // JobAssert
+#include "job_api.hpp"  // PauseProcessor, JobAssert
 
 #include <algorithm>  // copy_n
 #include <atomic>     // atomic<T>
@@ -25,7 +24,7 @@
 #include <new>        // hardware_destructive_interference_size, operator new
 #include <utility>    // move
 
-namespace Job
+namespace job
 {
   static constexpr std::size_t k_FalseSharingPadSize = std::hardware_destructive_interference_size;
 
@@ -569,7 +568,7 @@ namespace Job
        std::memory_order_release,
        std::memory_order_relaxed))
       {
-        PauseProcessor();
+        job::PauseProcessor();
       }
     }
 
