@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>Commit()&#160;:&#160;<a class="el" href="classjob_1_1_m_p_m_c_queue.html#aa036eb0138055d2d9f999fc08b83b2c5">job::MPMCQueue</a></li>
-<li>counter&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a2950ba9a7cae980457703ee7012360a9">job::Task</a></li>
+<li>counter&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a4d1b817572fe359b6d017e43b91dbce2">job::Task</a></li>
 <li>current_worker&#160;:&#160;<a class="el" href="structjob_1_1_ctx.html#aafd36938d554713c5d6c0ac4aed0355d">job::Ctx</a></li>
 </ul>
 
@@ -128,7 +128,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>init_lock&#160;:&#160;<a class="el" href="namespacejob.html#a35d4e5208fa0bea06993cf9ab3fb37e7">job::JobSystemContext</a></li>
 <li>init_mutex&#160;:&#160;<a class="el" href="namespacejob.html#a99a6b698e961b9739f97245ecdfeb79d">job::InitializationLock</a></li>
 <li>Initialize()&#160;:&#160;<a class="el" href="classjob_1_1_locked_queue.html#ae253f31a0ba9ce28875d3f10251e1459">job::LockedQueue&lt; T &gt;</a>, <a class="el" href="classjob_1_1_m_p_m_c_queue.html#a9815799a6bec6b094ff32defcd1cbdef">job::MPMCQueue</a>, <a class="el" href="classjob_1_1_s_p_m_c_deque.html#a305a049d946f0fd91e3decaa5c92b7dd">job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="classjob_1_1_s_p_s_c_queue.html#aa5d12dfc64be4739df4b7751e96613f7">job::SPSCQueue&lt; T &gt;</a></li>
-<li>is_finished&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a98e8fe1e427c0f7ce0d45760f05a3589">job::Task</a></li>
+<li>is_ready_for_gc&#160;:&#160;<a class="el" href="structjob_1_1internal_1_1_private_ctx.html#ab8bbbf650efc61d6cfee0de308e066c8">job::internal::PrivateCtx</a>, <a class="el" href="structjob_1_1_task.html#aa611b4dfcb1d8d5b9d51c0d52842a119">job::Task</a></li>
 <li>is_running&#160;:&#160;<a class="el" href="namespacejob.html#a19030991a9f5a2bdf078724c99359ce0">job::JobSystemContext</a></li>
 <li>IsEmpty()&#160;:&#160;<a class="el" href="classjob_1_1_s_p_s_c_queue.html#acc38865c37e54460392544737bc3b938">job::SPSCQueue&lt; T &gt;</a></li>
 <li>IsFull()&#160;:&#160;<a class="el" href="classjob_1_1_s_p_s_c_queue.html#a5b1167a7327a0bb49fb08456e24e1b44">job::SPSCQueue&lt; T &gt;</a></li>
@@ -138,7 +138,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_j" name="index_j"></a>- j -</h3><ul>
 <li>job::TaskPtr()&#160;:&#160;<a class="el" href="structjob_1_1_task_ptr.html#ad0895b34b6b2d5b6c2f12f9e31a51d5f">job::TaskPtr</a></li>
-<li>job_fn&#160;:&#160;<a class="el" href="structjob_1_1_task.html#aa23506357224369179bce0f1b48c0dcf">job::Task</a></li>
+<li>job_fn&#160;:&#160;<a class="el" href="structjob_1_1_task.html#aaf550cdb38164b00f083d7465ba0b00d">job::Task</a></li>
 <li>job_steal_rng_seed&#160;:&#160;<a class="el" href="namespacejob.html#a580f89c266ab35706c0a4533faacb52f">job::JobSystemCreateOptions</a></li>
 <li>JobSystemMemoryRequirements()&#160;:&#160;<a class="el" href="structjob_1_1_job_system_memory_requirements.html#a2f4368cd7c58c3d6bda69ce050c37164">job::JobSystemMemoryRequirements</a></li>
 </ul>
@@ -204,7 +204,6 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
 <li>operator()()&#160;:&#160;<a class="el" href="structjob_1_1_splitter.html#a85a1ef6baa49c2e2e7d73eb4571cae08">job::Splitter</a></li>
 <li>options&#160;:&#160;<a class="el" href="structjob_1_1_job_system_memory_requirements.html#a7ea72f8634a816e5004aa50bc632a704">job::JobSystemMemoryRequirements</a></li>
-<li>owning_worker&#160;:&#160;<a class="el" href="structjob_1_1_task.html#acc460be440951c9ac36e2eab16a873d1">job::Task</a></li>
 </ul>
 
 
@@ -224,6 +223,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>ReadElements()&#160;:&#160;<a class="el" href="classjob_1_1_m_p_m_c_queue.html#a5e7103efd202881b5d5153014d060004">job::MPMCQueue</a></li>
+<li>ReleaseTaskToPool()&#160;:&#160;<a class="el" href="structjob_1_1internal_1_1_private_ctx.html#ac1c8fde198d7a7dbb4abbddbe75aec23">job::internal::PrivateCtx</a></li>
 <li>RequestPopRange()&#160;:&#160;<a class="el" href="classjob_1_1_m_p_m_c_queue.html#a4714bc597a504c1c5fcf433a806addd8">job::MPMCQueue</a></li>
 <li>RequestWriteRange()&#160;:&#160;<a class="el" href="classjob_1_1_m_p_m_c_queue.html#ae97e76320028c7bc68452e85aaff640d">job::MPMCQueue</a></li>
 <li>rng_state&#160;:&#160;<a class="el" href="namespacejob.html#ad7cf84cffac655aac4987d5508a7ef22">job::ThreadLocalState</a></li>
@@ -234,6 +234,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>size_type&#160;:&#160;<a class="el" href="classjob_1_1_locked_queue.html#a79822036de9432fcda4ed25f65f5dfc9">job::LockedQueue&lt; T &gt;</a>, <a class="el" href="classjob_1_1_m_p_m_c_queue.html#aa8a0bd3f05c1cbcbad033255e66c887b">job::MPMCQueue</a>, <a class="el" href="classjob_1_1_s_p_m_c_deque.html#a57cca185c917cbc6a573e1c986f19e23">job::SPMCDeque&lt; T &gt;</a>, <a class="el" href="classjob_1_1_s_p_s_c_queue.html#a4fff7ed1e3d7c45ecd401050e2c7c1f2">job::SPSCQueue&lt; T &gt;</a></li>
 <li>SPMCDeque()&#160;:&#160;<a class="el" href="classjob_1_1_s_p_m_c_deque.html#a6b203d386f43f19aa25ff5409f73f9dd">job::SPMCDeque&lt; T &gt;</a></li>
 <li>SPSCQueue()&#160;:&#160;<a class="el" href="classjob_1_1_s_p_s_c_queue.html#a6ea7fa776fdb751251a4559d1eb1937f">job::SPSCQueue&lt; T &gt;</a></li>
+<li>src_user_data&#160;:&#160;<a class="el" href="structjob_1_1internal_1_1_private_ctx.html#a9f07f419e21f7401566919b03325c39c">job::internal::PrivateCtx</a></li>
 <li>start&#160;:&#160;<a class="el" href="classjob_1_1_m_p_m_c_queue.html#a3ad53a698e8b52e0c572f407cf7b0758">job::MPMCQueue::IndexRange</a></li>
 <li>Steal()&#160;:&#160;<a class="el" href="classjob_1_1_s_p_m_c_deque.html#ab7f1e5410e985794aad3819f5e9fae19">job::SPMCDeque&lt; T &gt;</a></li>
 <li>storage&#160;:&#160;<a class="el" href="namespacejob.html#a53e77a9e912d21a3f906277ebdba1dbb">job::TaskMemoryBlock</a></li>
@@ -244,7 +245,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>Task()&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a750d1907739d9dca0a3da86158b54c1c">job::Task</a></li>
+<li>Task()&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a3234581f6ee098a0b64775c3c8d16e65">job::Task</a></li>
 <li>task_allocator&#160;:&#160;<a class="el" href="namespacejob.html#abace9a94dbf67f36aa76b6b7b86267ea">job::ThreadLocalState</a></li>
 <li>task_counter&#160;:&#160;<a class="el" href="structjob_1_1_ctx.html#ac3419f5918bccf00b1f431b8f9f1c60c">job::Ctx</a></li>
 <li>task_index&#160;:&#160;<a class="el" href="structjob_1_1_task_ptr.html#a5896d5592317b87df9c4956a058ef451">job::TaskPtr</a></li>
@@ -255,7 +256,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
 <li>unfinished_tasks&#160;:&#160;<a class="el" href="namespacejob.html#a7ce3be83e160898cf1698726ec21c486">job::Counter</a></li>
-<li>user_data&#160;:&#160;<a class="el" href="structjob_1_1internal_1_1_private_ctx.html#a6125d3497bad90edfdda186f315aa2ab">job::internal::PrivateCtx</a>, <a class="el" href="structjob_1_1_task.html#a3ebb3c7336d4cbcd44efaf479ee02ef0">job::Task</a></li>
+<li>user_data&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a3ebb3c7336d4cbcd44efaf479ee02ef0">job::Task</a></li>
 <li>userdata_align&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a04811db974283cbfd714af25b371d438">job::Task</a></li>
 </ul>
 
@@ -286,7 +287,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Aug 8 2026 23:38:53 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Aug 11 2026 04:26:21 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

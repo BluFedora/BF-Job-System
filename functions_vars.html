@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
-<li>counter&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a2950ba9a7cae980457703ee7012360a9">job::Task</a></li>
+<li>counter&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a4d1b817572fe359b6d017e43b91dbce2">job::Task</a></li>
 <li>current_worker&#160;:&#160;<a class="el" href="structjob_1_1_ctx.html#aafd36938d554713c5d6c0ac4aed0355d">job::Ctx</a></li>
 </ul>
 
@@ -116,13 +116,13 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>init_cv&#160;:&#160;<a class="el" href="namespacejob.html#ae2324149d8110eaea5958099b3341a7b">job::InitializationLock</a></li>
 <li>init_lock&#160;:&#160;<a class="el" href="namespacejob.html#a35d4e5208fa0bea06993cf9ab3fb37e7">job::JobSystemContext</a></li>
 <li>init_mutex&#160;:&#160;<a class="el" href="namespacejob.html#a99a6b698e961b9739f97245ecdfeb79d">job::InitializationLock</a></li>
-<li>is_finished&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a98e8fe1e427c0f7ce0d45760f05a3589">job::Task</a></li>
+<li>is_ready_for_gc&#160;:&#160;<a class="el" href="structjob_1_1internal_1_1_private_ctx.html#ab8bbbf650efc61d6cfee0de308e066c8">job::internal::PrivateCtx</a>, <a class="el" href="structjob_1_1_task.html#aa611b4dfcb1d8d5b9d51c0d52842a119">job::Task</a></li>
 <li>is_running&#160;:&#160;<a class="el" href="namespacejob.html#a19030991a9f5a2bdf078724c99359ce0">job::JobSystemContext</a></li>
 </ul>
 
 
 <h3><a id="index_j" name="index_j"></a>- j -</h3><ul>
-<li>job_fn&#160;:&#160;<a class="el" href="structjob_1_1_task.html#aa23506357224369179bce0f1b48c0dcf">job::Task</a></li>
+<li>job_fn&#160;:&#160;<a class="el" href="structjob_1_1_task.html#aaf550cdb38164b00f083d7465ba0b00d">job::Task</a></li>
 <li>job_steal_rng_seed&#160;:&#160;<a class="el" href="namespacejob.html#a580f89c266ab35706c0a4533faacb52f">job::JobSystemCreateOptions</a></li>
 </ul>
 
@@ -182,7 +182,6 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 <h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
 <li>options&#160;:&#160;<a class="el" href="structjob_1_1_job_system_memory_requirements.html#a7ea72f8634a816e5004aa50bc632a704">job::JobSystemMemoryRequirements</a></li>
-<li>owning_worker&#160;:&#160;<a class="el" href="structjob_1_1_task.html#acc460be440951c9ac36e2eab16a873d1">job::Task</a></li>
 </ul>
 
 
@@ -192,6 +191,7 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>src_user_data&#160;:&#160;<a class="el" href="structjob_1_1internal_1_1_private_ctx.html#a9f07f419e21f7401566919b03325c39c">job::internal::PrivateCtx</a></li>
 <li>start&#160;:&#160;<a class="el" href="classjob_1_1_m_p_m_c_queue.html#a3ad53a698e8b52e0c572f407cf7b0758">job::MPMCQueue::IndexRange</a></li>
 <li>storage&#160;:&#160;<a class="el" href="namespacejob.html#a53e77a9e912d21a3f906277ebdba1dbb">job::TaskMemoryBlock</a></li>
 <li>sys_arch_str&#160;:&#160;<a class="el" href="namespacejob.html#a039173530b335cfc5daee64e7ac6b3d7">job::JobSystemContext</a></li>
@@ -211,7 +211,7 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
 <li>unfinished_tasks&#160;:&#160;<a class="el" href="namespacejob.html#a7ce3be83e160898cf1698726ec21c486">job::Counter</a></li>
-<li>user_data&#160;:&#160;<a class="el" href="structjob_1_1internal_1_1_private_ctx.html#a6125d3497bad90edfdda186f315aa2ab">job::internal::PrivateCtx</a>, <a class="el" href="structjob_1_1_task.html#a3ebb3c7336d4cbcd44efaf479ee02ef0">job::Task</a></li>
+<li>user_data&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a3ebb3c7336d4cbcd44efaf479ee02ef0">job::Task</a></li>
 <li>userdata_align&#160;:&#160;<a class="el" href="structjob_1_1_task.html#a04811db974283cbfd714af25b371d438">job::Task</a></li>
 </ul>
 
@@ -229,7 +229,7 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Aug 8 2026 23:38:53 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Tue Aug 11 2026 04:26:21 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
