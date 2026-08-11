@@ -225,7 +225,10 @@ namespace job
   {
     struct PrivateCtx : public Ctx
     {
-      void* user_data = nullptr;
+      void*             src_user_data   = nullptr;
+      std::atomic_bool* is_ready_for_gc = nullptr;
+
+      void ReleaseTaskToPool() const;
     };
 
     using JobFn = void (*)(const PrivateCtx& ctx);
@@ -248,14 +251,18 @@ namespace job
   void Dispatch(const char* const name, Counter* const counter, const Closure& Callback, const QueueMode queue) noexcept
   {
     const internal::JobFn ErasedCallback = +[](const internal::PrivateCtx& ctx) -> void {
-      Closure* const typed_callback = static_cast<Closure*>(ctx.user_data);
+      alignas(Closure) unsigned char local_user_data[sizeof(Closure)];
+      Closure* const                 src_user_data  = static_cast<Closure*>(ctx.src_user_data);
+      Closure* const                 typed_callback = ::new (local_user_data) Closure(std::move(*src_user_data));
 
-      (*typed_callback)(static_cast<const Ctx&>(ctx));
+      src_user_data->~Closure();
+      ctx.ReleaseTaskToPool();
 
+      (*typed_callback)(static_cast<const job::Ctx&>(ctx));
       typed_callback->~Closure();
     };
 
-    internal::DispatchImpl(name, counter, queue, ErasedCallback, sizeof(Closure), alignof(Closure), &Callback, [](void* const dst_user_data, const void* const src_user_data) -> void {
+    internal::DispatchImpl(name, counter, queue, ErasedCallback, sizeof(Closure), alignof(Closure), &Callback, +[](void* const dst_user_data, const void* const src_user_data) -> void {
       ::new (dst_user_data) Closure(*static_cast<const Closure*>(src_user_data));
     });
   }

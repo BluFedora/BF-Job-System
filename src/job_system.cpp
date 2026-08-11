@@ -117,30 +117,27 @@ namespace job
   struct alignas(k_CachelineSize) Task
   {
     static constexpr std::size_t k_SizeOfMembers =
-     sizeof(job::internal::JobFn) +
-     sizeof(job::Counter*) +
      sizeof(const char*) +
+     sizeof(internal::JobFn) +
+     sizeof(Counter*) +
      sizeof(std::uint8_t) +
-     sizeof(std::atomic_bool) +
-     sizeof(WorkerID);
+     sizeof(std::atomic_bool);
 
     static constexpr std::size_t k_TaskPaddingDataSize = k_ExpectedTaskSize - k_SizeOfMembers;
 
-    job::internal::JobFn job_fn;                            //!< The function that will be run.
-    job::Counter*        counter;                           //!< The counter to be decremented.
-    const char*          name;                              //!< Debug name of this task.
-    std::uint8_t         userdata_align;                    //!< Alignment offset needed by userdata.
-    std::atomic_bool     is_finished;                       //!< Set to true when the task has been run.
-    WorkerID             owning_worker;                     //!< The worker this task has been created on, needed for `Task::tojob::TaskPtr` and various assertions.
-    Byte                 user_data[k_TaskPaddingDataSize];  //!< User data storage.
+    const char*      name;                              //!< Debug name of this task.
+    internal::JobFn  job_fn;                            //!< The function that will be run.
+    Counter*         counter;                           //!< The counter to be decremented.
+    std::uint8_t     userdata_align;                    //!< Alignment offset needed by userdata.
+    std::atomic_bool is_ready_for_gc;                   //!< Set to true when the task can be reused.
+    Byte             user_data[k_TaskPaddingDataSize];  //!< User data storage.
 
-    Task(const char* const name, const job::internal::JobFn job_fn, job::Counter* const counter, const WorkerID worker) noexcept :
+    Task(const char* const name, const job::internal::JobFn job_fn, job::Counter* const counter) noexcept :
+      name{name},
       job_fn{job_fn},
       counter{counter},
-      name{name},
-      is_finished{false},
+      is_ready_for_gc{false},
       userdata_align{0},
-      owning_worker{worker},
       user_data{}
     {
       counter->unfinished_tasks.fetch_add(1u, std::memory_order_release);
@@ -211,6 +208,11 @@ static job::JobSystemContext*              g_JobSystem     = nullptr;
 static thread_local job::ThreadLocalState* g_CurrentWorker = nullptr;
 
 // Internal API
+
+void job::internal::PrivateCtx::ReleaseTaskToPool() const
+{
+  is_ready_for_gc->store(true, std::memory_order_release);
+}
 
 #if JOB_SYS_ASSERTIONS
 
@@ -300,13 +302,13 @@ namespace
       return reinterpret_cast<job::Task*>(&pool.memory[idx]);
     }
 
-    static job::Task* AllocateTask(job::TaskPool* const pool, const char* const name, const job::internal::JobFn job_fn, job::Counter* const counter, const job::WorkerID worker) noexcept
+    static job::Task* AllocateTask(job::TaskPool* const pool, const char* const name, const job::internal::JobFn job_fn, job::Counter* const counter) noexcept
     {
       job::TaskMemoryBlock* const result = std::exchange(pool->freelist, pool->freelist->next);
 
       JobAssert(result != nullptr, "Allocation failure.");
 
-      return new (result) job::Task(name, job_fn, counter, worker);
+      return new (result) job::Task(name, job_fn, counter);
     }
 
     static void DeallocateTask(job::TaskPool* const pool, job::Task* const task) noexcept
@@ -328,41 +330,25 @@ namespace
         job::ThreadLocalState* const worker = system::GetWorker(ptr.worker_id);
         job::Task* const             result = task_pool::TaskFromIndex(worker->task_allocator, ptr.task_index);
 
-        JobAssert(ptr.worker_id == result->owning_worker, "Corrupted worker ID.");
-
         return result;
       }
-
-      return nullptr;
+      else
+      {
+        return nullptr;
+      }
     }
 
     static void RunTaskFunction(job::Task* const self, const job::WorkerID worker_id) noexcept
     {
-      (self->job_fn)(job::internal::PrivateCtx{self->counter, worker_id, self->name, self->user_data + self->userdata_align});
+      const job::internal::PrivateCtx ctx{self->counter, worker_id, self->name, self->user_data + self->userdata_align, &self->is_ready_for_gc};
 
-      if (self->counter != nullptr)
+      (self->job_fn)(ctx);
+
+      if (ctx.task_counter != nullptr)
       {
-        self->counter->unfinished_tasks.fetch_sub(1, std::memory_order_release);
-      }
-
-      self->is_finished.store(true, std::memory_order_release);
-    }
-
-    static job::TaskPtr PointerToTaskPtr(const job::Task* const self) noexcept
-    {
-      if (self)
-      {
-        const job::ThreadLocalState& worker     = *system::GetWorker(self->owning_worker);
-        const job::TaskHandle        self_index = task_pool::TaskToIndex(worker.task_allocator, self);
-
-        return job::TaskPtr{self->owning_worker, self_index};
-      }
-      else
-      {
-        return job::TaskPtr(nullptr);
+        ctx.task_counter->unfinished_tasks.fetch_sub(1, std::memory_order_release);
       }
     }
-
   }  // namespace task
 
   namespace worker
@@ -375,17 +361,19 @@ namespace
 
     static void GarbageCollectAllocatedTasks(job::ThreadLocalState* const worker) noexcept
     {
-      job::TaskHandle* const    allocated_tasks = worker->allocated_tasks;
-      job::TaskPool&            task_pool       = worker->task_allocator;
-      const job::TaskHandleType num_tasks       = worker->num_allocated_tasks;
-      job::TaskHandleType       read_idx        = 0u;
-      job::TaskHandleType       write_idx       = 0u;
+      job::TaskHandle* const allocated_tasks = worker->allocated_tasks;
+      job::TaskPool&         task_pool       = worker->task_allocator;
+
+#if 0
+      const job::TaskHandleType num_tasks = worker->num_allocated_tasks;
+      job::TaskHandleType       read_idx  = 0u;
+      job::TaskHandleType       write_idx = 0u;
 
       while (read_idx != num_tasks)
       {
         const job::TaskHandle task_handle      = allocated_tasks[read_idx++];
         job::Task* const      task_ptr         = task_pool::TaskFromIndex(task_pool, task_handle);
-        const bool            task_is_finished = task_ptr->is_finished.load(std::memory_order_acquire);
+        const bool            task_is_finished = task_ptr->is_ready_for_gc.load(std::memory_order_acquire);
 
         if (task_is_finished)
         {
@@ -398,6 +386,34 @@ namespace
       }
 
       worker->num_allocated_tasks = write_idx;
+#else
+      constexpr job::TaskHandleType max_tasks_to_gc = 512u;
+
+      job::TaskHandleType num_tasks = worker->num_allocated_tasks;
+      job::TaskHandleType read_idx  = 0u;
+      job::TaskHandleType num_gc    = 0u;
+
+      while (read_idx < num_tasks && num_gc < max_tasks_to_gc)
+      {
+        const job::TaskHandle task_handle      = allocated_tasks[read_idx];
+        job::Task* const      task_ptr         = task_pool::TaskFromIndex(task_pool, task_handle);
+        const bool            task_is_finished = task_ptr->is_ready_for_gc.load(std::memory_order_acquire);
+
+        if (task_is_finished)
+        {
+          allocated_tasks[read_idx] = allocated_tasks[--num_tasks];
+
+          task_pool::DeallocateTask(&task_pool, task_ptr);
+          ++num_gc;
+        }
+        else
+        {
+          ++read_idx;
+        }
+      }
+
+      worker->num_allocated_tasks = num_tasks;
+#endif
     }
 
     static job::ThreadLocalState* RandomWorker(job::ThreadLocalState* const worker) noexcept
@@ -949,28 +965,24 @@ void job::internal::DispatchImpl(const char* const name,
 
       if (worker->num_allocated_tasks == max_tasks_per_worker)
       {
-        constexpr int k_MaxGCAttempts = 32;
-
         // While we cannot allocate do some work.
         system::WakeUpAllWorkers();
-
-        int run_task_attempt = 0;
 
         while (worker->num_allocated_tasks == max_tasks_per_worker)
         {
           worker::TryRunTask(worker);
           worker::GarbageCollectAllocatedTasks(worker);
-
-          if (++run_task_attempt >= k_MaxGCAttempts)
-          {
-            break;
-          }
         }
       }
     }
   }
 
-  const auto SetupUserData = [&](Task* const task) {
+  Task* const        task     = task_pool::AllocateTask(&worker->task_allocator, name, func, counter);
+  const TaskHandle   task_hdl = task_pool::TaskToIndex(worker->task_allocator, task);
+  const job::TaskPtr task_ptr = {worker_id, task_pool::TaskToIndex(worker->task_allocator, task)};
+
+  // Copy user data
+  {
     const Byte* const    user_data_end    = task->user_data + sizeof(task->user_data);
     Byte* const          aligned_ptr      = static_cast<Byte*>(AlignPointer(task->user_data, user_data_alignment));
     const Byte* const    aligned_ptr_end  = aligned_ptr + user_data_size;
@@ -981,60 +993,43 @@ void job::internal::DispatchImpl(const char* const name,
 
     InitUserData(aligned_ptr, user_data);
     task->userdata_align = static_cast<std::uint8_t>(alignment_offset);
-  };
+  }
 
-  if (worker->num_allocated_tasks == max_tasks_per_worker)  // Run job inline.
+  worker->allocated_tasks[worker->num_allocated_tasks++] = task_hdl;
+
+  const WorkerID num_workers = NumWorkers();
+
+  // If we only have one thread running using the worker queue is invalid.
+  switch ((num_workers == 1u) ? QueueMode::Default : queue)
   {
-    Task task{name, func, counter, worker_id};
+    case QueueMode::Default:
+    {
+      task::SubmitQPushHelper(task_ptr, worker, &worker->normal_queue);
+      break;
+    }
+    case QueueMode::WorkerOnly:
+    {
+      task::SubmitQPushHelper(task_ptr, worker, &worker->worker_queue);
+      break;
+    }
+    default:
+#if defined(__GNUC__)  // GCC, Clang, ICC
+      __builtin_unreachable();
+#elif defined(_MSC_VER)  // MSVC
+      __assume(false);
+#endif
+      break;
+  }
 
-    SetupUserData(&task);
+  const std::int32_t num_pending_jobs = g_JobSystem->num_available_jobs.fetch_add(1, std::memory_order_relaxed);
 
-    task::RunTaskFunction(&task, worker_id);
+  if (num_pending_jobs >= num_workers)
+  {
+    system::WakeUpAllWorkers();
   }
   else
   {
-    Task* const        task     = task_pool::AllocateTask(&worker->task_allocator, name, func, counter, worker_id);
-    const TaskHandle   task_hdl = task_pool::TaskToIndex(worker->task_allocator, task);
-    const job::TaskPtr task_ptr = task::PointerToTaskPtr(task);
-
-    SetupUserData(task);
-
-    worker->allocated_tasks[worker->num_allocated_tasks++] = task_hdl;
-
-    const WorkerID num_workers = NumWorkers();
-
-    // If we only have one thread running using the worker queue is invalid.
-    switch ((num_workers == 1u) ? QueueMode::Default : queue)
-    {
-      case QueueMode::Default:
-      {
-        task::SubmitQPushHelper(task_ptr, worker, &worker->normal_queue);
-        break;
-      }
-      case QueueMode::WorkerOnly:
-      {
-        task::SubmitQPushHelper(task_ptr, worker, &worker->worker_queue);
-        break;
-      }
-      default:
-#if defined(__GNUC__)  // GCC, Clang, ICC
-        __builtin_unreachable();
-#elif defined(_MSC_VER)  // MSVC
-        __assume(false);
-#endif
-        break;
-    }
-
-    const std::int32_t num_pending_jobs = g_JobSystem->num_available_jobs.fetch_add(1, std::memory_order_relaxed);
-
-    if (num_pending_jobs >= num_workers)
-    {
-      system::WakeUpAllWorkers();
-    }
-    else
-    {
-      system::WakeUpOneWorker();
-    }
+    system::WakeUpOneWorker();
   }
 }
 

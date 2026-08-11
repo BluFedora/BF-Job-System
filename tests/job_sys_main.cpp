@@ -45,16 +45,6 @@ static std::unique_ptr<int[]> AllocateIntArray(const std::size_t num_elements)
   return std::unique_ptr<int[]>(new int[num_elements]());
 }
 
-template<class _Rep, class _Period>
-void ThreadSleep(const std::chrono::duration<_Rep, _Period>& time)
-{
-#if defined(__EMSCRIPTEN_PTHREADS__) || !defined(__EMSCRIPTEN__)
-  std::this_thread::sleep_for(std::chrono::milliseconds(12));
-#else
-  // std::this_thread::sleep_for(time);
-#endif
-}
-
 TEST(JobSystemTests, JobUserData)
 {
   struct TaskWithData
@@ -179,7 +169,7 @@ TEST(JobSystemTests, BasicParallelInvoke)
 
 TEST(JobSystemTests, SPSCQueue)
 {
-  constexpr auto               backing_storage_capacity = (1<< 12);
+  constexpr auto               backing_storage_capacity = (1 << 12);
   const std::unique_ptr<int[]> backing_storage          = AllocateIntArray(backing_storage_capacity);
   const std::unique_ptr<int[]> queue_result             = AllocateIntArray(backing_storage_capacity * 2);
 
