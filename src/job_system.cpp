@@ -167,7 +167,7 @@ namespace job
     TaskPool                task_allocator;
     TaskHandle*             allocated_tasks;
     TaskHandleType          num_allocated_tasks;
-    job::ThreadLocalState*  last_stolen_worker;
+    ThreadLocalState*       last_stolen_worker;
     pcg_state_setseq_64     rng_state;
     std::thread             thread_id;
   };
@@ -187,18 +187,18 @@ namespace job
     std::uint32_t          num_workers;
     std::atomic_uint32_t   num_user_threads_setup;
     std::uint32_t          num_tasks_per_worker;
+    bool                   needs_delete;
+    std::atomic_bool       is_running;
     InitializationLock     init_lock;
     const char*            sys_arch_str;
     std::size_t            system_alloc_size;
     std::size_t            system_alloc_alignment;
-    bool                   needs_delete;
-    std::atomic_bool       is_running;
 
     // Shared Mutable State
 
     std::mutex              worker_sleep_mutex;
     std::condition_variable worker_sleep_cv;
-    std::atomic_uint32_t    num_available_jobs;
+    std::atomic_size_t      num_available_jobs;
   };
 }  // namespace Job
 
@@ -1021,7 +1021,7 @@ void job::internal::DispatchImpl(const char* const name,
       break;
   }
 
-  const std::int32_t num_pending_jobs = g_JobSystem->num_available_jobs.fetch_add(1, std::memory_order_relaxed);
+  const std::size_t num_pending_jobs = g_JobSystem->num_available_jobs.fetch_add(1, std::memory_order_relaxed);
 
   if (num_pending_jobs >= num_workers)
   {
