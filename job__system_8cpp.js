@@ -16,7 +16,7 @@ var job__system_8cpp =
       [ "task_allocator", "namespacejob.html#abace9a94dbf67f36aa76b6b7b86267ea", null ],
       [ "allocated_tasks", "namespacejob.html#ad958662c695fa9fe139d64d0c631eeee", null ],
       [ "num_allocated_tasks", "namespacejob.html#a94660044d39a3982e0355b74890aeb9f", null ],
-      [ "last_stolen_worker", "namespacejob.html#aebb55732b4dae2c798df5e16e0266721", null ],
+      [ "last_stolen_worker", "namespacejob.html#a3f46d20a6c4e6a419dae6f262aa0ebe9", null ],
       [ "rng_state", "namespacejob.html#ad7cf84cffac655aac4987d5508a7ef22", null ],
       [ "thread_id", "namespacejob.html#af6ef6202e282d2ce885e0af1f84f48b1", null ]
     ] ],
@@ -30,15 +30,15 @@ var job__system_8cpp =
       [ "num_workers", "namespacejob.html#ad99146cdeb02f60863f651fbe51a3275", null ],
       [ "num_user_threads_setup", "namespacejob.html#ad830cc90309e0619ea71ac583058f42a", null ],
       [ "num_tasks_per_worker", "namespacejob.html#a98fd212d7fbfb37b0ebbf2baa15eb08f", null ],
+      [ "needs_delete", "namespacejob.html#a8b8546bc05dced4dc9cc76e080a47c26", null ],
+      [ "is_running", "namespacejob.html#a19030991a9f5a2bdf078724c99359ce0", null ],
       [ "init_lock", "namespacejob.html#a35d4e5208fa0bea06993cf9ab3fb37e7", null ],
       [ "sys_arch_str", "namespacejob.html#a039173530b335cfc5daee64e7ac6b3d7", null ],
       [ "system_alloc_size", "namespacejob.html#ae45fa3542b2a028e5f0a7d8d8ce62563", null ],
       [ "system_alloc_alignment", "namespacejob.html#ac056e4bcad3b40f2f6ce2d31223a9b71", null ],
-      [ "needs_delete", "namespacejob.html#a8b8546bc05dced4dc9cc76e080a47c26", null ],
-      [ "is_running", "namespacejob.html#a19030991a9f5a2bdf078724c99359ce0", null ],
       [ "worker_sleep_mutex", "namespacejob.html#a1f5799771d4c30ff84c992c9a4313d48", null ],
       [ "worker_sleep_cv", "namespacejob.html#a2c8ee7099752a85b43a7de60caad9578", null ],
-      [ "num_available_jobs", "namespacejob.html#afb64b23e048e589221a31a3d2ed48205", null ]
+      [ "num_available_jobs", "namespacejob.html#a937ad16a8eae1e3ef3dade4e21081c55", null ]
     ] ],
     [ "NativePause", "job__system_8cpp.html#af1f8f96c9abf19bf3d0754524aaa2efc", null ],
     [ "TaskHandle", "job__system_8cpp.html#ae6f84df6ce72c5e2c12d73f9aeda93b5", null ],

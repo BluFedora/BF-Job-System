@@ -337,6 +337,18 @@ num_tasks_per_worker</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="a8b8546bc05dced4dc9cc76e080a47c26" name="a8b8546bc05dced4dc9cc76e080a47c26"></a>bool</td>
+<td class="fieldname">
+needs_delete</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a19030991a9f5a2bdf078724c99359ce0" name="a19030991a9f5a2bdf078724c99359ce0"></a>atomic_bool</td>
+<td class="fieldname">
+is_running</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
 <a id="a35d4e5208fa0bea06993cf9ab3fb37e7" name="a35d4e5208fa0bea06993cf9ab3fb37e7"></a><a class="el" href="namespacejob.html#structjob_1_1_initialization_lock">InitializationLock</a></td>
 <td class="fieldname">
 init_lock</td>
@@ -361,18 +373,6 @@ system_alloc_alignment</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a8b8546bc05dced4dc9cc76e080a47c26" name="a8b8546bc05dced4dc9cc76e080a47c26"></a>bool</td>
-<td class="fieldname">
-needs_delete</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a19030991a9f5a2bdf078724c99359ce0" name="a19030991a9f5a2bdf078724c99359ce0"></a>atomic_bool</td>
-<td class="fieldname">
-is_running</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a1f5799771d4c30ff84c992c9a4313d48" name="a1f5799771d4c30ff84c992c9a4313d48"></a>mutex</td>
 <td class="fieldname">
 worker_sleep_mutex</td>
@@ -385,7 +385,7 @@ worker_sleep_cv</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="afb64b23e048e589221a31a3d2ed48205" name="afb64b23e048e589221a31a3d2ed48205"></a>atomic_uint32_t</td>
+<a id="a937ad16a8eae1e3ef3dade4e21081c55" name="a937ad16a8eae1e3ef3dade4e21081c55"></a>atomic_size_t</td>
 <td class="fieldname">
 num_available_jobs</td>
 <td class="fielddoc">
@@ -546,7 +546,7 @@ num_allocated_tasks</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aebb55732b4dae2c798df5e16e0266721" name="aebb55732b4dae2c798df5e16e0266721"></a><a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">ThreadLocalState</a> *</td>
+<a id="a3f46d20a6c4e6a419dae6f262aa0ebe9" name="a3f46d20a6c4e6a419dae6f262aa0ebe9"></a><a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">ThreadLocalState</a> *</td>
 <td class="fieldname">
 last_stolen_worker</td>
 <td class="fielddoc">
@@ -1021,7 +1021,7 @@ thread_id</td>
 <div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a73f35c031fa0334e000f73e10e3582fb"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a73f35c031fa0334e000f73e10e3582fb">job::JobSystemMemoryRequirements::alignment</a></div><div class="ttdeci">std::size_t alignment</div><div class="ttdoc">The base alignment the pointer should be.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00102">job_api.hpp:102</a></div></div>
 <div class="ttc" id="astructjob_1_1_job_system_memory_requirements_html_a7ea72f8634a816e5004aa50bc632a704"><div class="ttname"><a href="structjob_1_1_job_system_memory_requirements.html#a7ea72f8634a816e5004aa50bc632a704">job::JobSystemMemoryRequirements::options</a></div><div class="ttdeci">JobSystemCreateOptions options</div><div class="ttdoc">The options used to create the memory requirements.</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00100">job_api.hpp:100</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00208">g_CurrentWorker</a>, <a class="el" href="job__system_8cpp_source.html#l00207">g_JobSystem</a>, <a class="el" href="job__system_8cpp_source.html#l00190">job::JobSystemContext::init_lock</a>, <a class="el" href="job__system_8cpp_source.html#l00703">Initialize()</a>, <a class="el" href="job__api_8hpp_source.html#l00091">job::JobSystemCreateOptions::job_steal_rng_seed</a>, <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__system_8cpp_source.html#l00194">job::JobSystemContext::needs_delete</a>, <a class="el" href="job__api_8hpp_source.html#l00089">job::JobSystemCreateOptions::normal_queue_size</a>, <a class="el" href="job__system_8cpp_source.html#l00201">job::JobSystemContext::num_available_jobs</a>, <a class="el" href="job__system_8cpp_source.html#l00189">job::JobSystemContext::num_tasks_per_worker</a>, <a class="el" href="job__system_8cpp_source.html#l00188">job::JobSystemContext::num_user_threads_setup</a>, <a class="el" href="job__system_8cpp_source.html#l00187">job::JobSystemContext::num_workers</a>, <a class="el" href="job__system_8cpp_source.html#l00179">job::InitializationLock::num_workers_ready</a>, <a class="el" href="job__system_8cpp_source.html#l00191">job::JobSystemContext::sys_arch_str</a>, <a class="el" href="job__system_8cpp_source.html#l00193">job::JobSystemContext::system_alloc_alignment</a>, <a class="el" href="job__system_8cpp_source.html#l00192">job::JobSystemContext::system_alloc_size</a>, <a class="el" href="job__api_8hpp_source.html#l00090">job::JobSystemCreateOptions::worker_queue_size</a>, and <a class="el" href="job__system_8cpp_source.html#l00186">job::JobSystemContext::workers</a>.</p>
+<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00208">g_CurrentWorker</a>, <a class="el" href="job__system_8cpp_source.html#l00207">g_JobSystem</a>, <a class="el" href="job__system_8cpp_source.html#l00192">job::JobSystemContext::init_lock</a>, <a class="el" href="job__system_8cpp_source.html#l00703">Initialize()</a>, <a class="el" href="job__api_8hpp_source.html#l00091">job::JobSystemCreateOptions::job_steal_rng_seed</a>, <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__system_8cpp_source.html#l00190">job::JobSystemContext::needs_delete</a>, <a class="el" href="job__api_8hpp_source.html#l00089">job::JobSystemCreateOptions::normal_queue_size</a>, <a class="el" href="job__system_8cpp_source.html#l00201">job::JobSystemContext::num_available_jobs</a>, <a class="el" href="job__system_8cpp_source.html#l00189">job::JobSystemContext::num_tasks_per_worker</a>, <a class="el" href="job__system_8cpp_source.html#l00188">job::JobSystemContext::num_user_threads_setup</a>, <a class="el" href="job__system_8cpp_source.html#l00187">job::JobSystemContext::num_workers</a>, <a class="el" href="job__system_8cpp_source.html#l00179">job::InitializationLock::num_workers_ready</a>, <a class="el" href="job__system_8cpp_source.html#l00193">job::JobSystemContext::sys_arch_str</a>, <a class="el" href="job__system_8cpp_source.html#l00195">job::JobSystemContext::system_alloc_alignment</a>, <a class="el" href="job__system_8cpp_source.html#l00194">job::JobSystemContext::system_alloc_size</a>, <a class="el" href="job__api_8hpp_source.html#l00090">job::JobSystemCreateOptions::worker_queue_size</a>, and <a class="el" href="job__system_8cpp_source.html#l00186">job::JobSystemContext::workers</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="job__system_8cpp_source.html#l00703">Initialize()</a>.</p>
 
@@ -1057,9 +1057,9 @@ thread_id</td>
 <div class="fragment"><div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>{</div>
 <div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="job__system_8cpp.html#acf9188028f95dbc4757c97bbe2bddfc0">g_JobSystem</a>-&gt;<a class="code hl_variable" href="namespacejob.html#a039173530b335cfc5daee64e7ac6b3d7">sys_arch_str</a>;</div>
 <div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>}</div>
-<div class="ttc" id="anamespacejob_html_a039173530b335cfc5daee64e7ac6b3d7"><div class="ttname"><a href="namespacejob.html#a039173530b335cfc5daee64e7ac6b3d7">job::JobSystemContext::sys_arch_str</a></div><div class="ttdeci">const char * sys_arch_str</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00191">job_system.cpp:191</a></div></div>
+<div class="ttc" id="anamespacejob_html_a039173530b335cfc5daee64e7ac6b3d7"><div class="ttname"><a href="namespacejob.html#a039173530b335cfc5daee64e7ac6b3d7">job::JobSystemContext::sys_arch_str</a></div><div class="ttdeci">const char * sys_arch_str</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00193">job_system.cpp:193</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00207">g_JobSystem</a>, and <a class="el" href="job__system_8cpp_source.html#l00191">job::JobSystemContext::sys_arch_str</a>.</p>
+<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00207">g_JobSystem</a>, and <a class="el" href="job__system_8cpp_source.html#l00193">job::JobSystemContext::sys_arch_str</a>.</p>
 
 </div>
 </div>
@@ -1252,13 +1252,13 @@ thread_id</td>
 <div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>    ::operator <span class="keyword">delete</span>[](job_system, job_system-&gt;<a class="code hl_variable" href="namespacejob.html#ae45fa3542b2a028e5f0a7d8d8ce62563">system_alloc_size</a>, std::align_val_t{job_system-&gt;system_alloc_alignment});</div>
 <div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>  }</div>
 <div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span>}</div>
-<div class="ttc" id="anamespacejob_html_a19030991a9f5a2bdf078724c99359ce0"><div class="ttname"><a href="namespacejob.html#a19030991a9f5a2bdf078724c99359ce0">job::JobSystemContext::is_running</a></div><div class="ttdeci">std::atomic_bool is_running</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00195">job_system.cpp:195</a></div></div>
+<div class="ttc" id="anamespacejob_html_a19030991a9f5a2bdf078724c99359ce0"><div class="ttname"><a href="namespacejob.html#a19030991a9f5a2bdf078724c99359ce0">job::JobSystemContext::is_running</a></div><div class="ttdeci">std::atomic_bool is_running</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00191">job_system.cpp:191</a></div></div>
 <div class="ttc" id="anamespacejob_html_a1f5799771d4c30ff84c992c9a4313d48"><div class="ttname"><a href="namespacejob.html#a1f5799771d4c30ff84c992c9a4313d48">job::JobSystemContext::worker_sleep_mutex</a></div><div class="ttdeci">std::mutex worker_sleep_mutex</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00199">job_system.cpp:199</a></div></div>
-<div class="ttc" id="anamespacejob_html_a8b8546bc05dced4dc9cc76e080a47c26"><div class="ttname"><a href="namespacejob.html#a8b8546bc05dced4dc9cc76e080a47c26">job::JobSystemContext::needs_delete</a></div><div class="ttdeci">bool needs_delete</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00194">job_system.cpp:194</a></div></div>
-<div class="ttc" id="anamespacejob_html_ae45fa3542b2a028e5f0a7d8d8ce62563"><div class="ttname"><a href="namespacejob.html#ae45fa3542b2a028e5f0a7d8d8ce62563">job::JobSystemContext::system_alloc_size</a></div><div class="ttdeci">std::size_t system_alloc_size</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00192">job_system.cpp:192</a></div></div>
+<div class="ttc" id="anamespacejob_html_a8b8546bc05dced4dc9cc76e080a47c26"><div class="ttname"><a href="namespacejob.html#a8b8546bc05dced4dc9cc76e080a47c26">job::JobSystemContext::needs_delete</a></div><div class="ttdeci">bool needs_delete</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00190">job_system.cpp:190</a></div></div>
+<div class="ttc" id="anamespacejob_html_ae45fa3542b2a028e5f0a7d8d8ce62563"><div class="ttname"><a href="namespacejob.html#ae45fa3542b2a028e5f0a7d8d8ce62563">job::JobSystemContext::system_alloc_size</a></div><div class="ttdeci">std::size_t system_alloc_size</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00194">job_system.cpp:194</a></div></div>
 <div class="ttc" id="anamespacejob_html_structjob_1_1_job_system_context"><div class="ttname"><a href="namespacejob.html#structjob_1_1_job_system_context">job::JobSystemContext</a></div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00182">job_system.cpp:183</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00208">g_CurrentWorker</a>, <a class="el" href="job__system_8cpp_source.html#l00207">g_JobSystem</a>, <a class="el" href="job__system_8cpp_source.html#l00195">job::JobSystemContext::is_running</a>, <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__system_8cpp_source.html#l00194">job::JobSystemContext::needs_delete</a>, <a class="el" href="job__system_8cpp_source.html#l00187">job::JobSystemContext::num_workers</a>, <a class="el" href="job__system_8cpp_source.html#l00192">job::JobSystemContext::system_alloc_size</a>, <a class="el" href="job__system_8cpp_source.html#l00199">job::JobSystemContext::worker_sleep_mutex</a>, and <a class="el" href="job__system_8cpp_source.html#l00186">job::JobSystemContext::workers</a>.</p>
+<p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00208">g_CurrentWorker</a>, <a class="el" href="job__system_8cpp_source.html#l00207">g_JobSystem</a>, <a class="el" href="job__system_8cpp_source.html#l00191">job::JobSystemContext::is_running</a>, <a class="el" href="job__api_8hpp_source.html#l00032">JobAssert</a>, <a class="el" href="job__system_8cpp_source.html#l00190">job::JobSystemContext::needs_delete</a>, <a class="el" href="job__system_8cpp_source.html#l00187">job::JobSystemContext::num_workers</a>, <a class="el" href="job__system_8cpp_source.html#l00194">job::JobSystemContext::system_alloc_size</a>, <a class="el" href="job__system_8cpp_source.html#l00199">job::JobSystemContext::worker_sleep_mutex</a>, and <a class="el" href="job__system_8cpp_source.html#l00186">job::JobSystemContext::workers</a>.</p>
 
 </div>
 </div>
@@ -1927,7 +1927,7 @@ template&lt;typename <a class="el" href="structjob_1_1_splitter.html">Splitter</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacejob.html">job</a></li>
-    <li class="footer">Generated on Tue Aug 11 2026 04:26:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Mon Aug 17 2026 08:24:37 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

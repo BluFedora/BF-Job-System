@@ -281,7 +281,7 @@ num_allocated_tasks</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aebb55732b4dae2c798df5e16e0266721" name="aebb55732b4dae2c798df5e16e0266721"></a><a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">ThreadLocalState</a> *</td>
+<a id="a3f46d20a6c4e6a419dae6f262aa0ebe9" name="a3f46d20a6c4e6a419dae6f262aa0ebe9"></a><a class="el" href="namespacejob.html#structjob_1_1_thread_local_state">ThreadLocalState</a> *</td>
 <td class="fieldname">
 last_stolen_worker</td>
 <td class="fielddoc">
@@ -379,6 +379,18 @@ num_tasks_per_worker</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="a8b8546bc05dced4dc9cc76e080a47c26" name="a8b8546bc05dced4dc9cc76e080a47c26"></a>bool</td>
+<td class="fieldname">
+needs_delete</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a19030991a9f5a2bdf078724c99359ce0" name="a19030991a9f5a2bdf078724c99359ce0"></a>atomic_bool</td>
+<td class="fieldname">
+is_running</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
 <a id="a35d4e5208fa0bea06993cf9ab3fb37e7" name="a35d4e5208fa0bea06993cf9ab3fb37e7"></a><a class="el" href="namespacejob.html#structjob_1_1_initialization_lock">InitializationLock</a></td>
 <td class="fieldname">
 init_lock</td>
@@ -403,18 +415,6 @@ system_alloc_alignment</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a8b8546bc05dced4dc9cc76e080a47c26" name="a8b8546bc05dced4dc9cc76e080a47c26"></a>bool</td>
-<td class="fieldname">
-needs_delete</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a19030991a9f5a2bdf078724c99359ce0" name="a19030991a9f5a2bdf078724c99359ce0"></a>atomic_bool</td>
-<td class="fieldname">
-is_running</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a1f5799771d4c30ff84c992c9a4313d48" name="a1f5799771d4c30ff84c992c9a4313d48"></a>mutex</td>
 <td class="fieldname">
 worker_sleep_mutex</td>
@@ -427,7 +427,7 @@ worker_sleep_cv</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="afb64b23e048e589221a31a3d2ed48205" name="afb64b23e048e589221a31a3d2ed48205"></a>atomic_uint32_t</td>
+<a id="a937ad16a8eae1e3ef3dade4e21081c55" name="a937ad16a8eae1e3ef3dade4e21081c55"></a>atomic_size_t</td>
 <td class="fieldname">
 num_available_jobs</td>
 <td class="fielddoc">
@@ -512,7 +512,7 @@ num_available_jobs</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="job__system_8cpp.html">job_system.cpp</a></li>
-    <li class="footer">Generated on Tue Aug 11 2026 04:26:20 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Mon Aug 17 2026 08:24:37 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
