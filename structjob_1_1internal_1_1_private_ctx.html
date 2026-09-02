@@ -123,10 +123,13 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:acb0c1e893fc5f7917da46e0abeddfa54 inherit pub_attribs_structjob_1_1_ctx"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjob_1_1_ctx.html#acb0c1e893fc5f7917da46e0abeddfa54">task_name</a> = 0u</td></tr>
 <tr class="memdesc:acb0c1e893fc5f7917da46e0abeddfa54 inherit pub_attribs_structjob_1_1_ctx"><td class="mdescLeft">&#160;</td><td class="mdescRight">The debug name of the task.  <a href="structjob_1_1_ctx.html#acb0c1e893fc5f7917da46e0abeddfa54">More...</a><br /></td></tr>
 <tr class="separator:acb0c1e893fc5f7917da46e0abeddfa54 inherit pub_attribs_structjob_1_1_ctx"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b001a3bb83446c83e9f9dafece1f29 inherit pub_attribs_structjob_1_1_ctx"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjob_1_1_ctx.html#a64b001a3bb83446c83e9f9dafece1f29">index</a> = 0u</td></tr>
+<tr class="memdesc:a64b001a3bb83446c83e9f9dafece1f29 inherit pub_attribs_structjob_1_1_ctx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index for <code>ParallelFor</code> jobs, always zero for regular <code>Dispatch</code>.  <a href="structjob_1_1_ctx.html#a64b001a3bb83446c83e9f9dafece1f29">More...</a><br /></td></tr>
+<tr class="separator:a64b001a3bb83446c83e9f9dafece1f29 inherit pub_attribs_structjob_1_1_ctx"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00226">226</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00227">227</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac1c8fde198d7a7dbb4abbddbe75aec23" name="ac1c8fde198d7a7dbb4abbddbe75aec23"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1c8fde198d7a7dbb4abbddbe75aec23">&#9670;&nbsp;</a></span>ReleaseTaskToPool()</h2>
@@ -147,7 +150,7 @@ Public Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>{</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  <a class="code hl_variable" href="structjob_1_1internal_1_1_private_ctx.html#ab8bbbf650efc61d6cfee0de308e066c8">is_ready_for_gc</a>-&gt;store(<span class="keyword">true</span>, std::memory_order_release);</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>}</div>
-<div class="ttc" id="astructjob_1_1internal_1_1_private_ctx_html_ab8bbbf650efc61d6cfee0de308e066c8"><div class="ttname"><a href="structjob_1_1internal_1_1_private_ctx.html#ab8bbbf650efc61d6cfee0de308e066c8">job::internal::PrivateCtx::is_ready_for_gc</a></div><div class="ttdeci">std::atomic_bool * is_ready_for_gc</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00229">job_api.hpp:229</a></div></div>
+<div class="ttc" id="astructjob_1_1internal_1_1_private_ctx_html_ab8bbbf650efc61d6cfee0de308e066c8"><div class="ttname"><a href="structjob_1_1internal_1_1_private_ctx.html#ab8bbbf650efc61d6cfee0de308e066c8">job::internal::PrivateCtx::is_ready_for_gc</a></div><div class="ttdeci">std::atomic_bool * is_ready_for_gc</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00230">job_api.hpp:230</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -164,7 +167,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00228">228</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00229">229</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +183,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00229">229</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00230">230</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 
 </div>
 </div>
@@ -194,7 +197,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacejob.html">job</a></li><li class="navelem"><a class="el" href="namespacejob_1_1internal.html">internal</a></li><li class="navelem"><a class="el" href="structjob_1_1internal_1_1_private_ctx.html">PrivateCtx</a></li>
-    <li class="footer">Generated on Mon Aug 17 2026 08:24:37 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Sep 2 2026 00:47:44 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

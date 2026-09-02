@@ -117,7 +117,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00272">272</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00271">271</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae534711d794078272bec0b344164fe8a" name="ae534711d794078272bec0b344164fe8a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae534711d794078272bec0b344164fe8a">&#9670;&nbsp;</a></span>EvenSplit()</h2>
@@ -165,15 +165,15 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A splitter object for <code><a class="el" href="namespacejob.html#a6dc218ab610a7e1cd641a4b099332a76" title="Parallel for algorithm, splits the work up recursively splitting based on the splitter passed in.">job::ParallelFor</a></code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00295">295</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    {</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      <span class="keywordflow">if</span> (num_groups_per_thread &lt; 1u)</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>      {</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        num_groups_per_thread = 1u;</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>      }</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      <span class="keywordflow">return</span> Splitter{(total_num_items / num_groups_per_thread) / <a class="code hl_function" href="namespacejob.html#aa3c6f45af63a7bcaf906cb07f4a6340f">NumWorkers</a>()};</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00294">294</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>      <span class="keywordflow">if</span> (num_groups_per_thread &lt; 1u)</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        num_groups_per_thread = 1u;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>      }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>      <span class="keywordflow">return</span> Splitter{(total_num_items / num_groups_per_thread) / <a class="code hl_function" href="namespacejob.html#aa3c6f45af63a7bcaf906cb07f4a6340f">NumWorkers</a>()};</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    }</div>
 <div class="ttc" id="anamespacejob_html_aa3c6f45af63a7bcaf906cb07f4a6340f"><div class="ttname"><a href="namespacejob.html#aa3c6f45af63a7bcaf906cb07f4a6340f">job::NumWorkers</a></div><div class="ttdeci">std::uint16_t NumWorkers() noexcept</div><div class="ttdoc">Returns the number of workers created by the system. This function can be called by any thread concur...</div><div class="ttdef"><b>Definition:</b> <a href="job__system_8cpp_source.html#l00863">job_system.cpp:863</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="job__system_8cpp_source.html#l00863">job::NumWorkers()</a>.</p>
@@ -204,10 +204,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00305">305</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    {</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      <span class="keywordflow">return</span> Splitter{max_items};</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00304">304</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    {</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      <span class="keywordflow">return</span> Splitter{max_items};</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -237,10 +237,10 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00311">311</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    {</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>      <span class="keywordflow">return</span> Splitter{max_data_size / <span class="keyword">sizeof</span>(T)};</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00310">310</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    {</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>      <span class="keywordflow">return</span> Splitter{max_data_size / <span class="keyword">sizeof</span>(T)};</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -268,11 +268,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00318">318</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>{ <span class="keywordflow">return</span> count &gt; <a class="code hl_variable" href="structjob_1_1_splitter.html#a23c573fcd28955a2838dfad1cfa8850e">max_count</a>; }</div>
-<div class="ttc" id="astructjob_1_1_splitter_html_a23c573fcd28955a2838dfad1cfa8850e"><div class="ttname"><a href="structjob_1_1_splitter.html#a23c573fcd28955a2838dfad1cfa8850e">job::Splitter::max_count</a></div><div class="ttdeci">std::size_t max_count</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00316">job_api.hpp:316</a></div></div>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00317">317</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<div class="fragment"><div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>{ <span class="keywordflow">return</span> count &gt; <a class="code hl_variable" href="structjob_1_1_splitter.html#a23c573fcd28955a2838dfad1cfa8850e">max_count</a>; }</div>
+<div class="ttc" id="astructjob_1_1_splitter_html_a23c573fcd28955a2838dfad1cfa8850e"><div class="ttname"><a href="structjob_1_1_splitter.html#a23c573fcd28955a2838dfad1cfa8850e">job::Splitter::max_count</a></div><div class="ttdeci">std::size_t max_count</div><div class="ttdef"><b>Definition:</b> <a href="job__api_8hpp_source.html#l00315">job_api.hpp:315</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="job__api_8hpp_source.html#l00316">max_count</a>.</p>
+<p class="reference">References <a class="el" href="job__api_8hpp_source.html#l00315">max_count</a>.</p>
 
 </div>
 </div>
@@ -289,9 +289,9 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00316">316</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="job__api_8hpp_source.html#l00315">315</a> of file <a class="el" href="job__api_8hpp_source.html">job_api.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00318">operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="job__api_8hpp_source.html#l00317">operator()()</a>.</p>
 
 </div>
 </div>
@@ -304,7 +304,7 @@ template&lt;typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacejob.html">job</a></li><li class="navelem"><a class="el" href="structjob_1_1_splitter.html">Splitter</a></li>
-    <li class="footer">Generated on Mon Aug 17 2026 08:24:37 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Generated on Wed Sep 2 2026 00:47:44 for BluFedora Job System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>
