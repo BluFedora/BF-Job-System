@@ -340,7 +340,7 @@ namespace
 
     static void RunTaskFunction(job::Task* const self, const job::WorkerID worker_id) noexcept
     {
-      const job::internal::PrivateCtx ctx{self->counter, worker_id, self->name, self->user_data + self->userdata_align, &self->is_ready_for_gc};
+      const job::internal::PrivateCtx ctx{self->counter, worker_id, self->name, 0, self->user_data + self->userdata_align, &self->is_ready_for_gc};
 
       (self->job_fn)(ctx);
 

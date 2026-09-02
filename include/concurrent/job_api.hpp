@@ -55,6 +55,7 @@ namespace job
     Counter*    task_counter   = nullptr;  //!< The counter this task will decrement when done.
     WorkerID    current_worker = 0u;       //!< The worker the current task is running on.
     const char* task_name      = 0u;       //!< The debug name of the task.
+    std::size_t index          = 0u;       //!< Index for `ParallelFor` jobs, always zero for regular `Dispatch`.
   };
 
   /*!
@@ -262,9 +263,7 @@ namespace job
       typed_callback->~Closure();
     };
 
-    internal::DispatchImpl(name, counter, queue, ErasedCallback, sizeof(Closure), alignof(Closure), &Callback, +[](void* const dst_user_data, const void* const src_user_data) -> void {
-      ::new (dst_user_data) Closure(*static_cast<const Closure*>(src_user_data));
-    });
+    internal::DispatchImpl(name, counter, queue, ErasedCallback, sizeof(Closure), alignof(Closure), &Callback, +[](void* const dst_user_data, const void* const src_user_data) -> void { ::new (dst_user_data) Closure(*static_cast<const Closure*>(src_user_data)); });
   }
 
   // Parallel Algorithms API
@@ -364,9 +363,11 @@ namespace job
       }
       else
       {
+        job::Ctx child_ctx{ctx};
         for (std::size_t offset = 0u; offset < count; ++offset)
         {
-          fn(ctx, start + offset);
+          child_ctx.index = start + offset;
+          fn(child_ctx);
         }
       } }, queue);
   }
@@ -374,7 +375,7 @@ namespace job
   template<typename T, typename F, typename S>
   void ParallelFor(const char* const name, Counter* const counter, T* const data, const std::size_t count, S&& splitter, F&& fn, const QueueMode queue = QueueMode::Default)
   {
-    return job::ParallelFor(name, counter, std::size_t(0), count, std::forward<S>(splitter), [=](const job::Ctx& ctx, const std::size_t index) { fn(ctx, data + index); }, queue);
+    return job::ParallelFor(name, counter, std::size_t(0), count, std::forward<S>(splitter), [=](const job::Ctx& ctx) { fn(ctx, data + ctx.index); }, queue);
   }
 
   /*!
